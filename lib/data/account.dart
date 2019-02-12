@@ -78,7 +78,7 @@ class Account {
         header = MockProperties.headerUri,
         headerStatic = MockProperties.headerUri,
         emojis = <Emoji>[Emoji.mock(), Emoji.mock(), Emoji.mock()],
-        moved = Account.mock(),
+        moved = null,
         fields = <Field>[Field.mock(), Field.mock()],
         bot = MockProperties.boolean;
 

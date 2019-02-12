@@ -9,7 +9,6 @@ export 'data/card.dart';
 export 'data/context.dart';
 export 'data/emoji.dart';
 export 'data/filter.dart';
-export 'data/history.dart';
 export 'data/instance.dart';
 export 'data/mention.dart';
 export 'data/notification.dart';

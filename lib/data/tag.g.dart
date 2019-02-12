@@ -15,3 +15,10 @@ Tag _$TagFromJson(Map<String, dynamic> json) {
               e == null ? null : History.fromJson(e as Map<String, dynamic>))
           ?.toList());
 }
+
+History _$HistoryFromJson(Map<String, dynamic> json) {
+  return History(
+      day: DateTime.parse(json['day'] as String),
+      uses: json['uses'] as int,
+      accounts: json['accounts'] as int);
+}

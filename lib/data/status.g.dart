@@ -1,0 +1,70 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'status.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Status _$StatusFromJson(Map<String, dynamic> json) {
+  return Status(
+      id: json['id'] as String,
+      uri: json['uri'] as String,
+      url: json['url'] == null ? null : Uri.parse(json['url'] as String),
+      account: Account.fromJson(json['account'] as Map<String, dynamic>),
+      inReplyToId: json['in_reply_to_id'] as String,
+      inReplyToAccountId: json['in_reply_to_account_id'] as String,
+      reblog: json['reblog'] == null
+          ? null
+          : Status.fromJson(json['reblog'] as Map<String, dynamic>),
+      content: json['content'] as String,
+      created_at: json['created_at'] as String,
+      emojis: (json['emojis'] as List)
+          .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      repliesCount: json['replies_count'] as int,
+      reblogsCount: json['reblogs_count'] as int,
+      favouritesCount: json['favourites_count'] as int,
+      reblogged: json['reblogged'] as bool,
+      favourited: json['favourited'] as bool,
+      muted: json['muted'] as bool,
+      sensitive: json['sensitive'] as bool,
+      spoilerText: json['spoiler_text'] as String,
+      visibility: _$enumDecode(_$StatusVisibilityEnumMap, json['visibility']),
+      mediaAttachments: (json['media_attachments'] as List)
+          .map((e) => Attachment.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      mentions: (json['mentions'] as List)
+          .map((e) => Mention.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      tags: (json['tags'] as List)
+          .map((e) => Tag.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      card: json['card'] == null
+          ? null
+          : Card.fromJson(json['card'] as Map<String, dynamic>),
+      application:
+          Application.fromJson(json['application'] as Map<String, dynamic>),
+      language: json['language'],
+      pinned: json['pinned'] as bool);
+}
+
+T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
+  if (source == null) {
+    throw ArgumentError('A value must be provided. Supported values: '
+        '${enumValues.values.join(', ')}');
+  }
+  return enumValues.entries
+      .singleWhere((e) => e.value == source,
+          orElse: () => throw ArgumentError(
+              '`$source` is not one of the supported values: '
+              '${enumValues.values.join(', ')}'))
+      .key;
+}
+
+const _$StatusVisibilityEnumMap = <StatusVisibility, dynamic>{
+  StatusVisibility.public: 'public',
+  StatusVisibility.unlisted: 'unlisted',
+  StatusVisibility.private: 'private',
+  StatusVisibility.direct: 'direct'
+};

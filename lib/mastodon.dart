@@ -19,3 +19,4 @@ export 'data/results.dart';
 export 'data/scheduled_status.dart';
 export 'data/status.dart';
 export 'data/tag.dart';
+export 'data/shared/visibility.dart';

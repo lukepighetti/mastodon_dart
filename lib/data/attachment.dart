@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 part 'attachment.g.dart';
 
@@ -38,6 +39,17 @@ class Attachment {
     this.meta,
     this.description,
   });
+
+  /// TODO: mock appropriate urls to match the attachment type
+  Attachment.mock()
+      : id = MockProperties.string,
+        type = AttachmentType.unknown,
+        url = MockProperties.headerUri,
+        remoteUrl = MockProperties.headerUri,
+        previewUrl = MockProperties.headerUri,
+        textUrl = MockProperties.uri,
+        meta = null,
+        description = MockProperties.comment;
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);

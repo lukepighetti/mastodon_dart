@@ -24,6 +24,8 @@ import 'package:mastodon/mastodon.dart';
 main() async {
   final mastodon = MockMastodon();
 
-  mastodon.followers("anyString").then(print);
+  mastodon.account("").then((a) =>
+      print([a.id, a.username, a.avatar, a.followersCount, a.followingCount]));
 }
+
 ```

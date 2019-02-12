@@ -13,7 +13,7 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
       acct: json['acct'] as String,
       displayName: json['display_name'] as String,
       locked: json['locked'] as bool,
-      created_at: DateTime.parse(json['created_at'] as String),
+      createdAt: DateTime.parse(json['created_at'] as String),
       followersCount: json['followers_count'] as int,
       followingCount: json['following_count'] as int,
       statusesCount: json['statuses_count'] as int,
@@ -29,7 +29,10 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
       moved: json['moved'] == null
           ? null
           : Account.fromJson(json['moved'] as Map<String, dynamic>),
-      fields: json['fields'] as List,
+      fields: (json['fields'] as List)
+          ?.map((e) =>
+              e == null ? null : Field.fromJson(e as Map<String, dynamic>))
+          ?.toList(),
       bot: json['bot'] as bool);
 }
 

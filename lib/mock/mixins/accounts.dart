@@ -16,7 +16,7 @@ class MockAccountsMixin {
       Future.value(Token.mock());
 
   /// GET /api/v1/accounts/verify_credentials
-  Future<Account> verifyCredentials() => Account.mock();
+  Future<Account> verifyCredentials() => Future.value(Account.mock());
 
   /// PATCH /api/v1/accounts/update_credentials
   Future<Account> updateCredentials({

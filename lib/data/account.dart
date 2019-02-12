@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 import 'emoji.dart';
 
@@ -17,7 +18,7 @@ class Account {
   final String acct;
   final String displayName;
   final bool locked;
-  final DateTime created_at;
+  final DateTime createdAt;
   final int followersCount;
   final int followingCount;
   final int statusesCount;
@@ -33,7 +34,7 @@ class Account {
   final Account moved;
 
   @JsonKey(nullable: true)
-  final List<dynamic> fields;
+  final List<Field> fields;
 
   @JsonKey(nullable: true)
   final bool bot;
@@ -44,7 +45,7 @@ class Account {
     this.acct,
     this.displayName,
     this.locked,
-    this.created_at,
+    this.createdAt,
     this.followersCount,
     this.followingCount,
     this.statusesCount,
@@ -59,6 +60,27 @@ class Account {
     this.fields,
     this.bot,
   });
+
+  Account.mock()
+      : id = MockProperties.string,
+        username = MockProperties.username,
+        acct = MockProperties.string,
+        displayName = MockProperties.fullName,
+        locked = MockProperties.boolean,
+        createdAt = MockProperties.pastDate,
+        followersCount = MockProperties.integer,
+        followingCount = MockProperties.integer,
+        statusesCount = MockProperties.integer,
+        note = MockProperties.comment,
+        url = MockProperties.uri,
+        avatar = MockProperties.avatarUri,
+        avatarStatic = MockProperties.avatarUri,
+        header = MockProperties.headerUri,
+        headerStatic = MockProperties.headerUri,
+        emojis = <Emoji>[Emoji.mock(), Emoji.mock(), Emoji.mock()],
+        moved = Account.mock(),
+        fields = <Field>[Field.mock(), Field.mock()],
+        bot = MockProperties.boolean;
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
@@ -83,6 +105,11 @@ class Field {
     this.value,
     this.verifiedAt,
   });
+
+  Field.mock()
+      : name = MockProperties.firstName,
+        value = MockProperties.tag,
+        verifiedAt = MockProperties.pastDate;
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
 }

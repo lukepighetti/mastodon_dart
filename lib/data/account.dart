@@ -165,5 +165,11 @@ class Token {
     this.createdAt,
   });
 
+  Token.mock()
+      : accessToken = MockProperties.string,
+        tokenType = MockProperties.string,
+        scope = MockProperties.string,
+        createdAt = MockProperties.pastDate;
+
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
 }

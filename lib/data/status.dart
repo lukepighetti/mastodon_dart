@@ -38,7 +38,7 @@ class Status {
   final Status reblog;
 
   final String content;
-  final String created_at;
+  final DateTime created_at;
   final List<Emoji> emojis;
   final int repliesCount;
   final int reblogsCount;

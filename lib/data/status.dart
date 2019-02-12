@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 import 'account.dart';
 import 'application.dart';
@@ -38,7 +39,7 @@ class Status {
   final Status reblog;
 
   final String content;
-  final DateTime created_at;
+  final DateTime createdAt;
   final List<Emoji> emojis;
   final int repliesCount;
   final int reblogsCount;
@@ -80,7 +81,7 @@ class Status {
     this.inReplyToAccountId,
     this.reblog,
     this.content,
-    this.created_at,
+    this.createdAt,
     this.emojis,
     this.repliesCount,
     this.reblogsCount,
@@ -99,6 +100,51 @@ class Status {
     this.language,
     this.pinned,
   });
+
+  Status.mock()
+      : id = MockProperties.string,
+        uri = MockProperties.uri.toString(),
+        url = MockProperties.uri,
+        account = Account.mock(),
+        inReplyToId = MockProperties.string,
+        inReplyToAccountId = MockProperties.string,
+        reblog = Status.mock(),
+        content = MockProperties.comment,
+        createdAt = MockProperties.pastDate,
+        emojis = [Emoji.mock(), Emoji.mock(), Emoji.mock()],
+        repliesCount = MockProperties.integer,
+        reblogsCount = MockProperties.integer,
+        favouritesCount = MockProperties.integer,
+        reblogged = MockProperties.boolean,
+        favourited = MockProperties.boolean,
+        muted = MockProperties.boolean,
+        sensitive = MockProperties.boolean,
+        spoilerText = "spoiler!",
+        visibility = MockProperties.randomItem([
+          Visibility.direct,
+          Visibility.private,
+          Visibility.public,
+          Visibility.unlisted
+        ]),
+        mediaAttachments = MockProperties.randomSublist<Attachment>([
+          Attachment.mock(),
+          Attachment.mock(),
+          Attachment.mock(),
+        ]),
+        mentions = MockProperties.randomSublist<Mention>([
+          Mention.mock(),
+          Mention.mock(),
+          Mention.mock(),
+        ]),
+        tags = MockProperties.randomSublist<Tag>([
+          Tag.mock(),
+          Tag.mock(),
+          Tag.mock(),
+        ]),
+        card = Card.mock(),
+        application = Application.mock(),
+        language = MockProperties.string,
+        pinned = MockProperties.boolean;
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 }

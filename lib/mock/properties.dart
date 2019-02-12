@@ -1,49 +1,49 @@
 import 'dart:math' show Random;
 
 class MockProperties {
-  static bool get boolean => _randomItem([true, false]);
+  static bool get boolean => randomItem([true, false]);
   static int get integer => Random().nextInt(999);
   static String get string => Random().nextInt(99999999).toString();
-  static Uri get uri => Uri.parse(_randomItem(["google.com", "github.com"]));
+  static Uri get uri => Uri.parse(randomItem(["google.com", "github.com"]));
 
-  static String get comment => _randomItem(_comments);
-  static String get email => _randomItem(_emails);
+  static String get comment => randomItem(_comments);
+  static String get email => randomItem(_emails);
   static String get firstName => fullName.split(" ").first;
-  static String get fullName => _randomItem(_fullNames);
+  static String get fullName => randomItem(_fullNames);
   static String get lastName => fullName.split(" ").last;
 
-  static String get tag => _randomItem(["happy", "yum", "water", "fluffy"]);
+  static String get tag => randomItem(["happy", "yum", "water", "fluffy"]);
 
   static DateTime get pastDate => DateTime.now()
       .subtract(Duration(seconds: Random().nextInt(30 * 24 * 60 * 60)));
 
-  static String get subject => _randomItem([
+  static String get subject => randomItem([
         "Your Next Phone May Have a Hole in the Screen",
         "JavaScript: What the heck is a callback?",
         "An introduction to GraphQL: what it is and when to use it.",
         "How whitespace killed an enterprise app",
       ]);
 
-  static String get html => _randomItem([
+  static String get html => randomItem([
         "Your <b>Next</b> Phone <i>May</i> Have a Hole in the Screen",
         "<b>JavaScript</b>: What the <i>heck</i> is a callback?",
         "An <b>introduction</b> to <i>GraphQL</i>: what it is and when to use it.",
         "How <b>whitespace</b> <i>killed</i> an enterprise app",
       ]);
 
-  static Uri get avatarUri => Uri.parse(_randomItem([
+  static Uri get avatarUri => Uri.parse(randomItem([
         "https://randomuser.me/api/portraits/men/${Random().nextInt(99)}.jpg",
         "https://randomuser.me/api/portraits/women/${Random().nextInt(99)}.jpg",
       ]));
 
-  static Uri get emojiUri => Uri.parse(_randomItem([
+  static Uri get emojiUri => Uri.parse(randomItem([
         "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/grinning-face_1f600.png",
         "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/face-with-tears-of-joy_1f602.png",
         "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/splashing-sweat-symbol_1f4a6.png",
         "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/155/aubergine_1f346.png",
       ]));
 
-  static Uri get headerUri => Uri.parse(_randomItem([
+  static Uri get headerUri => Uri.parse(randomItem([
         "https://www.canva.com/signup?signupRedirect=%2Fdesign%3Fcreate%3Dtrue%26media%3DMAA_AQWx-AQ%26layoutQuery%3D*&loginRedirect=%2Fdesign%3Fcreate%3Dtrue%26media%3DMAA_AQWx-AQ%26layoutQuery%3D*&referrer=twitter-post-templates",
         "https://www.canva.com/signup?signupRedirect=%2Fdesign%3Fcreate%3Dtrue%26media%3DMAA_AfG8OoE%26layoutQuery%3D*&loginRedirect=%2Fdesign%3Fcreate%3Dtrue%26media%3DMAA_AfG8OoE%26layoutQuery%3D*&referrer=twitter-post-templates",
         "https://marketplace.canva.com/MAA_AYqRMnc/1/0/thumbnail_large/canva-snowy-mountaintops-profile-header-MAA_AYqRMnc.jpg",
@@ -51,12 +51,14 @@ class MockProperties {
       ]));
 
   static String get username =>
-      _randomItem(["one", "lucky", "red", "sly"]) +
-      _randomItem(["gerbal", "fedi", "masto", "ella"]) +
+      randomItem(["one", "lucky", "red", "sly"]) +
+      randomItem(["gerbal", "fedi", "masto", "ella"]) +
       Random().nextInt(9999).toString();
 
-  static T _randomItem<T>(List<T> list) =>
+  static T randomItem<T>(List<T> list) =>
       list[Random().nextInt(list.length - 1)];
+
+  static List<T> randomSublist<T>(List<T> list) => list.sublist(list.length);
 
   static const List<String> _comments = [
     "Hero, iconography, experience, shot – slick dude",

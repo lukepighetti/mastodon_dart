@@ -30,7 +30,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
       muted: json['muted'] as bool,
       sensitive: json['sensitive'] as bool,
       spoilerText: json['spoiler_text'] as String,
-      visibility: _$enumDecode(_$StatusVisibilityEnumMap, json['visibility']),
+      visibility: _$enumDecode(_$VisibilityEnumMap, json['visibility']),
       mediaAttachments: (json['media_attachments'] as List)
           .map((e) => Attachment.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -62,9 +62,9 @@ T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {
       .key;
 }
 
-const _$StatusVisibilityEnumMap = <StatusVisibility, dynamic>{
-  StatusVisibility.public: 'public',
-  StatusVisibility.unlisted: 'unlisted',
-  StatusVisibility.private: 'private',
-  StatusVisibility.direct: 'direct'
+const _$VisibilityEnumMap = <Visibility, dynamic>{
+  Visibility.public: 'public',
+  Visibility.unlisted: 'unlisted',
+  Visibility.private: 'private',
+  Visibility.direct: 'direct'
 };

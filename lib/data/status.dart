@@ -8,6 +8,8 @@ import 'emoji.dart';
 import 'mention.dart';
 import 'tag.dart';
 
+import 'shared/visibility.dart';
+
 part 'status.g.dart';
 
 /// https://docs.joinmastodon.org/api/entities/#status
@@ -53,7 +55,7 @@ class Status {
 
   final bool sensitive;
   final String spoilerText;
-  final StatusVisibility visibility;
+  final Visibility visibility;
   final List<Attachment> mediaAttachments;
   final List<Mention> mentions;
   final List<Tag> tags;
@@ -100,5 +102,3 @@ class Status {
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 }
-
-enum StatusVisibility { public, unlisted, private, direct }

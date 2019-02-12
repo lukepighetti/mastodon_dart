@@ -32,3 +32,31 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
       fields: json['fields'] as List,
       bot: json['bot'] as bool);
 }
+
+Field _$FieldFromJson(Map<String, dynamic> json) {
+  return Field(
+      name: json['name'] as String,
+      value: json['value'] as String,
+      verifiedAt: json['verified_at'] == null
+          ? null
+          : DateTime.parse(json['verified_at'] as String));
+}
+
+Source _$SourceFromJson(Map<String, dynamic> json) {
+  return Source(
+      privacy: json['privacy'] as String,
+      sensitive: json['sensitive'] as bool,
+      language: json['language'],
+      note: json['note'] as String,
+      fields: (json['fields'] as List)
+          .map((e) => Field.fromJson(e as Map<String, dynamic>))
+          .toList());
+}
+
+Token _$TokenFromJson(Map<String, dynamic> json) {
+  return Token(
+      accessToken: json['access_token'] as String,
+      tokenType: json['token_type'] as String,
+      scope: json['scope'] as String,
+      createdAt: DateTime.parse(json['created_at'] as String));
+}

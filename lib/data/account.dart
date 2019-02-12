@@ -63,3 +63,80 @@ class Account {
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
 }
+
+/// https://docs.joinmastodon.org/api/entities/#field
+
+@JsonSerializable(
+  nullable: false,
+  createToJson: false,
+  fieldRename: FieldRename.snake,
+)
+class Field {
+  final String name;
+  final String value;
+
+  @JsonKey(nullable: true)
+  final DateTime verifiedAt;
+
+  Field({
+    this.name,
+    this.value,
+    this.verifiedAt,
+  });
+
+  factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
+}
+
+/// https://docs.joinmastodon.org/api/entities/#source
+
+@JsonSerializable(
+  nullable: false,
+  createToJson: false,
+  fieldRename: FieldRename.snake,
+)
+class Source {
+  @JsonKey(nullable: true)
+  final String privacy;
+
+  @JsonKey(nullable: true)
+  final bool sensitive;
+
+  @JsonKey(nullable: true)
+  final dynamic language;
+
+  final String note;
+  final List<Field> fields;
+
+  Source({
+    this.privacy,
+    this.sensitive,
+    this.language,
+    this.note,
+    this.fields,
+  });
+
+  factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+}
+
+/// https://docs.joinmastodon.org/api/entities/#token
+
+@JsonSerializable(
+  nullable: false,
+  createToJson: false,
+  fieldRename: FieldRename.snake,
+)
+class Token {
+  final String accessToken;
+  final String tokenType;
+  final String scope;
+  final DateTime createdAt;
+
+  Token({
+    this.accessToken,
+    this.tokenType,
+    this.scope,
+    this.createdAt,
+  });
+
+  factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+}

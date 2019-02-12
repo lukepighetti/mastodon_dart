@@ -17,6 +17,20 @@ class MockProperties {
   static DateTime get pastDate => DateTime.now()
       .subtract(Duration(seconds: Random().nextInt(30 * 24 * 60 * 60)));
 
+  static String get subject => _randomItem([
+        "Your Next Phone May Have a Hole in the Screen",
+        "JavaScript: What the heck is a callback?",
+        "An introduction to GraphQL: what it is and when to use it.",
+        "How whitespace killed an enterprise app",
+      ]);
+
+  static String get html => _randomItem([
+        "Your <b>Next</b> Phone <i>May</i> Have a Hole in the Screen",
+        "<b>JavaScript</b>: What the <i>heck</i> is a callback?",
+        "An <b>introduction</b> to <i>GraphQL</i>: what it is and when to use it.",
+        "How <b>whitespace</b> <i>killed</i> an enterprise app",
+      ]);
+
   static Uri get avatarUri => Uri.parse(_randomItem([
         "https://randomuser.me/api/portraits/men/${Random().nextInt(99)}.jpg",
         "https://randomuser.me/api/portraits/women/${Random().nextInt(99)}.jpg",

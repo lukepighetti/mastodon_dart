@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 part 'mention.g.dart';
 
@@ -21,6 +22,12 @@ class Mention {
     this.account,
     this.id,
   });
+
+  Mention.mock()
+      : url = MockProperties.uri,
+        username = MockProperties.username,
+        account = MockProperties.string,
+        id = MockProperties.string;
 
   factory Mention.fromJson(Map<String, dynamic> json) =>
       _$MentionFromJson(json);

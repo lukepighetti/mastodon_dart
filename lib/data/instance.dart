@@ -45,6 +45,8 @@ class Instance {
       _$InstanceFromJson(json);
 }
 
+/// https://docs.joinmastodon.org/api/entities/#stats
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,

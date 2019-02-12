@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'attachment.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#attachment
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,
@@ -40,5 +42,7 @@ class Attachment {
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);
 }
+
+/// https://docs.joinmastodon.org/api/entities/#type
 
 enum AttachmentType { unknown, image, gifv, video }

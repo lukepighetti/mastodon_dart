@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'emoji.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#emoji
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,

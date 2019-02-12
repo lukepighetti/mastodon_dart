@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'filter.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#context
+/// https://docs.joinmastodon.org/api/entities/#filter
 ///
 /// TODO: follow Implementation Notes
 

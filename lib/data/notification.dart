@@ -33,4 +33,6 @@ class Notification {
       _$NotificationFromJson(json);
 }
 
+/// https://docs.joinmastodon.org/api/entities/#type-2
+
 enum NotificationType { follow, mention, reblog, favourite }

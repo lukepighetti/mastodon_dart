@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'relationship.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#relationship
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,

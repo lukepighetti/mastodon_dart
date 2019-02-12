@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'application.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#application
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,

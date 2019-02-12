@@ -4,6 +4,8 @@ import 'emoji.dart';
 
 part 'account.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#account
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,

@@ -2,6 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'card.g.dart';
 
+/// https://docs.joinmastodon.org/api/entities/#card
+
 @JsonSerializable(
   nullable: false,
   createToJson: false,
@@ -55,5 +57,7 @@ class Card {
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }
+
+/// https://docs.joinmastodon.org/api/entities/#type-1
 
 enum CardType { link, photo, video, rich }

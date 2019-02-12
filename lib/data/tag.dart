@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 import 'history.dart';
 
@@ -23,6 +24,15 @@ class Tag {
     this.website,
     this.history,
   });
+
+  Tag.mock()
+      : name = MockProperties.tag,
+        website = MockProperties.uri,
+        history = [
+          History.mock(),
+          History.mock(),
+          History.mock(),
+        ];
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
 }

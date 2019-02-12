@@ -29,5 +29,6 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
       moved: json['moved'] == null
           ? null
           : Account.fromJson(json['moved'] as Map<String, dynamic>),
+      fields: json['fields'] as List,
       bot: json['bot'] as bool);
 }

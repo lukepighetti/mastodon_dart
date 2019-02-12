@@ -30,8 +30,8 @@ class Account {
   @JsonKey(nullable: true)
   final Account moved;
 
-  // @JsonKey(nullable: true)
-  // final List<Hash> fields;
+  @JsonKey(nullable: true)
+  final List<dynamic> fields;
 
   @JsonKey(nullable: true)
   final bool bot;
@@ -54,7 +54,7 @@ class Account {
     this.headerStatic,
     this.emojis,
     this.moved,
-    // this.fields,
+    this.fields,
     this.bot,
   });
 

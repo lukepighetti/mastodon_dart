@@ -17,6 +17,7 @@ import 'mixins/reports.dart';
 import 'mixins/scheduled_statuses.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
+import 'mixins/timelines.dart';
 
 class MockMastodon
     with
@@ -38,4 +39,5 @@ class MockMastodon
         MockReportsMixin,
         MockScheduledStatusesMixin,
         MockSearchMixin,
-        MockStatusesMixin {}
+        MockStatusesMixin,
+        MockTimelinesMixin {}

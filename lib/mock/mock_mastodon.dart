@@ -5,6 +5,7 @@ import 'mixins/custom_emojis.dart';
 import 'mixins/domain_blocks.dart';
 import 'mixins/endorsements.dart';
 import 'mixins/favourites.dart';
+import 'mixins/filters.dart';
 
 class MockMastodon
     with
@@ -14,4 +15,5 @@ class MockMastodon
         MockCustomEmojisMixin,
         MockDomainBlocksMixin,
         MockEndorsementsMixin,
-        MockFavouritesMixin {}
+        MockFavouritesMixin,
+        MockFiltersMixin {}

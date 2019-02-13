@@ -66,7 +66,7 @@ class MockAccountsMixin {
       Future.value(List.generate((ids.length), (_) => Relationship.mock()));
 
   /// GET /api/v1/accounts/search
-  Future<List<Account>> search(
+  Future<List<Account>> searchAccounts(
     String q, {
     int limit = 40,
     bool resolve = false,

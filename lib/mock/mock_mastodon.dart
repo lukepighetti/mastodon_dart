@@ -6,6 +6,7 @@ import 'mixins/domain_blocks.dart';
 import 'mixins/endorsements.dart';
 import 'mixins/favourites.dart';
 import 'mixins/filters.dart';
+import 'mixins/follow_requests.dart';
 
 class MockMastodon
     with
@@ -16,4 +17,5 @@ class MockMastodon
         MockDomainBlocksMixin,
         MockEndorsementsMixin,
         MockFavouritesMixin,
-        MockFiltersMixin {}
+        MockFiltersMixin,
+        MockFollowRequestsMixin {}

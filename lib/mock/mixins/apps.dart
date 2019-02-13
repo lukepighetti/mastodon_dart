@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 class MockAppsMixin {
   /// POST /api/v1/apps
   /// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
-  Future<AuthenticatedApplication> authCredentials({
+  Future<AuthenticatedApplication> appCredentials({
     @required String clientName,
     @required String redirectUris,
     @required List<String> scopes,
@@ -14,5 +14,6 @@ class MockAppsMixin {
 
   /// GET /api/v1/apps/verify_credentials
   /// https://docs.joinmastodon.org/api/rest/apps/#get-api-v1-apps-verify-credentials
-  Future<Application> verifyCredentials() => Future.value(Application.mock());
+  Future<Application> verifyAppCredentials() =>
+      Future.value(Application.mock());
 }

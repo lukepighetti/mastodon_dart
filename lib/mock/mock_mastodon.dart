@@ -8,6 +8,7 @@ import 'mixins/favourites.dart';
 import 'mixins/filters.dart';
 import 'mixins/follow_requests.dart';
 import 'mixins/follow_suggestions.dart';
+import 'mixins/instances.dart';
 
 class MockMastodon
     with
@@ -20,4 +21,5 @@ class MockMastodon
         MockFavouritesMixin,
         MockFiltersMixin,
         MockFollowRequestsMixin,
-        MockFollowSuggestionsMixin {}
+        MockFollowSuggestionsMixin,
+        MockInstancesMixin {}

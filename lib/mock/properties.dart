@@ -13,6 +13,8 @@ class MockProperties {
   static String get lastName => fullName.split(" ").last;
 
   static String get tag => randomItem(["happy", "yum", "water", "fluffy"]);
+  static String get version =>
+      "v${Random().nextInt(9) + 1}.${Random().nextInt(9)}.${Random().nextInt(9)}+${Random().nextInt(99) + 1}";
 
   static DateTime get pastDate => DateTime.now()
       .subtract(Duration(seconds: Random().nextInt(30 * 24 * 60 * 60)));
@@ -34,6 +36,15 @@ class MockProperties {
   static Uri get avatarUri => Uri.parse(randomItem([
         "https://randomuser.me/api/portraits/men/${Random().nextInt(99)}.jpg",
         "https://randomuser.me/api/portraits/women/${Random().nextInt(99)}.jpg",
+      ]));
+
+  static Uri get iconUri => Uri.parse(randomItem([
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/zcl.png",
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/tnc.png",
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/shift.png",
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/poly.png",
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/krb.png",
+        "https://github.com/atomiclabs/cryptocurrency-icons/raw/master/128/color/agrs.png",
       ]));
 
   static Uri get emojiUri => Uri.parse(randomItem([

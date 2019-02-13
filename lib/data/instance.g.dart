@@ -8,7 +8,7 @@ part of 'instance.dart';
 
 Instance _$InstanceFromJson(Map<String, dynamic> json) {
   return Instance(
-      uri: json['uri'] as String,
+      uri: Uri.parse(json['uri'] as String),
       title: json['title'] as String,
       description: json['description'] as String,
       email: json['email'] as String,

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'package:mastodon/mock/properties.dart';
 
 import 'attachment.dart';
 import 'shared/visibility.dart';
@@ -15,7 +16,7 @@ part 'scheduled_status.g.dart';
 class ScheduledStatus {
   final String id;
   final DateTime scheduledAt;
-  final List<ScheduledStatusParams> params;
+  final List<Params> params;
   final List<Attachment> mediaAttachments;
 
   ScheduledStatus({
@@ -24,6 +25,22 @@ class ScheduledStatus {
     this.params,
     this.mediaAttachments,
   });
+
+  ScheduledStatus.mock()
+      : id = MockProperties.string,
+        scheduledAt = MockProperties.pastDate,
+        params = MockProperties.randomSublist([
+          Params.mock(),
+          Params.mock(),
+          Params.mock(),
+          Params.mock(),
+        ]),
+        mediaAttachments = MockProperties.randomSublist([
+          Attachment.mock(),
+          Attachment.mock(),
+          Attachment.mock(),
+          Attachment.mock(),
+        ]);
 
   factory ScheduledStatus.fromJson(Map<String, dynamic> json) =>
       _$ScheduledStatusFromJson(json);
@@ -36,7 +53,7 @@ class ScheduledStatus {
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
-class ScheduledStatusParams {
+class Params {
   final String text;
   final String inReplyToId;
   final List<String> mediaIds;
@@ -46,7 +63,7 @@ class ScheduledStatusParams {
   final DateTime scheduledAt;
   final String applicationId;
 
-  ScheduledStatusParams({
+  Params({
     this.text,
     this.inReplyToId,
     this.mediaIds,
@@ -57,6 +74,24 @@ class ScheduledStatusParams {
     this.applicationId,
   });
 
-  factory ScheduledStatusParams.fromJson(Map<String, dynamic> json) =>
-      _$ScheduledStatusParamsFromJson(json);
+  Params.mock()
+      : text = MockProperties.tag,
+        inReplyToId = MockProperties.string,
+        mediaIds = MockProperties.randomSublist([
+          MockProperties.string,
+          MockProperties.string,
+          MockProperties.string,
+        ]),
+        sensitive = MockProperties.boolean,
+        spoilerText = MockProperties.boolean,
+        visibility = MockProperties.randomItem([
+          Visibility.direct,
+          Visibility.private,
+          Visibility.public,
+          Visibility.unlisted,
+        ]),
+        scheduledAt = MockProperties.pastDate,
+        applicationId = MockProperties.string;
+
+  factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
 }

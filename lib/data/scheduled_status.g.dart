@@ -11,16 +11,15 @@ ScheduledStatus _$ScheduledStatusFromJson(Map<String, dynamic> json) {
       id: json['id'] as String,
       scheduledAt: DateTime.parse(json['scheduled_at'] as String),
       params: (json['params'] as List)
-          .map((e) => ScheduledStatusParams.fromJson(e as Map<String, dynamic>))
+          .map((e) => Params.fromJson(e as Map<String, dynamic>))
           .toList(),
       mediaAttachments: (json['media_attachments'] as List)
           .map((e) => Attachment.fromJson(e as Map<String, dynamic>))
           .toList());
 }
 
-ScheduledStatusParams _$ScheduledStatusParamsFromJson(
-    Map<String, dynamic> json) {
-  return ScheduledStatusParams(
+Params _$ParamsFromJson(Map<String, dynamic> json) {
+  return Params(
       text: json['text'] as String,
       inReplyToId: json['in_reply_to_id'] as String,
       mediaIds: (json['media_ids'] as List).map((e) => e as String).toList(),

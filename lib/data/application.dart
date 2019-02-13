@@ -25,3 +25,36 @@ class Application {
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);
 }
+
+/// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
+
+@JsonSerializable(
+  nullable: false,
+  createToJson: false,
+  fieldRename: FieldRename.snake,
+)
+class AuthenticatedApplication extends Application {
+  final String name;
+
+  @JsonKey(nullable: true)
+  final Uri website;
+
+  final String clientId;
+  final String clientSecret;
+
+  AuthenticatedApplication({
+    this.name,
+    this.website,
+    this.clientId,
+    this.clientSecret,
+  });
+
+  AuthenticatedApplication.mock()
+      : name = MockProperties.firstName,
+        website = MockProperties.uri,
+        clientId = MockProperties.string,
+        clientSecret = MockProperties.string;
+
+  factory AuthenticatedApplication.fromJson(Map<String, dynamic> json) =>
+      _$AuthenticatedApplicationFromJson(json);
+}

@@ -10,6 +10,7 @@ import 'mixins/follow_requests.dart';
 import 'mixins/follow_suggestions.dart';
 import 'mixins/instances.dart';
 import 'mixins/lists.dart';
+import 'mixins/media_attachments.dart';
 
 class MockMastodon
     with
@@ -24,4 +25,5 @@ class MockMastodon
         MockFollowRequestsMixin,
         MockFollowSuggestionsMixin,
         MockInstancesMixin,
-        MockListsMixin {}
+        MockListsMixin,
+        MockMediaAttachmentsMixin {}

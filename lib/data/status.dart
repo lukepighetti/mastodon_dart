@@ -108,7 +108,7 @@ class Status {
         account = Account.mock(),
         inReplyToId = MockProperties.string,
         inReplyToAccountId = MockProperties.string,
-        reblog = Status.mock(),
+        reblog = null,
         content = MockProperties.comment,
         createdAt = MockProperties.pastDate,
         emojis = [Emoji.mock(), Emoji.mock(), Emoji.mock()],

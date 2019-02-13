@@ -13,6 +13,7 @@ import 'mixins/lists.dart';
 import 'mixins/media_attachments.dart';
 import 'mixins/mutes.dart';
 import 'mixins/notifications.dart';
+import 'mixins/reports.dart';
 
 class MockMastodon
     with
@@ -30,4 +31,5 @@ class MockMastodon
         MockListsMixin,
         MockMediaAttachmentsMixin,
         MockMutesMixin,
-        MockNotificationsMixin {}
+        MockNotificationsMixin,
+        MockReportsMixin {}

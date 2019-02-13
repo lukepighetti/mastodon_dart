@@ -7,6 +7,7 @@ export 'data/application.dart';
 export 'data/attachment.dart';
 export 'data/card.dart';
 export 'data/context.dart';
+export 'data/conversation.dart';
 export 'data/emoji.dart';
 export 'data/filter.dart';
 export 'data/instance.dart';

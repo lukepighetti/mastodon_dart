@@ -1,0 +1,19 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'conversation.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+Conversation _$ConversationFromJson(Map<String, dynamic> json) {
+  return Conversation(
+      id: json['id'] as String,
+      accounts: (json['accounts'] as List)
+          .map((e) => Account.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      lastStatus: json['last_status'] == null
+          ? null
+          : Status.fromJson(json['last_status'] as Map<String, dynamic>),
+      unread: json['unread'] as bool);
+}

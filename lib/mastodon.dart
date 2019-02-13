@@ -10,6 +10,7 @@ export 'data/context.dart';
 export 'data/emoji.dart';
 export 'data/filter.dart';
 export 'data/instance.dart';
+export 'data/list_summary.dart';
 export 'data/mention.dart';
 export 'data/notification.dart';
 export 'data/push_subscription.dart';

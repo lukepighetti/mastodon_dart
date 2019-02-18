@@ -3,8 +3,10 @@ import 'package:mastodon/mock/mixins/timelines.dart';
 
 mixin Timelines on Authentication implements MockTimelinesMixin {
   /// GET /api/v1/timelines/home
-  /// authenticated
-  /// read read:statuses
+  ///
+  /// - authenticated
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
   Future<List<Status>> timeline({
     String maxId,
@@ -37,8 +39,10 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/conversations
+  ///
   /// authenticated
   /// read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-conversations
   Future<List<Conversation>> conversations({
     String maxId,
@@ -71,8 +75,10 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/timelines/public
-  /// public
-  /// read read:statuses
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
   Future<List<Status>> publicTimeline({
     bool local = false,
@@ -106,8 +112,10 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/timelines/tag/:hashtag
-  /// public
-  /// read read:statuses
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag
   Future<List<Status>> hashtagTimeline(
     String hashtag, {
@@ -142,6 +150,10 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/timelines/list/:list_id
+  ///
+  /// - authenticated
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-list-list-id
   Future<List<Status>> listTimeline(
     String id, {

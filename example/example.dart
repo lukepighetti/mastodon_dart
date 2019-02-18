@@ -7,7 +7,7 @@ main() async {
     ..baseUrl = Uri.parse(Platform.environment["BASE_URL"])
     ..key = Platform.environment["KEY"];
 
-  final statuses = await mastodon.publicTimeline(limit: 5);
+  final statuses = await mastodon.hashtagTimeline("javascript");
 
   print(statuses.map((s) => [s.id, s.account.displayName]));
   print(statuses.length);

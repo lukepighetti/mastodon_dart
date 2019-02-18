@@ -75,8 +75,8 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   /// read read:statuses
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
   Future<List<Status>> publicTimeline({
-    bool local,
-    bool onlyMedia,
+    bool local = false,
+    bool onlyMedia = false,
     String maxId,
     String sinceId,
     String minId,

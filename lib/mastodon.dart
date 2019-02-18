@@ -24,3 +24,6 @@ export 'data/shared/visibility.dart';
 
 /// Mock Mastodon
 export 'mock/mock_mastodon.dart';
+
+/// The real Mastodon
+export 'src/mastodon.dart';

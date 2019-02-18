@@ -7,7 +7,7 @@ main() async {
     ..baseUrl = Uri.parse(Platform.environment["BASE_URL"])
     ..key = Platform.environment["KEY"];
 
-  final timeline = await mastodon.timeline();
+  final conversations = await mastodon.conversations();
 
-  print(timeline.map((t) => [t.account.username, t.favouritesCount]));
+  print(conversations.map((c) => [c.id, c.accounts.first.username]));
 }

@@ -3,6 +3,7 @@ import 'package:mastodon/mock/mixins/timelines.dart';
 
 mixin Timelines on Authentication implements MockTimelinesMixin {
   /// GET /api/v1/timelines/home
+  /// authenticated
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
   Future<List<Status>> timeline({
     String maxId,
@@ -35,6 +36,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/conversations
+  /// authenticated
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-conversations
   Future<List<Conversation>> conversations({
     String maxId,
@@ -67,6 +69,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }
 
   /// GET /api/v1/timelines/public
+  /// public
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-public
   Future<List<Status>> publicTimeline({
     bool local,
@@ -76,8 +79,6 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    assert(key != null);
-
     final uri = Uri(
       scheme: baseUrl.scheme,
       host: baseUrl.host,
@@ -94,7 +95,6 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
 
     final response = await get(
       uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return List<Status>.from(

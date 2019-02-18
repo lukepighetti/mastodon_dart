@@ -12,15 +12,21 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }) async {
     assert(key != null);
 
-    final response = await get(
-      "$baseUrl/api/v1/timelines/home",
-      headers: {
-        "Authorization": "Bearer $key",
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/timelines/home",
+      queryParameters: {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
-        "limit": "$limit",
+        "limit": limit,
       },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
     );
 
     return List<Status>.from(
@@ -30,19 +36,29 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
 
   /// GET /api/v1/conversations
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-conversations
-  Future<List<Conversation>> conversations(
-      {String maxId, String sinceId, String minId, int limit = 20}) async {
+  Future<List<Conversation>> conversations({
+    String maxId,
+    String sinceId,
+    String minId,
+    int limit = 20,
+  }) async {
     assert(key != null);
 
-    final response = await get(
-      "$baseUrl/api/v1/conversations",
-      headers: {
-        "Authorization": "Bearer $key",
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/conversations",
+      queryParameters: {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
         "limit": "$limit",
       },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
     );
 
     return List<Conversation>.from(

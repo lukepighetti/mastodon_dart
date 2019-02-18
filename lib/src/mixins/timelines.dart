@@ -75,8 +75,32 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String sinceId,
     String minId,
     int limit = 20,
-  }) =>
-      throw UnimplementedError();
+  }) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/timelines/public",
+      queryParameters: {
+        "local": "$local",
+        "only_media": "$onlyMedia",
+        "max_id": maxId,
+        "since_id": sinceId,
+        "min_id": minId,
+        "limit": "$limit",
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return List<Status>.from(
+      json.decode(response.body).map((json) => Status.fromJson(json)),
+    );
+  }
 
   /// GET /api/v1/timelines/tag/:hashtag
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-tag-hashtag

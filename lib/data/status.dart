@@ -59,11 +59,14 @@ class Status {
   final Visibility visibility;
   final List<Attachment> mediaAttachments;
   final List<Mention> mentions;
+
+  /// TODO: handle empty lists
   final List<Tag> tags;
 
   @JsonKey(nullable: true)
   final Card card;
 
+  @JsonKey(nullable: true)
   final Application application;
 
   @JsonKey(nullable: true)

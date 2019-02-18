@@ -7,7 +7,7 @@ main() async {
     ..baseUrl = Uri.parse(Platform.environment["BASE_URL"])
     ..key = Platform.environment["KEY"];
 
-  final verify = await mastodon.verifyAppCredentials();
+  final timeline = await mastodon.timeline();
 
-  print([verify.name, verify.website]);
+  print(timeline.map((t) => [t.account.username, t.favouritesCount]));
 }

@@ -43,8 +43,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
       card: json['card'] == null
           ? null
           : Card.fromJson(json['card'] as Map<String, dynamic>),
-      application:
-          Application.fromJson(json['application'] as Map<String, dynamic>),
+      application: json['application'] == null
+          ? null
+          : Application.fromJson(json['application'] as Map<String, dynamic>),
       language: json['language'],
       pinned: json['pinned'] as bool);
 }

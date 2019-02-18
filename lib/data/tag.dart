@@ -6,7 +6,7 @@ part 'tag.g.dart';
 /// https://docs.joinmastodon.org/api/entities/#tag
 
 @JsonSerializable(
-  nullable: false,
+  nullable: true,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )

@@ -9,5 +9,7 @@ main() async {
 
   final status = await mastodon.publishStatus(status: "boink!");
 
-  print([status.content, status.account.username]);
+  print([status.id, status.content, status.account.username]);
+
+  await mastodon.deleteStatus(status.id);
 }

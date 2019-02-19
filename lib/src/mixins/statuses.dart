@@ -68,8 +68,29 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   }
 
   /// DELETE /api/v1/statuses/:id
+  ///
+  /// - authenticated
+  /// - write write:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
-  Future<dynamic> deleteStatus(String id) => throw UnimplementedError();
+  Future<void> deleteStatus(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id",
+    );
+
+    final response = await delete(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    if (response.statusCode == 404) {
+      throw MastodonException("Cannot delete a status that does not exist");
+    }
+  }
 
   /// POST /api/v1/statuses/:id/reblog
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog

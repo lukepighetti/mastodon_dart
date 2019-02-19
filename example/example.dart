@@ -11,5 +11,5 @@ main() async {
 
   print([status.id, status.content, status.account.username]);
 
-  await mastodon.deleteStatus(status.id);
+  await mastodon.reblog(status.id + "8723473");
 }

@@ -93,8 +93,31 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   }
 
   /// POST /api/v1/statuses/:id/reblog
+  ///
+  /// - authenticated
+  /// - write write:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
-  Future<Status> reblog(String id) => throw UnimplementedError();
+  Future<Status> reblog(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/reblog",
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    if (response.statusCode == 404) {
+      throw MastodonException("Cannot reblog a status that does not exist");
+    }
+
+    return Status.fromJson(json.decode(response.body));
+  }
 
   /// POST /api/v1/statuses/:id/unreblog
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog

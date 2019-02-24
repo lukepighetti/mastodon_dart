@@ -68,14 +68,54 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   }
 
   /// GET /api/v1/statuses/:id/reblogged_by
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
-  Future<List<Account>> rebloggedBy(String id, {int limit = 40}) =>
-      throw UnimplementedError();
+  Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/reblogged_by",
+      queryParameters: {
+        "limit": limit,
+      },
+    );
+
+    final response = await get(
+      uri,
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    return body.map((m) => Account.fromJson(m)).toList();
+  }
 
   /// GET /api/v1/statuses/:id/favourited_by
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
-  Future<List<Account>> favouritedBy(String id, {int limit = 40}) =>
-      throw UnimplementedError();
+  Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/favourited_by",
+      queryParameters: {
+        "limit": limit,
+      },
+    );
+
+    final response = await get(
+      uri,
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    return body.map((m) => Account.fromJson(m)).toList();
+  }
 
   /// POST /api/v1/statuses
   ///

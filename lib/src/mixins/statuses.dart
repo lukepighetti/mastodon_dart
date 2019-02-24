@@ -120,14 +120,71 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   }
 
   /// POST /api/v1/statuses/:id/unreblog
+  ///
+  /// - authenticated
+  /// - write write:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
-  Future<Status> unreblog(String id) => throw UnimplementedError();
+  Future<Status> unreblog(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/unreblog",
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
 
   /// POST /api/v1/statuses/:id/pin
+  ///
+  /// - authenticated
+  /// - write write:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
-  Future<Status> pinStatus(String id) => throw UnimplementedError();
+  Future<Status> pinStatus(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/pin",
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
 
   /// POST /api/v1/statuses/:id/unpin
+  ///
+  /// - authenticated
+  /// - write write:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
-  Future<Status> unpinStatus(String id) => throw UnimplementedError();
+  Future<Status> unpinStatus(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/unpin",
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
 }

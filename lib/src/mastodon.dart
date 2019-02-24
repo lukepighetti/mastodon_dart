@@ -1,8 +1,9 @@
 import 'mixins/apps.dart';
+import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
 
-class Mastodon = Authentication with Apps, Statuses, Timelines;
+class Mastodon = Authentication with Apps, Search, Statuses, Timelines;
 
 class Authentication {
   String key;

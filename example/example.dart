@@ -7,16 +7,7 @@ main() async {
     ..baseUrl = Uri.parse(Platform.environment["BASE_URL"])
     ..key = Platform.environment["KEY"];
 
-  final status = await mastodon.publishStatus(
-    status: "boink!",
-    visibility: Visibility.unlisted,
-  );
+  final results = await mastodon.search("javascript");
 
-  print([status.id, status.content, status.account.username]);
-
-  final card = await mastodon.card(status.id);
-
-  print([card.description, card.title, card.type, card.authorName]);
-
-  await mastodon.deleteStatus(status.id);
+  print(results.statuses.map((s) => [s.account.displayName, s.content]));
 }

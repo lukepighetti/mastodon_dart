@@ -11,6 +11,7 @@ main() async {
 
   print([status.id, status.content, status.account.username]);
 
-  await mastodon.pinStatus(status.id);
-  // await mastodon.unreblog(status.id);
+  final fetchedStatus = await mastodon.status(status.id);
+
+  print([fetchedStatus.content]);
 }

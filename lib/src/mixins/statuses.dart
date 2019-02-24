@@ -3,8 +3,24 @@ import 'package:mastodon/mock/mixins/statuses.dart';
 
 mixin Statuses on Authentication implements MockStatusesMixin {
   /// GET /api/v1/statuses/:id
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
-  Future<Status> status(String id) => throw UnimplementedError();
+  Future<Status> status(String id) async {
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id",
+    );
+
+    final response = await get(
+      uri,
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
 
   /// GET /api/v1/statuses/:id/context
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context

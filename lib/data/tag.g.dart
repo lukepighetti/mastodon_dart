@@ -20,6 +20,6 @@ Tag _$TagFromJson(Map<String, dynamic> json) {
 History _$HistoryFromJson(Map<String, dynamic> json) {
   return History(
       day: DateTime.parse(json['day'] as String),
-      uses: json['uses'] as int,
-      accounts: json['accounts'] as int);
+      uses: History._stringToInt(json['uses'] as String),
+      accounts: History._stringToInt(json['accounts'] as String));
 }

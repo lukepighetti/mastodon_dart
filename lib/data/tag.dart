@@ -44,7 +44,11 @@ class Tag {
 )
 class History {
   final DateTime day;
+
+  @JsonKey(fromJson: _stringToInt)
   final int uses;
+
+  @JsonKey(fromJson: _stringToInt)
   final int accounts;
 
   History({
@@ -52,6 +56,8 @@ class History {
     this.uses,
     this.accounts,
   });
+
+  static _stringToInt(String s) => int.parse(s);
 
   History.mock()
       : day = MockProperties.pastDate,

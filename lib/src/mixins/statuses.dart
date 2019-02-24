@@ -23,8 +23,24 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   }
 
   /// GET /api/v1/statuses/:id/context
+  ///
+  /// - public
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
-  Future<Context> context(String id) => throw UnimplementedError();
+  Future<Context> context(String id) async {
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/statuses/$id/context",
+    );
+
+    final response = await get(
+      uri,
+    );
+
+    return Context.fromJson(json.decode(response.body));
+  }
 
   /// GET /api/v1/statuses/:id/card
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card

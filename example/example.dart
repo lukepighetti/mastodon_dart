@@ -11,7 +11,9 @@ main() async {
 
   print([status.id, status.content, status.account.username]);
 
-  final fetchedStatus = await mastodon.status(status.id);
+  final context = await mastodon.context(status.id);
 
-  print([fetchedStatus.content]);
+  print([context.ancestors, context.descendants]);
+
+  await mastodon.deleteStatus(status.id);
 }

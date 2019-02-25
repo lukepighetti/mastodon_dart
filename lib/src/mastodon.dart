@@ -14,6 +14,7 @@ import 'mixins/instances.dart';
 import 'mixins/lists.dart';
 import 'mixins/media_attachments.dart';
 import 'mixins/mutes.dart';
+import 'mixins/notifications.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
@@ -34,6 +35,7 @@ class Mastodon = Authentication
         Lists,
         MediaAttachments,
         Mutes,
+        Notifications,
         Search,
         Statuses,
         Timelines;

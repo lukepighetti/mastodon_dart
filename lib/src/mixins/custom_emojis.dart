@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/custom_emojis.dart';
+import '../mock/mixins/custom_emojis.dart';
 
 mixin CustomEmojis on Authentication implements MockCustomEmojisMixin {
   /// GET /api/v1/custom_emojis

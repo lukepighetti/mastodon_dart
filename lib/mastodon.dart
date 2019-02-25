@@ -2,28 +2,28 @@
 library mastodon;
 
 /// Data classes
-export 'data/account.dart';
-export 'data/application.dart';
-export 'data/attachment.dart';
-export 'data/card.dart';
-export 'data/context.dart';
-export 'data/conversation.dart';
-export 'data/emoji.dart';
-export 'data/filter.dart';
-export 'data/instance.dart';
-export 'data/list_summary.dart';
-export 'data/mention.dart';
-export 'data/notification.dart';
-export 'data/push_subscription.dart';
-export 'data/relationship.dart';
-export 'data/results.dart';
-export 'data/scheduled_status.dart';
-export 'data/status.dart';
-export 'data/tag.dart';
-export 'data/shared/visibility.dart';
+export 'src/data/account.dart';
+export 'src/data/application.dart';
+export 'src/data/attachment.dart';
+export 'src/data/card.dart';
+export 'src/data/context.dart';
+export 'src/data/conversation.dart';
+export 'src/data/emoji.dart';
+export 'src/data/filter.dart';
+export 'src/data/instance.dart';
+export 'src/data/list_summary.dart';
+export 'src/data/mention.dart';
+export 'src/data/notification.dart';
+export 'src/data/push_subscription.dart';
+export 'src/data/relationship.dart';
+export 'src/data/results.dart';
+export 'src/data/scheduled_status.dart';
+export 'src/data/status.dart';
+export 'src/data/tag.dart';
+export 'src/data/shared/visibility.dart';
 
 /// Mock Mastodon
-export 'mock/mock_mastodon.dart';
+export 'src/mock/mock_mastodon.dart';
 
 /// The real Mastodon
 export 'src/mastodon.dart';

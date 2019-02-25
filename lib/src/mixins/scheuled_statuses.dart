@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/scheduled_statuses.dart';
+import '../mock/mixins/scheduled_statuses.dart';
 
 mixin ScheduledStatuses on Authentication
     implements MockScheduledStatusesMixin {

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/favourites.dart';
+import '../mock/mixins/favourites.dart';
 
 mixin Favourites on Authentication implements MockFavouritesMixin {
   /// GET /api/v1/favourites

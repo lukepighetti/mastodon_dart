@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/follow_requests.dart';
+import '../mock/mixins/follow_requests.dart';
 
 mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   /// GET /api/v1/follow_requests

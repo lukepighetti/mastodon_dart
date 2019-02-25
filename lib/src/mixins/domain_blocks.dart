@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/domain_blocks.dart';
+import '../mock/mixins/domain_blocks.dart';
 
 mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   /// GET /api/v1/domain_blocks

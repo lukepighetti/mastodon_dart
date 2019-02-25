@@ -1,5 +1,5 @@
 import '../library.dart';
-import 'package:mastodon/mock/mixins/timelines.dart';
+import '../mock/mixins/timelines.dart';
 
 mixin Timelines on Authentication implements MockTimelinesMixin {
   /// GET /api/v1/timelines/home

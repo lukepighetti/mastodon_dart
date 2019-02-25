@@ -1,4 +1,4 @@
-import 'package:mastodon/mock/mock_mastodon.dart';
+import 'mock/mock_mastodon.dart' show MockAuthentication;
 
 import 'mixins/accounts.dart';
 import 'mixins/apps.dart';

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/notifications.dart';
+import '../mock/mixins/notifications.dart';
 
 mixin Notifications on Authentication implements MockNotificationsMixin {
   /// GET /api/v1/notifications

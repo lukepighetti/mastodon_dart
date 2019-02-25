@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/accounts.dart';
+import '../mock/mixins/accounts.dart';
 
 mixin Accounts on Authentication implements MockAccountsMixin {
   /// GET /api/v1/accounts/:id

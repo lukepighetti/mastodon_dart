@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/endorsements.dart';
+import '../mock/mixins/endorsements.dart';
 
 mixin Endorsements on Authentication implements MockEndorsementsMixin {
   /// GET /api/v1/endorsements

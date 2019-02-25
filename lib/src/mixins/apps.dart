@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/apps.dart';
+import '../mock/mixins/apps.dart';
 
 mixin Apps on Authentication implements MockAppsMixin {
   /// POST /api/v1/apps

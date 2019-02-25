@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/reports.dart';
+import '../mock/mixins/reports.dart';
 
 mixin Reports on Authentication implements MockReportsMixin {
   /// POST /api/v1/reports

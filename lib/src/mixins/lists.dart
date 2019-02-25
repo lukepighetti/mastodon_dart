@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/lists.dart';
+import '../mock/mixins/lists.dart';
 
 mixin Lists on Authentication implements MockListsMixin {
   /// GET /api/v1/lists

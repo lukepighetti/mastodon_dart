@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/instances.dart';
+import '../mock/mixins/instances.dart';
 
 mixin Instances on Authentication implements MockInstancesMixin {
   /// GET /api/v1/instance

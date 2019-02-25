@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/filters.dart';
+import '../mock/mixins/filters.dart';
 
 mixin Filters on Authentication implements MockFiltersMixin {
   /// GET /api/v1/filters

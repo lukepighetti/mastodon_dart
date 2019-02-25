@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/follow_suggestions.dart';
+import '../mock/mixins/follow_suggestions.dart';
 
 mixin FollowSuggestions on Authentication
     implements MockFollowSuggestionsMixin {

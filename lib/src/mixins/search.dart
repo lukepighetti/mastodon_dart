@@ -1,5 +1,5 @@
 import '../library.dart';
-import 'package:mastodon/mock/mixins/search.dart';
+import '../mock/mixins/search.dart';
 
 // mixin Statuses on Authentication implements MockStatusesMixin {
 

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/mutes.dart';
+import '../mock/mixins/mutes.dart';
 
 mixin Mutes on Authentication implements MockMutesMixin {
   /// GET /api/v1/mutes

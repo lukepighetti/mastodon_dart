@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/blocks.dart';
+import '../mock/mixins/blocks.dart';
 
 mixin Blocks on Authentication implements MockBlocksMixin {
   /// GET /api/v1/blocks

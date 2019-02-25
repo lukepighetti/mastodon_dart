@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import 'package:mastodon/mock/mixins/media_attachments.dart';
+import '../mock/mixins/media_attachments.dart';
 
 mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
   /// POST /api/v1/media

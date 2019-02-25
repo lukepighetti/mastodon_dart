@@ -238,13 +238,53 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }
 
   /// POST /api/v1/accounts/:id/follow
+  ///
+  /// - authenticated
+  /// - write:follows follow
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
-  Future<Relationship> follow(String id, {bool reblogs = true}) =>
-      throw UnimplementedError();
+  Future<Relationship> follow(String id, {bool reblogs = true}) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/$id/follow",
+      queryParameters: {
+        "reblogs": reblogs.toString(),
+      },
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Relationship.fromJson(json.decode(response.body));
+  }
 
   /// POST /api/v1/accounts/:id/unfollow
+  ///
+  /// - authenticated
+  /// - write:follows follow
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
-  Future<Relationship> unfollow(String id) => throw UnimplementedError();
+  Future<Relationship> unfollow(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/$id/unfollow",
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Relationship.fromJson(json.decode(response.body));
+  }
 
   /// GET /api/v1/accounts/relationships
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships

@@ -15,8 +15,33 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
     String minId,
     int limit = 20,
     List<NotificationType> excludeTypes,
-  }) =>
-      throw UnimplementedError();
+  }) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/notifications",
+      queryParameters: {
+        "max_id": maxId,
+        "since_id": sinceId,
+        "min_id": minId,
+        "limit": limit,
+        "exclude_types": excludeTypes.map((e) => e.toString().split(".").last),
+      }..removeWhere((_, value) => value == null),
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    /// TODO: implement link headers for pagination
+
+    return body.map((m) => Notification.fromJson(m)).toList();
+  }
 
   /// GET /api/v1/notifications/:id
   ///
@@ -24,7 +49,22 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   /// - read read:notifications
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
-  Future<Notification> notification(String id) => throw UnimplementedError();
+  Future<Notification> notification(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/notifications/$id",
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    return Notification.fromJson(json.decode(response.body));
+  }
 
   /// POST /api/v1/notifications/clear
   ///
@@ -32,7 +72,20 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   /// - write write:notifications
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
-  Future<dynamic> clearNotifications() => throw UnimplementedError();
+  Future<dynamic> clearNotifications() async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/notifications/clear",
+    );
+
+    await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+  }
 
   /// POST /api/v1/notifications/dismiss
   ///
@@ -40,7 +93,23 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   /// - write write:notifications
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
-  Future<dynamic> dismissNotification(String id) => throw UnimplementedError();
+  Future<dynamic> dismissNotification(String id) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/notifications/dismiss",
+      queryParameters: {
+        "id": id,
+      },
+    );
+
+    await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+  }
 
   /// POST /api/v1/push/subscription
   ///

@@ -132,16 +132,70 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }
 
   /// GET /api/v1/accounts/:id/followers
+  ///
+  /// - authenticated
+  /// - read read:accounts
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
-  Future<List<Account>> followers(String id, {int limit = 40}) =>
-      throw UnimplementedError();
+  Future<List<Account>> followers(String id, {int limit = 40}) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/$id/followers",
+      queryParameters: {
+        "limit": limit,
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    /// TODO: implement link headers for pagination
+
+    return body.map((m) => Account.fromJson(m)).toList();
+  }
 
   /// GET /api/v1/accounts/:id/following
+  ///
+  /// - authenticated
+  /// - read read:accounts
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
-  Future<List<Account>> following(String id, {int limit = 40}) =>
-      throw UnimplementedError();
+  Future<List<Account>> following(String id, {int limit = 40}) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/$id/following",
+      queryParameters: {
+        "limit": limit,
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    /// TODO: implement link headers for pagination
+
+    return body.map((m) => Account.fromJson(m)).toList();
+  }
 
   /// GET /api/v1/accounts/:id/statuses
+  ///
+  /// - authenticated
+  /// - read read:statuses
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
   Future<List<Status>> statuses(
     String id, {
@@ -153,8 +207,35 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     String minId,
     int limit = 20,
     bool excludeReblogs = false,
-  }) =>
-      throw UnimplementedError();
+  }) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/$id/statuses",
+      queryParameters: {
+        "only_media": onlyMedia.toString(),
+        "pinned": pinned.toString(),
+        "exclude_replies": excludeReplies.toString(),
+        "max_id": maxId,
+        "since_id": sinceId,
+        "limit": limit,
+        "exclude_reblogs": excludeReblogs.toString(),
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    /// TODO: implement link headers for pagination
+
+    return body.map((m) => Status.fromJson(m)).toList();
+  }
 
   /// POST /api/v1/accounts/:id/follow
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow

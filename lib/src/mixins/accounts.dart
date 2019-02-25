@@ -29,13 +29,13 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   /// - write write:accounts
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts
-  Future<Token> token({
-    @required String username,
-    @required String email,
-    @required String password,
-    @required bool agreement,
-    @required String locale,
-  }) async {
+  Future<Token> token(
+    String username,
+    String email,
+    String password,
+    bool agreement,
+    String locale,
+  ) async {
     assert(key != null);
 
     final uri = Uri(

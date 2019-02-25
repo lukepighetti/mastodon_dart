@@ -34,9 +34,9 @@ mixin Filters on Authentication implements MockFiltersMixin {
   /// - write write:filters
   ///
   /// https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
-  Future<Filter> createFilter({
-    @required String phrase,
-    @required List<FilterContext> context,
+  Future<Filter> createFilter(
+    String phrase,
+    List<FilterContext> context, {
     bool irreversible,
     bool wholeWord,
     Duration expiresIn,
@@ -94,9 +94,9 @@ mixin Filters on Authentication implements MockFiltersMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
   Future<Filter> updateFilter(
-    String id, {
-    @required String phrase,
-    @required List<FilterContext> context,
+    String id,
+    String phrase,
+    List<FilterContext> context, {
     bool irreversible,
     bool wholeWord,
     Duration expiresIn,

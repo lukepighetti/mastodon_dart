@@ -1,5 +1,4 @@
 import 'package:mastodon/mastodon.dart';
-import 'package:meta/meta.dart';
 
 class MockFiltersMixin {
   /// GET /api/v1/filters
@@ -9,9 +8,9 @@ class MockFiltersMixin {
 
   /// POST /api/v1/filters
   /// https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
-  Future<Filter> createFilter({
-    @required String phrase,
-    @required List<FilterContext> context,
+  Future<Filter> createFilter(
+    String phrase,
+    List<FilterContext> context, {
     bool irreversible,
     bool wholeWord,
     Duration expiresIn,
@@ -25,9 +24,9 @@ class MockFiltersMixin {
   /// PUT /api/v1/filters/:id
   /// https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
   Future<Filter> updateFilter(
-    String id, {
-    @required String phrase,
-    @required List<FilterContext> context,
+    String id,
+    String phrase,
+    List<FilterContext> context, {
     bool irreversible,
     bool wholeWord,
     Duration expiresIn,

@@ -1,5 +1,4 @@
 import 'package:mastodon/mastodon.dart';
-import 'package:meta/meta.dart';
 
 class MockAccountsMixin {
   /// GET /api/v1/accounts/:id
@@ -8,13 +7,13 @@ class MockAccountsMixin {
 
   /// POST /api/v1/accounts
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts
-  Future<Token> token({
-    @required String username,
-    @required String email,
-    @required String password,
-    @required bool agreement,
-    @required String locale,
-  }) =>
+  Future<Token> token(
+    String username,
+    String email,
+    String password,
+    bool agreement,
+    String locale,
+  ) =>
       Future.value(Token.mock());
 
   /// GET /api/v1/accounts/verify_credentials

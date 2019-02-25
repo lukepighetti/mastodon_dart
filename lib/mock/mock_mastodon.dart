@@ -19,7 +19,7 @@ import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
 
-class MockMastodon
+class MockMastodon = MockAuthentication
     with
         MockAccountsMixin,
         MockAppsMixin,
@@ -40,4 +40,12 @@ class MockMastodon
         MockScheduledStatusesMixin,
         MockSearchMixin,
         MockStatusesMixin,
-        MockTimelinesMixin {}
+        MockTimelinesMixin;
+
+class MockAuthentication {
+  final Uri baseUrl;
+
+  MockAuthentication(this.baseUrl);
+
+  String key;
+}

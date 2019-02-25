@@ -1,3 +1,5 @@
+import 'package:mastodon/mock/mock_mastodon.dart';
+
 import 'mixins/apps.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
@@ -5,12 +7,10 @@ import 'mixins/timelines.dart';
 
 class Mastodon = Authentication with Apps, Search, Statuses, Timelines;
 
-class Authentication {
-  String key;
-  Uri baseUrl;
+class Authentication implements MockAuthentication {
+  final Uri baseUrl;
 
-  /// TODO: use constructor when Dart 2.1.1 lands
-  /// see https://github.com/dart-lang/sdk/issues/35011
-  ///
-  /// Authentication(this.baseUrl);
+  Authentication(this.baseUrl);
+
+  String key;
 }

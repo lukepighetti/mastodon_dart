@@ -5,6 +5,7 @@ import 'mixins/apps.dart';
 import 'mixins/blocks.dart';
 import 'mixins/custom_emojis.dart';
 import 'mixins/domain_blocks.dart';
+import 'mixins/endorsements.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
@@ -16,6 +17,7 @@ class Mastodon = Authentication
         Blocks,
         CustomEmojis,
         DomainBlocks,
+        Endorsements,
         Search,
         Statuses,
         Timelines;

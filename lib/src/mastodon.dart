@@ -8,6 +8,7 @@ import 'mixins/domain_blocks.dart';
 import 'mixins/endorsements.dart';
 import 'mixins/favourites.dart';
 import 'mixins/filters.dart';
+import 'mixins/follow_requests.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
@@ -22,6 +23,7 @@ class Mastodon = Authentication
         Endorsements,
         Favourites,
         Filters,
+        FollowRequests,
         Search,
         Statuses,
         Timelines;

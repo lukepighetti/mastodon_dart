@@ -39,10 +39,11 @@ class MockListsMixin {
   /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
   ///
   /// Only accounts already followed by the user can be added to a list
-  Future<dynamic> addAccountsToList(List<String> ids) => Future.value(null);
+  Future<dynamic> addAccountsToList(String id, List<String> ids) =>
+      Future.value(null);
 
   /// DELETE /api/v1/lists/:id/accounts
   /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
-  Future<dynamic> deleteAccountsFromList(List<String> ids) =>
+  Future<dynamic> deleteAccountsFromList(String id, List<String> ids) =>
       Future.value(null);
 }

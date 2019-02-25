@@ -11,6 +11,7 @@ import 'mixins/filters.dart';
 import 'mixins/follow_requests.dart';
 import 'mixins/follow_suggestions.dart';
 import 'mixins/instances.dart';
+import 'mixins/lists.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
@@ -28,6 +29,7 @@ class Mastodon = Authentication
         FollowRequests,
         FollowSuggestions,
         Instances,
+        Lists,
         Search,
         Statuses,
         Timelines;

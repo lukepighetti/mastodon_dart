@@ -16,6 +16,7 @@ import 'mixins/media_attachments.dart';
 import 'mixins/mutes.dart';
 import 'mixins/notifications.dart';
 import 'mixins/reports.dart';
+import 'mixins/scheuled_statuses.dart';
 import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
@@ -38,6 +39,7 @@ class Mastodon = Authentication
         Mutes,
         Notifications,
         Reports,
+        ScheduledStatuses,
         Search,
         Statuses,
         Timelines;

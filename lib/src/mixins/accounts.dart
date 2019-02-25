@@ -287,17 +287,66 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }
 
   /// GET /api/v1/accounts/relationships
+  ///
+  /// - authenticated
+  /// - read read:follows
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
-  Future<List<Relationship>> relationships(List<String> ids) =>
-      throw UnimplementedError();
+  Future<List<Relationship>> relationships(List<String> ids) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/relationships",
+      queryParameters: {
+        "ids": ids,
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    return body.map((m) => Relationship.fromJson(m)).toList();
+  }
 
   /// GET /api/v1/accounts/search
+  ///
+  /// - authenticated
+  /// - read read:accounts
+  ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
   Future<List<Account>> searchAccounts(
     String q, {
     int limit = 40,
     bool resolve = false,
     bool following = false,
-  }) =>
-      throw UnimplementedError();
+  }) async {
+    assert(key != null);
+
+    final uri = Uri(
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/search",
+      queryParameters: {
+        "q": q,
+        "limit": limit,
+        "resolve": resolve.toString(),
+        "following": following.toString(),
+      },
+    );
+
+    final response = await get(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+    );
+
+    final body = List<Map>.from(json.decode(response.body));
+
+    return body.map((m) => Account.fromJson(m)).toList();
+  }
 }

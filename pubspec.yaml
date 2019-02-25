@@ -1,7 +1,8 @@
 name: mastodon
 description: A robust Dart API for the Mastodon network.
-version: 1.0.0
+version: 0.1.0
 author: Luke Pighetti <lukepighetti@gmail.com>
+homepage: https://github.com/lukepighetti/mastodon-dart
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

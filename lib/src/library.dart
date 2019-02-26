@@ -3,6 +3,8 @@ export 'package:http/http.dart';
 
 export 'package:mastodon/mastodon.dart';
 
+export 'authentication.dart';
+
 class MastodonException implements Exception {
   final String message;
 

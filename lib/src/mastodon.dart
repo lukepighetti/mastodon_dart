@@ -1,4 +1,4 @@
-import 'mock/mock_mastodon.dart' show MockAuthentication;
+import 'authentication.dart';
 
 import 'mixins/accounts.dart';
 import 'mixins/apps.dart';
@@ -43,11 +43,3 @@ class Mastodon = Authentication
         Search,
         Statuses,
         Timelines;
-
-class Authentication implements MockAuthentication {
-  final Uri baseUrl;
-
-  Authentication(this.baseUrl);
-
-  String key;
-}

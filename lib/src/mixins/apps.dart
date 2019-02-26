@@ -3,19 +3,17 @@ import '../library.dart';
 import '../mock/mixins/apps.dart';
 
 mixin Apps on Authentication implements MockAppsMixin {
+  /// The currently requested scopes. Null if appCredentials() hasn't been called.
+  List<String> scopes;
+
   /// POST /api/v1/apps
   /// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
   Future<AuthenticatedApplication> appCredentials(
-    /// eg `"mastodon-dart"`
-    String clientName,
-
-    /// eg `"urn:ietf:wg:oauth:2.0:oob"`
-    String redirectUris,
-
-    /// eg `["write", "read", "follow", "push"]`
-    List<String> scopes,
-    Uri website,
-  ) async {
+    Uri website, [
+    String redirectUris = "urn:ietf:wg:oauth:2.0:oob",
+    String clientName = "mastodon-dart",
+    List<String> scopes = const ["write", "read", "follow", "push"],
+  ]) async {
     final response = await post(
       "$baseUrl/api/v1/apps",
       body: {
@@ -25,6 +23,9 @@ mixin Apps on Authentication implements MockAppsMixin {
         "website": website.toString(),
       },
     );
+
+    /// Save the scopes
+    this.scopes = scopes;
 
     return AuthenticatedApplication.fromJson(json.decode(response.body));
   }

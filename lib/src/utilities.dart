@@ -14,10 +14,14 @@ mixin Utilities on Authentication {
   }) async {
     final uri = baseUrl.replace(path: path);
 
+    /// Copy headers to a modifiable map
+    final _headers = <String, String>{}..addAll(headers);
+
+    /// Add authentication header
     if (authenticated) {
       assert(key != null);
 
-      headers.addAll({"Authorization": "Bearer $key"});
+      _headers.addAll({"Authorization": "Bearer $key"});
     }
 
     Response response;
@@ -28,7 +32,7 @@ mixin Utilities on Authentication {
           uri.replace(
             queryParameters: payload,
           ),
-          headers: headers,
+          headers: _headers,
         );
         break;
 
@@ -36,7 +40,7 @@ mixin Utilities on Authentication {
         response = await post(
           uri,
           body: payload,
-          headers: headers,
+          headers: _headers,
         );
         break;
 
@@ -44,7 +48,7 @@ mixin Utilities on Authentication {
         response = await put(
           uri,
           body: payload,
-          headers: headers,
+          headers: _headers,
         );
         break;
 
@@ -52,14 +56,14 @@ mixin Utilities on Authentication {
         response = await patch(
           uri,
           body: payload,
-          headers: headers,
+          headers: _headers,
         );
         break;
 
       case Method.delete:
         response = await delete(
           uri.replace(queryParameters: payload),
-          headers: headers,
+          headers: _headers,
         );
         break;
     }

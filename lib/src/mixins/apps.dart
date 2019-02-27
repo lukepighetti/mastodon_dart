@@ -40,6 +40,10 @@ mixin Apps on Authentication implements MockAppsMixin {
       headers: {"Authorization": "Bearer $key"},
     );
 
+    if (response.statusCode >= 300) {
+      throw MastodonException("status code ${response.statusCode}");
+    }
+
     return Application.fromJson(json.decode(response.body));
   }
 }

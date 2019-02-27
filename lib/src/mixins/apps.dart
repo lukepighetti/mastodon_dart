@@ -3,9 +3,6 @@ import '../library.dart';
 import '../mock/mixins/apps.dart';
 
 mixin Apps on Authentication implements MockAppsMixin {
-  /// The currently requested scopes. Null if appCredentials() hasn't been called.
-  List<String> scopes;
-
   /// POST /api/v1/apps
   /// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
   Future<AuthenticatedApplication> appCredentials(
@@ -23,9 +20,6 @@ mixin Apps on Authentication implements MockAppsMixin {
         "website": website.toString(),
       },
     );
-
-    /// Save the scopes
-    this.scopes = scopes;
 
     return AuthenticatedApplication.fromJson(json.decode(response.body));
   }

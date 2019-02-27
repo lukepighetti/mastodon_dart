@@ -1,4 +1,5 @@
 import 'authentication.dart';
+import 'utilities.dart';
 
 import 'mixins/accounts.dart';
 import 'mixins/apps.dart';
@@ -21,7 +22,9 @@ import 'mixins/search.dart';
 import 'mixins/statuses.dart';
 import 'mixins/timelines.dart';
 
-class Mastodon = Authentication
+class _Base = Authentication with Utilities;
+
+class Mastodon = _Base
     with
         Accounts,
         Apps,

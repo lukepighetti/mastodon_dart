@@ -44,14 +44,14 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/domain_blocks",
-      queryParameters: {
-        "domain": domain.toString(),
-      },
     );
 
     await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "domain": domain.toString(),
+      },
     );
   }
 

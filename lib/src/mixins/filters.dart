@@ -47,18 +47,18 @@ mixin Filters on Authentication implements MockFiltersMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/filters",
-      queryParameters: {
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+      body: {
         "phrase": phrase,
         "context": context.map((c) => c.toString().split(".").last),
         "irreversible": irreversible?.toString(),
         "whole_word": wholeWord?.toString(),
         "expires_in": expiresIn?.inSeconds,
       }..removeWhere((_, value) => value == null),
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return Filter.fromJson(json.decode(response.body));
@@ -107,18 +107,18 @@ mixin Filters on Authentication implements MockFiltersMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/filters/$id",
-      queryParameters: {
+    );
+
+    final response = await put(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+      body: {
         "phrase": phrase,
         "context": context.map((c) => c.toString().split(".").last),
         "irreversible": irreversible?.toString(),
         "whole_word": wholeWord?.toString(),
         "expires_in": expiresIn?.inSeconds,
       }..removeWhere((_, value) => value == null),
-    );
-
-    final response = await put(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return Filter.fromJson(json.decode(response.body));

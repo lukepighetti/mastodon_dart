@@ -66,14 +66,14 @@ mixin ScheduledStatuses on Authentication
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/scheduled_statuses/$id",
-      queryParameters: {
-        "scheduled_at": scheduledAt?.toIso8601String(),
-      },
     );
 
     final response = await put(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "scheduled_at": scheduledAt?.toIso8601String(),
+      },
     );
 
     return ScheduledStatus.fromJson(json.decode(response.body));

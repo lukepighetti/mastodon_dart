@@ -141,7 +141,12 @@ mixin Statuses on Authentication implements MockStatusesMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/statuses",
-      queryParameters: {
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+      body: {
         "status": status,
         "in_reply_to_id": inReplyToId,
         "media_ids": mediaIds,
@@ -150,11 +155,6 @@ mixin Statuses on Authentication implements MockStatusesMixin {
         "scheduled_at": scheduledAt?.toIso8601String(),
         "language": language?.toString(),
       },
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return Status.fromJson(json.decode(response.body));

@@ -117,14 +117,14 @@ mixin Lists on Authentication implements MockListsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/lists",
-      queryParameters: {
-        "title": title,
-      },
     );
 
     final response = await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "title": title,
+      },
     );
 
     return ListSummary.fromJson(json.decode(response.body));
@@ -143,14 +143,14 @@ mixin Lists on Authentication implements MockListsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/lists/$id",
-      queryParameters: {
-        "title": title,
-      },
     );
 
     final response = await put(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "title": title,
+      },
     );
 
     return ListSummary.fromJson(json.decode(response.body));
@@ -191,14 +191,14 @@ mixin Lists on Authentication implements MockListsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/lists/$id/accounts",
-      queryParameters: {
-        "account_ids": ids,
-      },
     );
 
     await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "account_ids": ids,
+      },
     );
   }
 

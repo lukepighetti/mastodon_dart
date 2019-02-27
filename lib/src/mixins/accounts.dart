@@ -42,18 +42,18 @@ mixin Accounts on Authentication implements MockAccountsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/accounts",
-      queryParameters: {
+    );
+
+    final response = await post(
+      uri,
+      headers: {"Authorization": "Bearer $key"},
+      body: {
         "username": username,
         "email": email,
         "password": password,
         "agreement": agreement.toString(),
         "locale": locale,
       },
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return Token.fromJson(json.decode(response.body));
@@ -102,30 +102,31 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     assert(key != null);
 
     final uri = Uri(
-        scheme: baseUrl.scheme,
-        host: baseUrl.host,
-        path: "/api/v1/accounts/verify_credentials",
-        queryParameters: {
-          "display_name": displayName,
-          "note": note,
-
-          /// TODO:  Avatar encoded using multipart/form-data
-          "avatar": null,
-
-          /// TODO: Header image encoded using multipart/form-data
-          "header": null,
-          "locked": locked == null ? null : locked.toString(),
-
-          /// TODO: implement source
-          "source": null,
-
-          /// TODO: implement fields_attributes
-          "fields_attributes": null,
-        });
+      scheme: baseUrl.scheme,
+      host: baseUrl.host,
+      path: "/api/v1/accounts/verify_credentials",
+    );
 
     final response = await patch(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "display_name": displayName,
+        "note": note,
+
+        /// TODO:  Avatar encoded using multipart/form-data
+        "avatar": null,
+
+        /// TODO: Header image encoded using multipart/form-data
+        "header": null,
+        "locked": locked == null ? null : locked.toString(),
+
+        /// TODO: implement source
+        "source": null,
+
+        /// TODO: implement fields_attributes
+        "fields_attributes": null,
+      },
     );
 
     return Account.fromJson(json.decode(response.body));
@@ -250,14 +251,14 @@ mixin Accounts on Authentication implements MockAccountsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/accounts/$id/follow",
-      queryParameters: {
-        "reblogs": reblogs.toString(),
-      },
     );
 
     final response = await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "reblogs": reblogs.toString(),
+      },
     );
 
     return Relationship.fromJson(json.decode(response.body));

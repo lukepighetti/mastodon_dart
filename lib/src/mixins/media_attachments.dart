@@ -18,16 +18,16 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/media",
-      queryParameters: {
-        "file": file,
-        "description": description,
-        "focus": focus,
-      },
     );
 
     final response = await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "file": file,
+        "description": description,
+        "focus": focus,
+      },
     );
 
     return Attachment.fromJson(json.decode(response.body));
@@ -48,15 +48,15 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/media/$id",
-      queryParameters: {
-        "description": description,
-        "focus": focus,
-      }..removeWhere((_, value) => value == null),
     );
 
     final response = await put(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "description": description,
+        "focus": focus,
+      }..removeWhere((_, value) => value == null),
     );
 
     return Attachment.fromJson(json.decode(response.body));

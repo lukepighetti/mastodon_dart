@@ -21,17 +21,17 @@ mixin Reports on Authentication implements MockReportsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/accounts/$id/pin",
-      queryParameters: {
-        "account_id": id,
-        "status_ids": statusIds,
-        "comment": comment,
-        "forward": forward?.toString(),
-      },
     );
 
     await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "account_id": id,
+        "status_ids": statusIds,
+        "comment": comment,
+        "forward": forward?.toString(),
+      },
     );
   }
 }

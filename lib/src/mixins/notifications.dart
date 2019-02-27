@@ -100,14 +100,14 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
       scheme: baseUrl.scheme,
       host: baseUrl.host,
       path: "/api/v1/notifications/dismiss",
-      queryParameters: {
-        "id": id,
-      },
     );
 
     await post(
       uri,
       headers: {"Authorization": "Bearer $key"},
+      body: {
+        "id": id,
+      },
     );
   }
 

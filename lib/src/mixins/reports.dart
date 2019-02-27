@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/reports.dart';
 
-mixin Reports on Authentication implements MockReportsMixin {
+mixin Reports on Authentication, Utilities implements MockReportsMixin {
   /// POST /api/v1/reports
   ///
   /// - authenticated (requires user)
@@ -15,16 +15,11 @@ mixin Reports on Authentication implements MockReportsMixin {
     String comment,
     bool forward,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/pin",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    await request(
+      Method.post,
+      "/api/v1/reports",
+      authenticated: true,
+      payload: {
         "account_id": id,
         "status_ids": statusIds,
         "comment": comment,

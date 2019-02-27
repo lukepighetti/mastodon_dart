@@ -2,7 +2,9 @@ import '../library.dart';
 
 import '../mock/mixins/follow_requests.dart';
 
-mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
+mixin FollowRequests
+    on Authentication, Utilities
+    implements MockFollowRequestsMixin {
   /// GET /api/v1/follow_requests
   ///
   /// - authenticated (requires user)
@@ -10,18 +12,13 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
   Future<List<Account>> followRequests({int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/follow_requests",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/follow_requests",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -38,15 +35,10 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
   Future<dynamic> authorizeRequest(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/follow_requests/$id/authorize",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.post,
+      "/api/v1/follow_requests/$id/authorize",
+      authenticated: true,
     );
   }
 
@@ -57,15 +49,10 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
   Future<dynamic> rejectRequest(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/follow_requests/$id/reject",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.post,
+      "/api/v1/follow_requests/$id/reject",
+      authenticated: true,
     );
   }
 }

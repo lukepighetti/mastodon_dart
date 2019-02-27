@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/instances.dart';
 
-mixin Instances on Authentication implements MockInstancesMixin {
+mixin Instances on Authentication, Utilities implements MockInstancesMixin {
   /// GET /api/v1/instance
   ///
   /// - public
@@ -10,12 +10,9 @@ mixin Instances on Authentication implements MockInstancesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
   Future<Instance> instance() async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/instance",
-    );
-
-    final response = await get(
-      uri,
+    final response = await request(
+      Method.get,
+      "/api/v1/instance",
     );
 
     return Instance.fromJson(json.decode(response.body));

@@ -2,7 +2,8 @@ import '../library.dart';
 
 import '../mock/mixins/scheduled_statuses.dart';
 
-mixin ScheduledStatuses on Authentication
+mixin ScheduledStatuses
+    on Authentication, Utilities
     implements MockScheduledStatusesMixin {
   /// GET /api/v1/scheduled_statuses
   ///
@@ -11,15 +12,10 @@ mixin ScheduledStatuses on Authentication
   ///
   /// https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses
   Future<List<ScheduledStatus>> scheduledStatuses() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/scheduled_statuses",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/scheduled_statuses",
+      authenticated: true,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -34,15 +30,10 @@ mixin ScheduledStatuses on Authentication
   ///
   /// https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses-id
   Future<ScheduledStatus> scheduledStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/scheduled_statuses/$id",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/scheduled_statuses/$id",
+      authenticated: true,
     );
 
     return ScheduledStatus.fromJson(json.decode(response.body));
@@ -56,16 +47,11 @@ mixin ScheduledStatuses on Authentication
   /// https://docs.joinmastodon.org/api/rest/scheduled-statuses/#put-api-v1-scheduled-statuses-id
   Future<ScheduledStatus> updateScheduledStatus(String id,
       {DateTime scheduledAt}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/scheduled_statuses/$id",
-    );
-
-    final response = await put(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.put,
+      "/api/v1/scheduled_statuses/$id",
+      authenticated: true,
+      payload: {
         "scheduled_at": scheduledAt?.toIso8601String(),
       },
     );
@@ -80,15 +66,10 @@ mixin ScheduledStatuses on Authentication
   ///
   /// https://docs.joinmastodon.org/api/rest/scheduled-statuses/#delete-api-v1-scheduled-statuses-id
   Future<dynamic> deleteScheduledStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/scheduled_statuses/$id",
-    );
-
-    await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.delete,
+      "/api/v1/scheduled_statuses/$id",
+      authenticated: true,
     );
   }
 }

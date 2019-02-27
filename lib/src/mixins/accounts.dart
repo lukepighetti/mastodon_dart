@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/accounts.dart';
 
-mixin Accounts on Authentication implements MockAccountsMixin {
+mixin Accounts on Authentication, Utilities implements MockAccountsMixin {
   /// GET /api/v1/accounts/:id
   ///
   /// - public
@@ -34,16 +34,11 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     bool agreement,
     String locale,
   ) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts",
+      authenticated: true,
+      payload: {
         "username": username,
         "email": email,
         "password": password,
@@ -62,15 +57,10 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials
   Future<Account> verifyCredentials() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/verify_credentials",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/verify_credentials",
+      authenticated: true,
     );
 
     return Account.fromJson(json.decode(response.body));
@@ -93,16 +83,11 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     dynamic sourceLanguage,
     dynamic fieldsAttributes,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/verify_credentials",
-    );
-
-    final response = await patch(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.patch,
+      "/api/v1/accounts/verify_credentials",
+      authenticated: true,
+      payload: {
         "display_name": displayName,
         "note": note,
 
@@ -131,18 +116,13 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
   Future<List<Account>> followers(String id, {int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/followers",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/$id/followers",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -159,18 +139,13 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
   Future<List<Account>> following(String id, {int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/following",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/$id/following",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -197,11 +172,11 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     int limit = 20,
     bool excludeReblogs = false,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/statuses",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/$id/statuses",
+      authenticated: true,
+      payload: {
         "only_media": onlyMedia.toString(),
         "pinned": pinned.toString(),
         "exclude_replies": excludeReplies.toString(),
@@ -210,11 +185,6 @@ mixin Accounts on Authentication implements MockAccountsMixin {
         "limit": limit.toString(),
         "exclude_reblogs": excludeReblogs.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -231,16 +201,11 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
   Future<Relationship> follow(String id, {bool reblogs = true}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/follow",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/follow",
+      authenticated: true,
+      payload: {
         "reblogs": reblogs.toString(),
       },
     );
@@ -255,15 +220,10 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
   Future<Relationship> unfollow(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/unfollow",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/unfollow",
+      authenticated: true,
     );
 
     return Relationship.fromJson(json.decode(response.body));
@@ -276,18 +236,13 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
   Future<List<Relationship>> relationships(List<String> ids) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/relationships",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/relationships",
+      authenticated: true,
+      payload: {
         "ids": ids,
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -307,21 +262,16 @@ mixin Accounts on Authentication implements MockAccountsMixin {
     bool resolve = false,
     bool following = false,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/search",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/search",
+      authenticated: true,
+      payload: {
         "q": q,
         "limit": limit.toString(),
         "resolve": resolve.toString(),
         "following": following.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));

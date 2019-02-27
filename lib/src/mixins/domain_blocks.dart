@@ -2,7 +2,9 @@ import '../library.dart';
 
 import '../mock/mixins/domain_blocks.dart';
 
-mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
+mixin DomainBlocks
+    on Authentication, Utilities
+    implements MockDomainBlocksMixin {
   /// GET /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)
@@ -10,18 +12,13 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
   Future<List<Uri>> domainBlocks({int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/domain_blocks",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/domain_blocks",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<String>.from(json.decode(response.body));
@@ -36,16 +33,11 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks
   Future<dynamic> domainBlock(Uri domain) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/domain_blocks",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    await request(
+      Method.post,
+      "/api/v1/domain_blocks",
+      authenticated: true,
+      payload: {
         "domain": domain.toString(),
       },
     );
@@ -58,18 +50,13 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks
   Future<dynamic> domainUnblock(Uri domain) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/domain_blocks",
-      queryParameters: {
+    await request(
+      Method.delete,
+      "/api/v1/domain_blocks",
+      authenticated: true,
+      payload: {
         "domain": domain.toString(),
       },
-    );
-
-    await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
   }
 }

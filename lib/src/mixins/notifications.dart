@@ -2,7 +2,9 @@ import '../library.dart';
 
 import '../mock/mixins/notifications.dart';
 
-mixin Notifications on Authentication implements MockNotificationsMixin {
+mixin Notifications
+    on Authentication, Utilities
+    implements MockNotificationsMixin {
   /// GET /api/v1/notifications
   ///
   /// - authentication (requires user)
@@ -16,22 +18,17 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
     int limit = 20,
     List<NotificationType> excludeTypes,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/notifications",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/notifications",
+      authenticated: true,
+      payload: {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
         "limit": limit.toString(),
         "exclude_types": excludeTypes.map((e) => e.toString().split(".").last),
       }..removeWhere((_, value) => value == null),
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -48,15 +45,10 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
   Future<Notification> notification(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/notifications/$id",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/notifications/$id",
+      authenticated: true,
     );
 
     return Notification.fromJson(json.decode(response.body));
@@ -69,15 +61,10 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
   Future<dynamic> clearNotifications() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/notifications/clear",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.post,
+      "/api/v1/notifications/clear",
+      authenticated: true,
     );
   }
 
@@ -88,16 +75,11 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
   Future<dynamic> dismissNotification(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/notifications/dismiss",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    await request(
+      Method.post,
+      "/api/v1/notifications/dismiss",
+      authenticated: true,
+      payload: {
         "id": id,
       },
     );

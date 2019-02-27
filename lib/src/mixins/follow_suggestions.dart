@@ -2,7 +2,8 @@ import '../library.dart';
 
 import '../mock/mixins/follow_suggestions.dart';
 
-mixin FollowSuggestions on Authentication
+mixin FollowSuggestions
+    on Authentication, Utilities
     implements MockFollowSuggestionsMixin {
   /// GET /api/v1/suggestions
   ///
@@ -11,15 +12,10 @@ mixin FollowSuggestions on Authentication
   ///
   /// https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions
   Future<List<Account>> suggestions() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/suggestions",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/suggestions",
+      authenticated: true,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -36,15 +32,10 @@ mixin FollowSuggestions on Authentication
   ///
   /// https://docs.joinmastodon.org/api/rest/follow-suggestions/#delete-api-v1-suggestions-account-id
   Future<dynamic> removeSuggestion(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/suggestions/$id",
-    );
-
-    await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.delete,
+      "/api/v1/suggestions/$id",
+      authenticated: true,
     );
   }
 }

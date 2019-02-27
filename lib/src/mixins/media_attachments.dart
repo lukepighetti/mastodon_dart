@@ -2,7 +2,9 @@ import '../library.dart';
 
 import '../mock/mixins/media_attachments.dart';
 
-mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
+mixin MediaAttachments
+    on Authentication, Utilities
+    implements MockMediaAttachmentsMixin {
   /// POST /api/v1/media
   ///
   /// - authenticated (requires user)
@@ -12,16 +14,12 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
   Future<Attachment> uploadAttachment(dynamic file,
       {String description, dynamic focus}) async {
     /// TODO: implement [file], [focus]
-    assert(key != null);
 
-    final uri = baseUrl.replace(
-      path: "/api/v1/media",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/media",
+      authenticated: true,
+      payload: {
         "file": file,
         "description": description,
         "focus": focus,
@@ -40,16 +38,12 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
   Future<Attachment> updateAttachment(String id,
       {String description, dynamic focus}) async {
     /// TODO: implement [file], [focus]
-    assert(key != null);
 
-    final uri = baseUrl.replace(
-      path: "/api/v1/media/$id",
-    );
-
-    final response = await put(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.put,
+      "/api/v1/media/$id",
+      authenticated: true,
+      payload: {
         "description": description,
         "focus": focus,
       }..removeWhere((_, value) => value == null),

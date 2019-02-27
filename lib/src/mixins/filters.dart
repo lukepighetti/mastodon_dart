@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/filters.dart';
 
-mixin Filters on Authentication implements MockFiltersMixin {
+mixin Filters on Authentication, Utilities implements MockFiltersMixin {
   /// GET /api/v1/filters
   ///
   /// - authenticated (requires user)
@@ -10,15 +10,10 @@ mixin Filters on Authentication implements MockFiltersMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
   Future<List<Filter>> filters() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/filters",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/filters",
+      authenticated: true,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -39,16 +34,11 @@ mixin Filters on Authentication implements MockFiltersMixin {
     bool wholeWord,
     Duration expiresIn,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/filters",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/filters",
+      authenticated: true,
+      payload: {
         "phrase": phrase,
         "context": context.map((c) => c.toString().split(".").last),
         "irreversible": irreversible?.toString(),
@@ -67,15 +57,10 @@ mixin Filters on Authentication implements MockFiltersMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id
   Future<Filter> filter(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/filters/$id",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/filters/$id",
+      authenticated: true,
     );
 
     return Filter.fromJson(json.decode(response.body));
@@ -95,16 +80,11 @@ mixin Filters on Authentication implements MockFiltersMixin {
     bool wholeWord,
     Duration expiresIn,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/filters/$id",
-    );
-
-    final response = await put(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.put,
+      "/api/v1/filters/$id",
+      authenticated: true,
+      payload: {
         "phrase": phrase,
         "context": context.map((c) => c.toString().split(".").last),
         "irreversible": irreversible?.toString(),
@@ -123,15 +103,10 @@ mixin Filters on Authentication implements MockFiltersMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id
   Future<void> deleteFilter(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/filters/$id",
-    );
-
-    final response = await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.delete,
+      "/api/v1/filters/$id",
+      authenticated: true,
     );
 
     return Filter.fromJson(json.decode(response.body));

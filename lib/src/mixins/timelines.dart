@@ -1,7 +1,7 @@
 import '../library.dart';
 import '../mock/mixins/timelines.dart';
 
-mixin Timelines on Authentication implements MockTimelinesMixin {
+mixin Timelines on Authentication, Utilities implements MockTimelinesMixin {
   /// GET /api/v1/timelines/home
   ///
   /// - authenticated
@@ -14,21 +14,16 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/timelines/home",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/timelines/home",
+      authenticated: true,
+      payload: {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return List<Status>.from(
@@ -48,21 +43,16 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/conversations",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/conversations",
+      authenticated: true,
+      payload: {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
-        "limit": "$limit",
+        "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return List<Conversation>.from(
@@ -84,9 +74,11 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/timelines/public",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/timelines/public",
+      authenticated: true,
+      payload: {
         "local": "$local",
         "only_media": "$onlyMedia",
         "max_id": maxId,
@@ -94,10 +86,6 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
         "min_id": minId,
         "limit": "$limit",
       },
-    );
-
-    final response = await get(
-      uri,
     );
 
     return List<Status>.from(
@@ -120,9 +108,11 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/timelines/tag/$hashtag",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/timelines/tag/$hashtag",
+      authenticated: true,
+      payload: {
         "local": "$local",
         "only_media": "$onlyMedia",
         "max_id": maxId,
@@ -130,10 +120,6 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
         "min_id": minId,
         "limit": "$limit",
       },
-    );
-
-    final response = await get(
-      uri,
     );
 
     return List<Status>.from(

@@ -1,9 +1,9 @@
 import '../library.dart';
 import '../mock/mixins/search.dart';
 
-// mixin Statuses on Authentication implements MockStatusesMixin {
+// mixin Statuses on Authentication, Utilities implements MockStatusesMixin {
 
-mixin Search on Authentication implements MockSearchMixin {
+mixin Search on Authentication, Utilities implements MockSearchMixin {
   /// GET /api/v2/search
   ///
   /// - authenticated
@@ -11,17 +11,14 @@ mixin Search on Authentication implements MockSearchMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
   Future<Results> search(String q, {bool resolve = false}) async {
-    final uri = baseUrl.replace(
-      path: "/api/v2/search",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v2/search",
+      authenticated: true,
+      payload: {
         "q": q,
         "resolve": resolve.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     return Results.fromJson(json.decode(response.body));

@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/mutes.dart';
 
-mixin Mutes on Authentication implements MockMutesMixin {
+mixin Mutes on Authentication, Utilities implements MockMutesMixin {
   /// GET /api/v1/mutes
   ///
   /// - authentication (requires user)
@@ -10,18 +10,13 @@ mixin Mutes on Authentication implements MockMutesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
   Future<List<Account>> mutes({int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/mutes",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/mutes",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -38,15 +33,10 @@ mixin Mutes on Authentication implements MockMutesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
   Future<Relationship> muteAccount(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/mute",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/mute",
+      authenticated: true,
     );
 
     return Relationship.fromJson(json.decode(response.body));
@@ -59,15 +49,10 @@ mixin Mutes on Authentication implements MockMutesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute
   Future<Relationship> unmuteAccount(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/unmute",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/unmute",
+      authenticated: true,
     );
 
     return Relationship.fromJson(json.decode(response.body));
@@ -80,15 +65,10 @@ mixin Mutes on Authentication implements MockMutesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-statuses-id-mute
   Future<Status> muteStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/mute",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/mute",
+      authenticated: true,
     );
 
     return Status.fromJson(json.decode(response.body));
@@ -101,15 +81,10 @@ mixin Mutes on Authentication implements MockMutesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-statuses-id-unmute
   Future<Status> unmuteStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/unmute",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/unmute",
+      authenticated: true,
     );
 
     return Status.fromJson(json.decode(response.body));

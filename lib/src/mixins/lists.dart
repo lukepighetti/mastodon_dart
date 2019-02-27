@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/lists.dart';
 
-mixin Lists on Authentication implements MockListsMixin {
+mixin Lists on Authentication, Utilities implements MockListsMixin {
   /// GET /api/v1/lists
   ///
   /// - authenticated (requires user)
@@ -10,15 +10,10 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
   Future<List<ListSummary>> lists() async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/lists",
+      authenticated: true,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -33,15 +28,10 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
   Future<List<ListSummary>> listsByAccount(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/lists",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/$id/lists",
+      authenticated: true,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -56,18 +46,13 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
   Future<List<Account>> listAccounts(String id, {int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id/accounts",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/lists/$id/accounts",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -82,15 +67,10 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
   Future<ListSummary> list(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id",
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.get,
+      "/api/v1/lists/$id",
+      authenticated: true,
     );
 
     return ListSummary.fromJson(json.decode(response.body));
@@ -103,16 +83,11 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
   Future<ListSummary> createList(String title) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/lists",
+      authenticated: true,
+      payload: {
         "title": title,
       },
     );
@@ -127,16 +102,11 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
   Future<ListSummary> updateList(String id, String title) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id",
-    );
-
-    final response = await put(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.put,
+      "/api/v1/lists/$id",
+      authenticated: true,
+      payload: {
         "title": title,
       },
     );
@@ -151,15 +121,10 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id
   Future<dynamic> deleteList(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id",
-    );
-
-    await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    await request(
+      Method.delete,
+      "/api/v1/lists/$id",
+      authenticated: true,
     );
   }
 
@@ -171,16 +136,11 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// Only accounts already followed by the user can be added to a list
   Future<dynamic> addAccountsToList(String id, List<String> ids) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id/accounts",
-    );
-
-    await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    await request(
+      Method.post,
+      "/api/v1/lists/$id/accounts",
+      authenticated: true,
+      payload: {
         "account_ids": ids,
       },
     );
@@ -193,18 +153,13 @@ mixin Lists on Authentication implements MockListsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
   Future<dynamic> deleteAccountsFromList(String id, List<String> ids) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/lists/$id/accounts",
-      queryParameters: {
+    await request(
+      Method.delete,
+      "/api/v1/lists/$id/accounts",
+      authenticated: true,
+      payload: {
         "account_ids": ids,
       },
-    );
-
-    await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
   }
 }

@@ -1,7 +1,7 @@
 import '../library.dart';
 import '../mock/mixins/statuses.dart';
 
-mixin Statuses on Authentication implements MockStatusesMixin {
+mixin Statuses on Authentication, Utilities implements MockStatusesMixin {
   /// GET /api/v1/statuses/:id
   ///
   /// - public
@@ -9,12 +9,9 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
   Future<Status> status(String id) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id",
-    );
-
-    final response = await get(
-      uri,
+    final response = await request(
+      Method.get,
+      "/api/v1/statuses/$id",
     );
 
     return Status.fromJson(json.decode(response.body));
@@ -27,12 +24,9 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
   Future<Context> context(String id) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/context",
-    );
-
-    final response = await get(
-      uri,
+    final response = await request(
+      Method.get,
+      "/api/v1/statuses/$id/context",
     );
 
     return Context.fromJson(json.decode(response.body));
@@ -45,12 +39,9 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
   Future<Card> card(String id) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/card",
-    );
-
-    final response = await get(
-      uri,
+    final response = await request(
+      Method.get,
+      "/api/v1/statuses/$id/card",
     );
 
     final map = Map<String, dynamic>.from(json.decode(response.body));
@@ -68,15 +59,12 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
   Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/reblogged_by",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/statuses/$id/reblogged_by",
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -91,15 +79,12 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
   Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/favourited_by",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/statuses/$id/favourited_by",
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -123,18 +108,13 @@ mixin Statuses on Authentication implements MockStatusesMixin {
     DateTime scheduledAt,
     dynamic language,
   }) async {
-    assert(key != null);
-
     assert(status != null || (mediaIds != null && mediaIds.isNotEmpty));
 
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-      body: {
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses",
+      authenticated: true,
+      payload: {
         "status": status,
         "in_reply_to_id": inReplyToId,
         "media_ids": mediaIds,
@@ -155,20 +135,17 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
   Future<void> deleteStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id",
-    );
-
-    final response = await delete(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-    );
-
-    if (response.statusCode == 404) {
-      throw MastodonException(
-          404, "Cannot delete a status that does not exist");
+    try {
+      await request(
+        Method.delete,
+        "/api/v1/statuses/$id",
+        authenticated: true,
+      );
+    } on MastodonException catch (e) {
+      if (e.statusCode == 404) {
+        throw MastodonException(
+            404, "Cannot delete a status that does not exist");
+      }
     }
   }
 
@@ -179,20 +156,19 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
   Future<Status> reblog(String id) async {
-    assert(key != null);
+    Response response;
 
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/reblog",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
-    );
-
-    if (response.statusCode == 404) {
-      throw MastodonException(
-          404, "Cannot reblog a status that does not exist");
+    try {
+      response = await request(
+        Method.post,
+        "/api/v1/statuses/$id/reblog",
+        authenticated: true,
+      );
+    } on MastodonException catch (e) {
+      if (e.statusCode == 404) {
+        throw MastodonException(
+            404, "Cannot reblog a status that does not exist");
+      }
     }
 
     return Status.fromJson(json.decode(response.body));
@@ -205,15 +181,10 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
   Future<Status> unreblog(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/unreblog",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/unreblog",
+      authenticated: true,
     );
 
     return Status.fromJson(json.decode(response.body));
@@ -226,15 +197,10 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
   Future<Status> pinStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/pin",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/pin",
+      authenticated: true,
     );
 
     return Status.fromJson(json.decode(response.body));
@@ -247,15 +213,10 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
   Future<Status> unpinStatus(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/statuses/$id/unpin",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/unpin",
+      authenticated: true,
     );
 
     return Status.fromJson(json.decode(response.body));

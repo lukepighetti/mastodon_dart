@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/mixins/blocks.dart';
 
-mixin Blocks on Authentication implements MockBlocksMixin {
+mixin Blocks on Authentication, Utilities implements MockBlocksMixin {
   /// GET /api/v1/blocks
   ///
   /// - authenticated (requires user)
@@ -10,18 +10,13 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
   Future<List<Account>> blocks({int limit = 40}) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/blocks",
-      queryParameters: {
+    final response = await request(
+      Method.get,
+      "/api/v1/blocks",
+      authenticated: true,
+      payload: {
         "limit": limit.toString(),
       },
-    );
-
-    final response = await get(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
     );
 
     final body = List<Map>.from(json.decode(response.body));
@@ -36,15 +31,10 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-block
   Future<Relationship> block(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/block",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/block",
+      authenticated: true,
     );
 
     return Relationship.fromJson(json.decode(response.body));
@@ -57,15 +47,10 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/blocks/#post-api-v1-accounts-id-unblock
   Future<Relationship> unblock(String id) async {
-    assert(key != null);
-
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id/unblock",
-    );
-
-    final response = await post(
-      uri,
-      headers: {"Authorization": "Bearer $key"},
+    final response = await request(
+      Method.post,
+      "/api/v1/accounts/$id/unblock",
+      authenticated: true,
     );
 
     return Relationship.fromJson(json.decode(response.body));

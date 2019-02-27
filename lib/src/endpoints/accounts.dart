@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/endpoints/accounts.dart';
+import '../../mock/endpoints/accounts.dart';
 
 mixin Accounts on Authentication, Utilities implements MockAccounts {
   /// GET /api/v1/accounts/:id

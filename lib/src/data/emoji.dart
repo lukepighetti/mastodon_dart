@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:mastodon/src/mock/properties.dart';
+import 'package:mastodon/mock/properties.dart';
 
 part 'emoji.g.dart';
 

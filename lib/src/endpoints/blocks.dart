@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/endpoints/blocks.dart';
+import '../../mock/endpoints/blocks.dart';
 
 mixin Blocks on Authentication, Utilities implements MockBlocks {
   /// GET /api/v1/blocks

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/endpoints/follow_suggestions.dart';
+import '../../mock/endpoints/follow_suggestions.dart';
 
 mixin FollowSuggestions
     on Authentication, Utilities

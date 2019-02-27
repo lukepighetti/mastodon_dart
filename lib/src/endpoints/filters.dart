@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/endpoints/filters.dart';
+import '../../mock/endpoints/filters.dart';
 
 mixin Filters on Authentication, Utilities implements MockFilters {
   /// GET /api/v1/filters

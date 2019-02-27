@@ -1,4 +1,4 @@
-import 'mock/mock_mastodon.dart' show MockAuthentication;
+import '../mock/mock_mastodon.dart' show MockAuthentication;
 
 class Authentication implements MockAuthentication {
   final Uri baseUrl;

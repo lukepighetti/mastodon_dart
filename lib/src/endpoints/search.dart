@@ -1,5 +1,5 @@
 import '../library.dart';
-import '../mock/endpoints/search.dart';
+import '../../mock/endpoints/search.dart';
 
 // mixin Statuses on Authentication, Utilities implements MockStatuses {
 

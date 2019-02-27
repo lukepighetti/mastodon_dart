@@ -41,7 +41,7 @@ mixin Apps on Authentication implements MockAppsMixin {
     );
 
     if (response.statusCode >= 300) {
-      throw MastodonException("status code ${response.statusCode}");
+      throw MastodonException(response.statusCode);
     }
 
     return Application.fromJson(json.decode(response.body));

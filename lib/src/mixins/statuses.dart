@@ -181,7 +181,8 @@ mixin Statuses on Authentication implements MockStatusesMixin {
     );
 
     if (response.statusCode == 404) {
-      throw MastodonException("Cannot delete a status that does not exist");
+      throw MastodonException(
+          404, "Cannot delete a status that does not exist");
     }
   }
 
@@ -206,7 +207,8 @@ mixin Statuses on Authentication implements MockStatusesMixin {
     );
 
     if (response.statusCode == 404) {
-      throw MastodonException("Cannot reblog a status that does not exist");
+      throw MastodonException(
+          404, "Cannot reblog a status that does not exist");
     }
 
     return Status.fromJson(json.decode(response.body));

@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockAccountsMixin {
+class MockAccounts {
   /// GET /api/v1/accounts/:id
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
   Future<Account> account(String id) => Future.value(Account.mock());

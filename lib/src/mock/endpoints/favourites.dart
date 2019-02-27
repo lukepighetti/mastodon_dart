@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockFavouritesMixin {
+class MockFavourites {
   /// GET /api/v1/favourites
   /// https://docs.joinmastodon.org/api/rest/favourites/#get-api-v1-favourites
   ///

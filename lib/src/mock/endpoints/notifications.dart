@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockNotificationsMixin {
+class MockNotifications {
   /// GET /api/v1/notifications
   /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
   Future<List<Notification>> notifications({

@@ -4,7 +4,7 @@ import '../mock/endpoints/scheduled_statuses.dart';
 
 mixin ScheduledStatuses
     on Authentication, Utilities
-    implements MockScheduledStatusesMixin {
+    implements MockScheduledStatuses {
   /// GET /api/v1/scheduled_statuses
   ///
   /// - authenticated (requires user)

@@ -4,7 +4,7 @@ import '../mock/endpoints/media_attachments.dart';
 
 mixin MediaAttachments
     on Authentication, Utilities
-    implements MockMediaAttachmentsMixin {
+    implements MockMediaAttachments {
   /// POST /api/v1/media
   ///
   /// - authenticated (requires user)

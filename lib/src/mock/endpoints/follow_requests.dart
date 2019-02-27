@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockFollowRequestsMixin {
+class MockFollowRequests {
   /// GET /api/v1/follow_requests
   /// https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
   Future<List<Account>> followRequests({int limit = 40}) =>

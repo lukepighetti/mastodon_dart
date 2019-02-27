@@ -21,26 +21,26 @@ import 'endpoints/timelines.dart';
 
 class MockMastodon = MockAuthentication
     with
-        MockAccountsMixin,
-        MockAppsMixin,
-        MockBlocksMixin,
-        MockCustomEmojisMixin,
-        MockDomainBlocksMixin,
-        MockEndorsementsMixin,
-        MockFavouritesMixin,
-        MockFiltersMixin,
-        MockFollowRequestsMixin,
-        MockFollowSuggestionsMixin,
-        MockInstancesMixin,
-        MockListsMixin,
-        MockMediaAttachmentsMixin,
-        MockMutesMixin,
-        MockNotificationsMixin,
-        MockReportsMixin,
-        MockScheduledStatusesMixin,
-        MockSearchMixin,
-        MockStatusesMixin,
-        MockTimelinesMixin;
+        MockAccounts,
+        MockApps,
+        MockBlocks,
+        MockCustomEmojis,
+        MockDomainBlocks,
+        MockEndorsements,
+        MockFavourites,
+        MockFilters,
+        MockFollowRequests,
+        MockFollowSuggestions,
+        MockInstances,
+        MockLists,
+        MockMediaAttachments,
+        MockMutes,
+        MockNotifications,
+        MockReports,
+        MockScheduledStatuses,
+        MockSearch,
+        MockStatuses,
+        MockTimelines;
 
 class MockAuthentication {
   final Uri baseUrl;

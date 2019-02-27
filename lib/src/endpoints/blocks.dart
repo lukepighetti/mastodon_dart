@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/blocks.dart';
 
-mixin Blocks on Authentication, Utilities implements MockBlocksMixin {
+mixin Blocks on Authentication, Utilities implements MockBlocks {
   /// GET /api/v1/blocks
   ///
   /// - authenticated (requires user)

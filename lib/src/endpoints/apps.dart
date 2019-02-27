@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/apps.dart';
 
-mixin Apps on Authentication, Utilities implements MockAppsMixin {
+mixin Apps on Authentication, Utilities implements MockApps {
   /// POST /api/v1/apps
   /// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
   Future<AuthenticatedApplication> appCredentials(

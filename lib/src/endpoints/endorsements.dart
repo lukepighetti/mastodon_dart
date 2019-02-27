@@ -2,9 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/endorsements.dart';
 
-mixin Endorsements
-    on Authentication, Utilities
-    implements MockEndorsementsMixin {
+mixin Endorsements on Authentication, Utilities implements MockEndorsements {
   /// GET /api/v1/endorsements
   ///
   /// - authenticated

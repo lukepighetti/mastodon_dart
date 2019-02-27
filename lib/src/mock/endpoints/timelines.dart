@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockTimelinesMixin {
+class MockTimelines {
   /// GET /api/v1/timelines/home
   /// https://docs.joinmastodon.org/api/rest/timelines/#get-api-v1-timelines-home
   Future<List<Status>> timeline(

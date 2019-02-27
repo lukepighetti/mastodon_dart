@@ -1,9 +1,9 @@
 import '../library.dart';
 import '../mock/endpoints/search.dart';
 
-// mixin Statuses on Authentication, Utilities implements MockStatusesMixin {
+// mixin Statuses on Authentication, Utilities implements MockStatuses {
 
-mixin Search on Authentication, Utilities implements MockSearchMixin {
+mixin Search on Authentication, Utilities implements MockSearch {
   /// GET /api/v2/search
   ///
   /// - authenticated

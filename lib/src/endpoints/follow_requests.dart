@@ -4,7 +4,7 @@ import '../mock/endpoints/follow_requests.dart';
 
 mixin FollowRequests
     on Authentication, Utilities
-    implements MockFollowRequestsMixin {
+    implements MockFollowRequests {
   /// GET /api/v1/follow_requests
   ///
   /// - authenticated (requires user)

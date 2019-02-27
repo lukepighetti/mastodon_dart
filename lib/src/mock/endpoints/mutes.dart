@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockMutesMixin {
+class MockMutes {
   /// GET /api/v1/mutes
   /// https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
   Future<List<Account>> mutes({int limit = 40}) =>

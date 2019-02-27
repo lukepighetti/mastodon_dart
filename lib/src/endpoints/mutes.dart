@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/mutes.dart';
 
-mixin Mutes on Authentication, Utilities implements MockMutesMixin {
+mixin Mutes on Authentication, Utilities implements MockMutes {
   /// GET /api/v1/mutes
   ///
   /// - authentication (requires user)

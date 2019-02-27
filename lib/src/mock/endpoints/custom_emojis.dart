@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockCustomEmojisMixin {
+class MockCustomEmojis {
   /// GET /api/v1/custom_emojis
   /// https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
   Future<List<Emoji>> emojis() =>

@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockBlocksMixin {
+class MockBlocks {
   /// GET /api/v1/blocks
   /// https://docs.joinmastodon.org/api/rest/blocks/#get-api-v1-blocks
   Future<List<Account>> blocks({int limit = 40}) =>

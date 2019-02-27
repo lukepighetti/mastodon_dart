@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/lists.dart';
 
-mixin Lists on Authentication, Utilities implements MockListsMixin {
+mixin Lists on Authentication, Utilities implements MockLists {
   /// GET /api/v1/lists
   ///
   /// - authenticated (requires user)

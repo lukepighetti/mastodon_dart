@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockEndorsementsMixin {
+class MockEndorsements {
   /// GET /api/v1/endorsements
   /// https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
   ///

@@ -4,7 +4,7 @@ import '../mock/endpoints/follow_suggestions.dart';
 
 mixin FollowSuggestions
     on Authentication, Utilities
-    implements MockFollowSuggestionsMixin {
+    implements MockFollowSuggestions {
   /// GET /api/v1/suggestions
   ///
   /// - authenticated (requires user)

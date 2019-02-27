@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockAppsMixin {
+class MockApps {
   /// POST /api/v1/apps
   /// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
   Future<AuthenticatedApplication> appCredentials(

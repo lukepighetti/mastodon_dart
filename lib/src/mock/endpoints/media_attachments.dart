@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockMediaAttachmentsMixin {
+class MockMediaAttachments {
   /// POST /api/v1/media
   /// https://docs.joinmastodon.org/api/rest/media/#post-api-v1-media
   Future<Attachment> uploadAttachment(dynamic file,

@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockFollowSuggestionsMixin {
+class MockFollowSuggestions {
   /// GET /api/v1/suggestions
   /// https://docs.joinmastodon.org/api/rest/follow-suggestions/#get-api-v1-suggestions
   Future<List<Account>> suggestions() =>

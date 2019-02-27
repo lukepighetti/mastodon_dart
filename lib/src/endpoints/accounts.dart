@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/accounts.dart';
 
-mixin Accounts on Authentication, Utilities implements MockAccountsMixin {
+mixin Accounts on Authentication, Utilities implements MockAccounts {
   /// GET /api/v1/accounts/:id
   ///
   /// - public

@@ -2,9 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/notifications.dart';
 
-mixin Notifications
-    on Authentication, Utilities
-    implements MockNotificationsMixin {
+mixin Notifications on Authentication, Utilities implements MockNotifications {
   /// GET /api/v1/notifications
   ///
   /// - authentication (requires user)

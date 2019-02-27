@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockFiltersMixin {
+class MockFilters {
   /// GET /api/v1/filters
   /// https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
   Future<List<Filter>> filters() =>

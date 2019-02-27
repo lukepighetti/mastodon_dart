@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockListsMixin {
+class MockLists {
   /// GET /api/v1/lists
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
 

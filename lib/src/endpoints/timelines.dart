@@ -1,7 +1,7 @@
 import '../library.dart';
 import '../mock/endpoints/timelines.dart';
 
-mixin Timelines on Authentication, Utilities implements MockTimelinesMixin {
+mixin Timelines on Authentication, Utilities implements MockTimelines {
   /// GET /api/v1/timelines/home
   ///
   /// - authenticated

@@ -2,7 +2,7 @@ import '../library.dart';
 
 import '../mock/endpoints/favourites.dart';
 
-mixin Favourites on Authentication, Utilities implements MockFavouritesMixin {
+mixin Favourites on Authentication, Utilities implements MockFavourites {
   /// GET /api/v1/favourites
   ///
   /// - authenticated (requires user)

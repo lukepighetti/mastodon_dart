@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockScheduledStatusesMixin {
+class MockScheduledStatuses {
   /// GET /api/v1/scheduled_statuses
   /// https://docs.joinmastodon.org/api/rest/scheduled-statuses/#get-api-v1-scheduled-statuses
   Future<List<ScheduledStatus>> scheduledStatuses() =>

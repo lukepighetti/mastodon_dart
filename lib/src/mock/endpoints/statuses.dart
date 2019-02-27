@@ -1,6 +1,6 @@
 import 'package:mastodon/mastodon.dart';
 
-class MockStatusesMixin {
+class MockStatuses {
   /// GET /api/v1/statuses/:id
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
   Future<Status> status(String id) => Future.value(Status.mock());

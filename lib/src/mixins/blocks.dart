@@ -17,7 +17,7 @@ mixin Blocks on Authentication implements MockBlocksMixin {
       host: baseUrl.host,
       path: "/api/v1/blocks",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

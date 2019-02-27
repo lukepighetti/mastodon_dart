@@ -17,7 +17,7 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
       host: baseUrl.host,
       path: "/api/v1/domain_blocks",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

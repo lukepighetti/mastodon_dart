@@ -79,7 +79,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
       host: baseUrl.host,
       path: "/api/v1/statuses/$id/reblogged_by",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 
@@ -104,7 +104,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
       host: baseUrl.host,
       path: "/api/v1/statuses/$id/favourited_by",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

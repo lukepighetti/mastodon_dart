@@ -67,7 +67,7 @@ mixin Lists on Authentication implements MockListsMixin {
       host: baseUrl.host,
       path: "/api/v1/lists/$id/accounts",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

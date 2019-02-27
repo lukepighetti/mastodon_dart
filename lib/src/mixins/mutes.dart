@@ -17,7 +17,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
       host: baseUrl.host,
       path: "/api/v1/mutes",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

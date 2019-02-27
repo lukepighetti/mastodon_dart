@@ -26,7 +26,7 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
-        "limit": limit,
+        "limit": limit.toString(),
         "exclude_types": excludeTypes.map((e) => e.toString().split(".").last),
       }..removeWhere((_, value) => value == null),
     );

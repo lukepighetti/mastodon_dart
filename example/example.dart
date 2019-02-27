@@ -8,7 +8,8 @@ main() async {
 
   final mastodon = Mastodon(baseUrl)..key = key;
 
-  final results = await mastodon.search("javascript");
+  final results = await mastodon.timeline();
 
-  print(results.statuses.map((s) => [s.tags.map((t) => t.name), s.content]));
+  print(results
+      .map((s) => [s.account.displayName, s.content, s.favouritesCount]));
 }

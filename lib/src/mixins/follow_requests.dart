@@ -17,7 +17,7 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
       host: baseUrl.host,
       path: "/api/v1/follow_requests",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

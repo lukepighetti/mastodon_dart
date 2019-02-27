@@ -24,7 +24,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
         "max_id": maxId,
         "since_id": sinceId,
         "min_id": minId,
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

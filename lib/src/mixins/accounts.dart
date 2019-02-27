@@ -146,7 +146,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
       host: baseUrl.host,
       path: "/api/v1/accounts/$id/followers",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 
@@ -176,7 +176,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
       host: baseUrl.host,
       path: "/api/v1/accounts/$id/following",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 
@@ -221,7 +221,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
         "exclude_replies": excludeReplies.toString(),
         "max_id": maxId,
         "since_id": sinceId,
-        "limit": limit,
+        "limit": limit.toString(),
         "exclude_reblogs": excludeReblogs.toString(),
       },
     );
@@ -335,7 +335,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
       path: "/api/v1/accounts/search",
       queryParameters: {
         "q": q,
-        "limit": limit,
+        "limit": limit.toString(),
         "resolve": resolve.toString(),
         "following": following.toString(),
       },

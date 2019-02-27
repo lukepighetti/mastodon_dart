@@ -17,7 +17,7 @@ mixin Favourites on Authentication implements MockFavouritesMixin {
       host: baseUrl.host,
       path: "/api/v1/favourites",
       queryParameters: {
-        "limit": limit,
+        "limit": limit.toString(),
       },
     );
 

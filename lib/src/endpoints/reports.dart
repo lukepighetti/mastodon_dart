@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/reports.dart';
+import '../mock/endpoints/reports.dart';
 
 mixin Reports on Authentication, Utilities implements MockReportsMixin {
   /// POST /api/v1/reports

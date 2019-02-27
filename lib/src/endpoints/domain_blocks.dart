@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/domain_blocks.dart';
+import '../mock/endpoints/domain_blocks.dart';
 
 mixin DomainBlocks
     on Authentication, Utilities

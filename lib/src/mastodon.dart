@@ -1,26 +1,26 @@
 import 'authentication.dart';
 import 'utilities.dart';
 
-import 'mixins/accounts.dart';
-import 'mixins/apps.dart';
-import 'mixins/blocks.dart';
-import 'mixins/custom_emojis.dart';
-import 'mixins/domain_blocks.dart';
-import 'mixins/endorsements.dart';
-import 'mixins/favourites.dart';
-import 'mixins/filters.dart';
-import 'mixins/follow_requests.dart';
-import 'mixins/follow_suggestions.dart';
-import 'mixins/instances.dart';
-import 'mixins/lists.dart';
-import 'mixins/media_attachments.dart';
-import 'mixins/mutes.dart';
-import 'mixins/notifications.dart';
-import 'mixins/reports.dart';
-import 'mixins/scheuled_statuses.dart';
-import 'mixins/search.dart';
-import 'mixins/statuses.dart';
-import 'mixins/timelines.dart';
+import 'endpoints/accounts.dart';
+import 'endpoints/apps.dart';
+import 'endpoints/blocks.dart';
+import 'endpoints/custom_emojis.dart';
+import 'endpoints/domain_blocks.dart';
+import 'endpoints/endorsements.dart';
+import 'endpoints/favourites.dart';
+import 'endpoints/filters.dart';
+import 'endpoints/follow_requests.dart';
+import 'endpoints/follow_suggestions.dart';
+import 'endpoints/instances.dart';
+import 'endpoints/lists.dart';
+import 'endpoints/media_attachments.dart';
+import 'endpoints/mutes.dart';
+import 'endpoints/notifications.dart';
+import 'endpoints/reports.dart';
+import 'endpoints/scheuled_statuses.dart';
+import 'endpoints/search.dart';
+import 'endpoints/statuses.dart';
+import 'endpoints/timelines.dart';
 
 class _Base = Authentication with Utilities;
 

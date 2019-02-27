@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/favourites.dart';
+import '../mock/endpoints/favourites.dart';
 
 mixin Favourites on Authentication, Utilities implements MockFavouritesMixin {
   /// GET /api/v1/favourites

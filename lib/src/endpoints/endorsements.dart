@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/endorsements.dart';
+import '../mock/endpoints/endorsements.dart';
 
 mixin Endorsements
     on Authentication, Utilities

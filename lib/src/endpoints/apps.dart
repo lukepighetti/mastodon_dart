@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/apps.dart';
+import '../mock/endpoints/apps.dart';
 
 mixin Apps on Authentication, Utilities implements MockAppsMixin {
   /// POST /api/v1/apps

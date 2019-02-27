@@ -1,5 +1,5 @@
 import '../library.dart';
-import '../mock/mixins/statuses.dart';
+import '../mock/endpoints/statuses.dart';
 
 mixin Statuses on Authentication, Utilities implements MockStatusesMixin {
   /// GET /api/v1/statuses/:id

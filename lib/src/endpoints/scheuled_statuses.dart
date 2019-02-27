@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/scheduled_statuses.dart';
+import '../mock/endpoints/scheduled_statuses.dart';
 
 mixin ScheduledStatuses
     on Authentication, Utilities

@@ -1,5 +1,5 @@
 import '../library.dart';
-import '../mock/mixins/timelines.dart';
+import '../mock/endpoints/timelines.dart';
 
 mixin Timelines on Authentication, Utilities implements MockTimelinesMixin {
   /// GET /api/v1/timelines/home

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/instances.dart';
+import '../mock/endpoints/instances.dart';
 
 mixin Instances on Authentication, Utilities implements MockInstancesMixin {
   /// GET /api/v1/instance

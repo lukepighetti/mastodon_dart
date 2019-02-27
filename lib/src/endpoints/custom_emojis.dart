@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../mock/mixins/custom_emojis.dart';
+import '../mock/endpoints/custom_emojis.dart';
 
 mixin CustomEmojis
     on Authentication, Utilities

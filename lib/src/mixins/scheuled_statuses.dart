@@ -13,9 +13,7 @@ mixin ScheduledStatuses on Authentication
   Future<List<ScheduledStatus>> scheduledStatuses() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/scheduled_statuses",
     );
 
@@ -38,9 +36,7 @@ mixin ScheduledStatuses on Authentication
   Future<ScheduledStatus> scheduledStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/scheduled_statuses/$id",
     );
 
@@ -62,9 +58,7 @@ mixin ScheduledStatuses on Authentication
       {DateTime scheduledAt}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/scheduled_statuses/$id",
     );
 
@@ -88,9 +82,7 @@ mixin ScheduledStatuses on Authentication
   Future<dynamic> deleteScheduledStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/scheduled_statuses/$id",
     );
 

@@ -18,9 +18,7 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/notifications",
       queryParameters: {
         "max_id": maxId,
@@ -52,9 +50,7 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   Future<Notification> notification(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/notifications/$id",
     );
 
@@ -75,9 +71,7 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   Future<dynamic> clearNotifications() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/notifications/clear",
     );
 
@@ -96,9 +90,7 @@ mixin Notifications on Authentication implements MockNotificationsMixin {
   Future<dynamic> dismissNotification(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/notifications/dismiss",
     );
 

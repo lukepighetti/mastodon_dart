@@ -12,9 +12,7 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   Future<List<Account>> followRequests({int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/follow_requests",
       queryParameters: {
         "limit": limit.toString(),
@@ -42,9 +40,7 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   Future<dynamic> authorizeRequest(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/follow_requests/$id/authorize",
     );
 
@@ -63,9 +59,7 @@ mixin FollowRequests on Authentication implements MockFollowRequestsMixin {
   Future<dynamic> rejectRequest(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/follow_requests/$id/reject",
     );
 

@@ -14,9 +14,7 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
     /// TODO: implement [file], [focus]
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/media",
     );
 
@@ -44,9 +42,7 @@ mixin MediaAttachments on Authentication implements MockMediaAttachmentsMixin {
     /// TODO: implement [file], [focus]
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/media/$id",
     );
 

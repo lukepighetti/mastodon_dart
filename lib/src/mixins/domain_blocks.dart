@@ -12,9 +12,7 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   Future<List<Uri>> domainBlocks({int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/domain_blocks",
       queryParameters: {
         "limit": limit.toString(),
@@ -40,9 +38,7 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   Future<dynamic> domainBlock(Uri domain) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/domain_blocks",
     );
 
@@ -64,9 +60,7 @@ mixin DomainBlocks on Authentication implements MockDomainBlocksMixin {
   Future<dynamic> domainUnblock(Uri domain) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/domain_blocks",
       queryParameters: {
         "domain": domain.toString(),

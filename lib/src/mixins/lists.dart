@@ -12,9 +12,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<List<ListSummary>> lists() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists",
     );
 
@@ -37,9 +35,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<List<ListSummary>> listsByAccount(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/lists",
     );
 
@@ -62,9 +58,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<List<Account>> listAccounts(String id, {int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id/accounts",
       queryParameters: {
         "limit": limit.toString(),
@@ -90,9 +84,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<ListSummary> list(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id",
     );
 
@@ -113,9 +105,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<ListSummary> createList(String title) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists",
     );
 
@@ -139,9 +129,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<ListSummary> updateList(String id, String title) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id",
     );
 
@@ -165,9 +153,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<dynamic> deleteList(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id",
     );
 
@@ -187,9 +173,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<dynamic> addAccountsToList(String id, List<String> ids) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id/accounts",
     );
 
@@ -211,9 +195,7 @@ mixin Lists on Authentication implements MockListsMixin {
   Future<dynamic> deleteAccountsFromList(String id, List<String> ids) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/lists/$id/accounts",
       queryParameters: {
         "account_ids": ids,

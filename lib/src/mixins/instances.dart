@@ -10,9 +10,7 @@ mixin Instances on Authentication implements MockInstancesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
   Future<Instance> instance() async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/instance",
     );
 

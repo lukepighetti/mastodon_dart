@@ -12,9 +12,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
   Future<List<Account>> mutes({int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/mutes",
       queryParameters: {
         "limit": limit.toString(),
@@ -42,9 +40,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
   Future<Relationship> muteAccount(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/mute",
     );
 
@@ -65,9 +61,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
   Future<Relationship> unmuteAccount(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/unmute",
     );
 
@@ -88,9 +82,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
   Future<Status> muteStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/mute",
     );
 
@@ -111,9 +103,7 @@ mixin Mutes on Authentication implements MockMutesMixin {
   Future<Status> unmuteStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/unmute",
     );
 

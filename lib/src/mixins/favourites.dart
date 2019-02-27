@@ -12,9 +12,7 @@ mixin Favourites on Authentication implements MockFavouritesMixin {
   Future<List<Status>> favourites({int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/favourites",
       queryParameters: {
         "limit": limit.toString(),
@@ -42,9 +40,7 @@ mixin Favourites on Authentication implements MockFavouritesMixin {
   Future<Status> favorite(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/favourite",
     );
 
@@ -67,9 +63,7 @@ mixin Favourites on Authentication implements MockFavouritesMixin {
   Future<Status> unfavorite(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/unfavourite",
     );
 

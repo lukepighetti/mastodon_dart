@@ -9,9 +9,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
   Future<Status> status(String id) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id",
     );
 
@@ -29,9 +27,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
   Future<Context> context(String id) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/context",
     );
 
@@ -49,9 +45,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
   Future<Card> card(String id) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/card",
     );
 
@@ -74,9 +68,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
   Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/reblogged_by",
       queryParameters: {
         "limit": limit.toString(),
@@ -99,9 +91,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
   Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/favourited_by",
       queryParameters: {
         "limit": limit.toString(),
@@ -137,9 +127,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
 
     assert(status != null || (mediaIds != null && mediaIds.isNotEmpty));
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses",
     );
 
@@ -169,9 +157,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   Future<void> deleteStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id",
     );
 
@@ -195,9 +181,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   Future<Status> reblog(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/reblog",
     );
 
@@ -223,9 +207,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   Future<Status> unreblog(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/unreblog",
     );
 
@@ -246,9 +228,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   Future<Status> pinStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/pin",
     );
 
@@ -269,9 +249,7 @@ mixin Statuses on Authentication implements MockStatusesMixin {
   Future<Status> unpinStatus(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/statuses/$id/unpin",
     );
 

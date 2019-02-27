@@ -12,9 +12,7 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   Future<List<Account>> blocks({int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/blocks",
       queryParameters: {
         "limit": limit.toString(),
@@ -40,9 +38,7 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   Future<Relationship> block(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/block",
     );
 
@@ -63,9 +59,7 @@ mixin Blocks on Authentication implements MockBlocksMixin {
   Future<Relationship> unblock(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/unblock",
     );
 

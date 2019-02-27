@@ -13,9 +13,7 @@ mixin FollowSuggestions on Authentication
   Future<List<Account>> suggestions() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/suggestions",
     );
 
@@ -40,9 +38,7 @@ mixin FollowSuggestions on Authentication
   Future<dynamic> removeSuggestion(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/suggestions/$id",
     );
 

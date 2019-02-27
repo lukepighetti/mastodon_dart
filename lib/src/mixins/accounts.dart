@@ -10,9 +10,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
   Future<Account> account(String id) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id",
     );
 
@@ -38,9 +36,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   ) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts",
     );
 
@@ -68,9 +64,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<Account> verifyCredentials() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/verify_credentials",
     );
 
@@ -101,9 +95,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/verify_credentials",
     );
 
@@ -141,9 +133,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<List<Account>> followers(String id, {int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/followers",
       queryParameters: {
         "limit": limit.toString(),
@@ -171,9 +161,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<List<Account>> following(String id, {int limit = 40}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/following",
       queryParameters: {
         "limit": limit.toString(),
@@ -211,9 +199,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/statuses",
       queryParameters: {
         "only_media": onlyMedia.toString(),
@@ -247,9 +233,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<Relationship> follow(String id, {bool reblogs = true}) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/follow",
     );
 
@@ -273,9 +257,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<Relationship> unfollow(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/unfollow",
     );
 
@@ -296,9 +278,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   Future<List<Relationship>> relationships(List<String> ids) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/relationships",
       queryParameters: {
         "ids": ids,
@@ -329,9 +309,7 @@ mixin Accounts on Authentication implements MockAccountsMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/search",
       queryParameters: {
         "q": q,

@@ -16,9 +16,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/timelines/home",
       queryParameters: {
         "max_id": maxId,
@@ -52,9 +50,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/conversations",
       queryParameters: {
         "max_id": maxId,
@@ -88,9 +84,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/timelines/public",
       queryParameters: {
         "local": "$local",
@@ -126,9 +120,7 @@ mixin Timelines on Authentication implements MockTimelinesMixin {
     String minId,
     int limit = 20,
   }) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/timelines/tag/$hashtag",
       queryParameters: {
         "local": "$local",

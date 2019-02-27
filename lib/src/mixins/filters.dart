@@ -12,9 +12,7 @@ mixin Filters on Authentication implements MockFiltersMixin {
   Future<List<Filter>> filters() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/filters",
     );
 
@@ -43,9 +41,7 @@ mixin Filters on Authentication implements MockFiltersMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/filters",
     );
 
@@ -73,9 +69,7 @@ mixin Filters on Authentication implements MockFiltersMixin {
   Future<Filter> filter(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/filters/$id",
     );
 
@@ -103,9 +97,7 @@ mixin Filters on Authentication implements MockFiltersMixin {
   }) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/filters/$id",
     );
 
@@ -133,9 +125,7 @@ mixin Filters on Authentication implements MockFiltersMixin {
   Future<void> deleteFilter(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/filters/$id",
     );
 

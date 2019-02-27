@@ -11,9 +11,7 @@ mixin Search on Authentication implements MockSearchMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/search/#get-api-v2-search
   Future<Results> search(String q, {bool resolve = false}) async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v2/search",
       queryParameters: {
         "q": q,

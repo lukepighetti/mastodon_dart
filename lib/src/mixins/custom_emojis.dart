@@ -10,9 +10,7 @@ mixin CustomEmojis on Authentication implements MockCustomEmojisMixin {
   ///
   /// https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
   Future<List<Emoji>> emojis() async {
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/custom_emojis",
     );
 

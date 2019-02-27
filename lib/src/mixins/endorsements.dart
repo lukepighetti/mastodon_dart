@@ -13,9 +13,7 @@ mixin Endorsements on Authentication implements MockEndorsementsMixin {
   Future<List<Account>> endorsements() async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/endorsements",
     );
 
@@ -40,9 +38,7 @@ mixin Endorsements on Authentication implements MockEndorsementsMixin {
   Future<Relationship> pin(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/pin",
     );
 
@@ -63,9 +59,7 @@ mixin Endorsements on Authentication implements MockEndorsementsMixin {
   Future<Relationship> unpin(String id) async {
     assert(key != null);
 
-    final uri = Uri(
-      scheme: baseUrl.scheme,
-      host: baseUrl.host,
+    final uri = baseUrl.replace(
       path: "/api/v1/accounts/$id/unpin",
     );
 

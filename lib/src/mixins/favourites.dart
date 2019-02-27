@@ -32,7 +32,7 @@ mixin Favourites on Authentication, Utilities implements MockFavouritesMixin {
   /// - write write:favourites
   ///
   /// https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-favourite
-  Future<Status> favorite(String id) async {
+  Future<Status> favourite(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/favourite",
@@ -50,7 +50,7 @@ mixin Favourites on Authentication, Utilities implements MockFavouritesMixin {
   /// - write write:favourites
   ///
   /// https://docs.joinmastodon.org/api/rest/favourites/#post-api-v1-statuses-id-unfavourite
-  Future<Status> unfavorite(String id) async {
+  Future<Status> unfavourite(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/unfavourite",

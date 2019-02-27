@@ -10,12 +10,9 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
   Future<Account> account(String id) async {
-    final uri = baseUrl.replace(
-      path: "/api/v1/accounts/$id",
-    );
-
-    final response = await get(
-      uri,
+    final response = await request(
+      Method.get,
+      "/api/v1/accounts/$id",
     );
 
     return Account.fromJson(json.decode(response.body));

@@ -47,5 +47,5 @@ class MockAuthentication {
 
   MockAuthentication(this.baseUrl);
 
-  String key;
+  String token;
 }

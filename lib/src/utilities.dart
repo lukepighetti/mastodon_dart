@@ -19,9 +19,9 @@ mixin Utilities on Authentication {
 
     /// Add authentication header
     if (authenticated) {
-      assert(key != null);
+      assert(token != null);
 
-      _headers.addAll({"Authorization": "Bearer $key"});
+      _headers.addAll({"Authorization": "Bearer $token"});
     }
 
     Response response;

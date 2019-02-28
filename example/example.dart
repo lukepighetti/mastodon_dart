@@ -4,9 +4,9 @@ import 'package:mastodon/mastodon.dart';
 
 main() async {
   final baseUrl = Uri.parse(Platform.environment["BASE_URL"]);
-  final key = Platform.environment["KEY"];
+  final token = Platform.environment["TOKEN"];
 
-  final mastodon = Mastodon(baseUrl)..key = key;
+  final mastodon = Mastodon(baseUrl)..token = token;
 
   final results = await mastodon.timeline();
 

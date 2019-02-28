@@ -24,7 +24,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
   /// - write write:accounts
   ///
   /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts
-  Future<Token> token(
+  Future<Token> requestToken(
     String username,
     String email,
     String password,

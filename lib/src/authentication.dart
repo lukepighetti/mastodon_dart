@@ -9,5 +9,5 @@ class Authentication implements MockAuthentication {
 
   Uri get authorizationUrl => baseUrl.replace(path: "/oauth/authorize");
 
-  String key;
+  String token;
 }

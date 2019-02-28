@@ -94,7 +94,7 @@ class AuthBloc {
   /// If the code validates, it will automatically trigger the
   /// authentication process. It does not wait for confirmation.
   Future<void> _handleCode(String code) async {
-    final isValid = RegExp(r"^\w{64}$").hasMatch(code);
+    final isValid = mastodon.validateAuthCode(code);
 
     if (isValid) {
       final response = await post(

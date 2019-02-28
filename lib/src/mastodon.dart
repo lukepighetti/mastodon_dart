@@ -1,5 +1,6 @@
 import 'authentication.dart';
 import 'utilities.dart';
+import 'validators.dart';
 
 import 'endpoints/accounts.dart';
 import 'endpoints/apps.dart';
@@ -22,7 +23,7 @@ import 'endpoints/search.dart';
 import 'endpoints/statuses.dart';
 import 'endpoints/timelines.dart';
 
-class _Base = Authentication with Utilities;
+class _Base = Authentication with Utilities, Validators;
 
 class Mastodon = _Base
     with

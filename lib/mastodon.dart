@@ -1,6 +1,9 @@
 /// Mastodon library documentation goes here.
 library mastodon;
 
+/// Bloc classes
+export 'src/bloc/auth.dart';
+
 /// Data classes
 export 'src/data/account.dart';
 export 'src/data/application.dart';

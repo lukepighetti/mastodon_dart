@@ -36,12 +36,13 @@ class AuthBloc {
     this.scopes = const ["write", "read", "follow", "push"],
   }) {
     Future.value(storage?.fetchToken).then((token) async {
-      final savedToken = mastodon.token ?? token;
+      final savedToken = mastodon.token ?? await token;
+
+      _app.listen(_handleApplication);
+      _code.listen(_handleCode);
+      _token.listen(_handleToken);
 
       if (savedToken == null) {
-        _app.listen(_handleApplication);
-        _code.listen(_handleCode);
-        _token.listen(_handleToken);
         _registerApplication();
       } else {
         _token.add(savedToken);
@@ -121,7 +122,7 @@ class AuthBloc {
   /// Then adds the [Account] to [_account.add]
   Future<void> _handleToken(String token) async {
     if (token != null) {
-      if (storage != null) {
+      if (storage != null && token != await storage.fetchToken) {
         await storage.saveToken(token);
       }
 

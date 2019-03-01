@@ -61,5 +61,5 @@ Token _$TokenFromJson(Map<String, dynamic> json) {
       accessToken: json['access_token'] as String,
       tokenType: json['token_type'] as String,
       scope: json['scope'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String));
+      createdAt: Token._secondsSinceEpoch(json['created_at'] as int));
 }

@@ -156,7 +156,12 @@ class Token {
   final String accessToken;
   final String tokenType;
   final String scope;
+
+  @JsonKey(fromJson: _secondsSinceEpoch)
   final DateTime createdAt;
+
+  static DateTime _secondsSinceEpoch(int seconds) =>
+      DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
 
   Token({
     this.accessToken,

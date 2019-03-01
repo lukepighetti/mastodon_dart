@@ -132,6 +132,14 @@ class AuthBloc {
       _account.add(account);
     }
   }
+
+  dispose() {
+    _account.close();
+    _app.close();
+    _code.close();
+    _uri.close();
+    _token.close();
+  }
 }
 
 /// A simple storage driver interface that allows

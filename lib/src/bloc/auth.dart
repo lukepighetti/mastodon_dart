@@ -41,11 +41,10 @@ class AuthBloc {
       if (savedToken == null) {
         _app.listen(_handleApplication);
         _code.listen(_handleCode);
+        _token.listen(_handleToken);
         _registerApplication();
       } else {
-        mastodon.token = savedToken;
-        final account = await mastodon.verifyCredentials();
-        _account.add(account);
+        _token.add(savedToken);
       }
     });
   }
@@ -54,11 +53,13 @@ class AuthBloc {
   final _app = BehaviorSubject<AuthenticatedApplication>();
   final _code = BehaviorSubject<String>();
   final _uri = BehaviorSubject<Uri>();
+  final _token = BehaviorSubject<String>();
 
   Sink<String> get codeSink => _code.sink;
 
   ValueObservable<Account> get account => _account.stream;
   ValueObservable<Uri> get uri => _uri.stream;
+  ValueObservable<String> get token => _token.stream;
 
   /// Register the application and add it to [_app]
   Future _registerApplication() async {
@@ -108,18 +109,26 @@ class AuthBloc {
         },
       );
 
-      final results = Map.from(jsonDecode(response.body));
+      final results = Token.fromJson(jsonDecode(response.body));
 
-      final token = results["access_token"] as String;
+      final token = results.accessToken;
 
+      _token.add(token);
+    }
+  }
+
+  /// Saves, sets, and verifies a token.
+  /// Then adds the [Account] to [_account.add]
+  Future<void> _handleToken(String token) async {
+    if (token != null) {
       if (storage != null) {
         await storage.saveToken(token);
       }
 
       mastodon.token = token;
 
-      /// Verify the account
       final account = await mastodon.verifyCredentials();
+
       _account.add(account);
     }
   }

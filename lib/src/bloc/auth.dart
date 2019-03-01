@@ -146,5 +146,5 @@ class AuthBloc {
 /// fetching and saving of a [token] as a string
 abstract class AuthStorageDelegate {
   FutureOr<void> saveToken(String token);
-  FutureOr<String> fetchToken;
+  FutureOr<String> get fetchToken;
 }

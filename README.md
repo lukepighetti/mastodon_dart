@@ -6,7 +6,15 @@ A Dart API for the Mastodon network. Work in progress.
 
 [Mastodon endpoints](https://docs.joinmastodon.org/api/rest/accounts/)
 
-Please wait until this API is more developed before contributing.
+## Contributing
+
+Check the issues page for needed contributions. No refactors will be accepted at this time. Please try to keep the style consistent.
+
+We are interested in BLoC classes for business logic.
+
+Data classes are handled by `json_serializable` so `pub run build_runner watch` is good practice during development.
+
+Please be curteous of the codebase and your fellow contributors!
 
 ## Installation
 

@@ -13,20 +13,20 @@ part 'mention.g.dart';
 class Mention {
   final Uri url;
   final String username;
-  final String account;
+  final String acct;
   final String id;
 
   Mention({
     this.url,
     this.username,
-    this.account,
+    this.acct,
     this.id,
   });
 
   Mention.mock()
       : url = MockProperties.uri,
         username = MockProperties.username,
-        account = MockProperties.string,
+        acct = MockProperties.string,
         id = MockProperties.string;
 
   factory Mention.fromJson(Map<String, dynamic> json) =>

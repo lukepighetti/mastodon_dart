@@ -12,20 +12,20 @@ part 'tag.g.dart';
 )
 class Tag {
   final String name;
-  final Uri website;
+  final Uri url;
 
   @JsonKey(nullable: true)
   final List<History> history;
 
   Tag({
     this.name,
-    this.website,
+    this.url,
     this.history,
   });
 
   Tag.mock()
       : name = MockProperties.tag,
-        website = MockProperties.uri,
+        url = MockProperties.uri,
         history = [
           History.mock(),
           History.mock(),

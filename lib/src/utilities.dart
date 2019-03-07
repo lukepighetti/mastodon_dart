@@ -14,13 +14,15 @@ mixin Utilities on Authentication {
   }) async {
     final uri = baseUrl.replace(path: path);
 
-    /// Copy headers to a modifiable map, strip null values
+    /// Copy [headers] to a modifiable map, strip null values
     final _headers = <String, String>{}
       ..addAll(headers)
       ..removeWhere((_, value) => value == null);
 
-    /// Strip null values from payload
-    final _payload = payload..removeWhere((_, value) => value == null);
+    /// Copy [payload] to a modifiable map, strip null values
+    final _payload = <String, dynamic>{}
+      ..addAll(payload)
+      ..removeWhere((_, value) => value == null);
 
     /// Add authentication header
     if (authenticated) {

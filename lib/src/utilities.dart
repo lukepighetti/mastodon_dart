@@ -24,10 +24,14 @@ mixin Utilities on Authentication {
       ..addAll(payload)
       ..removeWhere((_, value) => value == null);
 
-    /// Add authentication header
+    /// Assert authentication header
     if (authenticated) {
       assert(token != null);
+    }
 
+    /// Add authentication if we have it, regardless of the endpoint
+    /// being public or authenticated
+    if (token.isNotEmpty) {
       _headers.addAll({"Authorization": "Bearer $token"});
     }
 

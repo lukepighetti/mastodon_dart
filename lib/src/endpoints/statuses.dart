@@ -19,8 +19,10 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
 
   /// GET /api/v1/statuses/:id/context
   ///
-  /// - public
+  /// - public / authenticated
   /// - read read:statuses
+  ///
+  /// NOTE: Public if the status is public
   ///
   /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
   Future<Context> context(String id) async {

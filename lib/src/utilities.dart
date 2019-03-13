@@ -31,7 +31,7 @@ mixin Utilities on Authentication {
 
     /// Add authentication if we have it, regardless of the endpoint
     /// being public or authenticated
-    if (token.isNotEmpty) {
+    if (token?.isNotEmpty == true) {
       _headers.addAll({"Authorization": "Bearer $token"});
     }
 

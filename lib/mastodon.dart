@@ -3,6 +3,7 @@ library mastodon;
 
 /// Bloc classes
 export 'src/bloc/auth.dart';
+export 'src/bloc/timeline.dart';
 
 /// Data classes
 export 'src/data/account.dart';

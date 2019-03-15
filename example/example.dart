@@ -8,8 +8,5 @@ main() async {
 
   final mastodon = Mastodon(baseUrl)..token = token;
 
-  final results = await mastodon.timeline();
-
-  print(results
-      .map((s) => [s.account.displayName, s.content, s.favouritesCount]));
+  mastodon.publicTimelineStream().listen(print);
 }

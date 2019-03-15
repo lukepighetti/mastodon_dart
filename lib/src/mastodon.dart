@@ -23,9 +23,11 @@ import 'endpoints/search.dart';
 import 'endpoints/statuses.dart';
 import 'endpoints/timelines.dart';
 
+import 'websockets/websockets.dart';
+
 class _Base = Authentication with Utilities, Validators;
 
-class Mastodon = _Base
+class _Rest = _Base
     with
         Accounts,
         Apps,
@@ -47,3 +49,5 @@ class Mastodon = _Base
         Search,
         Statuses,
         Timelines;
+
+class Mastodon = _Rest with Websockets;

@@ -5,12 +5,15 @@ typedef StatusGetter = Future<List<Status>> Function(String maxId);
 
 class TimelineBloc {
   final StatusGetter fetchStatuses;
+  final Stream<dynamic> statusStream;
 
-  TimelineBloc(this.fetchStatuses) {
+  TimelineBloc(this.fetchStatuses, {this.statusStream}) {
     _requestingMore
         .where((req) => req == true)
         .throttle(Duration(milliseconds: 500))
         .listen(_handleRequest);
+
+    statusStream?.listen(_handlePayload);
   }
 
   final Map<String, Status> _store = {};
@@ -39,14 +42,31 @@ class TimelineBloc {
 
       if (newStatuses.isNotEmpty) {
         newStatuses.forEach((s) => _store[s.id] = s);
-
-        final _sortedStatuses = _store.values.toList()
-          ..sort((a, b) => b.id.compareTo(a.id));
-
-        _statuses.add(_sortedStatuses);
+        _updateStatuses();
       }
 
       _requestingMore.add(false);
     }
+  }
+
+  /// Handle stream events
+  _handlePayload(dynamic payload) {
+    if (payload is String) {
+      _store.remove(payload);
+    } else if (payload is Status) {
+      _store[payload.id] = payload;
+    } else {
+      return;
+    }
+
+    _updateStatuses();
+  }
+
+  /// Sort [_store.values] and emit a new event to [_statuses]
+  _updateStatuses() {
+    final _sortedStatuses = _store.values.toList()
+      ..sort((a, b) => b.id.compareTo(a.id));
+
+    _statuses.add(_sortedStatuses);
   }
 }

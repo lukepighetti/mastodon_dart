@@ -25,9 +25,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
       repliesCount: json['replies_count'] as int,
       reblogsCount: json['reblogs_count'] as int,
       favouritesCount: json['favourites_count'] as int,
-      reblogged: json['reblogged'] as bool,
-      favourited: json['favourited'] as bool,
-      muted: json['muted'] as bool,
+      reblogged: json['reblogged'] as bool ?? false,
+      favourited: json['favourited'] as bool ?? false,
+      muted: json['muted'] as bool ?? false,
       sensitive: json['sensitive'] as bool,
       spoilerText: json['spoiler_text'] as String,
       visibility: _$enumDecode(_$VisibilityEnumMap, json['visibility']),
@@ -47,7 +47,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
           ? null
           : Application.fromJson(json['application'] as Map<String, dynamic>),
       language: json['language'],
-      pinned: json['pinned'] as bool);
+      pinned: json['pinned'] as bool ?? false);
 }
 
 T _$enumDecode<T>(Map<T, dynamic> enumValues, dynamic source) {

@@ -45,13 +45,13 @@ class Status {
   final int reblogsCount;
   final int favouritesCount;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: false)
   final bool reblogged;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: false)
   final bool favourited;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: false)
   final bool muted;
 
   final bool sensitive;
@@ -72,7 +72,7 @@ class Status {
   @JsonKey(nullable: true)
   final dynamic language;
 
-  @JsonKey(nullable: true)
+  @JsonKey(nullable: true, defaultValue: false)
   final bool pinned;
 
   Status({

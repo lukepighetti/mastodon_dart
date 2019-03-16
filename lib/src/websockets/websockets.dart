@@ -4,19 +4,25 @@ import 'package:mastodon/src/authentication.dart';
 import 'package:mastodon/src/data/notification.dart';
 import 'package:mastodon/src/data/status.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
-import 'package:web_socket_channel/io.dart';
 
 mixin Websockets on Authentication {
-  Uri _channelUri(String stream, {String list, String tag}) => baseUrl.replace(
-        scheme: "ws",
-        path: "/api/v1/streaming",
-        queryParameters: {
-          "access_token": token,
-          "stream": stream,
-          "list": list,
-          "tag": tag,
-        }..removeWhere((_, value) => value == null),
-      );
+  WebSocketChannel _channel(String stream, {String list, String tag}) {
+    assert(websocketFactory != null,
+        "[Mastodon] We need a websocketFactory to create websockets!");
+
+    final uri = baseUrl.replace(
+      scheme: "ws",
+      path: "/api/v1/streaming",
+      queryParameters: {
+        "access_token": token,
+        "stream": stream,
+        "list": list,
+        "tag": tag,
+      }..removeWhere((_, value) => value == null),
+    );
+
+    return websocketFactory(uri);
+  }
 
   /// https://docs.joinmastodon.org/api/streaming/#websocket
   ///
@@ -24,9 +30,7 @@ mixin Websockets on Authentication {
   ///
   /// returns Status (update), String (delete), Notification (notification), or null (filters_changed)
   Stream<dynamic> userStream() {
-    final uri = _channelUri("user");
-
-    final WebSocketChannel channel = IOWebSocketChannel.connect(uri);
+    final channel = _channel("user");
 
     return channel.stream.map(_handleEvent);
   }
@@ -37,11 +41,9 @@ mixin Websockets on Authentication {
   ///
   /// returns Status (update), String (delete), Notification (notification), or null (filters_changed)
   Stream<dynamic> publicTimelineStream({bool local = false}) {
-    final uri = _channelUri(
+    final channel = _channel(
       local ? "public:local" : "public",
     );
-
-    final WebSocketChannel channel = IOWebSocketChannel.connect(uri);
 
     return channel.stream.map(_handleEvent);
   }
@@ -52,12 +54,10 @@ mixin Websockets on Authentication {
   ///
   /// returns Status (update), String (delete), Notification (notification), or null (filters_changed)
   Stream<dynamic> hashtagTimelineStream(String tag, {bool local = false}) {
-    final uri = _channelUri(
+    final channel = _channel(
       local ? "hashtag:local" : "hashtag",
       tag: tag,
     );
-
-    final WebSocketChannel channel = IOWebSocketChannel.connect(uri);
 
     return channel.stream.map(_handleEvent);
   }
@@ -68,9 +68,7 @@ mixin Websockets on Authentication {
   ///
   /// returns Status (update), String (delete), Notification (notification), or null (filters_changed)
   Stream<dynamic> listStream(String id) {
-    final uri = _channelUri("hashtag", list: id);
-
-    final WebSocketChannel channel = IOWebSocketChannel.connect(uri);
+    final channel = _channel("hashtag", list: id);
 
     return channel.stream.map(_handleEvent);
   }
@@ -81,9 +79,7 @@ mixin Websockets on Authentication {
   ///
   /// returns Status (update), String (delete), Notification (notification), or null (filters_changed)
   Stream<dynamic> directStream() {
-    final uri = _channelUri("hashtag");
-
-    final WebSocketChannel channel = IOWebSocketChannel.connect(uri);
+    final channel = _channel("direct");
 
     return channel.stream.map(_handleEvent);
   }

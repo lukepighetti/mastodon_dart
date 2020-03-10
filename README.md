@@ -12,7 +12,7 @@ This package is not production ready.
 
 ## Contributing
 
-Create an issue, pack it with a PR, and tag an active contributor.
+Create an issue, back it with a PR, and tag an active contributor.
 
 ## Mock Client
 

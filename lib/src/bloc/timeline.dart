@@ -1,4 +1,4 @@
-import 'package:mastodon_dart/mastodon.dart';
+import 'package:mastodon_dart/mastodon_dart.dart';
 import 'package:rxdart/rxdart.dart';
 
 typedef StatusGetter = Future<List<Status>> Function(String maxId);

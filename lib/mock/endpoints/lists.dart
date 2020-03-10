@@ -1,4 +1,4 @@
-import 'package:mastodon_dart/mastodon.dart';
+import 'package:mastodon_dart/mastodon_dart.dart';
 
 class MockLists {
   /// GET /api/v1/lists

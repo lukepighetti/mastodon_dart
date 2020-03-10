@@ -17,7 +17,7 @@ Create an issue, back it with a PR, and tag an active contributor.
 ## Mock Client
 
 ```dart
-import 'package:mastodon_dart/mastodon.dart';
+import 'package:mastodon_dart/mastodon_dart.dart';
 
 main() async {
   final mock = MockMastodon();
@@ -34,7 +34,7 @@ main() async {
 ## Auth'd Client
 
 ```dart
-import 'package:mastodon_dart/mastodon.dart';
+import 'package:mastodon_dart/mastodon_dart.dart';
 
 main() async {
   final mastodon = Mastodon()

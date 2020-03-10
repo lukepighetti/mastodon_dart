@@ -1,4 +1,4 @@
-import 'package:mastodon_dart/mastodon.dart';
+import 'package:mastodon_dart/mastodon_dart.dart';
 
 class MockTimelines {
   /// GET /api/v1/timelines/home

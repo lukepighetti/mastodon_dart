@@ -1,28 +1,18 @@
 # mastodon_dart
 
-A Dart API for the Mastodon network. Work in progress.
+A Dart API for the Mastodon network. **Work in progress.**
 
 [Mastodon data types](https://docs.joinmastodon.org/api/entities/)
 
 [Mastodon endpoints](https://docs.joinmastodon.org/api/rest/accounts/)
 
+## Status
+
+This package is not production ready.
+
 ## Contributing
 
-Check the issues page for needed contributions. No refactors will be accepted at this time. Please try to keep the style consistent.
-
-We are interested in BLoC classes for business logic.
-
-Data classes are handled by `json_serializable` so `pub run build_runner watch` is good practice during development.
-
-Please be curteous of the codebase and your fellow contributors!
-
-## Installation
-
-```yaml
-dependencies:
-  mastodon:
-    git: https://github.com/lukepighetti/mastodon-dart.git
-```
+Create an issue, pack it with a PR, and tag an active contributor.
 
 ## Mock Client
 

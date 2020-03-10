@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:mastodon/src/data/account.dart';
-import 'package:mastodon/src/data/application.dart';
-import 'package:mastodon/src/mastodon.dart';
+import 'package:mastodon_dart/src/data/account.dart';
+import 'package:mastodon_dart/src/data/application.dart';
+import 'package:mastodon_dart/src/mastodon.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:http/http.dart' show post;

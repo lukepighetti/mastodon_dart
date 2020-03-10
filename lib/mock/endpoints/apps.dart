@@ -1,4 +1,4 @@
-import 'package:mastodon/mastodon.dart';
+import 'package:mastodon_dart/mastodon.dart';
 
 class MockApps {
   /// POST /api/v1/apps

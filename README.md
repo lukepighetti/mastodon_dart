@@ -1,4 +1,4 @@
-# mastodon-dart
+# mastodon_dart
 
 A Dart API for the Mastodon network. Work in progress.
 
@@ -27,7 +27,7 @@ dependencies:
 ## Mock Client
 
 ```dart
-import 'package:mastodon/mastodon.dart';
+import 'package:mastodon_dart/mastodon.dart';
 
 main() async {
   final mock = MockMastodon();
@@ -44,7 +44,7 @@ main() async {
 ## Auth'd Client
 
 ```dart
-import 'package:mastodon/mastodon.dart';
+import 'package:mastodon_dart/mastodon.dart';
 
 main() async {
   final mastodon = Mastodon()

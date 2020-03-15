@@ -8,8 +8,9 @@ part of 'mention.dart';
 
 Mention _$MentionFromJson(Map<String, dynamic> json) {
   return Mention(
-      url: Uri.parse(json['url'] as String),
-      username: json['username'] as String,
-      acct: json['acct'] as String,
-      id: json['id'] as String);
+    url: Uri.parse(json['url'] as String),
+    username: json['username'] as String,
+    acct: json['acct'] as String,
+    id: json['id'] as String,
+  );
 }

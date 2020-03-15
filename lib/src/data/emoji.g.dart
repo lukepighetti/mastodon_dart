@@ -8,8 +8,9 @@ part of 'emoji.dart';
 
 Emoji _$EmojiFromJson(Map<String, dynamic> json) {
   return Emoji(
-      shortcode: json['shortcode'] as String,
-      staticUrl: Uri.parse(json['static_url'] as String),
-      url: Uri.parse(json['url'] as String),
-      visibleInPicker: json['visible_in_picker'] as bool);
+    shortcode: json['shortcode'] as String,
+    staticUrl: Uri.parse(json['static_url'] as String),
+    url: Uri.parse(json['url'] as String),
+    visibleInPicker: json['visible_in_picker'] as bool,
+  );
 }

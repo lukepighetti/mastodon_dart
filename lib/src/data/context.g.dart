@@ -8,10 +8,11 @@ part of 'context.dart';
 
 Context _$ContextFromJson(Map<String, dynamic> json) {
   return Context(
-      ancestors: (json['ancestors'] as List)
-          .map((e) => Status.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      descendants: (json['descendants'] as List)
-          .map((e) => Status.fromJson(e as Map<String, dynamic>))
-          .toList());
+    ancestors: (json['ancestors'] as List)
+        .map((e) => Status.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    descendants: (json['descendants'] as List)
+        .map((e) => Status.fromJson(e as Map<String, dynamic>))
+        .toList(),
+  );
 }

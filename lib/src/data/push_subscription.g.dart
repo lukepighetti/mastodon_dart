@@ -8,8 +8,9 @@ part of 'push_subscription.dart';
 
 PushSubscription _$PushSubscriptionFromJson(Map<String, dynamic> json) {
   return PushSubscription(
-      id: json['id'] as String,
-      endpoint: Uri.parse(json['endpoint'] as String),
-      serverKey: json['server_key'] as String,
-      alerts: json['alerts']);
+    id: json['id'] as String,
+    endpoint: Uri.parse(json['endpoint'] as String),
+    serverKey: json['server_key'] as String,
+    alerts: json['alerts'],
+  );
 }

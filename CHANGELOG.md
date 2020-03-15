@@ -1,3 +1,7 @@
+## 0.1.0+9
+
+- deprecate flakey auth code validator
+
 ## 0.1.0+7 (3/15/2020)
 
 - Update dependencies

@@ -7,5 +7,8 @@ part of 'list_summary.dart';
 // **************************************************************************
 
 ListSummary _$ListSummaryFromJson(Map<String, dynamic> json) {
-  return ListSummary(id: json['id'] as String, title: json['title'] as String);
+  return ListSummary(
+    id: json['id'] as String,
+    title: json['title'] as String,
+  );
 }

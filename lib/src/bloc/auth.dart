@@ -96,26 +96,22 @@ class AuthBloc {
   /// If the code validates, it will automatically trigger the
   /// authentication process. It does not wait for confirmation.
   Future<void> _handleCode(String code) async {
-    final isValid = mastodon.validateAuthCode(code);
+    final response = await post(
+      mastodon.tokenUrl,
+      body: {
+        "client_id": _app.value.clientId,
+        "client_secret": _app.value.clientSecret,
+        "grant_type": "authorization_code",
+        "code": code,
+        "redirect_uri": redirectUris,
+      },
+    );
 
-    if (isValid) {
-      final response = await post(
-        mastodon.tokenUrl,
-        body: {
-          "client_id": _app.value.clientId,
-          "client_secret": _app.value.clientSecret,
-          "grant_type": "authorization_code",
-          "code": code,
-          "redirect_uri": redirectUris,
-        },
-      );
+    final results = Token.fromJson(jsonDecode(response.body));
 
-      final results = Token.fromJson(jsonDecode(response.body));
+    final token = results.accessToken;
 
-      final token = results.accessToken;
-
-      _token.add(token);
-    }
+    _token.add(token);
   }
 
   /// Saves, sets, and verifies a token.

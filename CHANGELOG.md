@@ -1,3 +1,5 @@
-## 0.1.0
+## 0.1.0+7 (3/15/2020)
 
-- Preview release
+- Update dependencies
+- Update rxdart code for latest version
+- Add formal example project

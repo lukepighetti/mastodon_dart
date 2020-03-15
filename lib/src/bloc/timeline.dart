@@ -10,7 +10,7 @@ class TimelineBloc {
   TimelineBloc(this.fetchStatuses, {this.statusStream}) {
     _requestingMore
         .where((req) => req == true)
-        .throttle(Duration(milliseconds: 500))
+        .throttle((_) => TimerStream(true, Duration(milliseconds: 500)))
         .listen(_handleRequest);
 
     statusStream?.listen(_handlePayload);
@@ -23,7 +23,7 @@ class TimelineBloc {
 
   Sink<bool> get requestingMoreSink => _requestingMore.sink;
 
-  ValueObservable<List<Status>> get statuses => _statuses;
+  ValueStream<List<Status>> get statuses => _statuses;
 
   /// If we're requesitng more, find the oldest id in the list,
   _handleRequest(bool isRequestingMore) async {

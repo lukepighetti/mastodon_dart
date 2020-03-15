@@ -58,9 +58,9 @@ class AuthBloc {
 
   Sink<String> get codeSink => _code.sink;
 
-  ValueObservable<Account> get account => _account.stream;
-  ValueObservable<Uri> get uri => _uri.stream;
-  ValueObservable<String> get token => _token.stream;
+  ValueStream<Account> get account => _account.stream;
+  ValueStream<Uri> get uri => _uri.stream;
+  ValueStream<String> get token => _token.stream;
 
   /// Register the application and add it to [_app]
   Future _registerApplication() async {

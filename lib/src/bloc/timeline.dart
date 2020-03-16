@@ -25,7 +25,7 @@ class TimelineBloc {
 
   ValueStream<List<Status>> get statuses => _statuses;
 
-  /// If we're requesitng more, find the oldest id in the list,
+  /// If we're requesting more, find the oldest id in the list,
   _handleRequest(bool isRequestingMore) async {
     if (isRequestingMore) {
       final hasStatuses = _statuses?.value?.isNotEmpty ?? false;

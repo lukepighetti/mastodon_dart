@@ -4,6 +4,7 @@ library mastodon_dart;
 /// Bloc classes
 export 'src/bloc/auth.dart';
 export 'src/bloc/timeline.dart';
+export 'src/bloc/notifications.dart';
 
 /// Data classes
 export 'src/data/account.dart';

@@ -1,5 +1,5 @@
 ## 0.1.1 (3/16/2020)
-- Add new NotificationBloc to handle retrieving Notifications
+- Add new NotificationsBloc to handle retrieving Notifications
 
 ## 0.1.0+9 (3/15/2020)
 - Deprecate flakey auth code validator

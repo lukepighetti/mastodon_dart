@@ -54,6 +54,7 @@ class Status {
   @JsonKey(nullable: true, defaultValue: false)
   final bool muted;
 
+  final bool bookmarked;
   final bool sensitive;
   final String spoilerText;
   final Visibility visibility;
@@ -92,6 +93,7 @@ class Status {
     this.reblogged,
     this.favourited,
     this.muted,
+    this.bookmarked,
     this.sensitive,
     this.spoilerText,
     this.visibility,
@@ -120,6 +122,7 @@ class Status {
         favouritesCount = MockProperties.integer,
         reblogged = MockProperties.boolean,
         favourited = MockProperties.boolean,
+        bookmarked = MockProperties.boolean,
         muted = MockProperties.boolean,
         sensitive = MockProperties.boolean,
         spoilerText = "spoiler!",

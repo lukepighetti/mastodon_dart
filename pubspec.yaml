@@ -1,6 +1,6 @@
 name: mastodon_dart
 description: A Dart library for accessing the Mastodon API.
-version: 0.1.4+1
+version: 0.1.4+2
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:

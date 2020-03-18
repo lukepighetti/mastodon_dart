@@ -28,6 +28,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
     reblogged: json['reblogged'] as bool ?? false,
     favourited: json['favourited'] as bool ?? false,
     muted: json['muted'] as bool ?? false,
+    bookmarked: json['bookmarked'] as bool,
     sensitive: json['sensitive'] as bool,
     spoilerText: json['spoiler_text'] as String,
     visibility: _$enumDecode(_$VisibilityEnumMap, json['visibility']),

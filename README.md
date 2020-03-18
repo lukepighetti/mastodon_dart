@@ -2,9 +2,7 @@
 
 A Dart API for the Mastodon network. **Work in progress.**
 
-[Mastodon data types](https://docs.joinmastodon.org/api/entities/)
-
-[Mastodon endpoints](https://docs.joinmastodon.org/api/rest/accounts/)
+Mastodon API documentation: https://docs.joinmastodon.org/api/
 
 ## Status
 

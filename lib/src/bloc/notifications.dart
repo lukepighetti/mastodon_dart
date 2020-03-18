@@ -65,8 +65,7 @@ class NotificationsBloc {
 
   /// Sort [_store.values] and emit a new event to [_notifications]
   _updateNotifications() {
-    final _sortedStatuses = _store.values.toList()
-      ..sort((a, b) => b.id.compareTo(a.id));
+    final _sortedStatuses = _store.values.toList()..sort((a, b) => b.id.compareTo(a.id));
 
     _notifications.add(_sortedStatuses);
   }

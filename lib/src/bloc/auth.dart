@@ -43,7 +43,7 @@ class AuthBloc {
       _token.listen(_handleToken);
 
       if (savedToken == null) {
-        _registerApplication();
+        await _registerApplication();
       } else {
         _token.add(savedToken);
       }

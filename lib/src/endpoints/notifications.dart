@@ -26,7 +26,7 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
         "since_id": sinceId,
         "min_id": minId,
         "limit": limit.toString(),
-        "exclude_types": excludeTypes.map((e) => e.toString().split(".").last),
+        "exclude_types": excludeTypes?.map((e) => e.toString().split(".").last),
         "account_id": account_id,
       }..removeWhere((_, value) => value == null),
     );

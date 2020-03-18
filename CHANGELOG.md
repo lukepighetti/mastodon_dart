@@ -1,5 +1,6 @@
 ## 0.1.2 (3/17/2020)
-- Add new NotificationsBloc to handle retrieving Notifications
+- Add missing parameter to the Notifications endpoint
+- 0.2.1+1: Null coalesce Notification exclude_types
 
 ## 0.1.1+1 (3/16/2020)
 - Add new NotificationsBloc to handle retrieving Notifications

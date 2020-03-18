@@ -1,6 +1,6 @@
-## 0.1.4 (3/18/2020)
+## 0.1.4 - 0.1.4+3 (3/18/2020)
 - Add missing `bookmarked` property to `Status`
-- 0.1.4+2: Address pub health suggestions
+- Address pub health suggestions
 
 ## 0.1.3 (3/17/2020)
 - Add missing attachment type to `AttachmentType` enum

@@ -57,4 +57,4 @@ class Attachment {
 
 /// https://docs.joinmastodon.org/api/entities/#type
 
-enum AttachmentType { unknown, image, gifv, video }
+enum AttachmentType { unknown, image, gifv, video, audio }

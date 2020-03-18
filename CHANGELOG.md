@@ -1,3 +1,6 @@
+## 0.1.3 (3/17/2020)
+- Add missing attachment type to AttachmentType enum
+
 ## 0.1.2 (3/17/2020)
 - Add missing parameter to the Notifications endpoint
 - 0.2.1+1: Null coalesce Notification exclude_types

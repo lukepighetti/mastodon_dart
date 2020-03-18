@@ -15,6 +15,7 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
     String minId,
     int limit = 20,
     List<NotificationType> excludeTypes,
+    String account_id,
   }) async {
     final response = await request(
       Method.get,
@@ -26,6 +27,7 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
         "min_id": minId,
         "limit": limit.toString(),
         "exclude_types": excludeTypes.map((e) => e.toString().split(".").last),
+        "account_id": account_id,
       }..removeWhere((_, value) => value == null),
     );
 

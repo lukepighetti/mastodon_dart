@@ -12,3 +12,4 @@ doc/api/
 
 # user defined
 .vscode
+!/.idea/libraries/Dart_Packages.xml

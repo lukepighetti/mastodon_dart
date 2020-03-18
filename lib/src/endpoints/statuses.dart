@@ -48,10 +48,12 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
 
     final map = Map<String, dynamic>.from(json.decode(response.body));
 
-    if (map.isEmpty)
+    if (map.isEmpty) {
       return null;
-    else
+    }
+    else {
       return Card.fromJson(map);
+    }
   }
 
   /// GET /api/v1/statuses/:id/reblogged_by

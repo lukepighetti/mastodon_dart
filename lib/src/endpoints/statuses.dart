@@ -50,8 +50,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
 
     if (map.isEmpty) {
       return null;
-    }
-    else {
+    } else {
       return Card.fromJson(map);
     }
   }

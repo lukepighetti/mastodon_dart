@@ -223,4 +223,32 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
 
     return Status.fromJson(json.decode(response.body));
   }
+
+  /// POST /api/v1/statuses/:id/bookmark
+  ///
+  /// - authenticated
+  /// - write write:bookmarks
+  Future<Status> bookmarkStatus(String id) async {
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/bookmark",
+      authenticated: true,
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
+
+  /// POST /api/v1/statuses/:id/unbookmark
+  ///
+  /// - authenticated
+  /// - write write:bookmarks
+  Future<Status> unbookmarkStatus(String id) async {
+    final response = await request(
+      Method.post,
+      "/api/v1/statuses/$id/unbookmark",
+      authenticated: true,
+    );
+
+    return Status.fromJson(json.decode(response.body));
+  }
 }

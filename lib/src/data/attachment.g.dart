@@ -48,4 +48,5 @@ const _$AttachmentTypeEnumMap = {
   AttachmentType.image: 'image',
   AttachmentType.gifv: 'gifv',
   AttachmentType.video: 'video',
+  AttachmentType.audio: 'audio',
 };

@@ -1,6 +1,6 @@
 name: mastodon_dart
 description: Unofficial Mastodon API.
-version: 0.1.3
+version: 0.1.4
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:

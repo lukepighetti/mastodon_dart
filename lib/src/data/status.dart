@@ -38,7 +38,11 @@ class Status {
   @JsonKey(nullable: true)
   final Status reblog;
 
+  /// Represents the HTML content string of a Status
   final String content;
+
+  /// Represents the plaintext string of a Status
+  final String text;
   final DateTime createdAt;
   final List<Emoji> emojis;
   final int repliesCount;
@@ -85,6 +89,7 @@ class Status {
     this.inReplyToAccountId,
     this.reblog,
     this.content,
+    this.text,
     this.createdAt,
     this.emojis,
     this.repliesCount,
@@ -115,6 +120,7 @@ class Status {
         inReplyToAccountId = MockProperties.string,
         reblog = null,
         content = MockProperties.comment,
+        text = MockProperties.text,
         createdAt = MockProperties.pastDate,
         emojis = [Emoji.mock(), Emoji.mock(), Emoji.mock()],
         repliesCount = MockProperties.integer,

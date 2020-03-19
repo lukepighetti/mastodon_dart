@@ -6,6 +6,7 @@ class MockProperties {
   static String get string => Random().nextInt(99999999).toString();
   static Uri get uri => Uri.parse(randomItem(["google.com", "github.com"]));
 
+  static String get text => randomItem(_comments);
   static String get comment => randomItem(_comments);
   static String get email => randomItem(_emails);
   static String get firstName => fullName.split(" ").first;

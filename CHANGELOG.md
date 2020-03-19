@@ -1,3 +1,6 @@
+## 0.1.5 (3/19/2020)
+- Add missing `text` property to `Status`
+
 ## 0.1.4 - 0.1.4+3 (3/18/2020)
 - Add missing `bookmarked` property to `Status`
 - Address pub health suggestions

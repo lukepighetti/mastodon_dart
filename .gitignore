@@ -1,15 +1,10 @@
-# Files and directories created by pub
 .dart_tool/
 .packages
-# Remove the following pattern if you wish to check in your lock file
 pubspec.lock
-
-# Conventional directory for build outputs
 build/
-
-# Directory created by dartdoc
 doc/api/
-
-# user defined
 .vscode
-!/.idea/libraries/Dart_Packages.xml
+.idea
+pubspec.yaml.bak
+example/pubspec.lock
+*.iml

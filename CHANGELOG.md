@@ -1,3 +1,14 @@
+## 0.2.0 (4/2/2020)
+- Major refactor for `AuthBloc`
+  - Introduce `NullInterceptorSink<T>` class to ensure that data being added to a sink cannot be null. Update `codeSink` to use the `NullInterceptorSink`.
+  - Make sure we do not call `_handleCode` until we have an authenticated application
+  - Introduce `_initialized` Completer, `initialized` Future, and `hasAccount` bool check
+  - Update `_registerApplication` with a null check/error throw
+  - Update `_handleCode` to take an `AuthenticatedApplication` as well as a code
+  - Better error handling
+  - Updated documentation
+- Removed deprecated example code. Updated code coming soon.
+
 ## 0.1.5 (3/19/2020)
 - Add missing `text` property to `Status`
 

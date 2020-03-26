@@ -1,32 +1,37 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:mastodon_dart/src/authentication.dart';
 import 'package:mastodon_dart/src/data/account.dart';
 import 'package:mastodon_dart/src/data/application.dart';
 import 'package:mastodon_dart/src/mastodon.dart';
+import 'package:async/async.dart';
 import 'package:rxdart/rxdart.dart';
-
 import 'package:http/http.dart' show post;
 
+/// This class ensures that data being added to a sink cannot be null
+class NullInterceptorSink<T> extends DelegatingStreamSink<T> {
+  NullInterceptorSink(StreamSink<T> sink) : super(sink);
+  @override
+  void add(T data) {
+    if (data == null) {
+      throw ArgumentError.notNull('data');
+    }
+    super.add(data);
+  }
+}
+
+/// AuthBloc handles the authentication process for a [Mastodon] application. In order for a user
+/// to be able to log into the application, the application must first be authenticated. Once the application
+/// is authenticated, the user can navigate to the browser via the [_uri]. When the user returns to the application with
+/// their auth code, user authentication will be performed with that code.
 class AuthBloc {
   final AuthStorageDelegate storage;
   final Mastodon mastodon;
-
   final Uri website;
   final String redirectUris;
   final String clientName;
   final List<String> scopes;
 
-  ///
-  /// Authentication steps:
-  ///
-  /// 1. Listen to [AuthBloc.uri], navigate user to external browser on event.
-  /// 2. The user will interact with the page to authenticate.
-  ///   Default settings will have them copy-paste a code into your app.
-  /// 3. Add the code to [AuthBloc.codeSink.add]
-  /// 4. Listen to [AuthBloc.token], navigate the user to the homepage on event.
-  ///
-  /// Notes: Provide a [Mastodon] instance with a previous token to short-circuit the process.
   AuthBloc(
     this.mastodon,
     this.website, {
@@ -35,38 +40,51 @@ class AuthBloc {
     this.clientName = "mastodon-dart",
     this.scopes = const ["write", "read", "follow", "push"],
   }) {
+    /// When the bloc is instantiated it will check for a stored auth token.
+    /// If there is no token, we register the application. If there is a token
+    /// it gets added to [_token]
     Future.value(storage?.fetchToken).then((token) async {
       final savedToken = mastodon.token ?? await token;
 
       _app.listen(_handleApplication);
-      _code.listen(_handleCode);
+      CombineLatestStream.combine2(_code, _app, _handleCode).listen((_) {});
       _token.listen(_handleToken);
 
       if (savedToken == null) {
         await _registerApplication();
       } else {
         _token.add(savedToken);
+        await _account.first;
       }
+      _initalized.complete();
+    }).catchError((error, stackTrace) {
+      print('Error getting authorization token: $error');
+      _initalized.completeError(error, stackTrace);
     });
   }
 
+  final _initalized = Completer();
   final _account = BehaviorSubject<Account>();
   final _app = BehaviorSubject<AuthenticatedApplication>();
   final _code = BehaviorSubject<String>();
   final _uri = BehaviorSubject<Uri>();
   final _token = BehaviorSubject<String>();
 
-  Sink<String> get codeSink => _code.sink;
+  Sink<String> get codeSink => NullInterceptorSink(_code.sink);
 
   ValueStream<Account> get account => _account.stream;
   ValueStream<Uri> get uri => _uri.stream;
   ValueStream<String> get token => _token.stream;
+  bool get hasAccount => _account.value != null;
+  Future get initalized => _initalized.future;
 
   /// Register the application and add it to [_app]
-  Future _registerApplication() async {
+  Future<void> _registerApplication() async {
     final application = await mastodon.appCredentials(
         website, redirectUris, clientName, scopes);
-
+    if (application == null) {
+      throw ArgumentError.notNull('application');
+    }
     _app.add(application);
   }
 
@@ -89,29 +107,32 @@ class AuthBloc {
     _uri.add(uri);
   }
 
-  /// Authenticate the [authCode] which should be provided
+  /// Authenticate the auth code which should be provided
   /// by the oauth flow, such as a user copy-pasting the
   /// code from the browser.
   ///
   /// If the code validates, it will automatically trigger the
   /// authentication process. It does not wait for confirmation.
-  Future<void> _handleCode(String code) async {
-    final response = await post(
+  void _handleCode(String code, AuthenticatedApplication app) {
+    post(
       mastodon.tokenUrl,
       body: {
-        "client_id": _app.value.clientId,
-        "client_secret": _app.value.clientSecret,
+        "client_id": app.clientId,
+        "client_secret": app.clientSecret,
         "grant_type": "authorization_code",
         "code": code,
         "redirect_uri": redirectUris,
+        "scope": scopes.join(" "),
       },
-    );
+    ).then((authResponse) {
+      print(authResponse.body);
+      final results = Token.fromJson(jsonDecode(authResponse?.body));
 
-    final results = Token.fromJson(jsonDecode(response.body));
+      final token = results.accessToken;
 
-    final token = results.accessToken;
-
-    _token.add(token);
+      _token.add(token);
+    }).catchError(
+        (error, trace) => print('Error validating authCode: $error\n$trace'));
   }
 
   /// Saves, sets, and verifies a token.

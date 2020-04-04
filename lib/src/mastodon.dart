@@ -5,6 +5,7 @@ import 'validators.dart';
 import 'endpoints/accounts.dart';
 import 'endpoints/apps.dart';
 import 'endpoints/blocks.dart';
+import 'endpoints/bookmarks.dart';
 import 'endpoints/custom_emojis.dart';
 import 'endpoints/domain_blocks.dart';
 import 'endpoints/endorsements.dart';
@@ -32,6 +33,7 @@ class _Rest = _Base
         Accounts,
         Apps,
         Blocks,
+        Bookmarks,
         CustomEmojis,
         DomainBlocks,
         Endorsements,

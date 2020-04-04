@@ -1,3 +1,8 @@
+## 0.2.1 (4/4/2020)
+- Added bookmarks endpoint with corresponding MockBookmarks class
+- Renamed `bookmarkStatus` to `bookmark`, `unbookmarkStatus` to `unbookmark` to closer match the Mastodon docs.
+- Moved `bookmark` and `unbookmark` methods to bookmarks endpoint
+
 ## 0.2.0 (4/2/2020)
 - Major refactor for `AuthBloc`
   - Introduce `NullInterceptorSink<T>` class to ensure that data being added to a sink cannot be null. Update `codeSink` to use the `NullInterceptorSink`.

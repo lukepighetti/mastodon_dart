@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:mastodon_dart/src/authentication.dart';
 import 'package:mastodon_dart/src/data/account.dart';
 import 'package:mastodon_dart/src/data/application.dart';
 import 'package:mastodon_dart/src/mastodon.dart';

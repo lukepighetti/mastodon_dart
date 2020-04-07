@@ -1,3 +1,9 @@
+## 0.2.2 (4/6/2020)
+- Improve `AuthBloc`:
+  - Do not await AuthStorage twice in constructor
+  - Add `logOut` function
+  - Better docs
+
 ## 0.2.1 (4/4/2020)
 - Added bookmarks endpoint with corresponding MockBookmarks class
 - Renamed `bookmarkStatus` to `bookmark`, `unbookmarkStatus` to `unbookmark` to closer match the Mastodon docs.

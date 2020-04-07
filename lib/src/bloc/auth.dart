@@ -24,11 +24,17 @@ class NullInterceptorSink<T> extends DelegatingStreamSink<T> {
 /// is authenticated, the user can navigate to the browser via the [_uri]. When the user returns to the application with
 /// their auth code, user authentication will be performed with that code.
 class AuthBloc {
+  /// Handles the storing, retrieving, and deleting of the auth code
   final AuthStorageDelegate storage;
+  /// A Mastodon instance
   final Mastodon mastodon;
+  /// The Uri used to navigate the user to the browser for authentication
   final Uri website;
+  /// Can be user-provided, defaults to "urn:ietf:wg:oauth:2.0:oob"
   final String redirectUris;
+  /// The name of the application using the Mastodon API
   final String clientName;
+  /// Mastodon API scopes; can be user defined, defaults to "write", "read", "follow", "push"
   final List<String> scopes;
 
   AuthBloc(
@@ -36,7 +42,7 @@ class AuthBloc {
     this.website, {
     this.storage,
     this.redirectUris = "urn:ietf:wg:oauth:2.0:oob",
-    this.clientName = "mastodon-dart",
+    this.clientName = "mastodon_dart",
     this.scopes = const ["write", "read", "follow", "push"],
   }) {
     /// When the bloc is instantiated it will check for a stored auth token.
@@ -153,9 +159,10 @@ class AuthBloc {
     }
   }
 
+  /// Handles logging the user out. Deletes the stored auth token, wipes the values
+  /// from the code, token, and account streams
   Future<void> logOut() async {
     storage.deleteToken();
-    //_uri.value = null;
     _code.value = null;
     _token.value = null;
     _account.value = null;
@@ -176,7 +183,7 @@ class AuthBloc {
 }
 
 /// A simple storage driver interface that allows
-/// fetching and saving of a [token] as a string
+/// fetching, saving, and deleting of a [token] as a String
 abstract class AuthStorageDelegate {
   Future<void> saveToken(String token);
   Future<void> deleteToken();

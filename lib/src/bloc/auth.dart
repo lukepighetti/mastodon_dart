@@ -26,14 +26,19 @@ class NullInterceptorSink<T> extends DelegatingStreamSink<T> {
 class AuthBloc {
   /// Handles the storing, retrieving, and deleting of the auth code
   final AuthStorageDelegate storage;
+
   /// A Mastodon instance
   final Mastodon mastodon;
+
   /// The Uri used to navigate the user to the browser for authentication
   final Uri website;
+
   /// Can be user-provided, defaults to "urn:ietf:wg:oauth:2.0:oob"
   final String redirectUris;
+
   /// The name of the application using the Mastodon API
   final String clientName;
+
   /// Mastodon API scopes; can be user defined, defaults to "write", "read", "follow", "push"
   final List<String> scopes;
 

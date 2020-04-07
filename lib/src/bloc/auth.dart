@@ -43,8 +43,8 @@ class AuthBloc {
     /// When the bloc is instantiated it will check for a stored auth token.
     /// If there is no token, we register the application. If there is a token
     /// it gets added to [_token]
-    Future.value(storage?.fetchToken).then((token) async {
-      final savedToken = mastodon.token ?? await token;
+    storage.fetchToken.then((String token) async {
+      final savedToken = mastodon.token ?? token;
 
       _app.listen(_handleApplication);
       CombineLatestStream.combine2(_code, _app, _handleCode).listen((_) {});
@@ -114,6 +114,9 @@ class AuthBloc {
   /// If the code validates, it will automatically trigger the
   /// authentication process. It does not wait for confirmation.
   void _handleCode(String code, AuthenticatedApplication app) {
+    if (code == null || app == null) {
+      return;
+    }
     post(
       mastodon.tokenUrl,
       body: {
@@ -139,7 +142,7 @@ class AuthBloc {
   /// Then adds the [Account] to [_account.add]
   Future<void> _handleToken(String token) async {
     if (token != null) {
-      if (storage != null && token != await storage.fetchToken) {
+      if (token != await storage.fetchToken) {
         await storage.saveToken(token);
       }
 
@@ -151,6 +154,14 @@ class AuthBloc {
     }
   }
 
+  Future<void> logOut() async {
+    storage.deleteToken();
+    //_uri.value = null;
+    _code.value = null;
+    _token.value = null;
+    _account.value = null;
+  }
+
   dispose() {
     _account.close();
     _app.close();
@@ -158,11 +169,17 @@ class AuthBloc {
     _uri.close();
     _token.close();
   }
+
+  @override
+  String toString() {
+    return 'AuthBloc{${hashCode.toRadixString(16)}}';
+  }
 }
 
 /// A simple storage driver interface that allows
 /// fetching and saving of a [token] as a string
 abstract class AuthStorageDelegate {
-  FutureOr<void> saveToken(String token);
-  FutureOr<String> get fetchToken;
+  Future<void> saveToken(String token);
+  Future<void> deleteToken();
+  Future<String> get fetchToken;
 }

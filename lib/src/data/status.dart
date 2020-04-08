@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mastodon_dart/mock/properties.dart';
-
+import 'poll.dart';
 import 'account.dart';
 import 'application.dart';
 import 'attachment.dart';
@@ -8,7 +8,6 @@ import 'card.dart';
 import 'emoji.dart';
 import 'mention.dart';
 import 'tag.dart';
-
 import 'shared/visibility.dart';
 
 part 'status.g.dart';
@@ -22,12 +21,7 @@ part 'status.g.dart';
 )
 class Status {
   final String id;
-  final String uri;
-
-  @JsonKey(nullable: true)
-  final Uri url;
-
-  final Account account;
+  final DateTime createdAt;
 
   @JsonKey(nullable: true)
   final String inReplyToId;
@@ -35,50 +29,62 @@ class Status {
   @JsonKey(nullable: true)
   final String inReplyToAccountId;
 
+  final bool sensitive;
+  final String spoilerText;
+  final Visibility visibility;
+
   @JsonKey(nullable: true)
-  final Status reblog;
+  final dynamic language;
 
-  /// Represents the HTML content string of a Status
-  final String content;
+  final String uri;
 
-  /// Represents the plaintext string of a Status
-  final String text;
-  final DateTime createdAt;
-  final List<Emoji> emojis;
+  @JsonKey(nullable: true)
+  final Uri url;
+
   final int repliesCount;
   final int reblogsCount;
   final int favouritesCount;
 
   @JsonKey(nullable: true, defaultValue: false)
-  final bool reblogged;
+  final bool favourited;
 
   @JsonKey(nullable: true, defaultValue: false)
-  final bool favourited;
+  final bool reblogged;
 
   @JsonKey(nullable: true, defaultValue: false)
   final bool muted;
 
   final bool bookmarked;
-  final bool sensitive;
-  final String spoilerText;
-  final Visibility visibility;
+
+  /// Represents the HTML content string of a Status
+  final String content;
+
+  @JsonKey(nullable: true)
+  final Status reblog;
+
+  @JsonKey(nullable: true)
+  final Application application;
+
+  final Account account;
   final List<Attachment> mediaAttachments;
   final List<Mention> mentions;
 
   /// TODO: handle empty lists
   final List<Tag> tags;
 
+  final List<Emoji> emojis;
+
   @JsonKey(nullable: true)
   final Card card;
 
-  @JsonKey(nullable: true)
-  final Application application;
-
-  @JsonKey(nullable: true)
-  final dynamic language;
+  /// Represents the plaintext string of a Status
+  final String text;
 
   @JsonKey(nullable: true, defaultValue: false)
   final bool pinned;
+
+  @JsonKey(nullable: true)
+  final Poll poll;
 
   Status({
     this.id,
@@ -109,6 +115,7 @@ class Status {
     this.application,
     this.language,
     this.pinned,
+    this.poll,
   });
 
   Status.mock()
@@ -156,7 +163,8 @@ class Status {
         card = Card.mock(),
         application = Application.mock(),
         language = MockProperties.string,
-        pinned = MockProperties.boolean;
+        pinned = MockProperties.boolean,
+        poll = null; //todo: set mock poll options
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 }

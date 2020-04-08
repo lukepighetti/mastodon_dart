@@ -24,6 +24,7 @@ Card _$CardFromJson(Map<String, dynamic> json) {
     html: json['html'] as String,
     width: json['width'] as int,
     height: json['height'] as int,
+    embedUrl: Uri.parse(json['embed_url'] as String),
   );
 }
 

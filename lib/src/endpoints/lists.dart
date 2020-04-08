@@ -9,7 +9,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
   /// - read read:lists
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
-  Future<List<ListSummary>> lists() async {
+  Future<List<UserFollowsList>> lists() async {
     final response = await request(
       Method.get,
       "/api/v1/lists",
@@ -18,7 +18,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
 
     final body = List<Map>.from(json.decode(response.body));
 
-    return body.map((m) => ListSummary.fromJson(m)).toList();
+    return body.map((m) => UserFollowsList.fromJson(m)).toList();
   }
 
   /// GET /api/v1/accounts/:id/lists
@@ -27,7 +27,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
   /// - read read:lists
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
-  Future<List<ListSummary>> listsByAccount(String id) async {
+  Future<List<UserFollowsList>> listsByAccount(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/$id/lists",
@@ -36,7 +36,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
 
     final body = List<Map>.from(json.decode(response.body));
 
-    return body.map((m) => ListSummary.fromJson(m)).toList();
+    return body.map((m) => UserFollowsList.fromJson(m)).toList();
   }
 
   /// GET /api/v1/lists/:id/accounts
@@ -66,14 +66,14 @@ mixin Lists on Authentication, Utilities implements MockLists {
   /// - read read:lists
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
-  Future<ListSummary> list(String id) async {
+  Future<UserFollowsList> list(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/lists/$id",
       authenticated: true,
     );
 
-    return ListSummary.fromJson(json.decode(response.body));
+    return UserFollowsList.fromJson(json.decode(response.body));
   }
 
   /// POST /api/v1/lists
@@ -82,7 +82,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
   /// - write write:lists
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
-  Future<ListSummary> createList(String title) async {
+  Future<UserFollowsList> createList(String title) async {
     final response = await request(
       Method.post,
       "/api/v1/lists",
@@ -92,7 +92,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
       },
     );
 
-    return ListSummary.fromJson(json.decode(response.body));
+    return UserFollowsList.fromJson(json.decode(response.body));
   }
 
   /// PUT /api/v1/lists/:id
@@ -101,7 +101,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
   /// - write write:lists
   ///
   /// https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
-  Future<ListSummary> updateList(String id, String title) async {
+  Future<UserFollowsList> updateList(String id, String title) async {
     final response = await request(
       Method.put,
       "/api/v1/lists/$id",
@@ -111,7 +111,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
       },
     );
 
-    return ListSummary.fromJson(json.decode(response.body));
+    return UserFollowsList.fromJson(json.decode(response.body));
   }
 
   /// DELETE /api/v1/lists/:id

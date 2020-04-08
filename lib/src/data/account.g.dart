@@ -23,6 +23,7 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
     avatarStatic: Uri.parse(json['avatar_static'] as String),
     header: Uri.parse(json['header'] as String),
     headerStatic: Uri.parse(json['header_static'] as String),
+    lastStatusAt: DateTime.parse(json['last_status_at'] as String),
     emojis: (json['emojis'] as List)
         .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
         .toList(),

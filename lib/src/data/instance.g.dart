@@ -22,6 +22,9 @@ Instance _$InstanceFromJson(Map<String, dynamic> json) {
     contactAccount: json['contact_account'] == null
         ? null
         : Account.fromJson(json['contact_account'] as Map<String, dynamic>),
+    shortDescription: json['short_description'] as String,
+    registrations: json['registrations'] as bool,
+    contact_required: json['contact_required'] as bool,
   );
 }
 

@@ -16,7 +16,7 @@ export 'src/data/conversation.dart';
 export 'src/data/emoji.dart';
 export 'src/data/filter.dart';
 export 'src/data/instance.dart';
-export 'src/data/list_summary.dart';
+export 'src/data/user_follows_list.dart';
 export 'src/data/mention.dart';
 export 'src/data/notification.dart';
 export 'src/data/push_subscription.dart';

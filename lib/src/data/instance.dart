@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mastodon_dart/mock/properties.dart';
-
 import 'account.dart';
 
 part 'instance.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#instance
+/// Represents the software instance of Mastodon running on this domain.
+/// https://docs.joinmastodon.org/entities/instance/
 
 @JsonSerializable(
   nullable: false,
@@ -15,16 +15,19 @@ part 'instance.g.dart';
 class Instance {
   final Uri uri;
   final String title;
+  final String shortDescription;
   final String description;
   final String email;
   final String version;
+  final dynamic urls;
+  final InstanceStats stats; //todo: turn into a List<Language>
 
   @JsonKey(nullable: true)
   final Uri thumbnail;
 
-  final dynamic urls;
-  final InstanceStats stats;
   final dynamic languages;
+  final bool registrations;
+  final bool contact_required;
 
   @JsonKey(nullable: true)
   final Account contactAccount;
@@ -40,11 +43,15 @@ class Instance {
     this.stats,
     this.languages,
     this.contactAccount,
+    this.shortDescription,
+    this.registrations,
+    this.contact_required,
   });
 
   Instance.mock()
       : uri = MockProperties.uri,
         title = MockProperties.tag,
+        shortDescription = MockProperties.comment,
         description = MockProperties.comment,
         email = MockProperties.email,
         version = MockProperties.version,
@@ -52,13 +59,15 @@ class Instance {
         urls = null,
         stats = InstanceStats.mock(),
         languages = null,
+        registrations = MockProperties.boolean,
+        contact_required = MockProperties.boolean,
         contactAccount = Account.mock();
 
   factory Instance.fromJson(Map<String, dynamic> json) =>
       _$InstanceFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#stats
+/// Listed in https://docs.joinmastodon.org/entities/instance/
 
 @JsonSerializable(
   nullable: false,

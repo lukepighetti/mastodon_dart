@@ -5,6 +5,7 @@ import 'emoji.dart';
 
 part 'account.g.dart';
 
+/// Represents a user of Mastodon and their associated profile.
 /// https://docs.joinmastodon.org/entities/account/
 
 @JsonSerializable(

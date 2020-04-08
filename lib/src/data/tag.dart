@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'tag.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#tag
+/// Represents a hashtag used within the content of a status.
+/// https://docs.joinmastodon.org/entities/tag/
 
 @JsonSerializable(
   nullable: true,
@@ -35,7 +36,8 @@ class Tag {
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#history
+/// Represents daily usage history of a hashtag.
+/// https://docs.joinmastodon.org/entities/history/
 
 @JsonSerializable(
   nullable: false,

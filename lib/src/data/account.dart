@@ -5,7 +5,7 @@ import 'emoji.dart';
 
 part 'account.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#account
+/// https://docs.joinmastodon.org/entities/account/
 
 @JsonSerializable(
   nullable: false,
@@ -18,16 +18,21 @@ class Account {
   final String acct;
   final String displayName;
   final bool locked;
+
+  @JsonKey(nullable: true)
+  final bool bot;
+
   final DateTime createdAt;
-  final int followersCount;
-  final int followingCount;
-  final int statusesCount;
   final String note;
   final Uri url;
   final Uri avatar;
   final Uri avatarStatic;
   final Uri header;
   final Uri headerStatic;
+  final int followersCount;
+  final int followingCount;
+  final int statusesCount;
+  final DateTime lastStatusAt;
   final List<Emoji> emojis;
 
   @JsonKey(nullable: true)
@@ -35,9 +40,6 @@ class Account {
 
   @JsonKey(nullable: true)
   final List<Field> fields;
-
-  @JsonKey(nullable: true)
-  final bool bot;
 
   Account({
     this.id,
@@ -55,6 +57,7 @@ class Account {
     this.avatarStatic,
     this.header,
     this.headerStatic,
+    this.lastStatusAt,
     this.emojis,
     this.moved,
     this.fields,
@@ -77,6 +80,7 @@ class Account {
         avatarStatic = MockProperties.avatarUri,
         header = MockProperties.headerUri,
         headerStatic = MockProperties.headerUri,
+        lastStatusAt = MockProperties.pastDate,
         emojis = <Emoji>[Emoji.mock(), Emoji.mock(), Emoji.mock()],
         moved = null,
         fields = <Field>[Field.mock(), Field.mock()],

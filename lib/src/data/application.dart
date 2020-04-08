@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'application.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#application
+/// Represents an application that interfaces with the REST API to access accounts or post statuses.
+/// https://docs.joinmastodon.org/entities/application/
 
 @JsonSerializable(
   nullable: false,
@@ -16,11 +17,18 @@ class Application {
   @JsonKey(nullable: true)
   final Uri website;
 
-  Application({this.name, this.website});
+  final String vapid_key;
+
+  Application({
+    this.name,
+    this.website,
+    this.vapid_key,
+  });
 
   Application.mock()
       : name = MockProperties.firstName,
-        website = MockProperties.uri;
+        website = MockProperties.uri,
+        vapid_key = MockProperties.string;
 
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);

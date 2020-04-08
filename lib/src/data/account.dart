@@ -91,7 +91,7 @@ class Account {
       _$AccountFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#field
+/// https://docs.joinmastodon.org/entities/field/
 
 @JsonSerializable(
   nullable: false,
@@ -150,7 +150,7 @@ class Source {
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#token
+/// https://docs.joinmastodon.org/entities/token/
 
 @JsonSerializable(
   nullable: false,

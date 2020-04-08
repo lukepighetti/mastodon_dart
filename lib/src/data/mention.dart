@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'mention.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#mention
+/// Represents a mention of a user within the content of a status.
+/// https://docs.joinmastodon.org/entities/mention/
 
 @JsonSerializable(
   nullable: false,
@@ -11,10 +12,10 @@ part 'mention.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Mention {
-  final Uri url;
+  final String id;
   final String username;
   final String acct;
-  final String id;
+  final Uri url;
 
   Mention({
     this.url,

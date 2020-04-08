@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'attachment.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#attachment
+/// Represents a file or media attachment that can be added to a status.
+/// https://docs.joinmastodon.org/entities/attachment/
 
 @JsonSerializable(
   nullable: false,
@@ -14,11 +15,10 @@ class Attachment {
   final String id;
   final AttachmentType type;
   final Uri url;
+  final Uri previewUrl;
 
   @JsonKey(nullable: true)
   final Uri remoteUrl;
-
-  final Uri previewUrl;
 
   @JsonKey(nullable: true)
   final Uri textUrl;
@@ -29,6 +29,9 @@ class Attachment {
   @JsonKey(nullable: true)
   final String description;
 
+  @JsonKey(nullable: true)
+  final String blurhash;
+
   Attachment({
     this.id,
     this.type,
@@ -38,6 +41,7 @@ class Attachment {
     this.textUrl,
     this.meta,
     this.description,
+    this.blurhash,
   });
 
   /// TODO: mock appropriate urls to match the attachment type
@@ -49,7 +53,8 @@ class Attachment {
         previewUrl = MockProperties.headerUri,
         textUrl = MockProperties.uri,
         meta = null,
-        description = MockProperties.comment;
+        description = MockProperties.comment,
+        blurhash = MockProperties.string;
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);

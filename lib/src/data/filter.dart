@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'filter.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#filter
+/// Represents a user-defined filter for determining which statuses should not be shown to the user.
+/// https://docs.joinmastodon.org/entities/filter/
 ///
 /// TODO: follow Implementation Notes
 
@@ -17,11 +18,12 @@ class Filter {
   final String phrase;
   final List<FilterContext> context;
 
+  final bool wholeWord;
+
   @JsonKey(nullable: true)
   final DateTime expiresAt;
 
   final bool irreversible;
-  final bool wholeWord;
 
   Filter({
     this.id,

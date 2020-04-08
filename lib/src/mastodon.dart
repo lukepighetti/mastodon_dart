@@ -18,6 +18,7 @@ import 'endpoints/lists.dart';
 import 'endpoints/media_attachments.dart';
 import 'endpoints/mutes.dart';
 import 'endpoints/notifications.dart';
+import 'endpoints/polls.dart';
 import 'endpoints/reports.dart';
 import 'endpoints/scheuled_statuses.dart';
 import 'endpoints/search.dart';
@@ -46,6 +47,7 @@ class _Rest = _Base
         MediaAttachments,
         Mutes,
         Notifications,
+        Polls,
         Reports,
         ScheduledStatuses,
         Search,

@@ -1,3 +1,6 @@
+import 'package:mastodon_dart/mock/endpoints/bookmarks.dart';
+import 'package:mastodon_dart/mock/endpoints/polls.dart';
+
 import 'endpoints/accounts.dart';
 import 'endpoints/apps.dart';
 import 'endpoints/blocks.dart';
@@ -24,6 +27,7 @@ class MockMastodon = MockAuthentication
         MockAccounts,
         MockApps,
         MockBlocks,
+        MockBookmarks,
         MockCustomEmojis,
         MockDomainBlocks,
         MockEndorsements,
@@ -36,6 +40,7 @@ class MockMastodon = MockAuthentication
         MockMediaAttachments,
         MockMutes,
         MockNotifications,
+        MockPolls,
         MockReports,
         MockScheduledStatuses,
         MockSearch,

@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'card.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#card
+/// Represents a rich preview card that is generated using OpenGraph tags from a URL.
+/// https://docs.joinmastodon.org/entities/card/
 
 @JsonSerializable(
   nullable: false,
@@ -14,10 +15,6 @@ class Card {
   final Uri url;
   final String title;
   final String description;
-
-  @JsonKey(nullable: true)
-  final Uri image;
-
   final CardType type;
 
   @JsonKey(nullable: true)
@@ -41,6 +38,11 @@ class Card {
   @JsonKey(nullable: true)
   final int height;
 
+  @JsonKey(nullable: true)
+  final Uri image;
+
+  final Uri embedUrl;
+
   Card({
     this.url,
     this.title,
@@ -54,6 +56,7 @@ class Card {
     this.html,
     this.width,
     this.height,
+    this.embedUrl,
   });
 
   /// TODO: properly mock CardType and its link
@@ -69,7 +72,8 @@ class Card {
         providerUrl = MockProperties.uri,
         html = MockProperties.html,
         width = 400,
-        height = 600;
+        height = 600,
+        embedUrl = MockProperties.uri;
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }

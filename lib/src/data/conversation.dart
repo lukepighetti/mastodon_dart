@@ -6,7 +6,8 @@ import 'status.dart';
 
 part 'conversation.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#conversation
+/// Represents a conversation with "direct message" visibility.
+/// https://docs.joinmastodon.org/entities/conversation/
 
 @JsonSerializable(
   nullable: false,
@@ -15,12 +16,11 @@ part 'conversation.g.dart';
 )
 class Conversation {
   final String id;
+  final bool unread;
   final List<Account> accounts;
 
   @JsonKey(nullable: true)
   final Status lastStatus;
-
-  final bool unread;
 
   Conversation({
     this.id,

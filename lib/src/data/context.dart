@@ -4,7 +4,8 @@ import 'status.dart';
 
 part 'context.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#context
+/// Represents the tree around a given status. Used for reconstructing threads of statuses.
+/// https://docs.joinmastodon.org/entities/context/
 
 @JsonSerializable(
   nullable: false,

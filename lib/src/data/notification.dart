@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mastodon_dart/mock/properties.dart';
-
 import 'account.dart';
 import 'status.dart';
 
 part 'notification.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#notification
+/// Represents a notification of an event relevant to the user.
+/// https://docs.joinmastodon.org/entities/notification/
 
 @JsonSerializable(
   nullable: false,
@@ -46,6 +46,10 @@ class Notification {
       _$NotificationFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#type-2
-
+/// The type of event that resulted in the notification:
+/// follow = Someone followed you
+/// mention = Someone mentioned you in their status
+/// reblog = Someone boosted one of your statuses
+/// favourite = Someone favourited one of your statuses
+/// poll = A poll you have voted in or created has ended
 enum NotificationType { follow, mention, reblog, favourite }

@@ -1,10 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'package:mastodon_dart/mock/properties.dart';
 
 part 'emoji.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#emoji
+/// Represents a custom emoji.
+/// https://docs.joinmastodon.org/entities/emoji/
+//todo: add category property
 
 @JsonSerializable(
   nullable: false,
@@ -13,8 +14,8 @@ part 'emoji.g.dart';
 )
 class Emoji {
   final String shortcode;
-  final Uri staticUrl;
   final Uri url;
+  final Uri staticUrl;
   final bool visibleInPicker;
 
   Emoji({

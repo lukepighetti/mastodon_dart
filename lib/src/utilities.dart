@@ -82,7 +82,11 @@ mixin Utilities on Authentication {
     if (response.statusCode < 200 || response.statusCode >= 300) {
       final body = Map.from(jsonDecode(response.body ?? "{}"));
 
-      throw MastodonException(response.statusCode, body["error"] ?? "");
+      throw MastodonException(
+        response.statusCode,
+        body["error"] ?? "",
+        body["error_description"] ?? "",
+      );
     }
 
     return response;

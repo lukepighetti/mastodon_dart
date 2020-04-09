@@ -3,7 +3,8 @@ import 'package:mastodon_dart/mock/properties.dart';
 
 part 'relationship.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#relationship
+/// Represents the relationship between accounts, such as following / blocking / muting / etc.
+/// https://docs.joinmastodon.org/entities/relationship/
 
 @JsonSerializable(
   nullable: false,
@@ -13,13 +14,14 @@ part 'relationship.g.dart';
 class Relationship {
   final String id;
   final bool following;
+  final bool showingReblogs;
   final bool followedBy;
   final bool blocking;
+  final bool blockedBy;
   final bool muting;
   final bool mutingNotifications;
   final bool requested;
   final bool domainBlocking;
-  final bool showingReblogs;
   final bool endorsed;
 
   Relationship({
@@ -33,6 +35,7 @@ class Relationship {
     this.domainBlocking,
     this.showingReblogs,
     this.endorsed,
+    this.blockedBy,
   });
 
   Relationship.mock()
@@ -45,7 +48,8 @@ class Relationship {
         requested = MockProperties.boolean,
         domainBlocking = MockProperties.boolean,
         showingReblogs = MockProperties.boolean,
-        endorsed = MockProperties.boolean;
+        endorsed = MockProperties.boolean,
+        blockedBy = MockProperties.boolean;
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);

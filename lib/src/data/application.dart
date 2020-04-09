@@ -12,11 +12,14 @@ part 'application.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Application {
+  /// The name of your application
   final String name;
 
+  /// The website associated with your application
   @JsonKey(nullable: true)
   final Uri website;
 
+  /// Used for Push Streaming API. Returned with POST /api/v1/apps
   final String vapid_key;
 
   Application({
@@ -34,7 +37,7 @@ class Application {
       _$ApplicationFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
+/// Represents an authenticated [Application]
 
 @JsonSerializable(
   nullable: false,
@@ -42,12 +45,17 @@ class Application {
   fieldRename: FieldRename.snake,
 )
 class AuthenticatedApplication extends Application {
+  /// The name of your application
   final String name;
 
+  /// The website associated with your application
   @JsonKey(nullable: true)
   final Uri website;
 
+  /// The clientId associated with your application
   final String clientId;
+
+  /// The clientSecret associated with your application
   final String clientSecret;
 
   AuthenticatedApplication({

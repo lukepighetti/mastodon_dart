@@ -35,6 +35,7 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
             (e) => e == null ? null : Field.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     bot: json['bot'] as bool,
+    discoverable: json['discoverable'] as bool,
   );
 }
 

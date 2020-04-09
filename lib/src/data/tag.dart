@@ -12,9 +12,13 @@ part 'tag.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Tag {
+  /// The value of the hashtag after the # sign
   final String name;
+
+  /// A link to the hashtag on the instance
   final Uri url;
 
+  /// Usage statistics for given days
   @JsonKey(nullable: true)
   final List<History> history;
 

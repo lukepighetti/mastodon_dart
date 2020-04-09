@@ -5,8 +5,6 @@ part 'emoji.g.dart';
 
 /// Represents a custom emoji.
 /// https://docs.joinmastodon.org/entities/emoji/
-//todo: add category property
-
 @JsonSerializable(
   nullable: false,
   createToJson: false,
@@ -25,18 +23,24 @@ class Emoji {
   /// Whether this Emoji should be visible in the picker or unlisted
   final bool visibleInPicker;
 
+  /// Used for sorting custom emoji in the picker
+  @JsonKey(nullable: true)
+  final String category;
+
   Emoji({
     this.shortcode,
     this.staticUrl,
     this.url,
     this.visibleInPicker,
+    this.category,
   });
 
   Emoji.mock()
       : shortcode = MockProperties.tag,
         staticUrl = MockProperties.emojiUri,
         url = MockProperties.emojiUri,
-        visibleInPicker = MockProperties.boolean;
+        visibleInPicker = MockProperties.boolean,
+        category = MockProperties.string;
 
   factory Emoji.fromJson(Map<String, dynamic> json) => _$EmojiFromJson(json);
 }

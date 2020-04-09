@@ -11,13 +11,20 @@ part 'preferences.g.dart';
   fieldRename: FieldRename.snake,
 )
 class UserPreferences {
+  /// Default visibility for new posts. Enumerated by [PostingVisibility].
   final PostingVisibility defaultPostingVisibility;
+
+  /// Default sensitivity flag for new posts
   final bool isSensitiveByDefault;
 
+  /// Default language for new posts
   @JsonKey(nullable: true)
   final dynamic defaultLanguage;
 
+  /// Whether media attachments should be automatically displayed or blurred/hidden. Enumerated by [MediaDefaults].
   final MediaDefaults mediaDefaults;
+
+  /// Whether CWs should be expanded by default
   final bool expandSpoilersByDefault;
 
   UserPreferences({
@@ -47,7 +54,7 @@ class UserPreferences {
 enum PostingVisibility { public, unlisted, private, direct }
 
 /// Whether media attachments should be automatically displayed or blurred/hidden.
-/// default = Hide media marked as sensitive (cannot use 'default' keyword)
-/// show_all = Always show all media by default, regardless of sensitivity
-/// hide_all = Always hide all media by default, regardless of sensitivity
+/// - default = Hide media marked as sensitive (cannot use 'default' keyword)
+/// - show_all = Always show all media by default, regardless of sensitivity
+/// - hide_all = Always hide all media by default, regardless of sensitivity
 enum MediaDefaults { defaultSensitive, show_all, hide_all }

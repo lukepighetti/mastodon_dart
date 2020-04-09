@@ -1,5 +1,6 @@
 ## 0.3.0
 - Add most missing data entities
+- Add most missing api endpoints
 - Update many data entities with properties that were added in recent versions of Mastodon
 - Update Dart SDK constraints
 

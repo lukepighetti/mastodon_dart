@@ -23,6 +23,7 @@ export 'src/data/marker.dart';
 export 'src/data/mention.dart';
 export 'src/data/notification.dart';
 export 'src/data/poll.dart';
+export 'src/data/preferences.dart';
 export 'src/data/push_subscription.dart';
 export 'src/data/relationship.dart';
 export 'src/data/results.dart';

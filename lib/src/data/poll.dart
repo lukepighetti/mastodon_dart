@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mastodon_dart.dart';
 import 'package:mastodon_dart/mock/properties.dart';
+import 'emoji.dart';
 
 part 'poll.g.dart';
 

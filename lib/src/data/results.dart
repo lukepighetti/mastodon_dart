@@ -16,8 +16,13 @@ part 'results.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Results {
+  /// Accounts which match the given query
   final List<Account> accounts;
+
+  /// Statuses which match the given query
   final List<Status> statuses;
+
+  /// Hashtags which match the given query
   final List<Tag> hashtags;
 
   Results({

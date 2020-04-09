@@ -12,7 +12,8 @@ import 'shared/visibility.dart';
 
 part 'status.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#status
+/// Represents a status posted by an account.
+/// https://docs.joinmastodon.org/entities/status/
 
 @JsonSerializable(
   nullable: false,

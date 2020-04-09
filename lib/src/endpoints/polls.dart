@@ -12,9 +12,6 @@ mixin Polls on Authentication, Utilities implements MockPolls{
   ///
   /// - public if parent status is public
   /// - token + read:statuses if parent status is private
-  ///
-  /// Types of response errors:
-  /// - 404: Not Found (Poll does not exist, or poll's parent status is private)
   Future<Poll> poll(String id) async {
     final response = await request(
       Method.get,
@@ -27,11 +24,6 @@ mixin Polls on Authentication, Utilities implements MockPolls{
   /// POST /api/v1/polls/:id/votes
   ///
   /// - token + write:statuses
-  ///
-  /// Types of response errors:
-  /// - 401: Unauthorized (Invalid or missing Authorization header)
-  /// - 404: Not Found (Poll does not exist, or poll's parent status is private)
-  /// - 422: Unprocessable Entity (Already voted or poll is expired)
   Future<Poll> voteOnPoll(String id) async {
     final response = await request(
       Method.get,

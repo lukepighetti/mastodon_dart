@@ -7,8 +7,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - read read:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
   Future<List<UserFollowsList>> lists() async {
     final response = await request(
       Method.get,
@@ -25,8 +23,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - read read:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
   Future<List<UserFollowsList>> listsByAccount(String id) async {
     final response = await request(
       Method.get,
@@ -43,8 +39,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - read read:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
   Future<List<Account>> listAccounts(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -64,8 +58,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - read read:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
   Future<UserFollowsList> list(String id) async {
     final response = await request(
       Method.get,
@@ -80,8 +72,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - write write:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
   Future<UserFollowsList> createList(String title) async {
     final response = await request(
       Method.post,
@@ -99,8 +89,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - write write:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
   Future<UserFollowsList> updateList(String id, String title) async {
     final response = await request(
       Method.put,
@@ -118,8 +106,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - write write:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id
   Future<dynamic> deleteList(String id) async {
     await request(
       Method.delete,
@@ -129,7 +115,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   }
 
   /// POST /api/v1/lists/:id/accounts
-  /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists-id-accounts
   ///
   /// - authenticated (requires user)
   /// - write write:lists
@@ -150,8 +135,6 @@ mixin Lists on Authentication, Utilities implements MockLists {
   ///
   /// - authenticated (requires user)
   /// - write write:lists
-  ///
-  /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id-accounts
   Future<dynamic> deleteAccountsFromList(String id, List<String> ids) async {
     await request(
       Method.delete,

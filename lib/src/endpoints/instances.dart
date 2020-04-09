@@ -7,8 +7,6 @@ mixin Instances on Authentication, Utilities implements MockInstances {
   ///
   /// - public
   /// - no scope specified
-  ///
-  /// https://docs.joinmastodon.org/api/rest/instances/#get-api-v1-instance
   Future<Instance> instance() async {
     final response = await request(
       Method.get,

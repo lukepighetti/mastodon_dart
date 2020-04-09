@@ -8,9 +8,6 @@ mixin Preferences on Authentication, Utilities implements MockPreferences{
   /// GET /api/v1/preferences
   ///
   /// token + read:accounts
-  ///
-  /// Types of response errors:
-  /// - 401: Unauthorized (Incorrect Authorization header)
   Future<UserPreferences> preferences() async {
     final response = await request(
       Method.get,

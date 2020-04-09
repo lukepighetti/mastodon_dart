@@ -7,8 +7,6 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
   ///
   /// - authentication (requires user)
   /// - read read:notifications
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications
   Future<List<Notification>> notifications({
     String maxId,
     String sinceId,
@@ -42,8 +40,6 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
   ///
   /// - authentication (requires user)
   /// - read read:notifications
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-notifications-id
   Future<Notification> notification(String id) async {
     final response = await request(
       Method.get,
@@ -58,8 +54,6 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
   ///
   /// - authentication (requires user)
   /// - write write:notifications
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-clear
   Future<dynamic> clearNotifications() async {
     await request(
       Method.post,
@@ -72,8 +66,6 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
   ///
   /// - authentication (requires user)
   /// - write write:notifications
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-notifications-dismiss
   Future<dynamic> dismissNotification(String id) async {
     await request(
       Method.post,

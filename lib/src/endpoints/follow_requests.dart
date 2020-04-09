@@ -9,8 +9,6 @@ mixin FollowRequests
   ///
   /// - authenticated (requires user)
   /// - read read:follows follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/follow-requests/#get-api-v1-follow-requests
   Future<List<Account>> followRequests({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -32,8 +30,6 @@ mixin FollowRequests
   ///
   /// - authenticated (requires user)
   /// - write:follows follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-authorize
   Future<dynamic> authorizeRequest(String id) async {
     await request(
       Method.post,
@@ -46,8 +42,6 @@ mixin FollowRequests
   ///
   /// - authenticated (requires user)
   /// - write:follows follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/follow-requests/#post-api-v1-follow-requests-id-reject
   Future<dynamic> rejectRequest(String id) async {
     await request(
       Method.post,

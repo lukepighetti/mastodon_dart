@@ -22,9 +22,6 @@ mixin Push on Authentication, Utilities implements MockPush {
   ///
   /// - authentication (requires user)
   /// - push
-  ///
-  /// Response errors:
-  /// - 404: Not Found (A PushSubscription does not exist for this token.)
   Future<PushSubscription> getSubscription() async {
     final response = await request(
       Method.get,
@@ -39,9 +36,6 @@ mixin Push on Authentication, Utilities implements MockPush {
   ///
   /// - authentication (requires user)
   /// - push
-  ///
-  /// Response errors:
-  /// - 404: Not Found (No existing PushSubscription for this token)
   Future<PushSubscription> updateSubscription() async {
     final response = await request(
       Method.put,

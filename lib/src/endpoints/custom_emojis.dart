@@ -7,8 +7,6 @@ mixin CustomEmojis on Authentication, Utilities implements MockCustomEmojis {
   ///
   /// - public
   /// - scope not specified
-  ///
-  /// https://docs.joinmastodon.org/api/rest/custom-emojis/#get-api-v1-custom-emojis
   Future<List<Emoji>> emojis() async {
     final response = await request(
       Method.get,

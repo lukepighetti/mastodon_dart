@@ -7,8 +7,6 @@ mixin Mutes on Authentication, Utilities implements MockMutes {
   ///
   /// - authentication (requires user)
   /// - read:mutes follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/mutes/#get-api-v1-mutes
   Future<List<Account>> mutes({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -30,8 +28,6 @@ mixin Mutes on Authentication, Utilities implements MockMutes {
   ///
   /// - authentication (requires user)
   /// - write:mutes follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-mute
   Future<Relationship> muteAccount(String id) async {
     final response = await request(
       Method.post,
@@ -46,8 +42,6 @@ mixin Mutes on Authentication, Utilities implements MockMutes {
   ///
   /// - authentication (requires user)
   /// - write:mutes follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-accounts-id-unmute
   Future<Relationship> unmuteAccount(String id) async {
     final response = await request(
       Method.post,
@@ -62,8 +56,6 @@ mixin Mutes on Authentication, Utilities implements MockMutes {
   ///
   /// - authentication (requires user)
   /// - write write:mutes
-  ///
-  /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-statuses-id-mute
   Future<Status> muteStatus(String id) async {
     final response = await request(
       Method.post,
@@ -78,8 +70,6 @@ mixin Mutes on Authentication, Utilities implements MockMutes {
   ///
   /// - authentication (requires user)
   /// - write write:mutes
-  ///
-  /// https://docs.joinmastodon.org/api/rest/mutes/#post-api-v1-statuses-id-unmute
   Future<Status> unmuteStatus(String id) async {
     final response = await request(
       Method.post,

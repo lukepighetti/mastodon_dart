@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mastodon_dart/src/mock/properties.dart';
+
 import 'emoji.dart';
 
 part 'account.g.dart';
@@ -103,6 +104,9 @@ class Account {
     this.discoverable,
   });
 
+  factory Account.fromJson(Map<String, dynamic> json) =>
+      _$AccountFromJson(json);
+
   Account.mock()
       : id = MockProperties.string,
         username = MockProperties.username,
@@ -125,9 +129,6 @@ class Account {
         fields = <Field>[Field.mock(), Field.mock()],
         bot = MockProperties.boolean,
         discoverable = MockProperties.boolean;
-
-  factory Account.fromJson(Map<String, dynamic> json) =>
-      _$AccountFromJson(json);
 }
 
 /// Represents a profile field as a name-value pair with optional verification.
@@ -155,12 +156,12 @@ class Field {
     this.verifiedAt,
   });
 
+  factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
+
   Field.mock()
       : name = MockProperties.firstName,
         value = MockProperties.tag,
         verifiedAt = MockProperties.pastDate;
-
-  factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
 }
 
 /// Represents display or publishing preferences of user's own account.
@@ -232,9 +233,6 @@ class Token {
   @JsonKey(fromJson: _secondsSinceEpoch)
   final DateTime createdAt;
 
-  static DateTime _secondsSinceEpoch(int seconds) =>
-      DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
-
   Token({
     this.accessToken,
     this.tokenType,
@@ -242,11 +240,14 @@ class Token {
     this.createdAt,
   });
 
+  factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+
   Token.mock()
       : accessToken = MockProperties.string,
         tokenType = MockProperties.string,
         scope = MockProperties.string,
         createdAt = MockProperties.pastDate;
 
-  factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+  static DateTime _secondsSinceEpoch(int seconds) =>
+      DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
 }

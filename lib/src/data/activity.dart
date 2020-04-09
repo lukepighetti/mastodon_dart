@@ -12,9 +12,13 @@ part 'activity.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Activity {
+  /// Midnight at the first day of the week
   final DateTime week;
+  /// Statuses created since the week began
   final int statuses;
+  /// User logins since the week began
   final int logins;
+  /// User registrations since the week began
   final int registrations;
 
   Activity({

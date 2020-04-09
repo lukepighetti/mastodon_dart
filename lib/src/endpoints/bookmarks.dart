@@ -1,5 +1,5 @@
 import '../library.dart';
-import '../../mock/endpoints/bookmarks.dart';
+import '../../src/mock/endpoints/bookmarks.dart';
 
 mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
   /// GET /api/v1/bookmarks

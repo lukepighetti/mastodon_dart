@@ -1,4 +1,4 @@
-import '../../mock/endpoints/preferences.dart';
+import '../../src/mock/endpoints/preferences.dart';
 import '../library.dart';
 import '../data/preferences.dart';
 

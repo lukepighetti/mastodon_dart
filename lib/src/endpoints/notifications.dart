@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../../mock/endpoints/notifications.dart';
+import '../../src/mock/endpoints/notifications.dart';
 
 mixin Notifications on Authentication, Utilities implements MockNotifications {
   /// GET /api/v1/notifications

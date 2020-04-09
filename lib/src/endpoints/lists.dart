@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../../mock/endpoints/lists.dart';
+import '../../src/mock/endpoints/lists.dart';
 
 mixin Lists on Authentication, Utilities implements MockLists {
   /// GET /api/v1/lists

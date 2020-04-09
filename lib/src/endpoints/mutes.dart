@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../../mock/endpoints/mutes.dart';
+import '../../src/mock/endpoints/mutes.dart';
 
 mixin Mutes on Authentication, Utilities implements MockMutes {
   /// GET /api/v1/mutes

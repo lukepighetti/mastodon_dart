@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'attachment.g.dart';
 

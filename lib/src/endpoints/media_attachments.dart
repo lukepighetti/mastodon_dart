@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../../mock/endpoints/media_attachments.dart';
+import '../../src/mock/endpoints/media_attachments.dart';
 
 mixin MediaAttachments
     on Authentication, Utilities

@@ -1,6 +1,6 @@
 import '../library.dart';
 
-import '../../mock/endpoints/follow_requests.dart';
+import '../../src/mock/endpoints/follow_requests.dart';
 
 mixin FollowRequests
     on Authentication, Utilities

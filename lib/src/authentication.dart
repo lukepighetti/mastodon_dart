@@ -1,6 +1,6 @@
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-import '../mock/mock_mastodon.dart' show MockAuthentication;
+import '../src/mock/mock_mastodon.dart' show MockAuthentication;
 
 typedef WebSocketFactory = WebSocketChannel Function(Uri uri);
 

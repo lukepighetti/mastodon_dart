@@ -1,5 +1,5 @@
 import '../library.dart';
-import '../../mock/endpoints/push.dart';
+import '../../src/mock/endpoints/push.dart';
 
 /// Subscribe to and receive push notifications when a server-side notification is received, via the Web Push API
 /// https://docs.joinmastodon.org/methods/notifications/push/

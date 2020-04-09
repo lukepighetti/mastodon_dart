@@ -33,7 +33,7 @@ export 'src/data/tag.dart';
 export 'src/data/shared/visibility.dart';
 
 /// Mock Mastodon
-export 'mock/mock_mastodon.dart';
+export 'src/mock/mock_mastodon.dart';
 
 /// The real Mastodon
 export 'src/mastodon.dart';

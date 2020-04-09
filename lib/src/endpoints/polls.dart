@@ -1,4 +1,4 @@
-import 'package:mastodon_dart/mock/endpoints/polls.dart';
+import 'package:mastodon_dart/src/mock/endpoints/polls.dart';
 
 import '../library.dart';
 import '../data/poll.dart';

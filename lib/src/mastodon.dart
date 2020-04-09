@@ -1,7 +1,6 @@
 import 'authentication.dart';
 import 'utilities.dart';
 import 'validators.dart';
-
 import 'endpoints/accounts.dart';
 import 'endpoints/apps.dart';
 import 'endpoints/blocks.dart';
@@ -26,7 +25,6 @@ import 'endpoints/scheuled_statuses.dart';
 import 'endpoints/search.dart';
 import 'endpoints/statuses.dart';
 import 'endpoints/timelines.dart';
-
 import 'websockets/websockets.dart';
 
 class _Base = Authentication with Utilities, Validators;
@@ -58,4 +56,5 @@ class _Rest = _Base
         Statuses,
         Timelines;
 
+/// A Mastodon object that provides access to Mastodon endpoints
 class Mastodon = _Rest with Websockets;

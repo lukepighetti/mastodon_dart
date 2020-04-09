@@ -1,4 +1,3 @@
-/// Mastodon library documentation goes here.
 library mastodon_dart;
 
 /// Bloc classes
@@ -31,9 +30,6 @@ export 'src/data/scheduled_status.dart';
 export 'src/data/status.dart';
 export 'src/data/tag.dart';
 export 'src/data/shared/visibility.dart';
-
-/// Mock Mastodon
-export 'src/mock/mock_mastodon.dart';
 
 /// The real Mastodon
 export 'src/mastodon.dart';

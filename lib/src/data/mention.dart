@@ -12,9 +12,16 @@ part 'mention.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Mention {
+  /// The account id of the mentioned user
   final String id;
+
+  /// The username of the mentioned user
   final String username;
+
+  /// The webfinger acct: URI of the mentioned user. Equivalent to username for local users, or username@domain for remote users
   final String acct;
+
+  /// The location of the mentioned user's profile
   final Uri url;
 
   Mention({

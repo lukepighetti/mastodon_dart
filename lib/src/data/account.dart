@@ -154,6 +154,7 @@ class Source {
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 }
 
+/// Represents an OAuth token used for authenticating with the API and performing actions.
 /// https://docs.joinmastodon.org/entities/token/
 
 @JsonSerializable(

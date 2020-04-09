@@ -12,35 +12,55 @@ part 'card.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Card {
+  /// Location of linked resource
   final Uri url;
+
+  /// Title of linked resource
   final String title;
+
+  /// Description of preview
   final String description;
+
+  /// The type of the preview card. Enumerated by [CardType]
+  /// - link = Link OEmbed
+  /// - photo = Photo OEmbed
+  /// - video = Video OEmbed
+  /// - rich = iframe OEmbed. Not currently accepted, so won't show up in practice.
   final CardType type;
 
+  /// The author of the original resource
   @JsonKey(nullable: true)
   final String authorName;
 
+  /// A link to the author of the original resource
   @JsonKey(nullable: true)
   final Uri authorUrl;
 
+  /// The provider of the original resource
   @JsonKey(nullable: true)
   final String providerName;
 
+  /// A link to the provider of the original resource
   @JsonKey(nullable: true)
   final Uri providerUrl;
 
+  /// HTML to be used for generating the preview card
   @JsonKey(nullable: true)
   final String html;
 
+  /// Width of preview, in pixels
   @JsonKey(nullable: true)
   final int width;
 
+  /// Height of preview, in pixels
   @JsonKey(nullable: true)
   final int height;
 
+  /// Preview thumbnail
   @JsonKey(nullable: true)
   final Uri image;
 
+  /// Used for photo embeds, instead of custom [html]
   final Uri embedUrl;
 
   Card({
@@ -77,7 +97,5 @@ class Card {
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }
-
-/// https://docs.joinmastodon.org/api/entities/#type-1
 
 enum CardType { link, photo, video, rich }

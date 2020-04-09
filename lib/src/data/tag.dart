@@ -45,11 +45,14 @@ class Tag {
   fieldRename: FieldRename.snake,
 )
 class History {
+  /// UNIX timestamp on midnight of the given day
   final DateTime day;
 
+  /// The counted usage of the tag within that day
   @JsonKey(fromJson: _stringToInt)
   final int uses;
 
+  /// The total of accounts using the tag within that day
   @JsonKey(fromJson: _stringToInt)
   final int accounts;
 

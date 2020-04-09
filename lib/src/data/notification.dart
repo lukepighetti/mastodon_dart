@@ -14,11 +14,19 @@ part 'notification.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Notification {
+  /// The id of the notification in the database
   final String id;
+
+  /// The type of event that resulted in the notification. Enumerated by [NotificationType]
   final NotificationType type;
+
+  /// The timestamp of the notification
   final DateTime createdAt;
+
+  /// The account that performed the action that generated the notification
   final Account account;
 
+  /// Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls
   @JsonKey(nullable: true)
   final Status status;
 
@@ -47,9 +55,9 @@ class Notification {
 }
 
 /// The type of event that resulted in the notification:
-/// follow = Someone followed you
-/// mention = Someone mentioned you in their status
-/// reblog = Someone boosted one of your statuses
-/// favourite = Someone favourited one of your statuses
-/// poll = A poll you have voted in or created has ended
+/// - follow = Someone followed you
+/// - mention = Someone mentioned you in their status
+/// - reblog = Someone boosted one of your statuses
+/// - favourite = Someone favourited one of your statuses
+/// - poll = A poll you have voted in or created has ended
 enum NotificationType { follow, mention, reblog, favourite }

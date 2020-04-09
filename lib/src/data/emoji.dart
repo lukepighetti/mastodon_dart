@@ -13,9 +13,16 @@ part 'emoji.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Emoji {
+  /// The name of the custom emoji
   final String shortcode;
+
+  /// A link to the custom emoji
   final Uri url;
+
+  /// A link to a static copy of the custom emoji
   final Uri staticUrl;
+
+  /// Whether this Emoji should be visible in the picker or unlisted
   final bool visibleInPicker;
 
   Emoji({

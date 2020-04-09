@@ -13,22 +13,44 @@ part 'instance.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Instance {
+  /// The domain name of the instance
   final Uri uri;
-  final String title;
-  final String shortDescription;
-  final String description;
-  final String email;
-  final String version;
-  final dynamic urls;
-  final InstanceStats stats; //todo: turn into a List<Language>
 
+  /// The title of the website
+  final String title;
+
+  /// Admin-defined description of the Mastodon site
+  final String description;
+
+  /// A shorter description defined by the admin
+  final String shortDescription;
+
+  /// An email that may be contacted for any inquiries
+  final String email;
+
+  /// The version of Mastodon installed on the instance
+  final String version;
+
+  /// Primary langauges of the website and its staff
+  final dynamic languages;
+
+  /// Whether registrations are enabled
+  final bool registrations;
+
+  /// Whether registrations require moderator approval
+  final bool approvalRequired;
+
+  /// URLs of interest for clients apps
+  final dynamic urls;
+
+  /// See [InstanceStats]
+  final InstanceStats stats;
+
+  /// Banner image for the website
   @JsonKey(nullable: true)
   final Uri thumbnail;
 
-  final dynamic languages;
-  final bool registrations;
-  final bool contact_required;
-
+  /// A user that can be contacted, as an alternative to email
   @JsonKey(nullable: true)
   final Account contactAccount;
 
@@ -45,7 +67,7 @@ class Instance {
     this.contactAccount,
     this.shortDescription,
     this.registrations,
-    this.contact_required,
+    this.approvalRequired,
   });
 
   Instance.mock()
@@ -60,13 +82,14 @@ class Instance {
         stats = InstanceStats.mock(),
         languages = null,
         registrations = MockProperties.boolean,
-        contact_required = MockProperties.boolean,
+        approvalRequired = MockProperties.boolean,
         contactAccount = Account.mock();
 
   factory Instance.fromJson(Map<String, dynamic> json) =>
       _$InstanceFromJson(json);
 }
 
+/// Statistics about how much information the instance contains
 /// Listed in https://docs.joinmastodon.org/entities/instance/
 
 @JsonSerializable(
@@ -75,8 +98,13 @@ class Instance {
   fieldRename: FieldRename.snake,
 )
 class InstanceStats {
+  /// Users registered on this instance
   final int userCount;
+
+  /// Statuses authored by users on instance
   final int statusCount;
+
+  /// Domains federated with this instance
   final int domainCount;
 
   InstanceStats({

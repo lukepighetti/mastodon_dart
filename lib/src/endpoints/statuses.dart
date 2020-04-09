@@ -146,8 +146,8 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       );
     } on MastodonException catch (e) {
       if (e.statusCode == 404) {
-        throw MastodonException(
-            404, "Cannot delete a status that does not exist");
+        throw MastodonException(404, "mastodon_dart_error",
+            "Cannot delete a status that does not exist");
       }
     }
   }
@@ -169,8 +169,8 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       );
     } on MastodonException catch (e) {
       if (e.statusCode == 404) {
-        throw MastodonException(
-            404, "Cannot reblog a status that does not exist");
+        throw MastodonException(404, "mastodon_dart_error",
+            "Cannot reblog a status that does not exist");
       }
     }
 

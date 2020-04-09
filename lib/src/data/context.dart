@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import 'status.dart';
 
 part 'context.g.dart';
@@ -13,7 +12,10 @@ part 'context.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Context {
+  /// Parents in the thread
   final List<Status> ancestors;
+
+  /// Children in the thread
   final List<Status> descendants;
 
   Context({

@@ -1,3 +1,8 @@
+## 0.3.0
+- Add most missing data entities
+- Update many data entities with properties that were added in recent versions of Mastodon
+- Update Dart SDK constraints
+
 ## 0.2.2 (4/6/2020)
 - Improve `AuthBloc`:
   - Do not await AuthStorage twice in constructor

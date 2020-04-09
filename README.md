@@ -1,8 +1,8 @@
 # mastodon_dart
 
-The official Dart library for accessing the Mastodon API. Use in conjunction with mastodon_flutter to build a Flutter Mastodon app.
+The official Dart library for accessing the Mastodon API. Optionally use in conjunction with mastodon_flutter to build a Flutter Mastodon app.
 
-Mastodon API documentation: https://docs.joinmastodon.org/api/
+Mastodon API documentation: https://docs.joinmastodon.org/
 
 ## Status
 

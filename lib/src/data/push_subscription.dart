@@ -12,10 +12,17 @@ part 'push_subscription.g.dart';
   fieldRename: FieldRename.snake,
 )
 class PushSubscription {
+  /// The id of the push subscription in the database
   final String id;
+
+  /// Where push alerts will be sent to
   final Uri endpoint;
-  final dynamic alerts;
+
+  /// The streaming server's VAPID key
   final String serverKey;
+
+  /// Which alerts should be delivered to the [endpoint]
+  final dynamic alerts;
 
   PushSubscription({
     this.id,

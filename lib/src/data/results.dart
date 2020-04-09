@@ -7,7 +7,8 @@ import 'tag.dart';
 
 part 'results.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#results
+/// Represents the results of a search.
+/// https://docs.joinmastodon.org/entities/results/
 
 @JsonSerializable(
   nullable: false,

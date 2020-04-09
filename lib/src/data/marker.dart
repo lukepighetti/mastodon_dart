@@ -13,14 +13,14 @@ class Marker {
   Marker({this.home, this.notifications});
 
   Marker.fromJson(Map<String, dynamic> json) {
-    home = json['home'] != null ? new Position.fromJson(json['home']) : null;
+    home = json['home'] != null ? Position.fromJson(json['home']) : null;
     notifications = json['notifications'] != null
-        ? new Position.fromJson(json['notifications'])
+        ? Position.fromJson(json['notifications'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (this.home != null) {
       data['home'] = this.home.toJson();
     }
@@ -51,7 +51,7 @@ class Position {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['last_read_id'] = this.lastReadId;
     data['version'] = this.version;
     data['updated_at'] = this.updatedAt;

@@ -1,10 +1,11 @@
-## 0.3.0
+## 0.3.0 (4/9/2020)
 - Add most missing data entities
 - Add most missing api endpoints
 - Update many data entities with properties that were added in recent versions of Mastodon
 - Move mock library into '/src'
 - Major documentation upgrades
 - Update Dart SDK constraints
+- 0.3.0+1 address pub health
 
 ## 0.2.2 (4/6/2020)
 - Improve `AuthBloc`:

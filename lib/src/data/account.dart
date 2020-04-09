@@ -119,7 +119,9 @@ class Field {
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/entities/#source
+/// Represents display or publishing preferences of user's own account.
+/// Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
+/// https://docs.joinmastodon.org/entities/source/
 
 @JsonSerializable(
   nullable: false,

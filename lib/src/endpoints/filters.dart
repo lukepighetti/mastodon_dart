@@ -1,14 +1,12 @@
 import '../library.dart';
 
-import '../../mock/endpoints/filters.dart';
+import '../../src/mock/endpoints/filters.dart';
 
 mixin Filters on Authentication, Utilities implements MockFilters {
   /// GET /api/v1/filters
   ///
   /// - authenticated (requires user)
   /// - read read:filters
-  ///
-  /// https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters
   Future<List<Filter>> filters() async {
     final response = await request(
       Method.get,
@@ -25,8 +23,6 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   ///
   /// - authenticated (requires user)
   /// - write write:filters
-  ///
-  /// https://docs.joinmastodon.org/api/rest/filters/#post-api-v1-filters
   Future<Filter> createFilter(
     String phrase,
     List<FilterContext> context, {
@@ -54,8 +50,6 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   ///
   /// - authenticated (requires user)
   /// - read read:filters
-  ///
-  /// https://docs.joinmastodon.org/api/rest/filters/#get-api-v1-filters-id
   Future<Filter> filter(String id) async {
     final response = await request(
       Method.get,
@@ -70,8 +64,6 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   ///
   /// - authenticated (requires user)
   /// - write write:filters
-  ///
-  /// https://docs.joinmastodon.org/api/rest/filters/#put-api-v1-filters-id
   Future<Filter> updateFilter(
     String id,
     String phrase,
@@ -100,8 +92,6 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   ///
   /// - authenticated (requires user)
   /// - write write:filters
-  ///
-  /// https://docs.joinmastodon.org/api/rest/filters/#delete-api-v1-filters-id
   Future<void> deleteFilter(String id) async {
     final response = await request(
       Method.delete,

@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'relationship.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#relationship
+/// Represents the relationship between accounts, such as following / blocking / muting / etc.
+/// https://docs.joinmastodon.org/entities/relationship/
 
 @JsonSerializable(
   nullable: false,
@@ -11,16 +12,38 @@ part 'relationship.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Relationship {
+  /// The account id
   final String id;
+
+  /// Are you following this user?
   final bool following;
-  final bool followedBy;
-  final bool blocking;
-  final bool muting;
-  final bool mutingNotifications;
+
+  /// Do you have a pending follow request for this user?
   final bool requested;
-  final bool domainBlocking;
-  final bool showingReblogs;
+
+  /// Are you featuring this user on your profile?
   final bool endorsed;
+
+  /// Are you followed by this user?
+  final bool followedBy;
+
+  /// Are you muting this user?
+  final bool muting;
+
+  /// Are you muting notifications from this user?
+  final bool mutingNotifications;
+
+  /// Are you receiving this user's boosts in your home timeline?
+  final bool showingReblogs;
+
+  /// Are you blocking this user?
+  final bool blocking;
+
+  /// Are you blocking this user's domain?
+  final bool domainBlocking;
+
+  /// Is this user blocking you?
+  final bool blockedBy;
 
   Relationship({
     this.id,
@@ -33,6 +56,7 @@ class Relationship {
     this.domainBlocking,
     this.showingReblogs,
     this.endorsed,
+    this.blockedBy,
   });
 
   Relationship.mock()
@@ -45,7 +69,8 @@ class Relationship {
         requested = MockProperties.boolean,
         domainBlocking = MockProperties.boolean,
         showingReblogs = MockProperties.boolean,
-        endorsed = MockProperties.boolean;
+        endorsed = MockProperties.boolean,
+        blockedBy = MockProperties.boolean;
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);

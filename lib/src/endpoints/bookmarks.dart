@@ -1,7 +1,10 @@
 import '../library.dart';
-import '../../mock/endpoints/bookmarks.dart';
+import '../../src/mock/endpoints/bookmarks.dart';
 
+/// https://docs.joinmastodon.org/methods/accounts/bookmarks/
 mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
+  /// Statuses the user has bookmarked.
+  ///
   /// GET /api/v1/bookmarks
   ///
   /// - authenticated (requires user)
@@ -23,6 +26,8 @@ mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
     return body.map((m) => Status.fromJson(m)).toList();
   }
 
+  /// Privately bookmark a status.
+  ///
   /// POST /api/v1/statuses/:id/bookmark
   ///
   /// - authenticated
@@ -37,6 +42,8 @@ mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
     return Status.fromJson(json.decode(response.body));
   }
 
+  /// Remove a status from your private bookmarks.
+  ///
   /// POST /api/v1/statuses/:id/unbookmark
   ///
   /// - authenticated

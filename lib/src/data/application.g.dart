@@ -11,6 +11,7 @@ Application _$ApplicationFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     website:
         json['website'] == null ? null : Uri.parse(json['website'] as String),
+    vapid_key: json['vapid_key'] as String,
   );
 }
 

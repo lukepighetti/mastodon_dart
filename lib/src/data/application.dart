@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'application.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#application
+/// Represents an application that interfaces with the REST API to access accounts or post statuses.
+/// https://docs.joinmastodon.org/entities/application/
 
 @JsonSerializable(
   nullable: false,
@@ -11,22 +12,32 @@ part 'application.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Application {
+  /// The name of your application
   final String name;
 
+  /// The website associated with your application
   @JsonKey(nullable: true)
   final Uri website;
 
-  Application({this.name, this.website});
+  /// Used for Push Streaming API. Returned with POST /api/v1/apps
+  final String vapid_key;
+
+  Application({
+    this.name,
+    this.website,
+    this.vapid_key,
+  });
 
   Application.mock()
       : name = MockProperties.firstName,
-        website = MockProperties.uri;
+        website = MockProperties.uri,
+        vapid_key = MockProperties.string;
 
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);
 }
 
-/// https://docs.joinmastodon.org/api/rest/apps/#post-api-v1-apps
+/// Represents an authenticated [Application]
 
 @JsonSerializable(
   nullable: false,
@@ -34,12 +45,17 @@ class Application {
   fieldRename: FieldRename.snake,
 )
 class AuthenticatedApplication extends Application {
+  /// The name of your application
   final String name;
 
+  /// The website associated with your application
   @JsonKey(nullable: true)
   final Uri website;
 
+  /// The clientId associated with your application
   final String clientId;
+
+  /// The clientSecret associated with your application
   final String clientSecret;
 
   AuthenticatedApplication({

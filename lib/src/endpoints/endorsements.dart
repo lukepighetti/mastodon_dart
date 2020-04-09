@@ -1,15 +1,12 @@
 import '../library.dart';
 
-import '../../mock/endpoints/endorsements.dart';
+import '../../src/mock/endpoints/endorsements.dart';
 
 mixin Endorsements on Authentication, Utilities implements MockEndorsements {
   /// GET /api/v1/endorsements
   ///
   /// - authenticated
   /// - read read:account
-  ///
-  /// https://docs.joinmastodon.org/api/rest/endorsements/#get-api-v1-endorsements
-  ///
   Future<List<Account>> endorsements() async {
     final response = await request(
       Method.get,
@@ -28,8 +25,6 @@ mixin Endorsements on Authentication, Utilities implements MockEndorsements {
   ///
   /// - authenticated
   /// - write write:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-pin
   Future<Relationship> pin(String id) async {
     final response = await request(
       Method.post,
@@ -44,8 +39,6 @@ mixin Endorsements on Authentication, Utilities implements MockEndorsements {
   ///
   /// - authenticated
   /// - write write:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/endorsements/#post-api-v1-accounts-id-unpin
   Future<Relationship> unpin(String id) async {
     final response = await request(
       Method.post,

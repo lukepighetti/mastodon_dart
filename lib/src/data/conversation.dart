@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
-
+import 'package:mastodon_dart/src/mock/properties.dart';
 import 'account.dart';
 import 'status.dart';
 
 part 'conversation.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#conversation
+/// Represents a conversation with "direct message" visibility.
+/// https://docs.joinmastodon.org/entities/conversation/
 
 @JsonSerializable(
   nullable: false,
@@ -14,13 +14,18 @@ part 'conversation.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Conversation {
+  /// Local database ID of the conversation
   final String id;
+
+  /// Participants in the conversation
   final List<Account> accounts;
 
+  /// Is the conversation currently marked as unread?
+  final bool unread;
+
+  /// The last status in the conversation, to be used for optional display
   @JsonKey(nullable: true)
   final Status lastStatus;
-
-  final bool unread;
 
   Conversation({
     this.id,

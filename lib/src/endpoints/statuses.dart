@@ -1,13 +1,11 @@
 import '../library.dart';
-import '../../mock/endpoints/statuses.dart';
+import '../../src/mock/endpoints/statuses.dart';
 
 mixin Statuses on Authentication, Utilities implements MockStatuses {
   /// GET /api/v1/statuses/:id
   ///
   /// - public
   /// - read read:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id
   Future<Status> status(String id) async {
     final response = await request(
       Method.get,
@@ -23,8 +21,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   /// - read read:statuses
   ///
   /// NOTE: Public if the status is public
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-context
   Future<Context> context(String id) async {
     final response = await request(
       Method.get,
@@ -38,8 +34,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - public
   /// - read read:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-card
   Future<Card> card(String id) async {
     final response = await request(
       Method.get,
@@ -59,8 +53,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - public
   /// - read read:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-reblogged-by
   Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -79,8 +71,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - public
   /// - read read:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#get-api-v1-statuses-id-favourited-by
   Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -99,8 +89,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses
   Future<Status> publishStatus({
     String status,
     String inReplyToId,
@@ -135,8 +123,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#delete-api-v1-statuses-id
   Future<void> deleteStatus(String id) async {
     try {
       await request(
@@ -146,8 +132,8 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       );
     } on MastodonException catch (e) {
       if (e.statusCode == 404) {
-        throw MastodonException(
-            404, "Cannot delete a status that does not exist");
+        throw MastodonException(404, "mastodon_dart_error",
+            "Cannot delete a status that does not exist");
       }
     }
   }
@@ -156,8 +142,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-reblog
   Future<Status> reblog(String id) async {
     Response response;
 
@@ -169,8 +153,8 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       );
     } on MastodonException catch (e) {
       if (e.statusCode == 404) {
-        throw MastodonException(
-            404, "Cannot reblog a status that does not exist");
+        throw MastodonException(404, "mastodon_dart_error",
+            "Cannot reblog a status that does not exist");
       }
     }
 
@@ -181,8 +165,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unreblog
   Future<Status> unreblog(String id) async {
     final response = await request(
       Method.post,
@@ -197,8 +179,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-pin
   Future<Status> pinStatus(String id) async {
     final response = await request(
       Method.post,
@@ -213,8 +193,6 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - authenticated
   /// - write write:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/statuses/#post-api-v1-statuses-id-unpin
   Future<Status> unpinStatus(String id) async {
     final response = await request(
       Method.post,

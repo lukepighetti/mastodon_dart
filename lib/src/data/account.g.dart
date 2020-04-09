@@ -23,6 +23,7 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
     avatarStatic: Uri.parse(json['avatar_static'] as String),
     header: Uri.parse(json['header'] as String),
     headerStatic: Uri.parse(json['header_static'] as String),
+    lastStatusAt: DateTime.parse(json['last_status_at'] as String),
     emojis: (json['emojis'] as List)
         .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
         .toList(),
@@ -34,6 +35,7 @@ Account _$AccountFromJson(Map<String, dynamic> json) {
             (e) => e == null ? null : Field.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     bot: json['bot'] as bool,
+    discoverable: json['discoverable'] as bool,
   );
 }
 
@@ -56,6 +58,7 @@ Source _$SourceFromJson(Map<String, dynamic> json) {
     fields: (json['fields'] as List)
         .map((e) => Field.fromJson(e as Map<String, dynamic>))
         .toList(),
+    followRequestsCount: json['follow_requests_count'] as int,
   );
 }
 

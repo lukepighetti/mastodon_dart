@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 import 'account.dart';
 import 'status.dart';
@@ -7,7 +7,8 @@ import 'tag.dart';
 
 part 'results.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#results
+/// Represents the results of a search.
+/// https://docs.joinmastodon.org/entities/results/
 
 @JsonSerializable(
   nullable: false,
@@ -15,8 +16,13 @@ part 'results.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Results {
+  /// Accounts which match the given query
   final List<Account> accounts;
+
+  /// Statuses which match the given query
   final List<Status> statuses;
+
+  /// Hashtags which match the given query
   final List<Tag> hashtags;
 
   Results({

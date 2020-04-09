@@ -1,4 +1,5 @@
 import 'endpoints/accounts.dart';
+import 'endpoints/bookmarks.dart';
 import 'endpoints/apps.dart';
 import 'endpoints/blocks.dart';
 import 'endpoints/custom_emojis.dart';
@@ -13,6 +14,9 @@ import 'endpoints/lists.dart';
 import 'endpoints/media_attachments.dart';
 import 'endpoints/mutes.dart';
 import 'endpoints/notifications.dart';
+import 'endpoints/polls.dart';
+import 'endpoints/preferences.dart';
+import 'endpoints/push.dart';
 import 'endpoints/reports.dart';
 import 'endpoints/scheduled_statuses.dart';
 import 'endpoints/search.dart';
@@ -24,6 +28,7 @@ class MockMastodon = MockAuthentication
         MockAccounts,
         MockApps,
         MockBlocks,
+        MockBookmarks,
         MockCustomEmojis,
         MockDomainBlocks,
         MockEndorsements,
@@ -36,6 +41,9 @@ class MockMastodon = MockAuthentication
         MockMediaAttachments,
         MockMutes,
         MockNotifications,
+        MockPolls,
+        MockPreferences,
+        MockPush,
         MockReports,
         MockScheduledStatuses,
         MockSearch,

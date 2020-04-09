@@ -1,14 +1,12 @@
 import '../library.dart';
 
-import '../../mock/endpoints/reports.dart';
+import '../../src/mock/endpoints/reports.dart';
 
 mixin Reports on Authentication, Utilities implements MockReports {
   /// POST /api/v1/reports
   ///
   /// - authenticated (requires user)
   /// - write write:reports
-  ///
-  /// https://docs.joinmastodon.org/api/rest/reports/#post-api-v1-reports
   Future<dynamic> report(
     String id, {
     List<String> statusIds,

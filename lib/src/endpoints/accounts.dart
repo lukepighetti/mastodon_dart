@@ -1,14 +1,17 @@
 import '../library.dart';
 
-import '../../mock/endpoints/accounts.dart';
+import '../../src/mock/endpoints/accounts.dart';
 
+/// Methods concerning user accounts and related information.
+/// https://docs.joinmastodon.org/methods/accounts/
 mixin Accounts on Authentication, Utilities implements MockAccounts {
+  /// Creates a user and account records. Returns an account access token for the app that initiated the request.
+  /// The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.
+  ///
   /// GET /api/v1/accounts/:id
   ///
   /// - public
   /// - read read:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id
   Future<Account> account(String id) async {
     final response = await request(
       Method.get,
@@ -22,8 +25,6 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
   ///
   /// - authenticated (no user required)
   /// - write write:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts
   Future<Token> requestToken(
     String username,
     String email,
@@ -47,12 +48,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return Token.fromJson(json.decode(response.body));
   }
 
+  /// Test to make sure that the user token works.
+  ///
   /// GET /api/v1/accounts/verify_credentials
   ///
   /// - authenticated (requires user)
   /// - read read:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-verify-credentials
   Future<Account> verifyCredentials() async {
     final response = await request(
       Method.get,
@@ -63,12 +64,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return Account.fromJson(json.decode(response.body));
   }
 
+  /// Update the user's display and preferences.
+  ///
   /// PATCH /api/v1/accounts/update_credentials
   ///
   /// - authenticated (requires user)
   /// - write write:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#patch-api-v1-accounts-update-credentials
   Future<Account> updateCredentials({
     String displayName,
     String note,
@@ -106,12 +107,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return Account.fromJson(json.decode(response.body));
   }
 
+  /// Accounts which follow the given account, if network is not hidden by the account owner.
+  ///
   /// GET /api/v1/accounts/:id/followers
   ///
   /// - authenticated
   /// - read read:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-followers
   Future<List<Account>> followers(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -129,12 +130,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return body.map((m) => Account.fromJson(m)).toList();
   }
 
+  /// Accounts which the given account is following, if network is not hidden by the account owner.
+  ///
   /// GET /api/v1/accounts/:id/following
   ///
   /// - authenticated
   /// - read read:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-following
   Future<List<Account>> following(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -152,12 +153,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return body.map((m) => Account.fromJson(m)).toList();
   }
 
+  /// Statuses posted to the given account.
+  ///
   /// GET /api/v1/accounts/:id/statuses
   ///
   /// - authenticated
   /// - read read:statuses
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-id-statuses
   Future<List<Status>> statuses(
     String id, {
     bool onlyMedia = false,
@@ -191,12 +192,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return body.map((m) => Status.fromJson(m)).toList();
   }
 
+  /// Follow the given account.
+  ///
   /// POST /api/v1/accounts/:id/follow
   ///
   /// - authenticated
   /// - write:follows follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-follow
   Future<Relationship> follow(String id, {bool reblogs = true}) async {
     final response = await request(
       Method.post,
@@ -210,12 +211,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return Relationship.fromJson(json.decode(response.body));
   }
 
+  /// Unfollow the given account.
+  ///
   /// POST /api/v1/accounts/:id/unfollow
   ///
   /// - authenticated
   /// - write:follows follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#post-api-v1-accounts-id-unfollow
   Future<Relationship> unfollow(String id) async {
     final response = await request(
       Method.post,
@@ -226,12 +227,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return Relationship.fromJson(json.decode(response.body));
   }
 
+  /// Find out whether a given account is followed, blocked, muted, etc.
+  ///
   /// GET /api/v1/accounts/relationships
   ///
   /// - authenticated
   /// - read read:follows
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-relationships
   Future<List<Relationship>> relationships(List<String> ids) async {
     final response = await request(
       Method.get,
@@ -247,12 +248,12 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     return body.map((m) => Relationship.fromJson(m)).toList();
   }
 
+  /// Search for matching accounts by username or display name.
+  ///
   /// GET /api/v1/accounts/search
   ///
   /// - authenticated
   /// - read read:accounts
-  ///
-  /// https://docs.joinmastodon.org/api/rest/accounts/#get-api-v1-accounts-search
   Future<List<Account>> searchAccounts(
     String q, {
     int limit = 40,

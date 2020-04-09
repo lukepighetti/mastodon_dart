@@ -1,14 +1,12 @@
 import '../library.dart';
 
-import '../../mock/endpoints/domain_blocks.dart';
+import '../../src/mock/endpoints/domain_blocks.dart';
 
 mixin DomainBlocks on Authentication, Utilities implements MockDomainBlocks {
   /// GET /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)
   /// - read read:blocks follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/domain-blocks/#get-api-v1-domain-blocks
   Future<List<Uri>> domainBlocks({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -28,8 +26,6 @@ mixin DomainBlocks on Authentication, Utilities implements MockDomainBlocks {
   ///
   /// - authenticated (requires user)
   /// - write write:blocks follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/domain-blocks/#post-api-v1-domain-blocks
   Future<dynamic> domainBlock(Uri domain) async {
     await request(
       Method.post,
@@ -45,8 +41,6 @@ mixin DomainBlocks on Authentication, Utilities implements MockDomainBlocks {
   ///
   /// - authenticated (requires user)
   /// - write write:blocks follow
-  ///
-  /// https://docs.joinmastodon.org/api/rest/domain-blocks/#delete-api-v1-domain-blocks
   Future<dynamic> domainUnblock(Uri domain) async {
     await request(
       Method.delete,

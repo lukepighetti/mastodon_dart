@@ -18,5 +18,6 @@ Relationship _$RelationshipFromJson(Map<String, dynamic> json) {
     domainBlocking: json['domain_blocking'] as bool,
     showingReblogs: json['showing_reblogs'] as bool,
     endorsed: json['endorsed'] as bool,
+    blockedBy: json['blocked_by'] as bool,
   );
 }

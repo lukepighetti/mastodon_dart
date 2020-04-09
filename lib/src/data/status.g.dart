@@ -50,6 +50,9 @@ Status _$StatusFromJson(Map<String, dynamic> json) {
         : Application.fromJson(json['application'] as Map<String, dynamic>),
     language: json['language'],
     pinned: json['pinned'] as bool ?? false,
+    poll: json['poll'] == null
+        ? null
+        : Poll.fromJson(json['poll'] as Map<String, dynamic>),
   );
 }
 

@@ -1,10 +1,10 @@
 name: mastodon_dart
 description: The official Dart library for accessing the Mastodon API. Use in conjunction with mastodon_flutter to build a Flutter Mastodon app.
-version: 0.2.2
+version: 0.3.0
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   http: ^0.12.0+4

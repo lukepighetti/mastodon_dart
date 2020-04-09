@@ -4,13 +4,13 @@ class MockLists {
   /// GET /api/v1/lists
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists
 
-  Future<List<ListSummary>> lists() =>
-      Future.value(List.generate(15, (_) => ListSummary.mock()));
+  Future<List<UserFollowsList>> lists() =>
+      Future.value(List.generate(15, (_) => UserFollowsList.mock()));
 
   /// GET /api/v1/accounts/:id/lists
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-accounts-id-lists
-  Future<List<ListSummary>> listsByAccount(String id) =>
-      Future.value(List.generate(15, (_) => ListSummary.mock()));
+  Future<List<UserFollowsList>> listsByAccount(String id) =>
+      Future.value(List.generate(15, (_) => UserFollowsList.mock()));
 
   /// GET /api/v1/lists/:id/accounts
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id-accounts
@@ -19,17 +19,17 @@ class MockLists {
 
   /// GET /api/v1/lists/:id
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
-  Future<ListSummary> list(String id) => Future.value(ListSummary.mock());
+  Future<UserFollowsList> list(String id) => Future.value(UserFollowsList.mock());
 
   /// POST /api/v1/lists
   /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists
-  Future<ListSummary> createList(String title) =>
-      Future.value(ListSummary.mock());
+  Future<UserFollowsList> createList(String title) =>
+      Future.value(UserFollowsList.mock());
 
   /// PUT /api/v1/lists/:id
   /// https://docs.joinmastodon.org/api/rest/lists/#put-api-v1-lists-id
-  Future<ListSummary> updateList(String id, String title) =>
-      Future.value(ListSummary.mock());
+  Future<UserFollowsList> updateList(String id, String title) =>
+      Future.value(UserFollowsList.mock());
 
   /// DELETE /api/v1/lists/:id
   /// https://docs.joinmastodon.org/api/rest/lists/#delete-api-v1-lists-id

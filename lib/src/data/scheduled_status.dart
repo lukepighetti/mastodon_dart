@@ -1,12 +1,13 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 import 'attachment.dart';
 import 'shared/visibility.dart';
 
 part 'scheduled_status.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#scheduledstatus
+/// Represents a status that will be published at a future scheduled date.
+/// https://docs.joinmastodon.org/entities/scheduledstatus/
 
 @JsonSerializable(
   nullable: false,

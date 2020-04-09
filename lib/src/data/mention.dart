@@ -1,9 +1,10 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/mock/properties.dart';
+import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'mention.g.dart';
 
-/// https://docs.joinmastodon.org/api/entities/#mention
+/// Represents a mention of a user within the content of a status.
+/// https://docs.joinmastodon.org/entities/mention/
 
 @JsonSerializable(
   nullable: false,
@@ -11,10 +12,17 @@ part 'mention.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Mention {
-  final Uri url;
-  final String username;
-  final String acct;
+  /// The account id of the mentioned user
   final String id;
+
+  /// The username of the mentioned user
+  final String username;
+
+  /// The webfinger acct: URI of the mentioned user. Equivalent to username for local users, or username@domain for remote users
+  final String acct;
+
+  /// The location of the mentioned user's profile
+  final Uri url;
 
   Mention({
     this.url,

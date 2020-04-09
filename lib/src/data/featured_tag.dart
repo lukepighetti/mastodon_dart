@@ -12,9 +12,16 @@ part 'featured_tag.g.dart';
   fieldRename: FieldRename.snake,
 )
 class FeaturedTag {
+  /// The internal ID of the featured tag in the database
   final String id;
+
+  /// The name of the hashtag being featured
   final String name;
+
+  /// The number of authored statuses containing this hashtag
   final int statusesCount;
+
+  /// The timestamp of the last authored status containing this hashtag
   final DateTime lastStatusAt;
 
   FeaturedTag({
@@ -30,5 +37,6 @@ class FeaturedTag {
         statusesCount = MockProperties.integer,
         lastStatusAt = MockProperties.pastDate;
 
-  factory FeaturedTag.fromJson(Map<String, dynamic> json) => _$FeaturedTagFromJson(json);
+  factory FeaturedTag.fromJson(Map<String, dynamic> json) =>
+      _$FeaturedTagFromJson(json);
 }

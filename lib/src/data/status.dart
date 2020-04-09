@@ -21,71 +21,106 @@ part 'status.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Status {
+  /// ID of the status in the database
   final String id;
-  final DateTime createdAt;
 
-  @JsonKey(nullable: true)
-  final String inReplyToId;
-
-  @JsonKey(nullable: true)
-  final String inReplyToAccountId;
-
-  final bool sensitive;
-  final String spoilerText;
-  final Visibility visibility;
-
-  @JsonKey(nullable: true)
-  final dynamic language;
-
+  /// URI of the status used for federation
   final String uri;
 
-  @JsonKey(nullable: true)
-  final Uri url;
+  /// The date when this status was created
+  final DateTime createdAt;
 
-  final int repliesCount;
-  final int reblogsCount;
-  final int favouritesCount;
-
-  @JsonKey(nullable: true, defaultValue: false)
-  final bool favourited;
-
-  @JsonKey(nullable: true, defaultValue: false)
-  final bool reblogged;
-
-  @JsonKey(nullable: true, defaultValue: false)
-  final bool muted;
-
-  final bool bookmarked;
+  /// The account that authored this status
+  final Account account;
 
   /// Represents the HTML content string of a Status
   final String content;
 
-  @JsonKey(nullable: true)
-  final Status reblog;
+  /// Visibility of this status. Enumerated by [Visibility]
+  final Visibility visibility;
 
+  /// Is this status marked as sensitive content?
+  final bool sensitive;
+
+  /// Subject or summary line, below which status content is collapsed until expanded
+  final String spoilerText;
+
+  /// Media that is attached to this status
+  final List<Attachment> mediaAttachments;
+
+  /// The application used to post this status
   @JsonKey(nullable: true)
   final Application application;
 
-  final Account account;
-  final List<Attachment> mediaAttachments;
+  /// Mentions of users within the status content
   final List<Mention> mentions;
 
+  /// Hashtags used within the status content
   /// TODO: handle empty lists
   final List<Tag> tags;
 
+  /// Custom emoji to be used when rendering status content
   final List<Emoji> emojis;
 
+  /// How many boosts this status has received
+  final int reblogsCount;
+
+  /// How many favourites this status has received
+  final int favouritesCount;
+
+  /// How many replies this status has received
+  final int repliesCount;
+
+  /// A link to the status's HTML representation
+  @JsonKey(nullable: true)
+  final Uri url;
+
+  /// ID of the status being replied
+  @JsonKey(nullable: true)
+  final String inReplyToId;
+
+  /// ID of the account being replied to
+  @JsonKey(nullable: true)
+  final String inReplyToAccountId;
+
+  /// The status being reblogged
+  @JsonKey(nullable: true)
+  final Status reblog;
+
+  /// The poll attached to the status
+  @JsonKey(nullable: true)
+  final Poll poll;
+
+  /// Preview card for links included within status content
   @JsonKey(nullable: true)
   final Card card;
 
-  /// Represents the plaintext string of a Status
+  /// Primary language of this status
+  @JsonKey(nullable: true)
+  final dynamic language;
+
+  /// Plain-text source of a status. Returned instead of content when status is deleted,
+  /// so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
   final String text;
 
+  /// Have you favourited this status?
+  @JsonKey(nullable: true, defaultValue: false)
+  final bool favourited;
+
+  /// Have you boosted this status?
+  @JsonKey(nullable: true, defaultValue: false)
+  final bool reblogged;
+
+  /// Have you muted notifications for this status's conversation?
+  @JsonKey(nullable: true, defaultValue: false)
+  final bool muted;
+
+  /// Have you bookmarked this status?
+  final bool bookmarked;
+
+  /// Have you pinned this status? Only appears if the status is pinnable.
   @JsonKey(nullable: true, defaultValue: false)
   final bool pinned;
-
-  @JsonKey(nullable: true)
-  final Poll poll;
 
   Status({
     this.id,

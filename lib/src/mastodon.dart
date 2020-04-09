@@ -20,6 +20,7 @@ import 'endpoints/mutes.dart';
 import 'endpoints/notifications.dart';
 import 'endpoints/polls.dart';
 import 'endpoints/preferences.dart';
+import 'endpoints/push.dart';
 import 'endpoints/reports.dart';
 import 'endpoints/scheuled_statuses.dart';
 import 'endpoints/search.dart';
@@ -50,6 +51,7 @@ class _Rest = _Base
         Notifications,
         Polls,
         Preferences,
+        Push,
         Reports,
         ScheduledStatuses,
         Search,

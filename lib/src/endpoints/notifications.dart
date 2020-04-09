@@ -84,40 +84,4 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
       },
     );
   }
-
-  /// POST /api/v1/push/subscription
-  ///
-  /// - authentication (requires user)
-  /// - push
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#post-api-v1-push-subscription
-
-  /// TODO: implement push subscriptions mocks
-
-  /// GET /api/v1/push/subscription
-  ///
-  /// - authentication (requires user)
-  /// - push
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#get-api-v1-push-subscription
-
-  /// TODO: implement push subscriptions mocks
-
-  /// PUT /api/v1/push/subscription
-  ///
-  /// - authentication (requires user)
-  /// - push
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#put-api-v1-push-subscription
-
-  /// TODO: implement push subscriptions mocks
-
-  /// DELETE /api/v1/push/subscription
-  ///
-  /// - authentication (requires user)
-  /// - push
-  ///
-  /// https://docs.joinmastodon.org/api/rest/notifications/#delete-api-v1-push-subscription
-
-  /// TODO: implement push subscriptions mocks
 }

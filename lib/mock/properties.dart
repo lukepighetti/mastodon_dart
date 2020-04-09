@@ -72,6 +72,9 @@ class MockProperties {
 
   static List<T> randomSublist<T>(List<T> list) => list.sublist(list.length);
 
+  // todo: verify that this is legit
+  static Map<String, dynamic> randomMap<T>(Map<String, dynamic> map) => {string: string};
+
   static const List<String> _comments = [
     "Hero, iconography, experience, shot – slick dude",
     "I want to learn this kind of hero! Teach me.",

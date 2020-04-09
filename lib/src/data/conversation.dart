@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:mastodon_dart/src/mock/properties.dart';
-
 import 'account.dart';
 import 'status.dart';
 
@@ -15,10 +14,16 @@ part 'conversation.g.dart';
   fieldRename: FieldRename.snake,
 )
 class Conversation {
+  /// Local database ID of the conversation
   final String id;
-  final bool unread;
+
+  /// Participants in the conversation
   final List<Account> accounts;
 
+  /// Is the conversation currently marked as unread?
+  final bool unread;
+
+  /// The last status in the conversation, to be used for optional display
   @JsonKey(nullable: true)
   final Status lastStatus;
 

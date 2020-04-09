@@ -57,6 +57,7 @@ Source _$SourceFromJson(Map<String, dynamic> json) {
     fields: (json['fields'] as List)
         .map((e) => Field.fromJson(e as Map<String, dynamic>))
         .toList(),
+    followRequestsCount: json['follow_requests_count'] as int,
   );
 }
 

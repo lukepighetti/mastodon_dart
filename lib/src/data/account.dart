@@ -140,6 +140,7 @@ class Source {
 
   final String note;
   final List<Field> fields;
+  final int followRequestsCount;
 
   Source({
     this.privacy,
@@ -147,6 +148,7 @@ class Source {
     this.language,
     this.note,
     this.fields,
+    this.followRequestsCount,
   });
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);

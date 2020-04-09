@@ -2,7 +2,7 @@ import 'package:mastodon_dart/mastodon_dart.dart';
 
 class MockPush {
   /// POST /api/v1/push/subscription
-  Future<PushSubscription> subscribeToNotifications() => Future.value(PushSubscription.mock());
+  Future<PushSubscription> subscribeToPushNotifications() => Future.value(PushSubscription.mock());
 
   /// GET /api/v1/push/subscription
   Future<PushSubscription> getSubscription() => Future.value(PushSubscription.mock());

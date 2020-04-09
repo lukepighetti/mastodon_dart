@@ -7,7 +7,7 @@ import '../data/poll.dart';
 /// you will need to GET a Status first and then check for a `poll` property.
 ///
 /// https://docs.joinmastodon.org/methods/statuses/polls/
-mixin Polls on Authentication, Utilities implements MockPolls{
+mixin Polls on Authentication, Utilities implements MockPolls {
   /// GET /api/v1/polls/:id
   ///
   /// - public if parent status is public

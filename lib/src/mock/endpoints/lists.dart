@@ -19,7 +19,8 @@ class MockLists {
 
   /// GET /api/v1/lists/:id
   /// https://docs.joinmastodon.org/api/rest/lists/#get-api-v1-lists-id
-  Future<UserFollowsList> list(String id) => Future.value(UserFollowsList.mock());
+  Future<UserFollowsList> list(String id) =>
+      Future.value(UserFollowsList.mock());
 
   /// POST /api/v1/lists
   /// https://docs.joinmastodon.org/api/rest/lists/#post-api-v1-lists

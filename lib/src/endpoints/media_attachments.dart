@@ -11,8 +11,6 @@ mixin MediaAttachments
   /// - write write:media
   Future<Attachment> uploadAttachment(dynamic file,
       {String description, dynamic focus}) async {
-    /// TODO: implement [file], [focus]
-
     final response = await request(
       Method.post,
       "/api/v1/media",
@@ -33,8 +31,6 @@ mixin MediaAttachments
   /// - write write:media
   Future<Attachment> updateAttachment(String id,
       {String description, dynamic focus}) async {
-    /// TODO: implement [file], [focus]
-
     final response = await request(
       Method.put,
       "/api/v1/media/$id",

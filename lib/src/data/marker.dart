@@ -1,12 +1,13 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
-
 //todo: do this with json_serializable; currently using json2dart
+//todo: implement mock
 
 /// Represents the last read position within a user's timelines.
 /// https://docs.joinmastodon.org/entities/marker/
 class Marker {
+  /// Information about the user's position in the home timeline
   Position home;
+
+  /// Information about the user's position in their notifications
   Position notifications;
 
   Marker({this.home, this.notifications});
@@ -30,10 +31,16 @@ class Marker {
   }
 }
 
+/// Timeline position information
 class Position {
+  /// The ID of the most recently viewed entity
   String lastReadId;
-  int version;
+
+  /// The timestamp of when the marker was set
   String updatedAt;
+
+  /// Used for locking to prevent write conflicts
+  int version;
 
   Position({this.lastReadId, this.version, this.updatedAt});
 

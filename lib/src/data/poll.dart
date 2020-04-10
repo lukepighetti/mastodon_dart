@@ -48,7 +48,7 @@ class Poll {
   /// options[][votes_count]
   /// The number of received votes for this option. Number, or null if results are not published yet.
   @JsonKey(nullable: true)
-  final Map<String, int> options; //todo: make dynamic instead of explicit map?
+  final dynamic options;
   /// Custom emoji to be used for rendering poll options
   final List<Emoji> emojis;
 

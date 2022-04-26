@@ -7,7 +7,6 @@ part 'featured_tag.g.dart';
 /// https://docs.joinmastodon.org/entities/featuredtag/
 
 @JsonSerializable(
-  nullable: true,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -25,10 +24,10 @@ class FeaturedTag {
   final DateTime lastStatusAt;
 
   FeaturedTag({
-    this.id,
-    this.name,
-    this.statusesCount,
-    this.lastStatusAt,
+    required this.id,
+    required this.name,
+    required this.statusesCount,
+    required this.lastStatusAt,
   });
 
   FeaturedTag.mock()

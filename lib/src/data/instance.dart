@@ -4,11 +4,10 @@ import 'account.dart';
 
 part 'instance.g.dart';
 
-/// Represents the software instance of Mastodon running on this domain.
+/// Represents the software instance of Mastodon running on required this domain.
 /// https://docs.joinmastodon.org/entities/instance/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -47,27 +46,25 @@ class Instance {
   final InstanceStats stats;
 
   /// Banner image for the website
-  @JsonKey(nullable: true)
-  final Uri thumbnail;
+  final Uri? thumbnail;
 
   /// A user that can be contacted, as an alternative to email
-  @JsonKey(nullable: true)
-  final Account contactAccount;
+  final Account? contactAccount;
 
   Instance({
-    this.uri,
-    this.title,
-    this.description,
-    this.email,
-    this.version,
-    this.thumbnail,
-    this.urls,
-    this.stats,
-    this.languages,
-    this.contactAccount,
-    this.shortDescription,
-    this.registrations,
-    this.approvalRequired,
+    required this.uri,
+    required this.title,
+    required this.description,
+    required this.email,
+    required this.version,
+    required this.thumbnail,
+    required this.urls,
+    required this.stats,
+    required this.languages,
+    required this.contactAccount,
+    required this.shortDescription,
+    required this.registrations,
+    required this.approvalRequired,
   });
 
   Instance.mock()
@@ -93,7 +90,6 @@ class Instance {
 /// Listed in https://docs.joinmastodon.org/entities/instance/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -108,9 +104,9 @@ class InstanceStats {
   final int domainCount;
 
   InstanceStats({
-    this.userCount,
-    this.statusCount,
-    this.domainCount,
+    required this.userCount,
+    required this.statusCount,
+    required this.domainCount,
   });
 
   InstanceStats.mock()

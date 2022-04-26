@@ -7,7 +7,6 @@ part 'card.g.dart';
 /// https://docs.joinmastodon.org/entities/card/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -29,54 +28,46 @@ class Card {
   final CardType type;
 
   /// The author of the original resource
-  @JsonKey(nullable: true)
-  final String authorName;
+  final String? authorName;
 
   /// A link to the author of the original resource
-  @JsonKey(nullable: true)
-  final Uri authorUrl;
+  final Uri? authorUrl;
 
   /// The provider of the original resource
-  @JsonKey(nullable: true)
-  final String providerName;
+  final String? providerName;
 
   /// A link to the provider of the original resource
-  @JsonKey(nullable: true)
-  final Uri providerUrl;
+  final Uri? providerUrl;
 
   /// HTML to be used for generating the preview card
-  @JsonKey(nullable: true)
-  final String html;
+  final String? html;
 
   /// Width of preview, in pixels
-  @JsonKey(nullable: true)
-  final int width;
+  final int? width;
 
   /// Height of preview, in pixels
-  @JsonKey(nullable: true)
-  final int height;
+  final int? height;
 
   /// Preview thumbnail
-  @JsonKey(nullable: true)
-  final Uri image;
+  final Uri? image;
 
   /// Used for photo embeds, instead of custom [html]
   final Uri embedUrl;
 
   Card({
-    this.url,
-    this.title,
-    this.description,
-    this.image,
-    this.type,
-    this.authorName,
-    this.authorUrl,
-    this.providerName,
-    this.providerUrl,
-    this.html,
-    this.width,
-    this.height,
-    this.embedUrl,
+    required this.url,
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.type,
+    required this.authorName,
+    required this.authorUrl,
+    required this.providerName,
+    required this.providerUrl,
+    required this.html,
+    required this.width,
+    required this.height,
+    required this.embedUrl,
   });
 
   /// TODO: properly mock CardType and its link

@@ -9,7 +9,6 @@ part 'account.g.dart';
 /// https://docs.joinmastodon.org/entities/account/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -66,42 +65,42 @@ class Account {
   final int followingCount;
 
   /// Indicates that the profile is currently inactive and that its user has moved to a new account
-  @JsonKey(nullable: true)
-  final Account moved;
+
+  final Account? moved;
 
   /// Additional metadata attached to a profile as name-value pairs
-  @JsonKey(nullable: true)
-  final List<Field> fields;
+
+  final List<Field>? fields;
 
   /// A presentational flag. Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot
-  @JsonKey(nullable: true)
-  final bool bot;
+
+  final bool? bot;
 
   /// The time and date the last status was posted at
   final DateTime lastStatusAt;
 
   Account({
-    this.id,
-    this.username,
-    this.acct,
-    this.displayName,
-    this.locked,
-    this.createdAt,
-    this.followersCount,
-    this.followingCount,
-    this.statusesCount,
-    this.note,
-    this.url,
-    this.avatar,
-    this.avatarStatic,
-    this.header,
-    this.headerStatic,
-    this.lastStatusAt,
-    this.emojis,
-    this.moved,
-    this.fields,
-    this.bot,
-    this.discoverable,
+    required this.id,
+    required this.username,
+    required this.acct,
+    required this.displayName,
+    required this.locked,
+    required this.createdAt,
+    required this.followersCount,
+    required this.followingCount,
+    required this.statusesCount,
+    required this.note,
+    required this.url,
+    required this.avatar,
+    required this.avatarStatic,
+    required this.header,
+    required this.headerStatic,
+    required this.lastStatusAt,
+    required this.emojis,
+    required this.moved,
+    required this.fields,
+    required this.bot,
+    required this.discoverable,
   });
 
   factory Account.fromJson(Map<String, dynamic> json) =>
@@ -135,7 +134,6 @@ class Account {
 /// https://docs.joinmastodon.org/entities/field/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -147,13 +145,13 @@ class Field {
   final String value;
 
   /// Timestamp of when the server verified a URL value for a rel="me” link
-  @JsonKey(nullable: true)
-  final DateTime verifiedAt;
+
+  final DateTime? verifiedAt;
 
   Field({
-    this.name,
-    this.value,
-    this.verifiedAt,
+    required this.name,
+    required this.value,
+    required this.verifiedAt,
   });
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
@@ -169,7 +167,6 @@ class Field {
 /// https://docs.joinmastodon.org/entities/source/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -185,27 +182,27 @@ class Source {
   /// - unlisted = Unlisted post
   /// - private = Followers-only post
   /// - direct = Direct post
-  @JsonKey(nullable: true)
-  final String privacy;
+
+  final String? privacy;
 
   /// Whether new statuses should be marked sensitive by default
-  @JsonKey(nullable: true)
-  final bool sensitive;
+
+  final bool? sensitive;
 
   /// The default posting language for new statuses
-  @JsonKey(nullable: true)
-  final dynamic language;
+
+  final dynamic? language;
 
   /// The number of pending follow requests
   final int followRequestsCount;
 
   Source({
-    this.privacy,
-    this.sensitive,
-    this.language,
-    this.note,
-    this.fields,
-    this.followRequestsCount,
+    required this.privacy,
+    required this.sensitive,
+    required this.language,
+    required this.note,
+    required this.fields,
+    required this.followRequestsCount,
   });
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
@@ -215,7 +212,6 @@ class Source {
 /// https://docs.joinmastodon.org/entities/token/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -234,10 +230,10 @@ class Token {
   final DateTime createdAt;
 
   Token({
-    this.accessToken,
-    this.tokenType,
-    this.scope,
-    this.createdAt,
+    required this.accessToken,
+    required this.tokenType,
+    required this.scope,
+    required this.createdAt,
   });
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);

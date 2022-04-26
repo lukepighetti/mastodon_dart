@@ -6,22 +6,20 @@ part of 'application.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Application _$ApplicationFromJson(Map<String, dynamic> json) {
-  return Application(
-    name: json['name'] as String,
-    website:
-        json['website'] == null ? null : Uri.parse(json['website'] as String),
-    vapid_key: json['vapid_key'] as String,
-  );
-}
+Application _$ApplicationFromJson(Map<String, dynamic> json) => Application(
+      name: json['name'] as String,
+      website:
+          json['website'] == null ? null : Uri.parse(json['website'] as String),
+      vapid_key: json['vapid_key'] as String,
+    );
 
 AuthenticatedApplication _$AuthenticatedApplicationFromJson(
-    Map<String, dynamic> json) {
-  return AuthenticatedApplication(
-    name: json['name'] as String,
-    website:
-        json['website'] == null ? null : Uri.parse(json['website'] as String),
-    clientId: json['client_id'] as String,
-    clientSecret: json['client_secret'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    AuthenticatedApplication(
+      name: json['name'] as String,
+      website:
+          json['website'] == null ? null : Uri.parse(json['website'] as String),
+      vapid_key: json['vapid_key'] as String,
+      clientId: json['client_id'] as String,
+      clientSecret: json['client_secret'] as String,
+    );

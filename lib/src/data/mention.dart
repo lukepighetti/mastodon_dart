@@ -7,7 +7,6 @@ part 'mention.g.dart';
 /// https://docs.joinmastodon.org/entities/mention/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -25,10 +24,10 @@ class Mention {
   final Uri url;
 
   Mention({
-    this.url,
-    this.username,
-    this.acct,
-    this.id,
+    required this.url,
+    required this.username,
+    required this.acct,
+    required this.id,
   });
 
   Mention.mock()

@@ -7,7 +7,6 @@ part 'context.g.dart';
 /// https://docs.joinmastodon.org/entities/context/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -19,8 +18,8 @@ class Context {
   final List<Status> descendants;
 
   Context({
-    this.ancestors,
-    this.descendants,
+    required this.ancestors,
+    required this.descendants,
   });
 
   Context.mock()

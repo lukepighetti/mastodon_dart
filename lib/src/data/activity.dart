@@ -7,7 +7,6 @@ part 'activity.g.dart';
 /// https://docs.joinmastodon.org/entities/activity/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -25,10 +24,10 @@ class Activity {
   final int registrations;
 
   Activity({
-    this.week,
-    this.statuses,
-    this.logins,
-    this.registrations,
+    required this.week,
+    required this.statuses,
+    required this.logins,
+    required this.registrations,
   });
 
   Activity.mock()

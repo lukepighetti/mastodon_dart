@@ -6,9 +6,8 @@ part of 'user_follows_list.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserFollowsList _$UserFollowsListFromJson(Map<String, dynamic> json) {
-  return UserFollowsList(
-    id: json['id'] as String,
-    title: json['title'] as String,
-  );
-}
+UserFollowsList _$UserFollowsListFromJson(Map<String, dynamic> json) =>
+    UserFollowsList(
+      id: json['id'] as String,
+      title: json['title'] as String,
+    );

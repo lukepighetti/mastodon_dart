@@ -8,7 +8,6 @@ part 'user_follows_list.g.dart';
 /// https://docs.joinmastodon.org/entities/list/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -19,7 +18,10 @@ class UserFollowsList {
   /// The user-defined title of the list
   final String title;
 
-  UserFollowsList({this.id, this.title});
+  UserFollowsList({
+    required this.id,
+    required this.title,
+  });
 
   UserFollowsList.mock()
       : id = MockProperties.string,

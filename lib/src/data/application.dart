@@ -7,7 +7,6 @@ part 'application.g.dart';
 /// https://docs.joinmastodon.org/entities/application/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -16,16 +15,16 @@ class Application {
   final String name;
 
   /// The website associated with your application
-  @JsonKey(nullable: true)
-  final Uri website;
+
+  final Uri? website;
 
   /// Used for Push Streaming API. Returned with POST /api/v1/apps
   final String vapid_key;
 
   Application({
-    this.name,
-    this.website,
-    this.vapid_key,
+    required this.name,
+    required this.website,
+    required this.vapid_key,
   });
 
   Application.mock()
@@ -40,18 +39,10 @@ class Application {
 /// Represents an authenticated [Application]
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
 class AuthenticatedApplication extends Application {
-  /// The name of your application
-  final String name;
-
-  /// The website associated with your application
-  @JsonKey(nullable: true)
-  final Uri website;
-
   /// The clientId associated with your application
   final String clientId;
 
@@ -59,17 +50,21 @@ class AuthenticatedApplication extends Application {
   final String clientSecret;
 
   AuthenticatedApplication({
-    this.name,
-    this.website,
-    this.clientId,
-    this.clientSecret,
-  });
+    required String name,
+    required Uri? website,
+    required String vapid_key,
+    required this.clientId,
+    required this.clientSecret,
+  }) : super(name: name, website: website, vapid_key: vapid_key);
 
   AuthenticatedApplication.mock()
-      : name = MockProperties.firstName,
-        website = MockProperties.uri,
-        clientId = MockProperties.string,
-        clientSecret = MockProperties.string;
+      : clientId = MockProperties.string,
+        clientSecret = MockProperties.string,
+        super(
+          name: MockProperties.string,
+          website: MockProperties.uri,
+          vapid_key: MockProperties.string,
+        );
 
   factory AuthenticatedApplication.fromJson(Map<String, dynamic> json) =>
       _$AuthenticatedApplicationFromJson(json);

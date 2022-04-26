@@ -7,7 +7,6 @@ part 'relationship.g.dart';
 /// https://docs.joinmastodon.org/entities/relationship/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -46,17 +45,17 @@ class Relationship {
   final bool blockedBy;
 
   Relationship({
-    this.id,
-    this.following,
-    this.followedBy,
-    this.blocking,
-    this.muting,
-    this.mutingNotifications,
-    this.requested,
-    this.domainBlocking,
-    this.showingReblogs,
-    this.endorsed,
-    this.blockedBy,
+    required this.id,
+    required this.following,
+    required this.followedBy,
+    required this.blocking,
+    required this.muting,
+    required this.mutingNotifications,
+    required this.requested,
+    required this.domainBlocking,
+    required this.showingReblogs,
+    required this.endorsed,
+    required this.blockedBy,
   });
 
   Relationship.mock()

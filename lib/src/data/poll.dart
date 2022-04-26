@@ -7,7 +7,6 @@ part 'poll.g.dart';
 /// https://docs.joinmastodon.org/entities/poll/
 /// Represents a poll attached to a status.
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -16,8 +15,7 @@ class Poll {
   final String id;
 
   /// When the poll ends
-  @JsonKey(nullable: true)
-  final DateTime expiresAt;
+  final DateTime? expiresAt;
 
   /// Is the poll currently expired?
   final bool expired;
@@ -32,12 +30,11 @@ class Poll {
   final int voters_count;
 
   /// When called with a user token, has the authorized user voted?
-  @JsonKey(nullable: true)
-  final bool voted;
+
+  final bool? voted;
 
   /// When called with a user token, which options has the authorized user chosen? Contains an array of index values for [options].
-  @JsonKey(nullable: true)
-  final List<int> own_votes;
+  final List<int>? own_votes;
 
   /// Description: Possible answers for the poll.
   /// Type: Array of Hash
@@ -47,22 +44,22 @@ class Poll {
   ///
   /// options[][votes_count]
   /// The number of received votes for this option. Number, or null if results are not published yet.
-  @JsonKey(nullable: true)
-  final dynamic options;
+  final Object? options;
+
   /// Custom emoji to be used for rendering poll options
   final List<Emoji> emojis;
 
   Poll({
-    this.id,
-    this.expiresAt,
-    this.expired,
-    this.multiple,
-    this.votes_count,
-    this.voters_count,
-    this.voted,
-    this.own_votes,
-    this.options,
-    this.emojis,
+    required this.id,
+    required this.expiresAt,
+    required this.expired,
+    required this.multiple,
+    required this.votes_count,
+    required this.voters_count,
+    required this.voted,
+    required this.own_votes,
+    required this.options,
+    required this.emojis,
   });
 
   Poll.mock()

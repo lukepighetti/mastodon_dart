@@ -16,7 +16,6 @@ part 'status.g.dart';
 /// https://docs.joinmastodon.org/entities/status/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -49,8 +48,7 @@ class Status {
   final List<Attachment> mediaAttachments;
 
   /// The application used to post this status
-  @JsonKey(nullable: true)
-  final Application application;
+  final Application? application;
 
   /// Mentions of users within the status content
   final List<Mention> mentions;
@@ -72,86 +70,79 @@ class Status {
   final int repliesCount;
 
   /// A link to the status's HTML representation
-  @JsonKey(nullable: true)
-  final Uri url;
+  final Uri? url;
 
   /// ID of the status being replied
-  @JsonKey(nullable: true)
-  final String inReplyToId;
+  final String? inReplyToId;
 
   /// ID of the account being replied to
-  @JsonKey(nullable: true)
-  final String inReplyToAccountId;
+  final String? inReplyToAccountId;
 
   /// The status being reblogged
-  @JsonKey(nullable: true)
-  final Status reblog;
+  final Status? reblog;
 
   /// The poll attached to the status
-  @JsonKey(nullable: true)
-  final Poll poll;
+  final Poll? poll;
 
   /// Preview card for links included within status content
-  @JsonKey(nullable: true)
-  final Card card;
+  final Card? card;
 
   /// Primary language of this status
-  @JsonKey(nullable: true)
-  final dynamic language;
+  final Object? language;
 
   /// Plain-text source of a status. Returned instead of content when status is deleted,
   /// so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
   final String text;
 
   /// Have you favourited this status?
-  @JsonKey(nullable: true, defaultValue: false)
+  @JsonKey(defaultValue: false)
   final bool favourited;
 
   /// Have you boosted this status?
-  @JsonKey(nullable: true, defaultValue: false)
+  @JsonKey(defaultValue: false)
   final bool reblogged;
 
   /// Have you muted notifications for this status's conversation?
-  @JsonKey(nullable: true, defaultValue: false)
+  @JsonKey(defaultValue: false)
   final bool muted;
 
   /// Have you bookmarked this status?
   final bool bookmarked;
 
   /// Have you pinned this status? Only appears if the status is pinnable.
-  @JsonKey(nullable: true, defaultValue: false)
+  @JsonKey(defaultValue: false)
   final bool pinned;
 
   Status({
-    this.id,
-    this.uri,
-    this.url,
-    this.account,
-    this.inReplyToId,
-    this.inReplyToAccountId,
-    this.reblog,
-    this.content,
-    this.text,
-    this.createdAt,
-    this.emojis,
-    this.repliesCount,
-    this.reblogsCount,
-    this.favouritesCount,
-    this.reblogged,
-    this.favourited,
-    this.muted,
-    this.bookmarked,
-    this.sensitive,
-    this.spoilerText,
-    this.visibility,
-    this.mediaAttachments,
-    this.mentions,
-    this.tags,
-    this.card,
-    this.application,
-    this.language,
-    this.pinned,
-    this.poll,
+    required this.id,
+    required this.uri,
+    required this.url,
+    required this.account,
+    required this.inReplyToId,
+    required this.inReplyToAccountId,
+    required this.reblog,
+    required this.content,
+    required this.text,
+    required this.createdAt,
+    required this.emojis,
+    required this.repliesCount,
+    required this.reblogsCount,
+    required this.favouritesCount,
+    required this.reblogged,
+    required this.favourited,
+    required this.muted,
+    required this.bookmarked,
+    required this.sensitive,
+    required this.spoilerText,
+    required this.visibility,
+    required this.mediaAttachments,
+    required this.mentions,
+    required this.tags,
+    required this.card,
+    required this.application,
+    required this.language,
+    required this.pinned,
+    required this.poll,
   });
 
   Status.mock()

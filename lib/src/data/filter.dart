@@ -9,7 +9,6 @@ part 'filter.g.dart';
 /// TODO: follow Implementation Notes
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -28,8 +27,7 @@ class Filter {
   final List<FilterContext> context;
 
   /// When the filter should no longer be applied
-  @JsonKey(nullable: true)
-  final DateTime expiresAt;
+  final DateTime? expiresAt;
 
   /// Should matching entities in home and notifications be dropped by the server?
   final bool irreversible;
@@ -39,12 +37,12 @@ class Filter {
   final bool wholeWord;
 
   Filter({
-    this.id,
-    this.phrase,
-    this.context,
-    this.expiresAt,
-    this.irreversible,
-    this.wholeWord,
+    required this.id,
+    required this.phrase,
+    required this.context,
+    required this.expiresAt,
+    required this.irreversible,
+    required this.wholeWord,
   });
 
   Filter.mock()

@@ -7,7 +7,6 @@ part 'tag.g.dart';
 /// https://docs.joinmastodon.org/entities/tag/
 
 @JsonSerializable(
-  nullable: true,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -19,13 +18,13 @@ class Tag {
   final Uri url;
 
   /// Usage statistics for given days
-  @JsonKey(nullable: true)
-  final List<History> history;
+
+  final List<History>? history;
 
   Tag({
-    this.name,
-    this.url,
-    this.history,
+    required this.name,
+    required this.url,
+    required this.history,
   });
 
   Tag.mock()
@@ -44,7 +43,6 @@ class Tag {
 /// https://docs.joinmastodon.org/entities/history/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -61,9 +59,9 @@ class History {
   final int accounts;
 
   History({
-    this.day,
-    this.uses,
-    this.accounts,
+    required this.day,
+    required this.uses,
+    required this.accounts,
   });
 
   static _stringToInt(String s) => int.parse(s);

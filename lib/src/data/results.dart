@@ -11,7 +11,6 @@ part 'results.g.dart';
 /// https://docs.joinmastodon.org/entities/results/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -26,9 +25,9 @@ class Results {
   final List<Tag> hashtags;
 
   Results({
-    this.accounts,
-    this.statuses,
-    this.hashtags,
+    required this.accounts,
+    required this.statuses,
+    required this.hashtags,
   });
 
   Results.mock()

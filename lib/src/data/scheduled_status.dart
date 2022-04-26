@@ -10,7 +10,6 @@ part 'scheduled_status.g.dart';
 /// https://docs.joinmastodon.org/entities/scheduledstatus/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -21,10 +20,10 @@ class ScheduledStatus {
   final List<Attachment> mediaAttachments;
 
   ScheduledStatus({
-    this.id,
-    this.scheduledAt,
-    this.params,
-    this.mediaAttachments,
+    required this.id,
+    required this.scheduledAt,
+    required this.params,
+    required this.mediaAttachments,
   });
 
   ScheduledStatus.mock()
@@ -50,7 +49,6 @@ class ScheduledStatus {
 /// https://docs.joinmastodon.org/api/entities/#statusparams
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -65,14 +63,14 @@ class Params {
   final String applicationId;
 
   Params({
-    this.text,
-    this.inReplyToId,
-    this.mediaIds,
-    this.sensitive,
-    this.spoilerText,
-    this.visibility,
-    this.scheduledAt,
-    this.applicationId,
+    required this.text,
+    required this.inReplyToId,
+    required this.mediaIds,
+    required this.sensitive,
+    required this.spoilerText,
+    required this.visibility,
+    required this.scheduledAt,
+    required this.applicationId,
   });
 
   Params.mock()

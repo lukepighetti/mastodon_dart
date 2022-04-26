@@ -7,7 +7,6 @@ part 'push_subscription.g.dart';
 /// https://docs.joinmastodon.org/entities/push-subscription/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -25,10 +24,10 @@ class PushSubscription {
   final dynamic alerts;
 
   PushSubscription({
-    this.id,
-    this.endpoint,
-    this.serverKey,
-    this.alerts,
+    required this.id,
+    required this.endpoint,
+    required this.serverKey,
+    required this.alerts,
   });
 
   PushSubscription.mock()

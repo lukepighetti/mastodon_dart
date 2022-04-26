@@ -6,7 +6,6 @@ part 'emoji.g.dart';
 /// Represents a custom emoji.
 /// https://docs.joinmastodon.org/entities/emoji/
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -24,15 +23,14 @@ class Emoji {
   final bool visibleInPicker;
 
   /// Used for sorting custom emoji in the picker
-  @JsonKey(nullable: true)
-  final String category;
+  final String? category;
 
   Emoji({
-    this.shortcode,
-    this.staticUrl,
-    this.url,
-    this.visibleInPicker,
-    this.category,
+    required this.shortcode,
+    required this.staticUrl,
+    required this.url,
+    required this.visibleInPicker,
+    required this.category,
   });
 
   Emoji.mock()

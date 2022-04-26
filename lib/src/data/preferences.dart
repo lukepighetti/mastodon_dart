@@ -6,7 +6,6 @@ part 'preferences.g.dart';
 /// https://docs.joinmastodon.org/entities/preferences/
 /// Represents a user's preferences.
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -18,8 +17,8 @@ class UserPreferences {
   final bool isSensitiveByDefault;
 
   /// Default language for new posts
-  @JsonKey(nullable: true)
-  final dynamic defaultLanguage;
+
+  final Object? defaultLanguage;
 
   /// Whether media attachments should be automatically displayed or blurred/hidden. Enumerated by [MediaDefaults].
   final MediaDefaults mediaDefaults;
@@ -28,11 +27,11 @@ class UserPreferences {
   final bool expandSpoilersByDefault;
 
   UserPreferences({
-    this.defaultPostingVisibility,
-    this.isSensitiveByDefault,
-    this.defaultLanguage,
-    this.mediaDefaults,
-    this.expandSpoilersByDefault,
+    required this.defaultPostingVisibility,
+    required this.isSensitiveByDefault,
+    required this.defaultLanguage,
+    required this.mediaDefaults,
+    required this.expandSpoilersByDefault,
   });
 
   UserPreferences.mock()

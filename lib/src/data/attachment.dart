@@ -7,7 +7,6 @@ part 'attachment.g.dart';
 /// https://docs.joinmastodon.org/entities/attachment/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -30,38 +29,38 @@ class Attachment {
   final Uri previewUrl;
 
   /// The location of the full-size original attachment on the remote website
-  @JsonKey(nullable: true)
-  final Uri remoteUrl;
+
+  final Uri? remoteUrl;
 
   /// A shorter URL for the attachment
-  @JsonKey(nullable: true)
-  final Uri textUrl;
+
+  final Uri? textUrl;
 
   /// Metadata returned by Paperclip
   /// May contain subtrees small and original, as well as various other top-level properties.
   /// More importantly, there may be another top-level focus Hash object as of Mastodon 2.3.0,
   /// with coordinates can be used for smart thumbnail cropping
-  @JsonKey(nullable: true)
-  final dynamic meta;
+
+  final Object? meta;
 
   /// Alternate text that describes what is in the media attachment, to be used for the visually impaired or when media attachments do not load
-  @JsonKey(nullable: true)
-  final String description;
+
+  final String? description;
 
   /// A hash computed by the [BlurHash algorithm](https://github.com/woltapp/blurhash), for generating colorful preview thumbnails when media has not been downloaded yet
-  @JsonKey(nullable: true)
-  final String blurhash;
+
+  final String? blurhash;
 
   Attachment({
-    this.id,
-    this.type,
-    this.url,
-    this.remoteUrl,
-    this.previewUrl,
-    this.textUrl,
-    this.meta,
-    this.description,
-    this.blurhash,
+    required this.id,
+    required this.type,
+    required this.url,
+    required this.remoteUrl,
+    required this.previewUrl,
+    required this.textUrl,
+    required this.meta,
+    required this.description,
+    required this.blurhash,
   });
 
   /// TODO: mock appropriate urls to match the attachment type

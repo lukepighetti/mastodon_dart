@@ -9,7 +9,6 @@ part 'notification.g.dart';
 /// https://docs.joinmastodon.org/entities/notification/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -27,15 +26,14 @@ class Notification {
   final Account account;
 
   /// Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls
-  @JsonKey(nullable: true)
-  final Status status;
+  final Status? status;
 
   Notification({
-    this.id,
-    this.type,
-    this.createdAt,
-    this.account,
-    this.status,
+    required this.id,
+    required this.type,
+    required this.createdAt,
+    required this.account,
+    required this.status,
   });
 
   Notification.mock()

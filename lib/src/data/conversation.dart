@@ -9,7 +9,6 @@ part 'conversation.g.dart';
 /// https://docs.joinmastodon.org/entities/conversation/
 
 @JsonSerializable(
-  nullable: false,
   createToJson: false,
   fieldRename: FieldRename.snake,
 )
@@ -24,14 +23,13 @@ class Conversation {
   final bool unread;
 
   /// The last status in the conversation, to be used for optional display
-  @JsonKey(nullable: true)
-  final Status lastStatus;
+  final Status? lastStatus;
 
   Conversation({
-    this.id,
-    this.accounts,
-    this.lastStatus,
-    this.unread,
+    required this.id,
+    required this.accounts,
+    required this.lastStatus,
+    required this.unread,
   });
 
   Conversation.mock()

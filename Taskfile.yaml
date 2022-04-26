@@ -1,0 +1,18 @@
+version: "3"
+
+tasks:
+  gen:
+    cmds:
+      - find . -name '*.g.dart' -delete
+      - dart run build_runner build
+
+  format:
+    cmds:
+      - dart format .
+
+  publish:
+    deps:
+      - gen
+
+    cmds:
+      - dart pub publish

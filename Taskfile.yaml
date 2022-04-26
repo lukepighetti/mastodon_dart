@@ -1,6 +1,10 @@
 version: "3"
 
 tasks:
+  get:
+    cmds:
+      - dart pub get
+
   gen:
     cmds:
       - find . -name '*.g.dart' -delete

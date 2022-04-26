@@ -1,15 +1,14 @@
 import '../library.dart';
-import '../../src/mock/endpoints/timelines.dart';
 
-mixin Timelines on Authentication, Utilities implements MockTimelines {
+mixin Timelines on Authentication, Utilities {
   /// GET /api/v1/timelines/home
   ///
   /// - authenticated
   /// - read read:statuses
   Future<List<Status>> timeline({
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
   }) async {
     final response = await request(
@@ -34,9 +33,9 @@ mixin Timelines on Authentication, Utilities implements MockTimelines {
   /// authenticated
   /// read read:statuses
   Future<List<Conversation>> conversations({
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
   }) async {
     final response = await request(
@@ -63,9 +62,9 @@ mixin Timelines on Authentication, Utilities implements MockTimelines {
   Future<List<Status>> publicTimeline({
     bool local = false,
     bool onlyMedia = false,
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
   }) async {
     final response = await request(
@@ -95,9 +94,9 @@ mixin Timelines on Authentication, Utilities implements MockTimelines {
     String hashtag, {
     bool local = false,
     bool onlyMedia = false,
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
   }) async {
     final response = await request(
@@ -125,11 +124,11 @@ mixin Timelines on Authentication, Utilities implements MockTimelines {
   /// - read read:statuses
   Future<List<Status>> listTimeline(
     String id, {
-    bool local,
-    bool onlyMedia,
-    String maxId,
-    String sinceId,
-    String minId,
+    bool? local,
+    bool? onlyMedia,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
   }) =>
       throw UnimplementedError();

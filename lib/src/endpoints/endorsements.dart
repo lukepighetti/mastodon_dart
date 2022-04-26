@@ -1,8 +1,6 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/endorsements.dart';
-
-mixin Endorsements on Authentication, Utilities implements MockEndorsements {
+mixin Endorsements on Authentication, Utilities {
   /// GET /api/v1/endorsements
   ///
   /// - authenticated
@@ -14,10 +12,9 @@ mixin Endorsements on Authentication, Utilities implements MockEndorsements {
       authenticated: true,
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
-
     return body.map((m) => Account.fromJson(m)).toList();
   }
 

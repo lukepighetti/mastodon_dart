@@ -1,8 +1,6 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/instances.dart';
-
-mixin Instances on Authentication, Utilities implements MockInstances {
+mixin Instances on Authentication, Utilities {
   /// GET /api/v1/instance
   ///
   /// - public

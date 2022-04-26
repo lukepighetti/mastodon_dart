@@ -1,8 +1,6 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/blocks.dart';
-
-mixin Blocks on Authentication, Utilities implements MockBlocks {
+mixin Blocks on Authentication, Utilities {
   /// GET /api/v1/blocks
   ///
   /// - authenticated (requires user)
@@ -17,7 +15,7 @@ mixin Blocks on Authentication, Utilities implements MockBlocks {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }

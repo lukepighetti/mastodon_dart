@@ -1,16 +1,12 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/media_attachments.dart';
-
-mixin MediaAttachments
-    on Authentication, Utilities
-    implements MockMediaAttachments {
+mixin MediaAttachments on Authentication, Utilities {
   /// POST /api/v1/media
   ///
   /// - authenticated (requires user)
   /// - write write:media
   Future<Attachment> uploadAttachment(dynamic file,
-      {String description, dynamic focus}) async {
+      {String? description, Object? focus}) async {
     final response = await request(
       Method.post,
       "/api/v1/media",
@@ -30,7 +26,7 @@ mixin MediaAttachments
   /// - authenticated (requires user)
   /// - write write:media
   Future<Attachment> updateAttachment(String id,
-      {String description, dynamic focus}) async {
+      {String? description, Object? focus}) async {
     final response = await request(
       Method.put,
       "/api/v1/media/$id",

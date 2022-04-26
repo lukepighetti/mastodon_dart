@@ -1,10 +1,8 @@
-import '../../src/mock/endpoints/preferences.dart';
 import '../library.dart';
-import '../data/preferences.dart';
 
 /// Preferred common behaviors to be shared across clients.
 /// https://docs.joinmastodon.org/methods/accounts/preferences/
-mixin Preferences on Authentication, Utilities implements MockPreferences {
+mixin Preferences on Authentication, Utilities {
   /// GET /api/v1/preferences
   ///
   /// token + read:accounts

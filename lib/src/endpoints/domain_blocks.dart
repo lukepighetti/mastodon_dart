@@ -1,8 +1,6 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/domain_blocks.dart';
-
-mixin DomainBlocks on Authentication, Utilities implements MockDomainBlocks {
+mixin DomainBlocks on Authentication, Utilities {
   /// GET /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)

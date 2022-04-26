@@ -1,10 +1,6 @@
 import '../library.dart';
 
-import '../../src/mock/endpoints/follow_suggestions.dart';
-
-mixin FollowSuggestions
-    on Authentication, Utilities
-    implements MockFollowSuggestions {
+mixin FollowSuggestions on Authentication, Utilities {
   /// GET /api/v1/suggestions
   ///
   /// - authenticated (requires user)
@@ -16,7 +12,7 @@ mixin FollowSuggestions
       authenticated: true,
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }

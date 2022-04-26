@@ -1,0 +1,58 @@
+name: main
+
+on:
+  pull_request:
+    branches:
+      - main
+
+  push:
+    branches:
+      - main
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Arduino/actions/setup-taskfile@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: task analyze
+
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Arduino/actions/setup-taskfile@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: task gen
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update generated files
+          file_pattern: "*.g.dart"
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: Arduino/actions/setup-taskfile@master
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: stable
+      - run: task format
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update formatted files
+          file_pattern: "*.dart"

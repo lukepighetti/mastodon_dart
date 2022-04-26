@@ -7,7 +7,7 @@ import 'card.dart';
 import 'emoji.dart';
 import 'mention.dart';
 import 'tag.dart';
-import 'shared/visibility.dart';
+import 'visibility.dart';
 
 part 'status.g.dart';
 

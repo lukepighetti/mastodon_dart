@@ -6,7 +6,7 @@ import '../authentication.dart';
 import '../data/account.dart';
 import '../data/card.dart';
 import '../data/context.dart';
-import '../data/shared/visibility.dart';
+import '../data/visibility.dart';
 import '../data/status.dart';
 import '../exception.dart';
 import '../utilities.dart';

@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'attachment.dart';
-import 'shared/visibility.dart';
+import 'visibility.dart';
 
 part 'scheduled_status.g.dart';
 

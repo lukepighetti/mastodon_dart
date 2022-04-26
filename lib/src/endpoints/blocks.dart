@@ -1,4 +1,9 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/account.dart';
+import '../data/relationship.dart';
+import '../utilities.dart';
 
 mixin Blocks on Authentication, Utilities {
   /// GET /api/v1/blocks

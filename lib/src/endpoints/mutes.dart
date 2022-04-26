@@ -1,4 +1,10 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/account.dart';
+import '../data/relationship.dart';
+import '../data/status.dart';
+import '../utilities.dart';
 
 mixin Mutes on Authentication, Utilities {
   /// GET /api/v1/mutes

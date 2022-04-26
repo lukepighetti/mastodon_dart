@@ -1,4 +1,10 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/account.dart';
+import '../data/relationship.dart';
+import '../data/status.dart';
+import '../utilities.dart';
 
 /// Methods concerning user accounts and related information.
 /// https://docs.joinmastodon.org/methods/accounts/

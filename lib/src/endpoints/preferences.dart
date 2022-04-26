@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/preferences.dart';
+import '../utilities.dart';
 
 /// Preferred common behaviors to be shared across clients.
 /// https://docs.joinmastodon.org/methods/accounts/preferences/

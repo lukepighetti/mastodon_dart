@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/account.dart';
+import '../utilities.dart';
 
 mixin FollowSuggestions on Authentication, Utilities {
   /// GET /api/v1/suggestions

@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/poll.dart';
+import '../utilities.dart';
 
 /// View and vote on polls attached to statuses. To discover poll ID,
 /// you will need to GET a Status first and then check for a `poll` property.

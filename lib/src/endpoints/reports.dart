@@ -1,4 +1,5 @@
-import '../library.dart';
+import '../authentication.dart';
+import '../utilities.dart';
 
 mixin Reports on Authentication, Utilities {
   /// POST /api/v1/reports

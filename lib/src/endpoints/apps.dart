@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/application.dart';
+import '../utilities.dart';
 
 /// Register client applications that can be used to obtain OAuth tokens.
 /// https://docs.joinmastodon.org/methods/apps/

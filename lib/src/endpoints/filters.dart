@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/filter.dart';
+import '../utilities.dart';
 
 mixin Filters on Authentication, Utilities {
   /// GET /api/v1/filters

@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/instance.dart';
+import '../utilities.dart';
 
 mixin Instances on Authentication, Utilities {
   /// GET /api/v1/instance

@@ -1,4 +1,9 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/conversation.dart';
+import '../data/status.dart';
+import '../utilities.dart';
 
 mixin Timelines on Authentication, Utilities {
   /// GET /api/v1/timelines/home

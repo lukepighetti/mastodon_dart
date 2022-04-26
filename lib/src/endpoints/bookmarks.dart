@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/status.dart';
+import '../utilities.dart';
 
 /// https://docs.joinmastodon.org/methods/accounts/bookmarks/
 mixin Bookmarks on Authentication, Utilities {

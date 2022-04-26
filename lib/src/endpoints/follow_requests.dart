@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/account.dart';
+import '../utilities.dart';
 
 mixin FollowRequests on Authentication, Utilities {
   /// GET /api/v1/follow_requests

@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/emoji.dart';
+import '../utilities.dart';
 
 mixin CustomEmojis on Authentication, Utilities {
   /// GET /api/v1/custom_emojis

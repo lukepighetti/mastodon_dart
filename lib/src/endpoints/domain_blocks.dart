@@ -1,4 +1,7 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../utilities.dart';
 
 mixin DomainBlocks on Authentication, Utilities {
   /// GET /api/v1/domain_blocks

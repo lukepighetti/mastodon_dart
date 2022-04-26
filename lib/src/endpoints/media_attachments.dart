@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/attachment.dart';
+import '../utilities.dart';
 
 mixin MediaAttachments on Authentication, Utilities {
   /// POST /api/v1/media

@@ -1,4 +1,8 @@
-import '../library.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../data/scheduled_status.dart';
+import '../utilities.dart';
 
 mixin ScheduledStatuses on Authentication, Utilities {
   /// GET /api/v1/scheduled_statuses

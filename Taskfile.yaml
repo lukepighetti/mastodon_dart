@@ -10,6 +10,10 @@ tasks:
     cmds:
       - dart format .
 
+  analyze:
+    cmds:
+      - dart analyze
+
   publish:
     deps:
       - gen

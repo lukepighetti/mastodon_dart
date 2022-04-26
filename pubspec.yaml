@@ -4,17 +4,17 @@ version: 0.3.2
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
-  http: ^0.12.0+4
-  json_annotation: ^3.0.1
-  rxdart: ^0.23.1
-  web_socket_channel: ^1.1.0
-  async: ^2.4.1
+  http: ^0.13.4
+  json_annotation: ^4.4.0
+  rxdart: ^0.27.3
+  web_socket_channel: ^2.1.0
+  async: ^2.9.0
 
 dev_dependencies:
-  build_runner: ^1.8.1
-  json_serializable: ^3.3.0
-  stack_trace: ^1.9.3
-  test: ^1.14.2
+  build_runner: ^2.1.10
+  json_serializable: ^6.1.6
+  stack_trace: ^1.10.0
+  test: ^1.21.1

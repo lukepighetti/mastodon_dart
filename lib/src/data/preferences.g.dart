@@ -25,7 +25,7 @@ const _$PostingVisibilityEnumMap = {
 };
 
 const _$MediaDefaultsEnumMap = {
-  MediaDefaults.defaultSensitive: 'defaultSensitive',
-  MediaDefaults.show_all: 'show_all',
-  MediaDefaults.hide_all: 'hide_all',
+  MediaDefaults.defaultSensitive: 'default_sensitive',
+  MediaDefaults.showAll: 'show_all',
+  MediaDefaults.hideAll: 'hide_all',
 };

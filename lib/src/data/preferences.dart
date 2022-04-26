@@ -46,6 +46,7 @@ enum PostingVisibility { public, unlisted, private, direct }
 
 /// Whether media attachments should be automatically displayed or blurred/hidden.
 /// - default = Hide media marked as sensitive (cannot use 'default' keyword)
-/// - show_all = Always show all media by default, regardless of sensitivity
-/// - hide_all = Always hide all media by default, regardless of sensitivity
-enum MediaDefaults { defaultSensitive, show_all, hide_all }
+/// - showAll = Always show all media by default, regardless of sensitivity
+/// - hideAll = Always hide all media by default, regardless of sensitivity
+@JsonEnum(fieldRename: FieldRename.snake)
+enum MediaDefaults { defaultSensitive, showAll, hideAll }

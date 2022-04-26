@@ -13,10 +13,10 @@ Poll _$PollFromJson(Map<String, dynamic> json) => Poll(
           : DateTime.parse(json['expires_at'] as String),
       expired: json['expired'] as bool,
       multiple: json['multiple'] as bool,
-      votes_count: json['votes_count'] as int,
-      voters_count: json['voters_count'] as int,
+      votesCount: json['votes_count'] as int,
+      votersCount: json['voters_count'] as int,
       voted: json['voted'] as bool?,
-      own_votes:
+      ownVotes:
           (json['own_votes'] as List<dynamic>?)?.map((e) => e as int).toList(),
       options: json['options'],
       emojis: (json['emojis'] as List<dynamic>)

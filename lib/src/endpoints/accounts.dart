@@ -98,7 +98,7 @@ mixin Accounts on Authentication, Utilities {
 
         /// TODO: Header image encoded using multipart/form-data
         "header": null,
-        "locked": locked == null ? null : locked.toString(),
+        "locked": locked?.toString(),
 
         /// TODO: implement source
         "source": null,

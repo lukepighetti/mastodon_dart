@@ -23,17 +23,17 @@ class Poll {
   final bool multiple;
 
   /// How many votes have been received
-  final int votes_count;
+  final int votesCount;
 
   /// How many unique accounts have voted on a multiple-choice poll
-  final int voters_count;
+  final int votersCount;
 
   /// When called with a user token, has the authorized user voted?
 
   final bool? voted;
 
   /// When called with a user token, which options has the authorized user chosen? Contains an array of index values for [options].
-  final List<int>? own_votes;
+  final List<int>? ownVotes;
 
   /// Description: Possible answers for the poll.
   /// Type: Array of Hash
@@ -41,7 +41,7 @@ class Poll {
   /// options[][title]
   /// The text value of the poll option. String.
   ///
-  /// options[][votes_count]
+  /// options[][votesCount]
   /// The number of received votes for this option. Number, or null if results are not published yet.
   final Object? options;
 
@@ -53,10 +53,10 @@ class Poll {
     required this.expiresAt,
     required this.expired,
     required this.multiple,
-    required this.votes_count,
-    required this.voters_count,
+    required this.votesCount,
+    required this.votersCount,
     required this.voted,
-    required this.own_votes,
+    required this.ownVotes,
     required this.options,
     required this.emojis,
   });

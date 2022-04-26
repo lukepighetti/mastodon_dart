@@ -108,7 +108,6 @@ class Account {
 
 /// Represents a profile field as a name-value pair with optional verification.
 /// https://docs.joinmastodon.org/entities/field/
-
 @JsonSerializable(
   createToJson: false,
   fieldRename: FieldRename.snake,
@@ -121,7 +120,6 @@ class Field {
   final String value;
 
   /// Timestamp of when the server verified a URL value for a rel="me” link
-
   final DateTime? verifiedAt;
 
   Field({
@@ -136,7 +134,6 @@ class Field {
 /// Represents display or publishing preferences of user's own account.
 /// Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
 /// https://docs.joinmastodon.org/entities/source/
-
 @JsonSerializable(
   createToJson: false,
   fieldRename: FieldRename.snake,
@@ -153,16 +150,13 @@ class Source {
   /// - unlisted = Unlisted post
   /// - private = Followers-only post
   /// - direct = Direct post
-
   final String? privacy;
 
   /// Whether new statuses should be marked sensitive by default
-
   final bool? sensitive;
 
   /// The default posting language for new statuses
-
-  final dynamic? language;
+  final Object? language;
 
   /// The number of pending follow requests
   final int followRequestsCount;
@@ -181,7 +175,6 @@ class Source {
 
 /// Represents an OAuth token used for authenticating with the API and performing actions.
 /// https://docs.joinmastodon.org/entities/token/
-
 @JsonSerializable(
   createToJson: false,
   fieldRename: FieldRename.snake,

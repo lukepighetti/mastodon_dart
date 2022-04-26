@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 import 'poll.dart';
 import 'account.dart';
 import 'application.dart';
@@ -144,54 +143,6 @@ class Status {
     required this.pinned,
     required this.poll,
   });
-
-  Status.mock()
-      : id = MockProperties.string,
-        uri = MockProperties.uri.toString(),
-        url = MockProperties.uri,
-        account = Account.mock(),
-        inReplyToId = MockProperties.string,
-        inReplyToAccountId = MockProperties.string,
-        reblog = null,
-        content = MockProperties.comment,
-        text = MockProperties.text,
-        createdAt = MockProperties.pastDate,
-        emojis = [Emoji.mock(), Emoji.mock(), Emoji.mock()],
-        repliesCount = MockProperties.integer,
-        reblogsCount = MockProperties.integer,
-        favouritesCount = MockProperties.integer,
-        reblogged = MockProperties.boolean,
-        favourited = MockProperties.boolean,
-        bookmarked = MockProperties.boolean,
-        muted = MockProperties.boolean,
-        sensitive = MockProperties.boolean,
-        spoilerText = "spoiler!",
-        visibility = MockProperties.randomItem([
-          Visibility.direct,
-          Visibility.private,
-          Visibility.public,
-          Visibility.unlisted
-        ]),
-        mediaAttachments = MockProperties.randomSublist<Attachment>([
-          Attachment.mock(),
-          Attachment.mock(),
-          Attachment.mock(),
-        ]),
-        mentions = MockProperties.randomSublist<Mention>([
-          Mention.mock(),
-          Mention.mock(),
-          Mention.mock(),
-        ]),
-        tags = MockProperties.randomSublist<Tag>([
-          Tag.mock(),
-          Tag.mock(),
-          Tag.mock(),
-        ]),
-        card = Card.mock(),
-        application = Application.mock(),
-        language = MockProperties.string,
-        pinned = MockProperties.boolean,
-        poll = null; //todo: set mock poll options
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
 }

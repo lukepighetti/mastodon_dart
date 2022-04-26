@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'activity.g.dart';
 
@@ -29,12 +28,6 @@ class Activity {
     required this.logins,
     required this.registrations,
   });
-
-  Activity.mock()
-      : week = MockProperties.pastDate,
-        statuses = MockProperties.integer,
-        logins = MockProperties.integer,
-        registrations = MockProperties.integer;
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);

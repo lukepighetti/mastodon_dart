@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'tag.g.dart';
 
@@ -26,15 +25,6 @@ class Tag {
     required this.url,
     required this.history,
   });
-
-  Tag.mock()
-      : name = MockProperties.tag,
-        url = MockProperties.uri,
-        history = [
-          History.mock(),
-          History.mock(),
-          History.mock(),
-        ];
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
 }
@@ -65,11 +55,6 @@ class History {
   });
 
   static _stringToInt(String s) => int.parse(s);
-
-  History.mock()
-      : day = MockProperties.pastDate,
-        uses = MockProperties.integer,
-        accounts = MockProperties.integer;
 
   factory History.fromJson(Map<String, dynamic> json) =>
       _$HistoryFromJson(json);

@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 import 'account.dart';
 
 part 'instance.g.dart';
@@ -67,21 +66,6 @@ class Instance {
     required this.approvalRequired,
   });
 
-  Instance.mock()
-      : uri = MockProperties.uri,
-        title = MockProperties.tag,
-        shortDescription = MockProperties.comment,
-        description = MockProperties.comment,
-        email = MockProperties.email,
-        version = MockProperties.version,
-        thumbnail = MockProperties.iconUri,
-        urls = null,
-        stats = InstanceStats.mock(),
-        languages = null,
-        registrations = MockProperties.boolean,
-        approvalRequired = MockProperties.boolean,
-        contactAccount = Account.mock();
-
   factory Instance.fromJson(Map<String, dynamic> json) =>
       _$InstanceFromJson(json);
 }
@@ -108,11 +92,6 @@ class InstanceStats {
     required this.statusCount,
     required this.domainCount,
   });
-
-  InstanceStats.mock()
-      : userCount = MockProperties.integer,
-        statusCount = MockProperties.integer,
-        domainCount = MockProperties.integer;
 
   factory InstanceStats.fromJson(Map<String, dynamic> json) =>
       _$InstanceStatsFromJson(json);

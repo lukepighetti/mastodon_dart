@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'user_follows_list.g.dart';
 
@@ -22,10 +21,6 @@ class UserFollowsList {
     required this.id,
     required this.title,
   });
-
-  UserFollowsList.mock()
-      : id = MockProperties.string,
-        title = MockProperties.tag;
 
   factory UserFollowsList.fromJson(Map<String, dynamic> json) =>
       _$UserFollowsListFromJson(json);

@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'card.g.dart';
 
@@ -69,22 +68,6 @@ class Card {
     required this.height,
     required this.embedUrl,
   });
-
-  /// TODO: properly mock CardType and its link
-  Card.mock()
-      : url = MockProperties.uri,
-        title = MockProperties.subject,
-        description = MockProperties.comment,
-        image = MockProperties.headerUri,
-        type = CardType.link,
-        authorName = MockProperties.fullName,
-        authorUrl = MockProperties.uri,
-        providerName = MockProperties.firstName,
-        providerUrl = MockProperties.uri,
-        html = MockProperties.html,
-        width = 400,
-        height = 600,
-        embedUrl = MockProperties.uri;
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 }

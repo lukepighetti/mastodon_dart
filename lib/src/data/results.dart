@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 import 'account.dart';
 import 'status.dart';
@@ -29,29 +28,6 @@ class Results {
     required this.statuses,
     required this.hashtags,
   });
-
-  Results.mock()
-      : accounts = MockProperties.randomSublist([
-          Account.mock(),
-          Account.mock(),
-          Account.mock(),
-          Account.mock(),
-          Account.mock(),
-        ]),
-        statuses = MockProperties.randomSublist([
-          Status.mock(),
-          Status.mock(),
-          Status.mock(),
-          Status.mock(),
-          Status.mock(),
-        ]),
-        hashtags = MockProperties.randomSublist([
-          Tag.mock(),
-          Tag.mock(),
-          Tag.mock(),
-          Tag.mock(),
-          Tag.mock(),
-        ]);
 
   factory Results.fromJson(Map<String, dynamic> json) =>
       _$ResultsFromJson(json);

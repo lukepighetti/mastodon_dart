@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'application.g.dart';
 
@@ -27,11 +26,6 @@ class Application {
     required this.vapid_key,
   });
 
-  Application.mock()
-      : name = MockProperties.firstName,
-        website = MockProperties.uri,
-        vapid_key = MockProperties.string;
-
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);
 }
@@ -56,15 +50,6 @@ class AuthenticatedApplication extends Application {
     required this.clientId,
     required this.clientSecret,
   }) : super(name: name, website: website, vapid_key: vapid_key);
-
-  AuthenticatedApplication.mock()
-      : clientId = MockProperties.string,
-        clientSecret = MockProperties.string,
-        super(
-          name: MockProperties.string,
-          website: MockProperties.uri,
-          vapid_key: MockProperties.string,
-        );
 
   factory AuthenticatedApplication.fromJson(Map<String, dynamic> json) =>
       _$AuthenticatedApplicationFromJson(json);

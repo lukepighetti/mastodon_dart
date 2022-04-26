@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'preferences.g.dart';
 
@@ -33,13 +32,6 @@ class UserPreferences {
     required this.mediaDefaults,
     required this.expandSpoilersByDefault,
   });
-
-  UserPreferences.mock()
-      : defaultPostingVisibility = PostingVisibility.public,
-        isSensitiveByDefault = MockProperties.boolean,
-        defaultLanguage = 'en',
-        mediaDefaults = MediaDefaults.defaultSensitive,
-        expandSpoilersByDefault = MockProperties.boolean;
 
   factory UserPreferences.fromJson(Map<String, dynamic> json) =>
       _$UserPreferencesFromJson(json);

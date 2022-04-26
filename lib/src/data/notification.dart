@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 import 'account.dart';
 import 'status.dart';
 
@@ -35,18 +34,6 @@ class Notification {
     required this.account,
     required this.status,
   });
-
-  Notification.mock()
-      : id = MockProperties.string,
-        type = MockProperties.randomItem([
-          NotificationType.follow,
-          NotificationType.mention,
-          NotificationType.reblog,
-          NotificationType.favourite,
-        ]),
-        createdAt = MockProperties.pastDate,
-        account = Account.mock(),
-        status = Status.mock();
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);

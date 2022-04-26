@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 import 'attachment.dart';
 import 'shared/visibility.dart';
@@ -25,22 +24,6 @@ class ScheduledStatus {
     required this.params,
     required this.mediaAttachments,
   });
-
-  ScheduledStatus.mock()
-      : id = MockProperties.string,
-        scheduledAt = MockProperties.pastDate,
-        params = MockProperties.randomSublist([
-          Params.mock(),
-          Params.mock(),
-          Params.mock(),
-          Params.mock(),
-        ]),
-        mediaAttachments = MockProperties.randomSublist([
-          Attachment.mock(),
-          Attachment.mock(),
-          Attachment.mock(),
-          Attachment.mock(),
-        ]);
 
   factory ScheduledStatus.fromJson(Map<String, dynamic> json) =>
       _$ScheduledStatusFromJson(json);
@@ -72,25 +55,6 @@ class Params {
     required this.scheduledAt,
     required this.applicationId,
   });
-
-  Params.mock()
-      : text = MockProperties.tag,
-        inReplyToId = MockProperties.string,
-        mediaIds = MockProperties.randomSublist([
-          MockProperties.string,
-          MockProperties.string,
-          MockProperties.string,
-        ]),
-        sensitive = MockProperties.boolean,
-        spoilerText = MockProperties.boolean,
-        visibility = MockProperties.randomItem([
-          Visibility.direct,
-          Visibility.private,
-          Visibility.public,
-          Visibility.unlisted,
-        ]),
-        scheduledAt = MockProperties.pastDate,
-        applicationId = MockProperties.string;
 
   factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
 }

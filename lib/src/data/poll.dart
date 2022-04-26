@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 import 'emoji.dart';
 
 part 'poll.g.dart';
@@ -61,19 +60,6 @@ class Poll {
     required this.options,
     required this.emojis,
   });
-
-  Poll.mock()
-      : id = MockProperties.string,
-        expiresAt = MockProperties.pastDate,
-        expired = MockProperties.boolean,
-        multiple = MockProperties.boolean,
-        votes_count = MockProperties.integer,
-        voters_count = MockProperties.integer,
-        voted = MockProperties.boolean,
-        own_votes = MockProperties.randomSublist([3]),
-        options = null, //todo: set mock poll
-        emojis =
-            List.generate(4, (index) => Emoji.mock()); //todo: make list random
 
   factory Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
 }

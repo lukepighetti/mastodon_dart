@@ -22,16 +22,6 @@ class Context {
     required this.descendants,
   });
 
-  Context.mock()
-      : ancestors = [
-          Status.mock(),
-          Status.mock(),
-        ],
-        descendants = [
-          Status.mock(),
-          Status.mock(),
-        ];
-
   factory Context.fromJson(Map<String, dynamic> json) =>
       _$ContextFromJson(json);
 }

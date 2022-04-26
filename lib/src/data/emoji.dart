@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'emoji.g.dart';
 
@@ -32,13 +31,6 @@ class Emoji {
     required this.visibleInPicker,
     required this.category,
   });
-
-  Emoji.mock()
-      : shortcode = MockProperties.tag,
-        staticUrl = MockProperties.emojiUri,
-        url = MockProperties.emojiUri,
-        visibleInPicker = MockProperties.boolean,
-        category = MockProperties.string;
 
   factory Emoji.fromJson(Map<String, dynamic> json) => _$EmojiFromJson(json);
 }

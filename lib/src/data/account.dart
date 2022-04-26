@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 import 'emoji.dart';
 
@@ -105,29 +104,6 @@ class Account {
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
-
-  Account.mock()
-      : id = MockProperties.string,
-        username = MockProperties.username,
-        acct = MockProperties.string,
-        displayName = MockProperties.fullName,
-        locked = MockProperties.boolean,
-        createdAt = MockProperties.pastDate,
-        followersCount = MockProperties.integer,
-        followingCount = MockProperties.integer,
-        statusesCount = MockProperties.integer,
-        note = MockProperties.comment,
-        url = MockProperties.uri,
-        avatar = MockProperties.avatarUri,
-        avatarStatic = MockProperties.avatarUri,
-        header = MockProperties.headerUri,
-        headerStatic = MockProperties.headerUri,
-        lastStatusAt = MockProperties.pastDate,
-        emojis = <Emoji>[Emoji.mock(), Emoji.mock(), Emoji.mock()],
-        moved = null,
-        fields = <Field>[Field.mock(), Field.mock()],
-        bot = MockProperties.boolean,
-        discoverable = MockProperties.boolean;
 }
 
 /// Represents a profile field as a name-value pair with optional verification.
@@ -155,11 +131,6 @@ class Field {
   });
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
-
-  Field.mock()
-      : name = MockProperties.firstName,
-        value = MockProperties.tag,
-        verifiedAt = MockProperties.pastDate;
 }
 
 /// Represents display or publishing preferences of user's own account.
@@ -237,12 +208,6 @@ class Token {
   });
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
-
-  Token.mock()
-      : accessToken = MockProperties.string,
-        tokenType = MockProperties.string,
-        scope = MockProperties.string,
-        createdAt = MockProperties.pastDate;
 
   static DateTime _secondsSinceEpoch(int seconds) =>
       DateTime.fromMillisecondsSinceEpoch(seconds * 1000);

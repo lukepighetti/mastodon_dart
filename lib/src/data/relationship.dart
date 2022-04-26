@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'relationship.g.dart';
 
@@ -57,19 +56,6 @@ class Relationship {
     required this.endorsed,
     required this.blockedBy,
   });
-
-  Relationship.mock()
-      : id = MockProperties.string,
-        following = MockProperties.boolean,
-        followedBy = MockProperties.boolean,
-        blocking = MockProperties.boolean,
-        muting = MockProperties.boolean,
-        mutingNotifications = MockProperties.boolean,
-        requested = MockProperties.boolean,
-        domainBlocking = MockProperties.boolean,
-        showingReblogs = MockProperties.boolean,
-        endorsed = MockProperties.boolean,
-        blockedBy = MockProperties.boolean;
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);

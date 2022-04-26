@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'filter.g.dart';
 
@@ -44,19 +43,6 @@ class Filter {
     required this.irreversible,
     required this.wholeWord,
   });
-
-  Filter.mock()
-      : id = MockProperties.string,
-        phrase = MockProperties.tag,
-        context = MockProperties.randomSublist([
-          FilterContext.home,
-          FilterContext.notifications,
-          FilterContext.public,
-          FilterContext.thread,
-        ]),
-        expiresAt = MockProperties.pastDate,
-        irreversible = MockProperties.boolean,
-        wholeWord = MockProperties.boolean;
 
   factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);
 }

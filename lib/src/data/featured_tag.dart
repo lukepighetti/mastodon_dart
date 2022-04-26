@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 
 part 'featured_tag.g.dart';
 
@@ -29,12 +28,6 @@ class FeaturedTag {
     required this.statusesCount,
     required this.lastStatusAt,
   });
-
-  FeaturedTag.mock()
-      : id = MockProperties.string,
-        name = MockProperties.tag,
-        statusesCount = MockProperties.integer,
-        lastStatusAt = MockProperties.pastDate;
 
   factory FeaturedTag.fromJson(Map<String, dynamic> json) =>
       _$FeaturedTagFromJson(json);

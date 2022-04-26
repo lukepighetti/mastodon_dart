@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:mastodon_dart/src/mock/properties.dart';
 import 'account.dart';
 import 'status.dart';
 
@@ -31,17 +30,6 @@ class Conversation {
     required this.lastStatus,
     required this.unread,
   });
-
-  Conversation.mock()
-      : id = MockProperties.string,
-        accounts = MockProperties.randomSublist([
-          Account.mock(),
-          Account.mock(),
-          Account.mock(),
-          Account.mock(),
-        ]),
-        lastStatus = Status.mock(),
-        unread = MockProperties.boolean;
 
   factory Conversation.fromJson(Map<String, dynamic> json) =>
       _$ConversationFromJson(json);

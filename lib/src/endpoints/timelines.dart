@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/conversation.dart';
-import '../data/status.dart';
+import '../models/conversation.dart';
+import '../models/status.dart';
 import '../utilities.dart';
 
 mixin Timelines on Authentication, Utilities {

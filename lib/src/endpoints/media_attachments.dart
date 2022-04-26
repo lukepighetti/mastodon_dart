@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/attachment.dart';
+import '../models/attachment.dart';
 import '../utilities.dart';
 
 mixin MediaAttachments on Authentication, Utilities {

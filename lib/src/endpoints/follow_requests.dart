@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/account.dart';
+import '../models/account.dart';
 import '../utilities.dart';
 
 mixin FollowRequests on Authentication, Utilities {

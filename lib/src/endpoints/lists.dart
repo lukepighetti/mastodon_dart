@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/account.dart';
-import '../data/user_follows_list.dart';
+import '../models/account.dart';
+import '../models/user_follows_list.dart';
 import '../utilities.dart';
 
 mixin Lists on Authentication, Utilities {

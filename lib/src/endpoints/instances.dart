@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/instance.dart';
+import '../models/instance.dart';
 import '../utilities.dart';
 
 mixin Instances on Authentication, Utilities {

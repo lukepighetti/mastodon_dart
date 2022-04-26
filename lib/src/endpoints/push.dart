@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/push_subscription.dart';
+import '../models/push_subscription.dart';
 import '../utilities.dart';
 
 /// Subscribe to and receive push notifications when a server-side notification is received, via the Web Push API

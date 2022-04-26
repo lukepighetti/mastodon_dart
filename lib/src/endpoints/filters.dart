@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/filter.dart';
+import '../models/filter.dart';
 import '../utilities.dart';
 
 mixin Filters on Authentication, Utilities {

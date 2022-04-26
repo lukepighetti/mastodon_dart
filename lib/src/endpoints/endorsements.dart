@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/account.dart';
-import '../data/relationship.dart';
+import '../models/account.dart';
+import '../models/relationship.dart';
 import '../utilities.dart';
 
 mixin Endorsements on Authentication, Utilities {

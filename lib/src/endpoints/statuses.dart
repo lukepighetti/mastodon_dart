@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 import '../authentication.dart';
-import '../data/account.dart';
-import '../data/card.dart';
-import '../data/context.dart';
-import '../data/visibility.dart';
-import '../data/status.dart';
+import '../models/account.dart';
+import '../models/card.dart';
+import '../models/context.dart';
+import '../models/visibility.dart';
+import '../models/status.dart';
 import '../exception.dart';
 import '../utilities.dart';
 

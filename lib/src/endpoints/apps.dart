@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/application.dart';
+import '../models/application.dart';
 import '../utilities.dart';
 
 /// Register client applications that can be used to obtain OAuth tokens.

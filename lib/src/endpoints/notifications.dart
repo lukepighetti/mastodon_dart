@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/notification.dart';
+import '../models/notification.dart';
 import '../utilities.dart';
 
 mixin Notifications on Authentication, Utilities {

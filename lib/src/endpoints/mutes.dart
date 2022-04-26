@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/account.dart';
-import '../data/relationship.dart';
-import '../data/status.dart';
+import '../models/account.dart';
+import '../models/relationship.dart';
+import '../models/status.dart';
 import '../utilities.dart';
 
 mixin Mutes on Authentication, Utilities {

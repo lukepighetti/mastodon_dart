@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../data/results.dart';
+import '../models/results.dart';
 import '../utilities.dart';
 
 mixin Search on Authentication, Utilities {

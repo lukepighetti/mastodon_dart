@@ -1,21 +1,20 @@
 # mastodon_dart
 
-The official Dart library for accessing the Mastodon API. Optionally use in conjunction with mastodon_flutter to build a Flutter Mastodon app.
+The unofficial Dart library for accessing the Mastodon API. Optionally used
+with `mastodon_flutter` to build a Flutter Mastodon app.
 
-Mastodon API documentation: https://docs.joinmastodon.org/api
+[Mastodon API documentation](https://docs.joinmastodon.org/api)
 
-## Status
+## Goals
 
-This package is in development. Use in production at your own risk. That said, development is active and most Mastodon features are currently supported.
+- To implement >98% of [documented](https://docs.joinmastodon.org/api) endpoints
+and models.
 
-## Mocking
-This library includes a powerful mocking sub-library that lets you quickly build out Mastodon apps using fake data. Once you're ready to use
-real data, simply switch from the mock library to the real one.
+## Promises
+
+- To provide fast code reviews that add support for endpoints or models.
 
 ## Contributing
 
-Create an issue, back it with a PR, and tag an active contributor.
-
-## Example
-
-Updated example code coming soon
+Create a PR, explain what it solves, and be willing to engage with a code
+review.

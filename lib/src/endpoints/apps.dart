@@ -1,10 +1,12 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/apps.dart';
+import '../authentication.dart';
+import '../models/application.dart';
+import '../utilities.dart';
 
 /// Register client applications that can be used to obtain OAuth tokens.
 /// https://docs.joinmastodon.org/methods/apps/
-mixin Apps on Authentication, Utilities implements MockApps {
+mixin Apps on Authentication, Utilities {
   /// Create a new application to obtain OAuth2 credentials.
   ///
   /// POST /api/v1/apps

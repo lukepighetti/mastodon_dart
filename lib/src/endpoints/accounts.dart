@@ -1,10 +1,14 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/accounts.dart';
+import '../authentication.dart';
+import '../models/account.dart';
+import '../models/relationship.dart';
+import '../models/status.dart';
+import '../utilities.dart';
 
 /// Methods concerning user accounts and related information.
 /// https://docs.joinmastodon.org/methods/accounts/
-mixin Accounts on Authentication, Utilities implements MockAccounts {
+mixin Accounts on Authentication, Utilities {
   /// Creates a user and account records. Returns an account access token for the app that initiated the request.
   /// The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.
   ///
@@ -71,15 +75,15 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
   /// - authenticated (requires user)
   /// - write write:accounts
   Future<Account> updateCredentials({
-    String displayName,
-    String note,
-    dynamic avatar,
-    dynamic header,
-    bool locked,
-    dynamic sourcePrivacy,
-    dynamic sourceSensitive,
-    dynamic sourceLanguage,
-    dynamic fieldsAttributes,
+    String? displayName,
+    String? note,
+    // Object? avatar,
+    // Object? header,
+    bool? locked,
+    // Object? sourcePrivacy,
+    // Object? sourceSensitive,
+    // Object? sourceLanguage,
+    // Object? fieldsAttributes,
   }) async {
     final response = await request(
       Method.patch,
@@ -94,7 +98,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
 
         /// TODO: Header image encoded using multipart/form-data
         "header": null,
-        "locked": locked == null ? null : locked.toString(),
+        "locked": locked?.toString(),
 
         /// TODO: implement source
         "source": null,
@@ -123,7 +127,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
 
@@ -146,7 +150,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
 
@@ -164,9 +168,9 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
     bool onlyMedia = false,
     bool pinned = false,
     bool excludeReplies = false,
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
     bool excludeReblogs = false,
   }) async {
@@ -185,7 +189,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
 
@@ -243,7 +247,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Relationship.fromJson(m)).toList();
   }
@@ -272,7 +276,7 @@ mixin Accounts on Authentication, Utilities implements MockAccounts {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }

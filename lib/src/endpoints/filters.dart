@@ -1,8 +1,10 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/filters.dart';
+import '../authentication.dart';
+import '../models/filter.dart';
+import '../utilities.dart';
 
-mixin Filters on Authentication, Utilities implements MockFilters {
+mixin Filters on Authentication, Utilities {
   /// GET /api/v1/filters
   ///
   /// - authenticated (requires user)
@@ -14,7 +16,7 @@ mixin Filters on Authentication, Utilities implements MockFilters {
       authenticated: true,
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Filter.fromJson(m)).toList();
   }
@@ -26,9 +28,9 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   Future<Filter> createFilter(
     String phrase,
     List<FilterContext> context, {
-    bool irreversible,
-    bool wholeWord,
-    Duration expiresIn,
+    bool? irreversible,
+    bool? wholeWord,
+    Duration? expiresIn,
   }) async {
     final response = await request(
       Method.post,
@@ -68,9 +70,9 @@ mixin Filters on Authentication, Utilities implements MockFilters {
     String id,
     String phrase,
     List<FilterContext> context, {
-    bool irreversible,
-    bool wholeWord,
-    Duration expiresIn,
+    bool? irreversible,
+    bool? wholeWord,
+    Duration? expiresIn,
   }) async {
     final response = await request(
       Method.put,
@@ -92,13 +94,17 @@ mixin Filters on Authentication, Utilities implements MockFilters {
   ///
   /// - authenticated (requires user)
   /// - write write:filters
-  Future<void> deleteFilter(String id) async {
+  Future<Filter?> deleteFilter(String id) async {
     final response = await request(
       Method.delete,
       "/api/v1/filters/$id",
       authenticated: true,
     );
 
-    return Filter.fromJson(json.decode(response.body));
+    try {
+      return Filter.fromJson(json.decode(response.body));
+    } catch (_) {
+      return null;
+    }
   }
 }

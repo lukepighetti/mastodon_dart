@@ -1,7 +1,17 @@
-import '../library.dart';
-import '../../src/mock/endpoints/statuses.dart';
+import 'dart:convert';
 
-mixin Statuses on Authentication, Utilities implements MockStatuses {
+import 'package:http/http.dart';
+
+import '../authentication.dart';
+import '../models/account.dart';
+import '../models/card.dart';
+import '../models/context.dart';
+import '../models/visibility.dart';
+import '../models/status.dart';
+import '../exception.dart';
+import '../utilities.dart';
+
+mixin Statuses on Authentication, Utilities {
   /// GET /api/v1/statuses/:id
   ///
   /// - public
@@ -34,7 +44,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   ///
   /// - public
   /// - read read:statuses
-  Future<Card> card(String id) async {
+  Future<Card?> card(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/card",
@@ -62,7 +72,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }
@@ -80,7 +90,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }
@@ -90,16 +100,16 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   /// - authenticated
   /// - write write:statuses
   Future<Status> publishStatus({
-    String status,
-    String inReplyToId,
-    List<String> mediaIds,
+    String? status,
+    String? inReplyToId,
+    List<String> mediaIds = const [],
     bool sensitive = false,
-    String spoilerText,
-    Visibility visibility,
-    DateTime scheduledAt,
+    String? spoilerText,
+    Visibility? visibility,
+    DateTime? scheduledAt,
     dynamic language,
   }) async {
-    assert(status != null || (mediaIds != null && mediaIds.isNotEmpty));
+    assert(status != null || mediaIds.isNotEmpty);
 
     final response = await request(
       Method.post,
@@ -110,7 +120,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
         "in_reply_to_id": inReplyToId,
         "media_ids": mediaIds,
         "sensitive": "$sensitive",
-        "visibility": visibility?.toString()?.split(".")?.last,
+        "visibility": visibility?.toString().split(".").last,
         "scheduled_at": scheduledAt?.toIso8601String(),
         "language": language?.toString(),
       },
@@ -143,7 +153,7 @@ mixin Statuses on Authentication, Utilities implements MockStatuses {
   /// - authenticated
   /// - write write:statuses
   Future<Status> reblog(String id) async {
-    Response response;
+    late final Response response;
 
     try {
       response = await request(

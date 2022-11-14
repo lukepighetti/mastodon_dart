@@ -15,9 +15,7 @@ mixin Utilities on Authentication {
     final uri = baseUrl.replace(path: path);
 
     /// Copy [headers] to a modifiable map, strip null values
-    final _headers = <String, String>{}
-      ..addAll(headers)
-      ..removeWhere((_, value) => value == null);
+    final _headers = <String, String>{...headers};
 
     /// Copy [payload] to a modifiable map, strip null values
     final _payload = <String, dynamic>{}
@@ -80,7 +78,7 @@ mixin Utilities on Authentication {
     }
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      final body = Map.from(jsonDecode(response.body ?? "{}"));
+      final body = Map.from(jsonDecode(response.body));
 
       throw MastodonException(
         response.statusCode,

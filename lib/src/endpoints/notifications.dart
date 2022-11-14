@@ -1,19 +1,21 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/notifications.dart';
+import '../authentication.dart';
+import '../models/notification.dart';
+import '../utilities.dart';
 
-mixin Notifications on Authentication, Utilities implements MockNotifications {
+mixin Notifications on Authentication, Utilities {
   /// GET /api/v1/notifications
   ///
   /// - authentication (requires user)
   /// - read read:notifications
   Future<List<Notification>> notifications({
-    String maxId,
-    String sinceId,
-    String minId,
+    String? maxId,
+    String? sinceId,
+    String? minId,
     int limit = 20,
-    List<NotificationType> excludeTypes,
-    String account_id,
+    List<NotificationType>? excludeTypes,
+    String? accountId,
   }) async {
     final response = await request(
       Method.get,
@@ -25,14 +27,13 @@ mixin Notifications on Authentication, Utilities implements MockNotifications {
         "min_id": minId,
         "limit": limit.toString(),
         "exclude_types": excludeTypes?.map((e) => e.toString().split(".").last),
-        "account_id": account_id,
+        "account_id": accountId,
       }..removeWhere((_, value) => value == null),
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
-
     return body.map((m) => Notification.fromJson(m)).toList();
   }
 

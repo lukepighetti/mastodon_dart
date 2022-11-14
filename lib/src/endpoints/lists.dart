@@ -1,8 +1,11 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/lists.dart';
+import '../authentication.dart';
+import '../models/account.dart';
+import '../models/user_follows_list.dart';
+import '../utilities.dart';
 
-mixin Lists on Authentication, Utilities implements MockLists {
+mixin Lists on Authentication, Utilities {
   /// GET /api/v1/lists
   ///
   /// - authenticated (requires user)
@@ -14,7 +17,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
       authenticated: true,
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => UserFollowsList.fromJson(m)).toList();
   }
@@ -30,7 +33,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
       authenticated: true,
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => UserFollowsList.fromJson(m)).toList();
   }
@@ -49,7 +52,7 @@ mixin Lists on Authentication, Utilities implements MockLists {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Account.fromJson(m)).toList();
   }

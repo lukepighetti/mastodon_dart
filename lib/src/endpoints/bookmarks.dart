@@ -1,8 +1,11 @@
-import '../library.dart';
-import '../../src/mock/endpoints/bookmarks.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../models/status.dart';
+import '../utilities.dart';
 
 /// https://docs.joinmastodon.org/methods/accounts/bookmarks/
-mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
+mixin Bookmarks on Authentication, Utilities {
   /// Statuses the user has bookmarked.
   ///
   /// GET /api/v1/bookmarks
@@ -19,7 +22,7 @@ mixin Bookmarks on Authentication, Utilities implements MockBookmarks {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
 

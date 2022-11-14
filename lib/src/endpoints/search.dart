@@ -1,7 +1,10 @@
-import '../library.dart';
-import '../../src/mock/endpoints/search.dart';
+import 'dart:convert';
 
-mixin Search on Authentication, Utilities implements MockSearch {
+import '../authentication.dart';
+import '../models/results.dart';
+import '../utilities.dart';
+
+mixin Search on Authentication, Utilities {
   /// GET /api/v2/search
   ///
   /// - authenticated

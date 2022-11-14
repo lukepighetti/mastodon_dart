@@ -1,17 +1,16 @@
-import '../library.dart';
+import '../authentication.dart';
+import '../utilities.dart';
 
-import '../../src/mock/endpoints/reports.dart';
-
-mixin Reports on Authentication, Utilities implements MockReports {
+mixin Reports on Authentication, Utilities {
   /// POST /api/v1/reports
   ///
   /// - authenticated (requires user)
   /// - write write:reports
   Future<dynamic> report(
     String id, {
-    List<String> statusIds,
-    String comment,
-    bool forward,
+    required List<String> statusIds,
+    required String comment,
+    bool? forward,
   }) async {
     await request(
       Method.post,

@@ -1,8 +1,10 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/custom_emojis.dart';
+import '../authentication.dart';
+import '../models/emoji.dart';
+import '../utilities.dart';
 
-mixin CustomEmojis on Authentication, Utilities implements MockCustomEmojis {
+mixin CustomEmojis on Authentication, Utilities {
   /// GET /api/v1/custom_emojis
   ///
   /// - public
@@ -13,7 +15,7 @@ mixin CustomEmojis on Authentication, Utilities implements MockCustomEmojis {
       "/api/v1/custom_emojis",
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     return body.map((m) => Emoji.fromJson(m)).toList();
   }

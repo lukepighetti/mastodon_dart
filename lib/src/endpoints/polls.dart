@@ -1,13 +1,14 @@
-import 'package:mastodon_dart/src/mock/endpoints/polls.dart';
+import 'dart:convert';
 
-import '../library.dart';
-import '../data/poll.dart';
+import '../authentication.dart';
+import '../models/poll.dart';
+import '../utilities.dart';
 
 /// View and vote on polls attached to statuses. To discover poll ID,
 /// you will need to GET a Status first and then check for a `poll` property.
 ///
 /// https://docs.joinmastodon.org/methods/statuses/polls/
-mixin Polls on Authentication, Utilities implements MockPolls {
+mixin Polls on Authentication, Utilities {
   /// GET /api/v1/polls/:id
   ///
   /// - public if parent status is public

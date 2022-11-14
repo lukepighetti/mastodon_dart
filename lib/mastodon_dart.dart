@@ -1,35 +1,27 @@
 library mastodon_dart;
 
-/// Bloc classes
-export 'src/bloc/auth.dart';
-export 'src/bloc/timeline.dart';
-export 'src/bloc/notifications.dart';
-
-/// Data classes
-export 'src/data/account.dart';
-export 'src/data/activity.dart';
-export 'src/data/application.dart';
-export 'src/data/attachment.dart';
-export 'src/data/card.dart';
-export 'src/data/context.dart';
-export 'src/data/conversation.dart';
-export 'src/data/emoji.dart';
-export 'src/data/featured_tag.dart';
-export 'src/data/filter.dart';
-export 'src/data/instance.dart';
-export 'src/data/user_follows_list.dart';
-export 'src/data/marker.dart';
-export 'src/data/mention.dart';
-export 'src/data/notification.dart';
-export 'src/data/poll.dart';
-export 'src/data/preferences.dart';
-export 'src/data/push_subscription.dart';
-export 'src/data/relationship.dart';
-export 'src/data/results.dart';
-export 'src/data/scheduled_status.dart';
-export 'src/data/status.dart';
-export 'src/data/tag.dart';
-export 'src/data/shared/visibility.dart';
-
-/// The real Mastodon
 export 'src/mastodon.dart';
+export 'src/models/account.dart';
+export 'src/models/activity.dart';
+export 'src/models/application.dart';
+export 'src/models/attachment.dart';
+export 'src/models/card.dart';
+export 'src/models/context.dart';
+export 'src/models/conversation.dart';
+export 'src/models/emoji.dart';
+export 'src/models/featured_tag.dart';
+export 'src/models/filter.dart';
+export 'src/models/instance.dart';
+export 'src/models/marker.dart';
+export 'src/models/mention.dart';
+export 'src/models/notification.dart';
+export 'src/models/poll.dart';
+export 'src/models/preferences.dart';
+export 'src/models/push_subscription.dart';
+export 'src/models/relationship.dart';
+export 'src/models/results.dart';
+export 'src/models/scheduled_status.dart';
+export 'src/models/status.dart';
+export 'src/models/tag.dart';
+export 'src/models/user_follows_list.dart';
+export 'src/models/visibility.dart';

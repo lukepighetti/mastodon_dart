@@ -1,9 +1,11 @@
-import '../library.dart';
+import 'dart:convert';
 
-import '../../src/mock/endpoints/favourites.dart';
+import '../authentication.dart';
+import '../models/status.dart';
+import '../utilities.dart';
 
 /// https://docs.joinmastodon.org/methods/accounts/favourites/
-mixin Favourites on Authentication, Utilities implements MockFavourites {
+mixin Favourites on Authentication, Utilities {
   /// GET /api/v1/favourites
   ///
   /// - authenticated (requires user)
@@ -18,7 +20,7 @@ mixin Favourites on Authentication, Utilities implements MockFavourites {
       },
     );
 
-    final body = List<Map>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
 
     /// TODO: implement link headers for pagination
 

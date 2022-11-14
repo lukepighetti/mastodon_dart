@@ -1,9 +1,12 @@
-import '../library.dart';
-import '../../src/mock/endpoints/push.dart';
+import 'dart:convert';
+
+import '../authentication.dart';
+import '../models/push_subscription.dart';
+import '../utilities.dart';
 
 /// Subscribe to and receive push notifications when a server-side notification is received, via the Web Push API
 /// https://docs.joinmastodon.org/methods/notifications/push/
-mixin Push on Authentication, Utilities implements MockPush {
+mixin Push on Authentication, Utilities {
   /// POST /api/v1/push/subscription
   ///
   /// - authentication (requires user)

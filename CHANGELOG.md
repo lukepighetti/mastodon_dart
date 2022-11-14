@@ -1,3 +1,11 @@
+## 0.4.0 (11/14/2022)
+
+- Null safety
+- remove mocks
+- update deps
+- remove dead example
+- remove business logic classes
+
 ## 0.3.2 (4/9/2020)
 - Fix [issue #30](https://github.com/lukepighetti/mastodon_dart/issues/30)
 

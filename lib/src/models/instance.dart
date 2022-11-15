@@ -68,6 +68,23 @@ class Instance {
 
   factory Instance.fromJson(Map<String, dynamic> json) =>
       _$InstanceFromJson(json);
+
+  @override
+  String toString() => "Instance("
+      "$uri, "
+      "$title, "
+      "$description, "
+      "$shortDescription, "
+      "$email, "
+      "$version, "
+      "$languages, "
+      "$registrations, "
+      "$approvalRequired, "
+      "$urls, "
+      "$stats, "
+      "$thumbnail, "
+      "$contactAccount"
+      ")";
 }
 
 /// Statistics about how much information the instance contains
@@ -95,4 +112,11 @@ class InstanceStats {
 
   factory InstanceStats.fromJson(Map<String, dynamic> json) =>
       _$InstanceStatsFromJson(json);
+
+  @override
+  String toString() => "InstanceStats("
+      "$userCount, "
+      "$statusCount, "
+      "$domainCount"
+      ")";
 }

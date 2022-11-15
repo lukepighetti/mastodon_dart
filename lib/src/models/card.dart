@@ -70,6 +70,23 @@ class Card {
   });
 
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
+
+  @override
+  String toString() => "Card("
+      "$url, "
+      "$title, "
+      "$description, "
+      "$type, "
+      "$authorName, "
+      "$authorUrl, "
+      "$providerName, "
+      "$providerUrl, "
+      "$html, "
+      "$width, "
+      "$height, "
+      "$image, "
+      "$embedUrl"
+      ")";
 }
 
 enum CardType { link, photo, video, rich }

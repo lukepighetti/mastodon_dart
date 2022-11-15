@@ -27,6 +27,14 @@ class ScheduledStatus {
 
   factory ScheduledStatus.fromJson(Map<String, dynamic> json) =>
       _$ScheduledStatusFromJson(json);
+
+  @override
+  String toString() => "ScheduledStatus("
+      "$id, "
+      "$scheduledAt, "
+      "$params, "
+      "$mediaAttachments"
+      ")";
 }
 
 /// https://docs.joinmastodon.org/api/entities/#statusparams
@@ -57,4 +65,16 @@ class Params {
   });
 
   factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
+
+  @override
+  String toString() => "Params("
+      "$text, "
+      "$inReplyToId, "
+      "$mediaIds, "
+      "$sensitive, "
+      "$spoilerText, "
+      "$visibility, "
+      "$scheduledAt, "
+      "$applicationId"
+      ")";
 }

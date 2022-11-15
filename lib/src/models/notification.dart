@@ -37,6 +37,15 @@ class Notification {
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
+
+  @override
+  String toString() => "Notification("
+      "$id, "
+      "$type, "
+      "$createdAt, "
+      "$account, "
+      "$status"
+      ")";
 }
 
 /// The type of event that resulted in the notification:

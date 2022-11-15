@@ -31,4 +31,12 @@ class FeaturedTag {
 
   factory FeaturedTag.fromJson(Map<String, dynamic> json) =>
       _$FeaturedTagFromJson(json);
+
+  @override
+  String toString() => "FeaturedTag("
+      "$id, "
+      "$name, "
+      "$statusesCount, "
+      "$lastStatusAt"
+      ")";
 }

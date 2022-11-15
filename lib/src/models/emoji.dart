@@ -33,4 +33,13 @@ class Emoji {
   });
 
   factory Emoji.fromJson(Map<String, dynamic> json) => _$EmojiFromJson(json);
+
+  @override
+  String toString() => "Emoji("
+      "$shortcode, "
+      "$url, "
+      "$staticUrl, "
+      "$visibleInPicker, "
+      "$category"
+      ")";
 }

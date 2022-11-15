@@ -35,6 +35,15 @@ class UserPreferences {
 
   factory UserPreferences.fromJson(Map<String, dynamic> json) =>
       _$UserPreferencesFromJson(json);
+
+  @override
+  String toString() => "UserPreferences("
+      "$defaultPostingVisibility, "
+      "$isSensitiveByDefault, "
+      "$defaultLanguage, "
+      "$mediaDefaults, "
+      "$expandSpoilersByDefault"
+      ")";
 }
 
 /// Default visibility for new posts.

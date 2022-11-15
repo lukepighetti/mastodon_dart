@@ -24,4 +24,10 @@ class UserFollowsList {
 
   factory UserFollowsList.fromJson(Map<String, dynamic> json) =>
       _$UserFollowsListFromJson(json);
+
+  @override
+  String toString() => "UserFollowsList("
+      "$id, "
+      "$title"
+      ")";
 }

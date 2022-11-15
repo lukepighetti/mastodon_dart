@@ -31,4 +31,12 @@ class PushSubscription {
 
   factory PushSubscription.fromJson(Map<String, dynamic> json) =>
       _$PushSubscriptionFromJson(json);
+
+  @override
+  String toString() => "PushSubscription("
+      "$id, "
+      "$endpoint, "
+      "$serverKey, "
+      "$alerts"
+      ")";
 }

@@ -33,4 +33,12 @@ class Conversation {
 
   factory Conversation.fromJson(Map<String, dynamic> json) =>
       _$ConversationFromJson(json);
+
+  @override
+  String toString() => "Conversation("
+      "$id, "
+      "$accounts, "
+      "$unread, "
+      "$lastStatus"
+      ")";
 }

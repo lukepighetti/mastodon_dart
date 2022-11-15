@@ -45,6 +45,16 @@ class Filter {
   });
 
   factory Filter.fromJson(Map<String, dynamic> json) => _$FilterFromJson(json);
+
+  @override
+  String toString() => "Filter("
+      "$id, "
+      "$phrase, "
+      "$context, "
+      "$expiresAt, "
+      "$irreversible, "
+      "$wholeWord"
+      ")";
 }
 
 enum FilterContext { home, notifications, public, thread }

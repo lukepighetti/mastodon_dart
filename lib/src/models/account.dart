@@ -104,6 +104,31 @@ class Account {
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
+
+  @override
+  String toString() => "Account("
+      "$id, "
+      "$username, "
+      "$acct, "
+      "$url, "
+      "$displayName, "
+      "$note, "
+      "$avatar, "
+      "$avatarStatic, "
+      "$header, "
+      "$headerStatic, "
+      "$locked, "
+      "$emojis, "
+      "$discoverable, "
+      "$createdAt, "
+      "$statusesCount, "
+      "$followersCount, "
+      "$followingCount, "
+      "$moved, "
+      "$fields, "
+      "$bot, "
+      "$lastStatusAt"
+      ")";
 }
 
 /// Represents a profile field as a name-value pair with optional verification.
@@ -129,6 +154,13 @@ class Field {
   });
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
+
+  @override
+  String toString() => "Field("
+      "$name, "
+      "$value, "
+      "$verifiedAt"
+      ")";
 }
 
 /// Represents display or publishing preferences of user's own account.
@@ -171,6 +203,16 @@ class Source {
   });
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+
+  @override
+  String toString() => "Source("
+      "$note, "
+      "$fields, "
+      "$privacy, "
+      "$sensitive, "
+      "$language, "
+      "$followRequestsCount"
+      ")";
 }
 
 /// Represents an OAuth token used for authenticating with the API and performing actions.
@@ -204,4 +246,12 @@ class Token {
 
   static DateTime _secondsSinceEpoch(int seconds) =>
       DateTime.fromMillisecondsSinceEpoch(seconds * 1000);
+
+  @override
+  String toString() => "Token("
+      "$accessToken, "
+      "$tokenType, "
+      "$scope, "
+      "$createdAt"
+      ")";
 }

@@ -24,4 +24,10 @@ class Context {
 
   factory Context.fromJson(Map<String, dynamic> json) =>
       _$ContextFromJson(json);
+
+  @override
+  String toString() => "Context("
+      "$ancestors, "
+      "$descendants"
+      ")";
 }

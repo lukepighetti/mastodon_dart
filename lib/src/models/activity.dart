@@ -31,4 +31,12 @@ class Activity {
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);
+
+  @override
+  String toString() => "Activity("
+      "$week, "
+      "$statuses, "
+      "$logins, "
+      "$registrations"
+      ")";
 }

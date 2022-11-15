@@ -31,4 +31,12 @@ class Mention {
 
   factory Mention.fromJson(Map<String, dynamic> json) =>
       _$MentionFromJson(json);
+
+  @override
+  String toString() => "Mention("
+      "$id, "
+      "$username, "
+      "$acct, "
+      "$url"
+      ")";
 }

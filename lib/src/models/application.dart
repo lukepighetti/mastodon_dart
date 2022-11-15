@@ -28,6 +28,13 @@ class Application {
 
   factory Application.fromJson(Map<String, dynamic> json) =>
       _$ApplicationFromJson(json);
+
+  @override
+  String toString() => "Application("
+      "$name, "
+      "$website, "
+      "$vapidKey"
+      ")";
 }
 
 /// Represents an authenticated [Application]
@@ -53,4 +60,10 @@ class AuthenticatedApplication extends Application {
 
   factory AuthenticatedApplication.fromJson(Map<String, dynamic> json) =>
       _$AuthenticatedApplicationFromJson(json);
+
+  @override
+  String toString() => "AuthenticatedApplication("
+      "$clientId, "
+      "$clientSecret"
+      ")";
 }

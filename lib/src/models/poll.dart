@@ -62,4 +62,18 @@ class Poll {
   });
 
   factory Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
+
+  @override
+  String toString() => "Poll("
+      "$id, "
+      "$expiresAt, "
+      "$expired, "
+      "$multiple, "
+      "$votesCount, "
+      "$votersCount, "
+      "$voted, "
+      "$ownVotes, "
+      "$options, "
+      "$emojis"
+      ")";
 }

@@ -31,4 +31,11 @@ class Results {
 
   factory Results.fromJson(Map<String, dynamic> json) =>
       _$ResultsFromJson(json);
+
+  @override
+  String toString() => "Results("
+      "$accounts, "
+      "$statuses, "
+      "$hashtags"
+      ")";
 }

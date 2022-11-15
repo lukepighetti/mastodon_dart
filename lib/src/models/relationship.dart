@@ -59,4 +59,19 @@ class Relationship {
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);
+
+  @override
+  String toString() => "Relationship("
+      "$id, "
+      "$following, "
+      "$requested, "
+      "$endorsed, "
+      "$followedBy, "
+      "$muting, "
+      "$mutingNotifications, "
+      "$showingReblogs, "
+      "$blocking, "
+      "$domainBlocking, "
+      "$blockedBy"
+      ")";
 }

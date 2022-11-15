@@ -145,4 +145,37 @@ class Status {
   });
 
   factory Status.fromJson(Map<String, dynamic> json) => _$StatusFromJson(json);
+
+  @override
+  String toString() => "Status("
+      "$id, "
+      "$uri, "
+      "$createdAt, "
+      "$account, "
+      "$content, "
+      "$visibility, "
+      "$sensitive, "
+      "$spoilerText, "
+      "$mediaAttachments, "
+      "$application, "
+      "$mentions, "
+      "$tags, "
+      "$emojis, "
+      "$reblogsCount, "
+      "$favouritesCount, "
+      "$repliesCount, "
+      "$url, "
+      "$inReplyToId, "
+      "$inReplyToAccountId, "
+      "$reblog, "
+      "$poll, "
+      "$card, "
+      "$language, "
+      "$text, "
+      "$favourited, "
+      "$reblogged, "
+      "$muted, "
+      "$bookmarked, "
+      "$pinned"
+      ")";
 }

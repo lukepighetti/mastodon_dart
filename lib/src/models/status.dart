@@ -91,7 +91,7 @@ class Status {
 
   /// Plain-text source of a status. Returned instead of content when status is deleted,
   /// so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
-  final String text;
+  final String? text;
 
   /// Have you favourited this status?
   @JsonKey(defaultValue: false)

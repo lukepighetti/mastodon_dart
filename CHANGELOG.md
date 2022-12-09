@@ -1,3 +1,7 @@
+## 1.0.2 (12/9/2022)
+
+- Fix: make `Status.text` nullable
+
 ## 1.0.1 (11/14/2022)
 
 - Null safety

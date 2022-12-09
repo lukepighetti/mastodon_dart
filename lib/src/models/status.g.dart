@@ -17,7 +17,7 @@ Status _$StatusFromJson(Map<String, dynamic> json) => Status(
           ? null
           : Status.fromJson(json['reblog'] as Map<String, dynamic>),
       content: json['content'] as String,
-      text: json['text'] as String,
+      text: json['text'] as String?,
       createdAt: DateTime.parse(json['created_at'] as String),
       emojis: (json['emojis'] as List<dynamic>)
           .map((e) => Emoji.fromJson(e as Map<String, dynamic>))

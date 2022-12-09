@@ -17,13 +17,9 @@ class Application {
 
   final Uri? website;
 
-  /// Used for Push Streaming API. Returned with POST /api/v1/apps
-  final String vapidKey;
-
   Application({
     required this.name,
     required this.website,
-    required this.vapidKey,
   });
 
   factory Application.fromJson(Map<String, dynamic> json) =>
@@ -43,13 +39,16 @@ class AuthenticatedApplication extends Application {
   /// The clientSecret associated with your application
   final String clientSecret;
 
+  /// Used for Push Streaming API. Returned with POST /api/v1/apps
+  final String vapidKey;
+
   AuthenticatedApplication({
     required String name,
     required Uri? website,
-    required String vapidKey,
     required this.clientId,
     required this.clientSecret,
-  }) : super(name: name, website: website, vapidKey: vapidKey);
+    required this.vapidKey,
+  }) : super(name: name, website: website);
 
   factory AuthenticatedApplication.fromJson(Map<String, dynamic> json) =>
       _$AuthenticatedApplicationFromJson(json);

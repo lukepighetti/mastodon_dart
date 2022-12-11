@@ -11,6 +11,12 @@ class Authentication {
 
   Authentication(this.baseUrl, {required this.websocketFactory});
 
+  Authentication.rest(baseUrl)
+      : this(
+          baseUrl,
+          websocketFactory: (Uri uri) => throw UnimplementedError(),
+        );
+
   /// Used to navigate the user to the token url for the given Mastodon instance
   Uri get tokenUrl => baseUrl.replace(path: "/oauth/token");
 

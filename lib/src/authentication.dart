@@ -7,9 +7,9 @@ class Authentication {
   final Uri baseUrl;
 
   /// A (WebSocketChannel)[https://api.flutter.dev/flutter/dart-html/WebSocket-class.html] to receive data sent on a WebSocket
-  final WebSocketFactory websocketFactory;
+  final WebSocketFactory? websocketFactory;
 
-  Authentication(this.baseUrl, {required this.websocketFactory});
+  Authentication(this.baseUrl, {this.websocketFactory});
 
   /// Used to navigate the user to the token url for the given Mastodon instance
   Uri get tokenUrl => baseUrl.replace(path: "/oauth/token");

@@ -1,3 +1,8 @@
+## 1.0.3 (12/11/2022)
+
+- Feat: `Mastodon.websocketFactory` is now optional 
+- Fix: move `Application.vapidKey` to `AuthenticatedApplication`
+
 ## 1.0.2 (12/9/2022)
 
 - Fix: make `Status.text` nullable

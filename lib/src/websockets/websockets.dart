@@ -18,7 +18,11 @@ mixin Websockets on Authentication {
       }..removeWhere((_, value) => value == null),
     );
 
-    return websocketFactory(uri);
+    if (websocketFactory == null) {
+      throw Exception("websocketFactory is not set");
+    }
+
+    return websocketFactory!(uri);
   }
 
   /// https://docs.joinmastodon.org/api/streaming/#websocket

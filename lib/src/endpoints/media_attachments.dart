@@ -5,20 +5,22 @@ import '../models/attachment.dart';
 import '../utilities.dart';
 
 mixin MediaAttachments on Authentication, Utilities {
-  /// POST /api/v1/media
+  /// POST /api/v2/media
   ///
   /// - authenticated (requires user)
   /// - write write:media
-  Future<Attachment> uploadAttachment(dynamic file,
+  Future<Attachment> uploadAttachment(String file,
       {String? description, Object? focus}) async {
     final response = await request(
       Method.post,
-      "/api/v1/media",
+      "/api/v2/media",
       authenticated: true,
       payload: {
-        "file": file,
         "description": description,
         "focus": focus,
+      },
+      files: {
+        "file": file,
       },
     );
 

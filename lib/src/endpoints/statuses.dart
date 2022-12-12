@@ -97,6 +97,9 @@ mixin Statuses on Authentication, Utilities {
 
   /// POST /api/v1/statuses
   ///
+  /// Currently only supports a single media attachment.
+  ///   https://github.com/dart-lang/http/issues/47
+  ///
   /// - authenticated
   /// - write write:statuses
   Future<Status> publishStatus({
@@ -110,6 +113,7 @@ mixin Statuses on Authentication, Utilities {
     dynamic language,
   }) async {
     assert(status != null || mediaIds.isNotEmpty);
+    assert(mediaIds.length < 2);
 
     final response = await request(
       Method.post,
@@ -118,7 +122,7 @@ mixin Statuses on Authentication, Utilities {
       payload: {
         "status": status,
         "in_reply_to_id": inReplyToId,
-        "media_ids": mediaIds,
+        "media_ids[]": mediaIds.isEmpty ? null : mediaIds.first,
         "sensitive": "$sensitive",
         "visibility": visibility?.toString().split(".").last,
         "scheduled_at": scheduledAt?.toIso8601String(),

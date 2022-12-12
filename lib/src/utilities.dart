@@ -11,6 +11,7 @@ mixin Utilities on Authentication {
     bool authenticated = false,
     Map<String, dynamic> payload = const {},
     Map<String, String> headers = const {},
+    Map<String, String> files = const {},
   }) async {
     final uri = baseUrl.replace(path: path);
 
@@ -21,6 +22,14 @@ mixin Utilities on Authentication {
     final _payload = <String, dynamic>{}
       ..addAll(payload)
       ..removeWhere((_, value) => value == null);
+
+    final _strictPayload = <String, String>{}
+      ..addAll(_payload.map((key, value) => MapEntry(key, value.toString())))
+      ..removeWhere((_, value) => value.isEmpty);
+
+    final Iterable<Future<MultipartFile>> _files = files.entries.map(
+      (entry) => MultipartFile.fromPath(entry.key, entry.value),
+    );
 
     /// Assert authentication header
     if (authenticated) {
@@ -46,11 +55,19 @@ mixin Utilities on Authentication {
         break;
 
       case Method.post:
-        response = await post(
-          uri,
-          body: _payload,
-          headers: _headers,
-        );
+        if (files.isNotEmpty) {
+          final request = MultipartRequest("POST", uri);
+          request.headers.addAll(_headers);
+          request.fields.addAll(_strictPayload);
+          request.files.addAll(await Future.wait(_files));
+          response = await Response.fromStream(await request.send());
+        } else {
+          response = await post(
+            uri,
+            body: _payload,
+            headers: _headers,
+          );
+        }
         break;
 
       case Method.put:

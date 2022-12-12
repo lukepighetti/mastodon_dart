@@ -1,3 +1,7 @@
+## 1.0.4 (12/12/2022)
+
+- Feat: add file attachment support
+
 ## 1.0.3 (12/11/2022)
 
 - Feat: `Mastodon.websocketFactory` is now optional 

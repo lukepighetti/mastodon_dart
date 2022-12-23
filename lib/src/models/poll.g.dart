@@ -18,7 +18,9 @@ Poll _$PollFromJson(Map<String, dynamic> json) => Poll(
       voted: json['voted'] as bool?,
       ownVotes:
           (json['own_votes'] as List<dynamic>?)?.map((e) => e as int).toList(),
-      options: json['options'],
+      options: (json['options'] as List<dynamic>)
+          .map((e) => Option.fromJson(e as Map<String, dynamic>))
+          .toList(),
       emojis: (json['emojis'] as List<dynamic>)
           .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
           .toList(),

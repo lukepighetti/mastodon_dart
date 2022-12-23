@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'emoji.dart';
+import 'option.dart';
 
 part 'poll.g.dart';
 
@@ -43,7 +44,7 @@ class Poll {
   ///
   /// options[][votesCount]
   /// The number of received votes for this option. Number, or null if results are not published yet.
-  final Object? options;
+  final List<Option> options;
 
   /// Custom emoji to be used for rendering poll options
   final List<Emoji> emojis;

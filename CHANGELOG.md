@@ -1,3 +1,7 @@
+## 1.0.5 (12/23/2022)
+
+- Feat: add Poll option type
+
 ## 1.0.4 (12/12/2022)
 
 - Feat: add file attachment support

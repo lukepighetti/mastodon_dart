@@ -8,10 +8,10 @@ part 'marker.g.dart';
 @JsonSerializable()
 class Markers {
   /// Information about the user's position in the home timeline
-  Marker? home;
+  final Marker? home;
 
   /// Information about the user's position in their notifications
-  Marker? notifications;
+  final Marker? notifications;
 
   Markers({
     required this.home,
@@ -27,13 +27,13 @@ class Markers {
 @JsonSerializable()
 class Marker {
   /// The ID of the most recently viewed entity
-  String? lastReadId;
+  final String lastReadId;
 
   /// The timestamp of when the marker was set
-  String? updatedAt;
+  final DateTime updatedAt;
 
-  /// Used for locking to prevent write conflicts
-  int? version;
+  /// An incrementing counter, used for locking to prevent write conflicts
+  final int version;
 
   Marker({
     required this.lastReadId,

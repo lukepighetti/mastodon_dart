@@ -21,13 +21,13 @@ Map<String, dynamic> _$MarkersToJson(Markers instance) => <String, dynamic>{
     };
 
 Marker _$MarkerFromJson(Map<String, dynamic> json) => Marker(
-      lastReadId: json['last_read_id'] as String?,
-      version: json['version'] as int?,
-      updatedAt: json['updated_at'] as String?,
+      lastReadId: json['last_read_id'] as String,
+      version: json['version'] as int,
+      updatedAt: DateTime.parse(json['updated_at'] as String),
     );
 
 Map<String, dynamic> _$MarkerToJson(Marker instance) => <String, dynamic>{
       'last_read_id': instance.lastReadId,
-      'updated_at': instance.updatedAt,
+      'updated_at': instance.updatedAt.toIso8601String(),
       'version': instance.version,
     };

@@ -1,3 +1,8 @@
+## 1.0.6 (1/3/2023)
+
+- Feat: update Account fields
+- Feat: update NotificationType values
+
 ## 1.0.5 (12/23/2022)
 
 - Feat: add Poll option type

@@ -17,8 +17,14 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
     );
 
 const _$NotificationTypeEnumMap = {
-  NotificationType.follow: 'follow',
   NotificationType.mention: 'mention',
+  NotificationType.status: 'status',
   NotificationType.reblog: 'reblog',
+  NotificationType.follow: 'follow',
+  NotificationType.followRequest: 'follow_request',
   NotificationType.favourite: 'favourite',
+  NotificationType.poll: 'poll',
+  NotificationType.update: 'update',
+  NotificationType.adminSignUp: 'admin.sign_up',
+  NotificationType.adminReport: 'admin.report',
 };

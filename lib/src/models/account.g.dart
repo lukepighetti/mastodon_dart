@@ -22,18 +22,24 @@ Account _$AccountFromJson(Map<String, dynamic> json) => Account(
       avatarStatic: Uri.parse(json['avatar_static'] as String),
       header: Uri.parse(json['header'] as String),
       headerStatic: Uri.parse(json['header_static'] as String),
-      lastStatusAt: DateTime.parse(json['last_status_at'] as String),
+      lastStatusAt: json['last_status_at'] == null
+          ? null
+          : DateTime.parse(json['last_status_at'] as String),
       emojis: (json['emojis'] as List<dynamic>)
           .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
           .toList(),
       moved: json['moved'] == null
           ? null
           : Account.fromJson(json['moved'] as Map<String, dynamic>),
-      fields: (json['fields'] as List<dynamic>?)
-          ?.map((e) => Field.fromJson(e as Map<String, dynamic>))
+      suspended: json['suspended'] as bool?,
+      limited: json['limited'] as bool?,
+      fields: (json['fields'] as List<dynamic>)
+          .map((e) => Field.fromJson(e as Map<String, dynamic>))
           .toList(),
-      bot: json['bot'] as bool?,
-      discoverable: json['discoverable'] as bool,
+      bot: json['bot'] as bool,
+      group: json['group'] as bool,
+      discoverable: json['discoverable'] as bool?,
+      noindex: json['noindex'] as bool?,
     );
 
 Field _$FieldFromJson(Map<String, dynamic> json) => Field(

@@ -49,7 +49,10 @@ class Account {
   final List<Emoji> emojis;
 
   /// Whether the account has opted into discovery features such as the profile directory
-  final bool discoverable;
+  final bool? discoverable;
+
+  /// Whether the local user has opted out of being indexed by search engines.
+  final bool? noindex;
 
   /// When the account was created
   final DateTime createdAt;
@@ -64,19 +67,25 @@ class Account {
   final int followingCount;
 
   /// Indicates that the profile is currently inactive and that its user has moved to a new account
-
   final Account? moved;
 
-  /// Additional metadata attached to a profile as name-value pairs
+  /// An extra attribute returned only when an account is suspended.
+  final bool? suspended;
 
-  final List<Field>? fields;
+  /// An extra attribute returned only when an account is silenced. If true, indicates that the account should be hidden behind a warning screen.
+  final bool? limited;
+
+  /// Additional metadata attached to a profile as name-value pairs
+  final List<Field> fields;
 
   /// A presentational flag. Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot
+  final bool bot;
 
-  final bool? bot;
+  /// Indicates that the account represents a Group actor.
+  final bool group;
 
   /// The time and date the last status was posted at
-  final DateTime lastStatusAt;
+  final DateTime? lastStatusAt;
 
   Account({
     required this.id,
@@ -97,9 +106,13 @@ class Account {
     required this.lastStatusAt,
     required this.emojis,
     required this.moved,
+    required this.suspended,
+    required this.limited,
     required this.fields,
     required this.bot,
+    required this.group,
     required this.discoverable,
+    required this.noindex,
   });
 
   factory Account.fromJson(Map<String, dynamic> json) =>

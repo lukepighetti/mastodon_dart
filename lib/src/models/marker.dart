@@ -1,8 +1,11 @@
-//todo: do this with json_serializable; currently using json2dart
-//todo: implement mock
+import 'package:json_annotation/json_annotation.dart';
+
+part 'marker.g.dart';
 
 /// Represents the last read position within a user's timelines.
-/// https://docs.joinmastodon.org/entities/marker/
+/// https://docs.joinmastodon.org/entities/Marker/
+
+@JsonSerializable()
 class Marker {
   /// Information about the user's position in the home timeline
   Position? home;
@@ -15,26 +18,12 @@ class Marker {
     required this.notifications,
   });
 
-  Marker.fromJson(Map<String, dynamic> json) {
-    home = json['home'] != null ? Position.fromJson(json['home']) : null;
-    notifications = json['notifications'] != null
-        ? Position.fromJson(json['notifications'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (home != null) {
-      data['home'] = home!.toJson();
-    }
-    if (notifications != null) {
-      data['notifications'] = notifications!.toJson();
-    }
-    return data;
-  }
+  factory Marker.fromJson(Map<String, dynamic> json) => _$MarkerFromJson(json);
+  Map<String, dynamic> toJson() => _$MarkerToJson(this);
 }
 
 /// Timeline position information
+@JsonSerializable()
 class Position {
   /// The ID of the most recently viewed entity
   String? lastReadId;
@@ -51,17 +40,7 @@ class Position {
     required this.updatedAt,
   });
 
-  Position.fromJson(Map<String, dynamic> json) {
-    lastReadId = json['last_read_id'];
-    version = json['version'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['last_read_id'] = lastReadId;
-    data['version'] = version;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
+  factory Position.fromJson(Map<String, dynamic> json) =>
+      _$PositionFromJson(json);
+  Map<String, dynamic> toJson() => _$PositionToJson(this);
 }

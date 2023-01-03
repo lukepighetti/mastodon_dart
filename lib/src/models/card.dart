@@ -5,10 +5,7 @@ part 'card.g.dart';
 /// Represents a rich preview card that is generated using OpenGraph tags from a URL.
 /// https://docs.joinmastodon.org/entities/card/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Card {
   /// Location of linked resource
   final Uri url;

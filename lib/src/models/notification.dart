@@ -7,10 +7,7 @@ part 'notification.g.dart';
 /// Represents a notification of an event relevant to the user.
 /// https://docs.joinmastodon.org/entities/notification/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Notification {
   /// The id of the notification in the database
   final String id;

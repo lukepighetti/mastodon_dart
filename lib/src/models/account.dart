@@ -7,10 +7,7 @@ part 'account.g.dart';
 /// Represents a user of Mastodon and their associated profile.
 /// https://docs.joinmastodon.org/entities/account/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Account {
   /// The account id
   final String id;
@@ -121,10 +118,7 @@ class Account {
 
 /// Represents a profile field as a name-value pair with optional verification.
 /// https://docs.joinmastodon.org/entities/field/
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Field {
   /// The key of a given field's key-value pai
   final String name;
@@ -147,10 +141,7 @@ class Field {
 /// Represents display or publishing preferences of user's own account.
 /// Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
 /// https://docs.joinmastodon.org/entities/source/
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Source {
   /// Profile bio
   final String note;
@@ -188,10 +179,7 @@ class Source {
 
 /// Represents an OAuth token used for authenticating with the API and performing actions.
 /// https://docs.joinmastodon.org/entities/token/
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Token {
   /// An OAuth token to be used for authorization
   final String accessToken;

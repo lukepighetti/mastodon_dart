@@ -4,10 +4,7 @@ part 'preferences.g.dart';
 
 /// https://docs.joinmastodon.org/entities/preferences/
 /// Represents a user's preferences.
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class UserPreferences {
   /// Default visibility for new posts. Enumerated by [PostingVisibility].
   final PostingVisibility defaultPostingVisibility;

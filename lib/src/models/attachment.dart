@@ -5,10 +5,7 @@ part 'attachment.g.dart';
 /// Represents a file or media attachment that can be added to a status.
 /// https://docs.joinmastodon.org/entities/attachment/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Attachment {
   /// The ID of the attachment in the database
   final String id;

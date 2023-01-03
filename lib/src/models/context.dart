@@ -6,10 +6,7 @@ part 'context.g.dart';
 /// Represents the tree around a given status. Used for reconstructing threads of statuses.
 /// https://docs.joinmastodon.org/entities/context/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Context {
   /// Parents in the thread
   final List<Status> ancestors;

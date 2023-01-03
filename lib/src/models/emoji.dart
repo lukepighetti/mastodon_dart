@@ -4,10 +4,7 @@ part 'emoji.g.dart';
 
 /// Represents a custom emoji.
 /// https://docs.joinmastodon.org/entities/emoji/
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Emoji {
   /// The name of the custom emoji
   final String shortcode;

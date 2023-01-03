@@ -6,10 +6,7 @@ part 'instance.g.dart';
 /// Represents the software instance of Mastodon running on required this domain.
 /// https://docs.joinmastodon.org/entities/instance/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Instance {
   /// The domain name of the instance
   final Uri uri;
@@ -73,10 +70,7 @@ class Instance {
 /// Statistics about how much information the instance contains
 /// Listed in https://docs.joinmastodon.org/entities/instance/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class InstanceStats {
   /// Users registered on this instance
   final int userCount;

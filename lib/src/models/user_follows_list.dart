@@ -6,10 +6,7 @@ part 'user_follows_list.g.dart';
 /// Cannot be named `List` because `List` is reserved in Dart.
 /// https://docs.joinmastodon.org/entities/list/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class UserFollowsList {
   /// The internal database ID of the lis
   final String id;

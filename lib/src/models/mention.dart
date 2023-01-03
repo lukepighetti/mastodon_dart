@@ -5,10 +5,7 @@ part 'mention.g.dart';
 /// Represents a mention of a user within the content of a status.
 /// https://docs.joinmastodon.org/entities/mention/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Mention {
   /// The account id of the mentioned user
   final String id;

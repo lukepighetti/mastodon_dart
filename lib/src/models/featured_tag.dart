@@ -5,10 +5,7 @@ part 'featured_tag.g.dart';
 /// Represents a hashtag that is featured on a profile.
 /// https://docs.joinmastodon.org/entities/featuredtag/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class FeaturedTag {
   /// The internal ID of the featured tag in the database
   final String id;

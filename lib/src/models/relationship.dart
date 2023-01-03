@@ -5,10 +5,7 @@ part 'relationship.g.dart';
 /// Represents the relationship between accounts, such as following / blocking / muting / etc.
 /// https://docs.joinmastodon.org/entities/relationship/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Relationship {
   /// The account id
   final String id;

@@ -7,10 +7,7 @@ part 'conversation.g.dart';
 /// Represents a conversation with "direct message" visibility.
 /// https://docs.joinmastodon.org/entities/conversation/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Conversation {
   /// Local database ID of the conversation
   final String id;

@@ -14,10 +14,7 @@ part 'status.g.dart';
 /// Represents a status posted by an account.
 /// https://docs.joinmastodon.org/entities/status/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Status {
   /// ID of the status in the database
   final String id;

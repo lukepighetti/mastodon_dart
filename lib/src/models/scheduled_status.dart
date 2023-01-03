@@ -8,10 +8,7 @@ part 'scheduled_status.g.dart';
 /// Represents a status that will be published at a future scheduled date.
 /// https://docs.joinmastodon.org/entities/scheduledstatus/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class ScheduledStatus {
   final String id;
   final DateTime scheduledAt;
@@ -31,10 +28,7 @@ class ScheduledStatus {
 
 /// https://docs.joinmastodon.org/api/entities/#statusparams
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Params {
   final String text;
   final String inReplyToId;

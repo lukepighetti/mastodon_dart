@@ -5,10 +5,7 @@ part 'application.g.dart';
 /// Represents an application that interfaces with the REST API to access accounts or post statuses.
 /// https://docs.joinmastodon.org/entities/application/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Application {
   /// The name of your application
   final String name;
@@ -28,10 +25,7 @@ class Application {
 
 /// Represents an authenticated [Application]
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class AuthenticatedApplication extends Application {
   /// The clientId associated with your application
   final String clientId;

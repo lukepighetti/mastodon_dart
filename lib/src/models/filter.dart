@@ -7,10 +7,7 @@ part 'filter.g.dart';
 ///
 /// TODO: follow Implementation Notes
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Filter {
   /// The ID of the filter in the database
   final String id;

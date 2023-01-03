@@ -22,6 +22,19 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       blurhash: json['blurhash'] as String?,
     );
 
+Map<String, dynamic> _$AttachmentToJson(Attachment instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': _$AttachmentTypeEnumMap[instance.type]!,
+      'url': instance.url.toString(),
+      'preview_url': instance.previewUrl.toString(),
+      'remote_url': instance.remoteUrl?.toString(),
+      'text_url': instance.textUrl?.toString(),
+      'meta': instance.meta,
+      'description': instance.description,
+      'blurhash': instance.blurhash,
+    };
+
 const _$AttachmentTypeEnumMap = {
   AttachmentType.unknown: 'unknown',
   AttachmentType.image: 'image',

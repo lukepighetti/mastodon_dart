@@ -26,9 +26,32 @@ Instance _$InstanceFromJson(Map<String, dynamic> json) => Instance(
       approvalRequired: json['approval_required'] as bool,
     );
 
+Map<String, dynamic> _$InstanceToJson(Instance instance) => <String, dynamic>{
+      'uri': instance.uri.toString(),
+      'title': instance.title,
+      'description': instance.description,
+      'short_description': instance.shortDescription,
+      'email': instance.email,
+      'version': instance.version,
+      'languages': instance.languages,
+      'registrations': instance.registrations,
+      'approval_required': instance.approvalRequired,
+      'urls': instance.urls,
+      'stats': instance.stats,
+      'thumbnail': instance.thumbnail?.toString(),
+      'contact_account': instance.contactAccount,
+    };
+
 InstanceStats _$InstanceStatsFromJson(Map<String, dynamic> json) =>
     InstanceStats(
       userCount: json['user_count'] as int,
       statusCount: json['status_count'] as int,
       domainCount: json['domain_count'] as int,
     );
+
+Map<String, dynamic> _$InstanceStatsToJson(InstanceStats instance) =>
+    <String, dynamic>{
+      'user_count': instance.userCount,
+      'status_count': instance.statusCount,
+      'domain_count': instance.domainCount,
+    };

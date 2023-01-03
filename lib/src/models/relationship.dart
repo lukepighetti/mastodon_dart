@@ -56,4 +56,5 @@ class Relationship {
 
   factory Relationship.fromJson(Map<String, dynamic> json) =>
       _$RelationshipFromJson(json);
+  Map<String, dynamic> toJson() => _$RelationshipToJson(this);
 }

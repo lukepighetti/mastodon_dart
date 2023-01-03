@@ -16,6 +16,15 @@ Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
           : Status.fromJson(json['status'] as Map<String, dynamic>),
     );
 
+Map<String, dynamic> _$NotificationToJson(Notification instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'type': _$NotificationTypeEnumMap[instance.type]!,
+      'created_at': instance.createdAt.toIso8601String(),
+      'account': instance.account,
+      'status': instance.status,
+    };
+
 const _$NotificationTypeEnumMap = {
   NotificationType.mention: 'mention',
   NotificationType.status: 'status',

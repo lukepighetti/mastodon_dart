@@ -42,6 +42,34 @@ Account _$AccountFromJson(Map<String, dynamic> json) => Account(
       noindex: json['noindex'] as bool?,
     );
 
+Map<String, dynamic> _$AccountToJson(Account instance) => <String, dynamic>{
+      'id': instance.id,
+      'username': instance.username,
+      'acct': instance.acct,
+      'url': instance.url.toString(),
+      'display_name': instance.displayName,
+      'note': instance.note,
+      'avatar': instance.avatar.toString(),
+      'avatar_static': instance.avatarStatic.toString(),
+      'header': instance.header.toString(),
+      'header_static': instance.headerStatic.toString(),
+      'locked': instance.locked,
+      'emojis': instance.emojis,
+      'discoverable': instance.discoverable,
+      'noindex': instance.noindex,
+      'created_at': instance.createdAt.toIso8601String(),
+      'statuses_count': instance.statusesCount,
+      'followers_count': instance.followersCount,
+      'following_count': instance.followingCount,
+      'moved': instance.moved,
+      'suspended': instance.suspended,
+      'limited': instance.limited,
+      'fields': instance.fields,
+      'bot': instance.bot,
+      'group': instance.group,
+      'last_status_at': instance.lastStatusAt?.toIso8601String(),
+    };
+
 Field _$FieldFromJson(Map<String, dynamic> json) => Field(
       name: json['name'] as String,
       value: json['value'] as String,
@@ -49,6 +77,12 @@ Field _$FieldFromJson(Map<String, dynamic> json) => Field(
           ? null
           : DateTime.parse(json['verified_at'] as String),
     );
+
+Map<String, dynamic> _$FieldToJson(Field instance) => <String, dynamic>{
+      'name': instance.name,
+      'value': instance.value,
+      'verified_at': instance.verifiedAt?.toIso8601String(),
+    };
 
 Source _$SourceFromJson(Map<String, dynamic> json) => Source(
       privacy: json['privacy'] as String?,
@@ -61,9 +95,25 @@ Source _$SourceFromJson(Map<String, dynamic> json) => Source(
       followRequestsCount: json['follow_requests_count'] as int,
     );
 
+Map<String, dynamic> _$SourceToJson(Source instance) => <String, dynamic>{
+      'note': instance.note,
+      'fields': instance.fields,
+      'privacy': instance.privacy,
+      'sensitive': instance.sensitive,
+      'language': instance.language,
+      'follow_requests_count': instance.followRequestsCount,
+    };
+
 Token _$TokenFromJson(Map<String, dynamic> json) => Token(
       accessToken: json['access_token'] as String,
       tokenType: json['token_type'] as String,
       scope: json['scope'] as String,
       createdAt: Token._secondsSinceEpoch(json['created_at'] as int),
     );
+
+Map<String, dynamic> _$TokenToJson(Token instance) => <String, dynamic>{
+      'access_token': instance.accessToken,
+      'token_type': instance.tokenType,
+      'scope': instance.scope,
+      'created_at': instance.createdAt.toIso8601String(),
+    };

@@ -12,3 +12,11 @@ FeaturedTag _$FeaturedTagFromJson(Map<String, dynamic> json) => FeaturedTag(
       statusesCount: json['statuses_count'] as int,
       lastStatusAt: DateTime.parse(json['last_status_at'] as String),
     );
+
+Map<String, dynamic> _$FeaturedTagToJson(FeaturedTag instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'statuses_count': instance.statusesCount,
+      'last_status_at': instance.lastStatusAt.toIso8601String(),
+    };

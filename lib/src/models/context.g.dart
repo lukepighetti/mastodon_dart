@@ -14,3 +14,8 @@ Context _$ContextFromJson(Map<String, dynamic> json) => Context(
           .map((e) => Status.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+
+Map<String, dynamic> _$ContextToJson(Context instance) => <String, dynamic>{
+      'ancestors': instance.ancestors,
+      'descendants': instance.descendants,
+    };

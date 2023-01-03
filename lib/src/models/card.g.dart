@@ -26,6 +26,22 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       embedUrl: Uri.parse(json['embed_url'] as String),
     );
 
+Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
+      'url': instance.url.toString(),
+      'title': instance.title,
+      'description': instance.description,
+      'type': _$CardTypeEnumMap[instance.type]!,
+      'author_name': instance.authorName,
+      'author_url': instance.authorUrl?.toString(),
+      'provider_name': instance.providerName,
+      'provider_url': instance.providerUrl?.toString(),
+      'html': instance.html,
+      'width': instance.width,
+      'height': instance.height,
+      'image': instance.image?.toString(),
+      'embed_url': instance.embedUrl.toString(),
+    };
+
 const _$CardTypeEnumMap = {
   CardType.link: 'link',
   CardType.photo: 'photo',

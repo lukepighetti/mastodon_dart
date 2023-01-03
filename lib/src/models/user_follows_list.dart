@@ -21,4 +21,5 @@ class UserFollowsList {
 
   factory UserFollowsList.fromJson(Map<String, dynamic> json) =>
       _$UserFollowsListFromJson(json);
+  Map<String, dynamic> toJson() => _$UserFollowsListToJson(this);
 }

@@ -17,6 +17,16 @@ UserPreferences _$UserPreferencesFromJson(Map<String, dynamic> json) =>
       expandSpoilersByDefault: json['expand_spoilers_by_default'] as bool,
     );
 
+Map<String, dynamic> _$UserPreferencesToJson(UserPreferences instance) =>
+    <String, dynamic>{
+      'default_posting_visibility':
+          _$PostingVisibilityEnumMap[instance.defaultPostingVisibility]!,
+      'is_sensitive_by_default': instance.isSensitiveByDefault,
+      'default_language': instance.defaultLanguage,
+      'media_defaults': _$MediaDefaultsEnumMap[instance.mediaDefaults]!,
+      'expand_spoilers_by_default': instance.expandSpoilersByDefault,
+    };
+
 const _$PostingVisibilityEnumMap = {
   PostingVisibility.public: 'public',
   PostingVisibility.unlisted: 'unlisted',

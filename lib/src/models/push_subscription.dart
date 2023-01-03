@@ -28,4 +28,5 @@ class PushSubscription {
 
   factory PushSubscription.fromJson(Map<String, dynamic> json) =>
       _$PushSubscriptionFromJson(json);
+  Map<String, dynamic> toJson() => _$PushSubscriptionToJson(this);
 }

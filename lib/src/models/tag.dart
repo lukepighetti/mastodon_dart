@@ -24,6 +24,7 @@ class Tag {
   });
 
   factory Tag.fromJson(Map<String, dynamic> json) => _$TagFromJson(json);
+  Map<String, dynamic> toJson() => _$TagToJson(this);
 }
 
 /// Represents daily usage history of a hashtag.
@@ -52,4 +53,5 @@ class History {
 
   factory History.fromJson(Map<String, dynamic> json) =>
       _$HistoryFromJson(json);
+  Map<String, dynamic> toJson() => _$HistoryToJson(this);
 }

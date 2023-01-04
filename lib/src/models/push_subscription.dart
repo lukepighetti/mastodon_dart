@@ -5,10 +5,7 @@ part 'push_subscription.g.dart';
 /// Represents a subscription to the push streaming server.
 /// https://docs.joinmastodon.org/entities/push-subscription/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class PushSubscription {
   /// The id of the push subscription in the database
   final String id;

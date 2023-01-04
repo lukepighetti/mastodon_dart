@@ -6,10 +6,7 @@ part 'poll.g.dart';
 
 /// https://docs.joinmastodon.org/entities/poll/
 /// Represents a poll attached to a status.
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Poll {
   /// The ID of the poll in the database
   final String id;

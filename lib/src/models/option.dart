@@ -4,10 +4,7 @@ part 'option.g.dart';
 
 /// https://docs.joinmastodon.org/entities/Poll/#Option
 /// Represents an option attached to a poll.
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Option {
   /// The text value of the poll option
   final String title;

@@ -5,10 +5,7 @@ part 'activity.g.dart';
 /// Represents a weekly bucket of instance activity.
 /// https://docs.joinmastodon.org/entities/activity/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Activity {
   /// Midnight at the first day of the week
   final DateTime week;

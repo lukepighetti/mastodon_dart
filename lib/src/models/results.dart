@@ -9,10 +9,7 @@ part 'results.g.dart';
 /// Represents the results of a search.
 /// https://docs.joinmastodon.org/entities/results/
 
-@JsonSerializable(
-  createToJson: false,
-  fieldRename: FieldRename.snake,
-)
+@JsonSerializable()
 class Results {
   /// Accounts which match the given query
   final List<Account> accounts;

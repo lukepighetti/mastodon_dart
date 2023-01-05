@@ -39,6 +39,7 @@ Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
       'height': instance.height,
       'image': instance.image?.toString(),
       'embed_url': instance.embedUrl.toString(),
+      'blurhash': instance.blurhash,
     };
 
 const _$CardTypeEnumMap = {

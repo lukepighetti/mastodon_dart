@@ -12,3 +12,10 @@ Mention _$MentionFromJson(Map<String, dynamic> json) => Mention(
       acct: json['acct'] as String,
       id: json['id'] as String,
     );
+
+Map<String, dynamic> _$MentionToJson(Mention instance) => <String, dynamic>{
+      'id': instance.id,
+      'username': instance.username,
+      'acct': instance.acct,
+      'url': instance.url.toString(),
+    };

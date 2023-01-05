@@ -28,4 +28,5 @@ class FeaturedTag {
 
   factory FeaturedTag.fromJson(Map<String, dynamic> json) =>
       _$FeaturedTagFromJson(json);
+  Map<String, dynamic> toJson() => _$FeaturedTagToJson(this);
 }

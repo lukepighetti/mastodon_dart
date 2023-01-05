@@ -11,3 +11,9 @@ UserFollowsList _$UserFollowsListFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String,
     );
+
+Map<String, dynamic> _$UserFollowsListToJson(UserFollowsList instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+    };

@@ -13,3 +13,11 @@ Emoji _$EmojiFromJson(Map<String, dynamic> json) => Emoji(
       visibleInPicker: json['visible_in_picker'] as bool,
       category: json['category'] as String?,
     );
+
+Map<String, dynamic> _$EmojiToJson(Emoji instance) => <String, dynamic>{
+      'shortcode': instance.shortcode,
+      'url': instance.url.toString(),
+      'static_url': instance.staticUrl.toString(),
+      'visible_in_picker': instance.visibleInPicker,
+      'category': instance.category,
+    };

@@ -34,6 +34,7 @@ class Notification {
 
   factory Notification.fromJson(Map<String, dynamic> json) =>
       _$NotificationFromJson(json);
+  Map<String, dynamic> toJson() => _$NotificationToJson(this);
 }
 
 /// The type of event that resulted in the notification:

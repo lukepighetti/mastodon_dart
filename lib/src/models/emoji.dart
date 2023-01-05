@@ -30,4 +30,5 @@ class Emoji {
   });
 
   factory Emoji.fromJson(Map<String, dynamic> json) => _$EmojiFromJson(json);
+  Map<String, dynamic> toJson() => _$EmojiToJson(this);
 }

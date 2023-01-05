@@ -13,3 +13,11 @@ PushSubscription _$PushSubscriptionFromJson(Map<String, dynamic> json) =>
       serverKey: json['server_key'] as String,
       alerts: json['alerts'],
     );
+
+Map<String, dynamic> _$PushSubscriptionToJson(PushSubscription instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'endpoint': instance.endpoint.toString(),
+      'server_key': instance.serverKey,
+      'alerts': instance.alerts,
+    };

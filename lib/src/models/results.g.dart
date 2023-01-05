@@ -17,3 +17,9 @@ Results _$ResultsFromJson(Map<String, dynamic> json) => Results(
           .map((e) => Tag.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+
+Map<String, dynamic> _$ResultsToJson(Results instance) => <String, dynamic>{
+      'accounts': instance.accounts,
+      'statuses': instance.statuses,
+      'hashtags': instance.hashtags,
+    };

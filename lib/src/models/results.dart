@@ -28,4 +28,5 @@ class Results {
 
   factory Results.fromJson(Map<String, dynamic> json) =>
       _$ResultsFromJson(json);
+  Map<String, dynamic> toJson() => _$ResultsToJson(this);
 }

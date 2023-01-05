@@ -19,6 +19,16 @@ Filter _$FilterFromJson(Map<String, dynamic> json) => Filter(
       wholeWord: json['whole_word'] as bool,
     );
 
+Map<String, dynamic> _$FilterToJson(Filter instance) => <String, dynamic>{
+      'id': instance.id,
+      'phrase': instance.phrase,
+      'context':
+          instance.context.map((e) => _$FilterContextEnumMap[e]!).toList(),
+      'expires_at': instance.expiresAt?.toIso8601String(),
+      'irreversible': instance.irreversible,
+      'whole_word': instance.wholeWord,
+    };
+
 const _$FilterContextEnumMap = {
   FilterContext.home: 'home',
   FilterContext.notifications: 'notifications',

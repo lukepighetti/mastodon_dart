@@ -28,4 +28,5 @@ class Activity {
 
   factory Activity.fromJson(Map<String, dynamic> json) =>
       _$ActivityFromJson(json);
+  Map<String, dynamic> toJson() => _$ActivityToJson(this);
 }

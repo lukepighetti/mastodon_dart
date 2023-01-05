@@ -13,9 +13,7 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       image: json['image'] == null ? null : Uri.parse(json['image'] as String),
       type: $enumDecode(_$CardTypeEnumMap, json['type']),
       authorName: json['author_name'] as String?,
-      authorUrl: json['author_url'] == null
-          ? null
-          : Uri.parse(json['author_url'] as String),
+      authorUrl: Card._safeUriParse(json['author_url'] as String),
       providerName: json['provider_name'] as String?,
       providerUrl: json['provider_url'] == null
           ? null
@@ -24,6 +22,7 @@ Card _$CardFromJson(Map<String, dynamic> json) => Card(
       width: json['width'] as int?,
       height: json['height'] as int?,
       embedUrl: Uri.parse(json['embed_url'] as String),
+      blurhash: json['blurhash'] as String?,
     );
 
 Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
@@ -40,6 +39,7 @@ Map<String, dynamic> _$CardToJson(Card instance) => <String, dynamic>{
       'height': instance.height,
       'image': instance.image?.toString(),
       'embed_url': instance.embedUrl.toString(),
+      'blurhash': instance.blurhash,
     };
 
 const _$CardTypeEnumMap = {

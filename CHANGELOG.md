@@ -1,3 +1,8 @@
+## 1.0.7 (1/5/2023)
+
+- Feat: add toJson methods
+- Fix: Handle malformed Card#authorUrl parsing
+
 ## 1.0.6 (1/3/2023)
 
 - Feat: update Account fields

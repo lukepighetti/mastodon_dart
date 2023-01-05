@@ -1,67 +1,46 @@
-//todo: do this with json_serializable; currently using json2dart
-//todo: implement mock
+import 'package:json_annotation/json_annotation.dart';
+
+part 'marker.g.dart';
 
 /// Represents the last read position within a user's timelines.
-/// https://docs.joinmastodon.org/entities/marker/
-class Marker {
+/// https://docs.joinmastodon.org/entities/Marker/
+
+@JsonSerializable()
+class Markers {
   /// Information about the user's position in the home timeline
-  Position? home;
+  final Marker? home;
 
   /// Information about the user's position in their notifications
-  Position? notifications;
+  final Marker? notifications;
 
-  Marker({
+  Markers({
     required this.home,
     required this.notifications,
   });
 
-  Marker.fromJson(Map<String, dynamic> json) {
-    home = json['home'] != null ? Position.fromJson(json['home']) : null;
-    notifications = json['notifications'] != null
-        ? Position.fromJson(json['notifications'])
-        : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (home != null) {
-      data['home'] = home!.toJson();
-    }
-    if (notifications != null) {
-      data['notifications'] = notifications!.toJson();
-    }
-    return data;
-  }
+  factory Markers.fromJson(Map<String, dynamic> json) =>
+      _$MarkersFromJson(json);
+  Map<String, dynamic> toJson() => _$MarkersToJson(this);
 }
 
-/// Timeline position information
-class Position {
+/// Represents the last read position within a user's timelines
+@JsonSerializable()
+class Marker {
   /// The ID of the most recently viewed entity
-  String? lastReadId;
+  final String lastReadId;
 
   /// The timestamp of when the marker was set
-  String? updatedAt;
+  final DateTime updatedAt;
 
-  /// Used for locking to prevent write conflicts
-  int? version;
+  /// An incrementing counter, used for locking to prevent write conflicts
+  final int version;
 
-  Position({
+  Marker({
     required this.lastReadId,
     required this.version,
     required this.updatedAt,
   });
 
-  Position.fromJson(Map<String, dynamic> json) {
-    lastReadId = json['last_read_id'];
-    version = json['version'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['last_read_id'] = lastReadId;
-    data['version'] = version;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
+  factory Marker.fromJson(Map<String, dynamic> json) => _$MarkerFromJson(json);
+  Map<String, dynamic> toJson() => _$MarkerToJson(this);
 }

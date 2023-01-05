@@ -114,6 +114,7 @@ class Account {
 
   factory Account.fromJson(Map<String, dynamic> json) =>
       _$AccountFromJson(json);
+  Map<String, dynamic> toJson() => _$AccountToJson(this);
 }
 
 /// Represents a profile field as a name-value pair with optional verification.
@@ -136,6 +137,7 @@ class Field {
   });
 
   factory Field.fromJson(Map<String, dynamic> json) => _$FieldFromJson(json);
+  Map<String, dynamic> toJson() => _$FieldToJson(this);
 }
 
 /// Represents display or publishing preferences of user's own account.
@@ -175,6 +177,7 @@ class Source {
   });
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
+  Map<String, dynamic> toJson() => _$SourceToJson(this);
 }
 
 /// Represents an OAuth token used for authenticating with the API and performing actions.
@@ -202,6 +205,7 @@ class Token {
   });
 
   factory Token.fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
+  Map<String, dynamic> toJson() => _$TokenToJson(this);
 
   static DateTime _secondsSinceEpoch(int seconds) =>
       DateTime.fromMillisecondsSinceEpoch(seconds * 1000);

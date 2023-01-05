@@ -24,6 +24,7 @@ class ScheduledStatus {
 
   factory ScheduledStatus.fromJson(Map<String, dynamic> json) =>
       _$ScheduledStatusFromJson(json);
+  Map<String, dynamic> toJson() => _$ScheduledStatusToJson(this);
 }
 
 /// https://docs.joinmastodon.org/api/entities/#statusparams
@@ -51,4 +52,5 @@ class Params {
   });
 
   factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
+  Map<String, dynamic> toJson() => _$ParamsToJson(this);
 }

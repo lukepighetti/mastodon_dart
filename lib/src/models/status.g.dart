@@ -54,6 +54,38 @@ Status _$StatusFromJson(Map<String, dynamic> json) => Status(
           : Poll.fromJson(json['poll'] as Map<String, dynamic>),
     );
 
+Map<String, dynamic> _$StatusToJson(Status instance) => <String, dynamic>{
+      'id': instance.id,
+      'uri': instance.uri,
+      'created_at': instance.createdAt.toIso8601String(),
+      'account': instance.account,
+      'content': instance.content,
+      'visibility': _$VisibilityEnumMap[instance.visibility]!,
+      'sensitive': instance.sensitive,
+      'spoiler_text': instance.spoilerText,
+      'media_attachments': instance.mediaAttachments,
+      'application': instance.application,
+      'mentions': instance.mentions,
+      'tags': instance.tags,
+      'emojis': instance.emojis,
+      'reblogs_count': instance.reblogsCount,
+      'favourites_count': instance.favouritesCount,
+      'replies_count': instance.repliesCount,
+      'url': instance.url?.toString(),
+      'in_reply_to_id': instance.inReplyToId,
+      'in_reply_to_account_id': instance.inReplyToAccountId,
+      'reblog': instance.reblog,
+      'poll': instance.poll,
+      'card': instance.card,
+      'language': instance.language,
+      'text': instance.text,
+      'favourited': instance.favourited,
+      'reblogged': instance.reblogged,
+      'muted': instance.muted,
+      'bookmarked': instance.bookmarked,
+      'pinned': instance.pinned,
+    };
+
 const _$VisibilityEnumMap = {
   Visibility.public: 'public',
   Visibility.unlisted: 'unlisted',

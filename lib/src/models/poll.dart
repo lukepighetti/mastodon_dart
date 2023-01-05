@@ -60,4 +60,5 @@ class Poll {
   });
 
   factory Poll.fromJson(Map<String, dynamic> json) => _$PollFromJson(json);
+  Map<String, dynamic> toJson() => _$PollToJson(this);
 }

@@ -61,6 +61,7 @@ class Attachment {
 
   factory Attachment.fromJson(Map<String, dynamic> json) =>
       _$AttachmentFromJson(json);
+  Map<String, dynamic> toJson() => _$AttachmentToJson(this);
 }
 
 enum AttachmentType { unknown, image, gifv, video, audio }

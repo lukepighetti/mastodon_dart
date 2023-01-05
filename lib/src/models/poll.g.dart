@@ -25,3 +25,16 @@ Poll _$PollFromJson(Map<String, dynamic> json) => Poll(
           .map((e) => Emoji.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+
+Map<String, dynamic> _$PollToJson(Poll instance) => <String, dynamic>{
+      'id': instance.id,
+      'expires_at': instance.expiresAt?.toIso8601String(),
+      'expired': instance.expired,
+      'multiple': instance.multiple,
+      'votes_count': instance.votesCount,
+      'voters_count': instance.votersCount,
+      'voted': instance.voted,
+      'own_votes': instance.ownVotes,
+      'options': instance.options,
+      'emojis': instance.emojis,
+    };

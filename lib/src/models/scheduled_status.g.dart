@@ -18,6 +18,14 @@ ScheduledStatus _$ScheduledStatusFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
+Map<String, dynamic> _$ScheduledStatusToJson(ScheduledStatus instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'scheduled_at': instance.scheduledAt.toIso8601String(),
+      'params': instance.params,
+      'media_attachments': instance.mediaAttachments,
+    };
+
 Params _$ParamsFromJson(Map<String, dynamic> json) => Params(
       text: json['text'] as String,
       inReplyToId: json['in_reply_to_id'] as String,
@@ -29,6 +37,17 @@ Params _$ParamsFromJson(Map<String, dynamic> json) => Params(
       scheduledAt: DateTime.parse(json['scheduled_at'] as String),
       applicationId: json['application_id'] as String,
     );
+
+Map<String, dynamic> _$ParamsToJson(Params instance) => <String, dynamic>{
+      'text': instance.text,
+      'in_reply_to_id': instance.inReplyToId,
+      'media_ids': instance.mediaIds,
+      'sensitive': instance.sensitive,
+      'spoiler_text': instance.spoilerText,
+      'visibility': _$VisibilityEnumMap[instance.visibility]!,
+      'scheduled_at': instance.scheduledAt.toIso8601String(),
+      'application_id': instance.applicationId,
+    };
 
 const _$VisibilityEnumMap = {
   Visibility.public: 'public',

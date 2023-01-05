@@ -65,6 +65,7 @@ class Instance {
 
   factory Instance.fromJson(Map<String, dynamic> json) =>
       _$InstanceFromJson(json);
+  Map<String, dynamic> toJson() => _$InstanceToJson(this);
 }
 
 /// Statistics about how much information the instance contains
@@ -89,4 +90,5 @@ class InstanceStats {
 
   factory InstanceStats.fromJson(Map<String, dynamic> json) =>
       _$InstanceStatsFromJson(json);
+  Map<String, dynamic> toJson() => _$InstanceStatsToJson(this);
 }

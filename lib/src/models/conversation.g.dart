@@ -16,3 +16,11 @@ Conversation _$ConversationFromJson(Map<String, dynamic> json) => Conversation(
           : Status.fromJson(json['last_status'] as Map<String, dynamic>),
       unread: json['unread'] as bool,
     );
+
+Map<String, dynamic> _$ConversationToJson(Conversation instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'accounts': instance.accounts,
+      'unread': instance.unread,
+      'last_status': instance.lastStatus,
+    };

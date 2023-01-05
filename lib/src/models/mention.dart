@@ -28,4 +28,5 @@ class Mention {
 
   factory Mention.fromJson(Map<String, dynamic> json) =>
       _$MentionFromJson(json);
+  Map<String, dynamic> toJson() => _$MentionToJson(this);
 }

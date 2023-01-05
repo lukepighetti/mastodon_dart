@@ -74,6 +74,8 @@ class Card {
   factory Card.fromJson(Map<String, dynamic> json) => _$CardFromJson(json);
 
   static Uri? _safeUriParse(String url) => Uri.tryParse(url);
+
+  Map<String, dynamic> toJson() => _$CardToJson(this);
 }
 
 enum CardType { link, photo, video, rich }

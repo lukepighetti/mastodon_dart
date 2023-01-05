@@ -12,6 +12,12 @@ Application _$ApplicationFromJson(Map<String, dynamic> json) => Application(
           json['website'] == null ? null : Uri.parse(json['website'] as String),
     );
 
+Map<String, dynamic> _$ApplicationToJson(Application instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'website': instance.website?.toString(),
+    };
+
 AuthenticatedApplication _$AuthenticatedApplicationFromJson(
         Map<String, dynamic> json) =>
     AuthenticatedApplication(
@@ -22,3 +28,13 @@ AuthenticatedApplication _$AuthenticatedApplicationFromJson(
       clientSecret: json['client_secret'] as String,
       vapidKey: json['vapid_key'] as String,
     );
+
+Map<String, dynamic> _$AuthenticatedApplicationToJson(
+        AuthenticatedApplication instance) =>
+    <String, dynamic>{
+      'name': instance.name,
+      'website': instance.website?.toString(),
+      'client_id': instance.clientId,
+      'client_secret': instance.clientSecret,
+      'vapid_key': instance.vapidKey,
+    };

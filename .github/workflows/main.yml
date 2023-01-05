@@ -28,6 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
@@ -42,6 +44,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: arduino/setup-task@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: subosito/flutter-action@v2
         with:
           channel: stable

@@ -201,7 +201,7 @@ mixin Accounts on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/follow
   ///
   /// - authenticated
-  /// - write:follows follow
+  /// - write:follows
   Future<Relationship> follow(String id, {bool reblogs = true}) async {
     final response = await request(
       Method.post,
@@ -220,7 +220,7 @@ mixin Accounts on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/unfollow
   ///
   /// - authenticated
-  /// - write:follows follow
+  /// - write:follows
   Future<Relationship> unfollow(String id) async {
     final response = await request(
       Method.post,

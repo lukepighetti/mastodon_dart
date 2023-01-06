@@ -10,7 +10,7 @@ mixin Mutes on Authentication, Utilities {
   /// GET /api/v1/mutes
   ///
   /// - authentication (requires user)
-  /// - read:mutes follow
+  /// - read:mutes
   Future<List<Account>> mutes({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -30,7 +30,7 @@ mixin Mutes on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/mute
   ///
   /// - authentication (requires user)
-  /// - write:mutes follow
+  /// - write:mutes
   Future<Relationship> muteAccount(String id) async {
     final response = await request(
       Method.post,
@@ -44,7 +44,7 @@ mixin Mutes on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/unmute
   ///
   /// - authentication (requires user)
-  /// - write:mutes follow
+  /// - write:mutes
   Future<Relationship> unmuteAccount(String id) async {
     final response = await request(
       Method.post,

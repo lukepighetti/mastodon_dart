@@ -8,7 +8,7 @@ mixin FollowRequests on Authentication, Utilities {
   /// GET /api/v1/follow_requests
   ///
   /// - authenticated (requires user)
-  /// - read read:follows follow
+  /// - read read:follows
   Future<List<Account>> followRequests({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -28,7 +28,7 @@ mixin FollowRequests on Authentication, Utilities {
   /// POST /api/v1/follow_requests/:id/authorize
   ///
   /// - authenticated (requires user)
-  /// - write:follows follow
+  /// - write:follows
   Future<dynamic> authorizeRequest(String id) async {
     await request(
       Method.post,
@@ -40,7 +40,7 @@ mixin FollowRequests on Authentication, Utilities {
   /// POST /api/v1/follow_requests/:id/reject
   ///
   /// - authenticated (requires user)
-  /// - write:follows follow
+  /// - write:follows
   Future<dynamic> rejectRequest(String id) async {
     await request(
       Method.post,

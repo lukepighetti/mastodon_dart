@@ -14,7 +14,7 @@ mixin Apps on Authentication, Utilities {
     Uri website, [
     String redirectUris = "urn:ietf:wg:oauth:2.0:oob",
     String clientName = "mastodon-dart",
-    List<String> scopes = const ["write", "read", "follow", "push"],
+    List<String> scopes = const ["write", "read", "push"],
   ]) async {
     final response = await request(
       Method.post,

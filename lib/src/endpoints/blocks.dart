@@ -9,7 +9,7 @@ mixin Blocks on Authentication, Utilities {
   /// GET /api/v1/blocks
   ///
   /// - authenticated (requires user)
-  /// - read:blocks follow
+  /// - read:blocks
   Future<List<Account>> blocks({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -28,7 +28,7 @@ mixin Blocks on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/block
   ///
   /// - authenticated (requires user)
-  /// - write:blocks follow
+  /// - write:blocks
   Future<Relationship> block(String id) async {
     final response = await request(
       Method.post,
@@ -42,7 +42,7 @@ mixin Blocks on Authentication, Utilities {
   /// POST /api/v1/accounts/:id/unblock
   ///
   /// - authenticated (requires user)
-  /// - write:blocks follow
+  /// - write:blocks
   Future<Relationship> unblock(String id) async {
     final response = await request(
       Method.post,

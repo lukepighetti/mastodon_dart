@@ -1,6 +1,6 @@
 name: mastodon_dart
 description: The unofficial Mastodon client
-version: 1.0.7
+version: 1.0.8
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:

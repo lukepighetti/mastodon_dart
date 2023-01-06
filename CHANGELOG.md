@@ -1,3 +1,7 @@
+## 1.0.8 (1/6/2023)
+
+- Fix: Remove follow scope as it is now included in write
+
 ## 1.0.7 (1/5/2023)
 
 - Feat: add toJson methods

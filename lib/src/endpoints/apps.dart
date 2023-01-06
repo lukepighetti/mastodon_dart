@@ -10,20 +10,22 @@ mixin Apps on Authentication, Utilities {
   /// Create a new application to obtain OAuth2 credentials.
   ///
   /// POST /api/v1/apps
-  Future<AuthenticatedApplication> appCredentials(
-    Uri website, [
-    String redirectUris = "urn:ietf:wg:oauth:2.0:oob",
+  Future<AuthenticatedApplication> appCredentials({
+    Uri? website,
+    Uri? redirectUris,
     String clientName = "mastodon-dart",
     List<String> scopes = const ["write", "read", "push"],
-  ]) async {
+  }) async {
     final response = await request(
       Method.post,
       "/api/v1/apps",
       payload: {
         "client_name": clientName,
-        "redirect_uris": redirectUris,
+        "redirect_uris": redirectUris == null
+            ? "urn:ietf:wg:oauth:2.0:oob"
+            : redirectUris.toString(),
         "scopes": scopes.join(" "),
-        "website": website.toString(),
+        "website": website == null ? '' : website.toString(),
       },
     );
 

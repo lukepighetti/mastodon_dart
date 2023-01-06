@@ -7,7 +7,7 @@ mixin DomainBlocks on Authentication, Utilities {
   /// GET /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)
-  /// - read read:blocks follow
+  /// - read read:blocks
   Future<List<Uri>> domainBlocks({int limit = 40}) async {
     final response = await request(
       Method.get,
@@ -26,7 +26,7 @@ mixin DomainBlocks on Authentication, Utilities {
   /// POST /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)
-  /// - write write:blocks follow
+  /// - write write:blocks
   Future<dynamic> domainBlock(Uri domain) async {
     await request(
       Method.post,
@@ -41,7 +41,7 @@ mixin DomainBlocks on Authentication, Utilities {
   /// DELETE /api/v1/domain_blocks
   ///
   /// - authenticated (requires user)
-  /// - write write:blocks follow
+  /// - write write:blocks
   Future<dynamic> domainUnblock(Uri domain) async {
     await request(
       Method.delete,

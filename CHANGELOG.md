@@ -1,3 +1,7 @@
+## 1.0.9 (1/9/2023)
+
+- Fix: Make website optional for appCredentials
+
 ## 1.0.8 (1/6/2023)
 
 - Fix: Remove follow scope as it is now included in write

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'meta.dart';
+
 part 'attachment.g.dart';
 
 /// Represents a file or media attachment that can be added to a status.
@@ -37,7 +39,7 @@ class Attachment {
   /// More importantly, there may be another top-level focus Hash object as of Mastodon 2.3.0,
   /// with coordinates can be used for smart thumbnail cropping
 
-  final Object? meta;
+  final Meta meta;
 
   /// Alternate text that describes what is in the media attachment, to be used for the visually impaired or when media attachments do not load
 

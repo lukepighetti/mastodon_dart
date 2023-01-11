@@ -1,3 +1,7 @@
+## 1.0.10 (1/11/2023)
+
+- Feat: add Meta
+
 ## 1.0.9 (1/9/2023)
 
 - Fix: Make website optional for appCredentials

@@ -1,6 +1,6 @@
 # mastodon_dart
 
-The unofficial Dart library for accessing the Mastodon API.
+The unofficial Dart library for accessing the Mastodon API through REST or WebSockets.
 
 [Mastodon API documentation](https://docs.joinmastodon.org/api)
 

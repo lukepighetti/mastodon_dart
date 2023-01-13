@@ -1,5 +1,5 @@
 name: mastodon_dart
-description: The unofficial Mastodon client
+description: The unofficial Dart library for accessing the Mastodon API through REST or WebSockets
 version: 1.0.10
 homepage: https://github.com/lukepighetti/mastodon_dart
 

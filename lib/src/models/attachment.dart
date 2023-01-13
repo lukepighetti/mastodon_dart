@@ -24,7 +24,7 @@ class Attachment {
   final Uri url;
 
   /// The location of a scaled-down preview of the attachment
-  final Uri previewUrl;
+  final Uri? previewUrl;
 
   /// The location of the full-size original attachment on the remote website
 

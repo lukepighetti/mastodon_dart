@@ -13,7 +13,9 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       remoteUrl: json['remote_url'] == null
           ? null
           : Uri.parse(json['remote_url'] as String),
-      previewUrl: Uri.parse(json['preview_url'] as String),
+      previewUrl: json['preview_url'] == null
+          ? null
+          : Uri.parse(json['preview_url'] as String),
       textUrl: json['text_url'] == null
           ? null
           : Uri.parse(json['text_url'] as String),
@@ -27,7 +29,7 @@ Map<String, dynamic> _$AttachmentToJson(Attachment instance) =>
       'id': instance.id,
       'type': _$AttachmentTypeEnumMap[instance.type]!,
       'url': instance.url.toString(),
-      'preview_url': instance.previewUrl.toString(),
+      'preview_url': instance.previewUrl?.toString(),
       'remote_url': instance.remoteUrl?.toString(),
       'text_url': instance.textUrl?.toString(),
       'meta': instance.meta,

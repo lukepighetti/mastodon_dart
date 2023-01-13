@@ -66,6 +66,7 @@ mixin Timelines on Authentication, Utilities {
   /// - read read:statuses
   Future<List<Status>> publicTimeline({
     bool local = false,
+    bool remote = false,
     bool onlyMedia = false,
     String? maxId,
     String? sinceId,
@@ -78,6 +79,7 @@ mixin Timelines on Authentication, Utilities {
       authenticated: true,
       payload: {
         "local": "$local",
+        "remote": "$remote",
         "only_media": "$onlyMedia",
         "max_id": maxId,
         "since_id": sinceId,

@@ -24,7 +24,7 @@ class Poll {
   final int votesCount;
 
   /// How many unique accounts have voted on a multiple-choice poll
-  final int votersCount;
+  final int? votersCount;
 
   /// When called with a user token, has the authorized user voted?
 

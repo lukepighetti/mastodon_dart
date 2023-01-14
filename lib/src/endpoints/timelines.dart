@@ -1,8 +1,11 @@
 import 'dart:convert';
 
 import '../authentication.dart';
+import '../exception.dart';
+import '../model.dart';
 import '../models/conversation.dart';
 import '../models/status.dart';
+import '../models_response.dart';
 import '../utilities.dart';
 
 mixin Timelines on Authentication, Utilities {
@@ -10,7 +13,7 @@ mixin Timelines on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:statuses
-  Future<List<Status>> timeline({
+  Future<ModelsResponse<Status>> timeline({
     String? maxId,
     String? sinceId,
     String? minId,
@@ -28,9 +31,23 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return List<Status>.from(
-      json.decode(response.body).map((json) => Status.fromJson(json)),
+    final json = jsonDecode(response.body);
+    final models = List<Model<Status>>.from(
+      json.map((json) {
+        try {
+          return Model<Status>.success(Status.fromJson(json));
+        } catch (e) {
+          return Model<Status>.failure(
+            ModelException(
+              exception: e as Exception,
+              unparsed: json,
+            ),
+          );
+        }
+      }),
     );
+
+    return ModelsResponse(models);
   }
 
   /// GET /api/v1/conversations

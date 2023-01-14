@@ -3,12 +3,14 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 import '../authentication.dart';
+import '../exception.dart';
+import '../model.dart';
+import '../model_response.dart';
 import '../models/account.dart';
 import '../models/card.dart';
 import '../models/context.dart';
-import '../models/visibility.dart';
 import '../models/status.dart';
-import '../exception.dart';
+import '../models/visibility.dart';
 import '../utilities.dart';
 
 mixin Statuses on Authentication, Utilities {
@@ -16,13 +18,28 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - public
   /// - read read:statuses
-  Future<Status> status(String id) async {
+  Future<ModelResponse<Status>> status(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id",
     );
 
-    return Status.fromJson(json.decode(response.body));
+    try {
+      return ModelResponse(
+        Model.success(
+          Status.fromJson(json.decode(response.body)),
+        ),
+      );
+    } on Exception catch (e) {
+      return ModelResponse(
+        Model.failure(
+          ModelException(
+            exception: e,
+            unparsed: response.body,
+          ),
+        ),
+      );
+    }
   }
 
   /// GET /api/v1/statuses/:id/context

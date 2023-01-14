@@ -8,3 +8,16 @@ class MastodonException implements Exception {
   @override
   String toString() => "MastodonException: $statusCode $message";
 }
+
+class ModelException implements Exception {
+  final Exception exception;
+  final String unparsed;
+
+  ModelException({
+    required this.exception,
+    required this.unparsed,
+  });
+
+  @override
+  String toString() => "ModelException: $exception";
+}

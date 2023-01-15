@@ -19,7 +19,9 @@ Attachment _$AttachmentFromJson(Map<String, dynamic> json) => Attachment(
       textUrl: json['text_url'] == null
           ? null
           : Uri.parse(json['text_url'] as String),
-      meta: Meta.fromJson(json['meta'] as Map<String, dynamic>),
+      meta: json['meta'] == null
+          ? null
+          : Meta.fromJson(json['meta'] as Map<String, dynamic>),
       description: json['description'] as String?,
       blurhash: json['blurhash'] as String?,
     );

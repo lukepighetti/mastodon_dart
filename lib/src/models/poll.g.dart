@@ -14,7 +14,7 @@ Poll _$PollFromJson(Map<String, dynamic> json) => Poll(
       expired: json['expired'] as bool,
       multiple: json['multiple'] as bool,
       votesCount: json['votes_count'] as int,
-      votersCount: json['voters_count'] as int,
+      votersCount: json['voters_count'] as int?,
       voted: json['voted'] as bool?,
       ownVotes:
           (json['own_votes'] as List<dynamic>?)?.map((e) => e as int).toList(),

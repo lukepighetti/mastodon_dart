@@ -1,3 +1,10 @@
+## 1.0.11 (1/18/2023)
+
+- Feat: add example
+- Feat: add remote to publicTimeline
+- Fix: make previewUrl, votersCount, meta
+- Fix: update description
+
 ## 1.0.10 (1/11/2023)
 
 - Feat: add Meta

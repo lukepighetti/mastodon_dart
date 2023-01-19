@@ -35,10 +35,10 @@ main() async {
   }
 
   final response = await client.timeline(limit: 5);
-  for (final model in response.data) {
-    final status = model.data;
+  for (final result in response.results) {
+    final status = result.model;
     if (status == null) {
-      print('Error parsing status: ${model.error!.exception}');
+      print('Error parsing status: ${result.error!.exception}');
       continue;
     }
     print('@${status.account.acct}: ${_stripHtml(status.content)}');

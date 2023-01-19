@@ -2,7 +2,7 @@ import 'exception.dart';
 
 class Result<M> {
   final M? model;
-  final ModelException? error;
+  final ResultException? error;
 
   Result(this.model, this.error)
       : assert(model == null && error == null,

@@ -40,7 +40,7 @@ mixin Timelines on Authentication, Utilities {
           return Result<Status>.success(Status.fromJson(json));
         } catch (e) {
           return Result<Status>.failure(
-            ModelException(
+            ResultException(
               exception: e as Exception,
               unparsed: json,
             ),

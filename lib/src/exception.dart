@@ -9,15 +9,15 @@ class MastodonException implements Exception {
   String toString() => "MastodonException: $statusCode $message";
 }
 
-class ModelException implements Exception {
+class ResultException implements Exception {
   final Exception exception;
   final String unparsed;
 
-  ModelException({
+  ResultException({
     required this.exception,
     required this.unparsed,
   });
 
   @override
-  String toString() => "ModelException: $exception";
+  String toString() => "ResultException: $exception";
 }

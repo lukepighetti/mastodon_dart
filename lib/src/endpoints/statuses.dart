@@ -35,7 +35,7 @@ mixin Statuses on Authentication, Utilities {
     } on Exception catch (e) {
       return Response(
         Result.failure(
-          ModelException(
+          ResultException(
             exception: e,
             unparsed: response.body,
           ),

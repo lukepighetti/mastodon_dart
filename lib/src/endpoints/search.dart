@@ -3,16 +3,18 @@ import 'dart:convert';
 import '../authentication.dart';
 import '../exception.dart';
 import '../model.dart';
-import '../model_response.dart';
+import '../response.dart';
 import '../models/results.dart';
 import '../utilities.dart';
+
+typedef SearchResponse = Response<Model<Results>>;
 
 mixin Search on Authentication, Utilities {
   /// GET /api/v2/search
   ///
   /// - authenticated
   /// - read read:search
-  Future<ModelResponse<Results>> search(
+  Future<SearchResponse> search(
     String q, {
     bool resolve = false,
   }) async {
@@ -27,13 +29,13 @@ mixin Search on Authentication, Utilities {
     );
 
     try {
-      return ModelResponse(
+      return Response(
         Model.success(
           Results.fromJson(json.decode(response.body)),
         ),
       );
     } on Exception catch (e) {
-      return ModelResponse(
+      return Response(
         Model.failure(
           ModelException(
             exception: e,

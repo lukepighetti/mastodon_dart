@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 import '../authentication.dart';
 import '../exception.dart';
 import '../model.dart';
-import '../model_response.dart';
+import '../response.dart';
 import '../models/account.dart';
 import '../models/card.dart';
 import '../models/context.dart';
@@ -13,25 +13,27 @@ import '../models/status.dart';
 import '../models/visibility.dart';
 import '../utilities.dart';
 
+typedef StatusResponse = Response<Model<Status>>;
+
 mixin Statuses on Authentication, Utilities {
   /// GET /api/v1/statuses/:id
   ///
   /// - public
   /// - read read:statuses
-  Future<ModelResponse<Status>> status(String id) async {
+  Future<StatusResponse> status(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id",
     );
 
     try {
-      return ModelResponse(
+      return Response(
         Model.success(
           Status.fromJson(json.decode(response.body)),
         ),
       );
     } on Exception catch (e) {
-      return ModelResponse(
+      return Response(
         Model.failure(
           ModelException(
             exception: e,
@@ -174,7 +176,7 @@ mixin Statuses on Authentication, Utilities {
   /// - authenticated
   /// - write write:statuses
   Future<Status> reblog(String id) async {
-    late final Response response;
+    late final http.Response response;
 
     try {
       response = await request(

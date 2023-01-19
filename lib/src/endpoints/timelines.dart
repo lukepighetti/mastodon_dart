@@ -5,15 +5,17 @@ import '../exception.dart';
 import '../model.dart';
 import '../models/conversation.dart';
 import '../models/status.dart';
-import '../models_response.dart';
+import '../response.dart';
 import '../utilities.dart';
+
+typedef TimelineResponse = Response<List<Model<Status>>>;
 
 mixin Timelines on Authentication, Utilities {
   /// GET /api/v1/timelines/home
   ///
   /// - authenticated
   /// - read read:statuses
-  Future<ModelsResponse<Status>> timeline({
+  Future<TimelineResponse> timeline({
     String? maxId,
     String? sinceId,
     String? minId,
@@ -47,7 +49,7 @@ mixin Timelines on Authentication, Utilities {
       }),
     );
 
-    return ModelsResponse(models);
+    return Response(models);
   }
 
   /// GET /api/v1/conversations

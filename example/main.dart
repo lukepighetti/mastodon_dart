@@ -26,7 +26,7 @@ main() async {
   client.token = bearerToken;
 
   try {
-    var currentAccount = await client.verifyCredentials();
+    final currentAccount = await client.verifyCredentials();
     print('Hello ${currentAccount.username}!');
     print('\n');
   } on MastodonException catch (e) {
@@ -34,8 +34,13 @@ main() async {
     exit(1);
   }
 
-  var timeline = await client.timeline(limit: 5);
-  for (var status in timeline) {
+  final response = await client.timeline(limit: 5);
+  for (final model in response.data) {
+    final status = model.data;
+    if (status == null) {
+      print('Error parsing status: ${model.error!.exception}');
+      continue;
+    }
     print('@${status.account.acct}: ${_stripHtml(status.content)}');
   }
 }

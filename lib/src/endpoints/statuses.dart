@@ -4,16 +4,16 @@ import 'package:http/http.dart' as http;
 
 import '../authentication.dart';
 import '../exception.dart';
-import '../model.dart';
-import '../response.dart';
 import '../models/account.dart';
 import '../models/card.dart';
 import '../models/context.dart';
 import '../models/status.dart';
 import '../models/visibility.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
 
-typedef StatusResponse = Response<Model<Status>>;
+typedef StatusResponse = Response<Result<Status>>;
 
 mixin Statuses on Authentication, Utilities {
   /// GET /api/v1/statuses/:id
@@ -28,13 +28,13 @@ mixin Statuses on Authentication, Utilities {
 
     try {
       return Response(
-        Model.success(
+        Result.success(
           Status.fromJson(json.decode(response.body)),
         ),
       );
     } on Exception catch (e) {
       return Response(
-        Model.failure(
+        Result.failure(
           ModelException(
             exception: e,
             unparsed: response.body,

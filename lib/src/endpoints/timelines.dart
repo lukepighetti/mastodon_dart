@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import '../authentication.dart';
 import '../exception.dart';
-import '../model.dart';
 import '../models/conversation.dart';
 import '../models/status.dart';
 import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
 
-typedef TimelineResponse = Response<List<Model<Status>>>;
+typedef TimelineResponse = Response<List<Result<Status>>>;
 
 mixin Timelines on Authentication, Utilities {
   /// GET /api/v1/timelines/home
@@ -34,12 +34,12 @@ mixin Timelines on Authentication, Utilities {
     );
 
     final json = jsonDecode(response.body);
-    final models = List<Model<Status>>.from(
+    final models = List<Result<Status>>.from(
       json.map((json) {
         try {
-          return Model<Status>.success(Status.fromJson(json));
+          return Result<Status>.success(Status.fromJson(json));
         } catch (e) {
-          return Model<Status>.failure(
+          return Result<Status>.failure(
             ModelException(
               exception: e as Exception,
               unparsed: json,

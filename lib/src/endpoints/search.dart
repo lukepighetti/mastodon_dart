@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import '../authentication.dart';
 import '../exception.dart';
-import '../model.dart';
-import '../response.dart';
 import '../models/results.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
 
-typedef SearchResponse = Response<Model<Results>>;
+typedef SearchResponse = Response<Result<Results>>;
 
 mixin Search on Authentication, Utilities {
   /// GET /api/v2/search
@@ -30,13 +30,13 @@ mixin Search on Authentication, Utilities {
 
     try {
       return Response(
-        Model.success(
+        Result.success(
           Results.fromJson(json.decode(response.body)),
         ),
       );
     } on Exception catch (e) {
       return Response(
-        Model.failure(
+        Result.failure(
           ModelException(
             exception: e,
             unparsed: response.body,

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import '../authentication.dart';
 import '../models/conversation.dart';
 import '../models/status.dart';
@@ -8,6 +6,7 @@ import '../result.dart';
 import '../utilities.dart';
 
 typedef TimelineResponse = Response<List<Result<Status>>>;
+typedef ConversationResponse = Response<List<Result<Conversation>>>;
 
 mixin Timelines on Authentication, Utilities {
   /// GET /api/v1/timelines/home
@@ -39,7 +38,7 @@ mixin Timelines on Authentication, Utilities {
   ///
   /// authenticated
   /// read read:statuses
-  Future<List<Conversation>> conversations({
+  Future<ConversationResponse> conversations({
     String? maxId,
     String? sinceId,
     String? minId,
@@ -57,16 +56,14 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return List<Conversation>.from(
-      json.decode(response.body).map((json) => Conversation.fromJson(json)),
-    );
+    return Response.parseMany(response.body, Conversation.fromJson);
   }
 
   /// GET /api/v1/timelines/public
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Status>> publicTimeline({
+  Future<TimelineResponse> publicTimeline({
     bool local = false,
     bool remote = false,
     bool onlyMedia = false,
@@ -90,16 +87,14 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return List<Status>.from(
-      json.decode(response.body).map((json) => Status.fromJson(json)),
-    );
+    return Response.parseMany(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/timelines/tag/:hashtag
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Status>> hashtagTimeline(
+  Future<TimelineResponse> hashtagTimeline(
     String hashtag, {
     bool local = false,
     bool onlyMedia = false,
@@ -122,16 +117,14 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return List<Status>.from(
-      json.decode(response.body).map((json) => Status.fromJson(json)),
-    );
+    return Response.parseMany(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/timelines/list/:list_id
   ///
   /// - authenticated
   /// - read read:statuses
-  Future<List<Status>> listTimeline(
+  Future<TimelineResponse> listTimeline(
     String id, {
     bool? local,
     bool? onlyMedia,

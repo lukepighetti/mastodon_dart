@@ -14,6 +14,9 @@ import '../result.dart';
 import '../utilities.dart';
 
 typedef StatusResponse = Response<Result<Status>>;
+typedef ContextResponse = Response<Result<Context>>;
+typedef CardResponse = Response<Result<Card?>>;
+typedef AccountsResponse = Response<List<Result<Account>>>;
 
 mixin Statuses on Authentication, Utilities {
   /// GET /api/v1/statuses/:id
@@ -50,20 +53,35 @@ mixin Statuses on Authentication, Utilities {
   /// - read read:statuses
   ///
   /// NOTE: Public if the status is public
-  Future<Context> context(String id) async {
+  Future<ContextResponse> context(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/context",
     );
 
-    return Context.fromJson(json.decode(response.body));
+    try {
+      return Response(
+        Result.success(
+          Context.fromJson(json.decode(response.body)),
+        ),
+      );
+    } on Exception catch (e) {
+      return Response(
+        Result.failure(
+          ResultException(
+            exception: e,
+            unparsed: response.body,
+          ),
+        ),
+      );
+    }
   }
 
   /// GET /api/v1/statuses/:id/card
   ///
   /// - public
   /// - read read:statuses
-  Future<Card?> card(String id) async {
+  Future<CardResponse> card(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/card",
@@ -72,9 +90,24 @@ mixin Statuses on Authentication, Utilities {
     final map = Map<String, dynamic>.from(json.decode(response.body));
 
     if (map.isEmpty) {
-      return null;
+      return Response(Result.success(null));
     } else {
-      return Card.fromJson(map);
+      try {
+        return Response(
+          Result.success(
+            Card.fromJson(map),
+          ),
+        );
+      } on Exception catch (e) {
+        return Response(
+          Result.failure(
+            ResultException(
+              exception: e,
+              unparsed: response.body,
+            ),
+          ),
+        );
+      }
     }
   }
 
@@ -82,7 +115,7 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
+  Future<AccountsResponse> rebloggedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/reblogged_by",
@@ -91,16 +124,31 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(jsonDecode(response.body));
 
-    return body.map((m) => Account.fromJson(m)).toList();
+    final models = List<Result<Account>>.from(
+      body.map((json) {
+        try {
+          return Result<Account>.success(Account.fromJson(json));
+        } catch (e) {
+          return Result<Account>.failure(
+            ResultException(
+              exception: e as Exception,
+              unparsed: response.body,
+            ),
+          );
+        }
+      }),
+    );
+
+    return Response(models);
   }
 
   /// GET /api/v1/statuses/:id/favourited_by
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
+  Future<AccountsResponse> favouritedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/favourited_by",
@@ -109,9 +157,24 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
+    final body = List<Map<String, dynamic>>.from(jsonDecode(response.body));
 
-    return body.map((m) => Account.fromJson(m)).toList();
+    final models = List<Result<Account>>.from(
+      body.map((json) {
+        try {
+          return Result<Account>.success(Account.fromJson(json));
+        } catch (e) {
+          return Result<Account>.failure(
+            ResultException(
+              exception: e as Exception,
+              unparsed: response.body,
+            ),
+          );
+        }
+      }),
+    );
+
+    return Response(models);
   }
 
   /// POST /api/v1/statuses

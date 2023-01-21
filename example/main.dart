@@ -26,7 +26,12 @@ main() async {
   client.token = bearerToken;
 
   try {
-    final currentAccount = await client.verifyCredentials();
+    final response = await client.verifyCredentials();
+    final currentAccount = response.result.model;
+    if (currentAccount == null) {
+      print('Error parsing account: ${response.result.error}');
+      exit(1);
+    }
     print('Hello ${currentAccount.username}!');
     print('\n');
   } on MastodonException catch (e) {

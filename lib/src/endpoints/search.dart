@@ -25,6 +25,6 @@ mixin Search on Authentication, Utilities {
       },
     );
 
-    return Response.parseOne(response.body, Results.fromJson);
+    return Response.from(response.body, Results.fromJson);
   }
 }

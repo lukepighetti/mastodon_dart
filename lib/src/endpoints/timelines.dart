@@ -31,7 +31,7 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Status.fromJson);
+    return Response.fromList(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/conversations
@@ -56,7 +56,7 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Conversation.fromJson);
+    return Response.fromList(response.body, Conversation.fromJson);
   }
 
   /// GET /api/v1/timelines/public
@@ -87,7 +87,7 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Status.fromJson);
+    return Response.fromList(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/timelines/tag/:hashtag
@@ -117,7 +117,7 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Status.fromJson);
+    return Response.fromList(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/timelines/list/:list_id

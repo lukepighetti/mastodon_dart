@@ -27,7 +27,7 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id",
     );
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/context
@@ -42,7 +42,7 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id/context",
     );
 
-    return Response.parseOne(response.body, Context.fromJson);
+    return Response.from(response.body, Context.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/card
@@ -55,7 +55,7 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id/card",
     );
 
-    return Response.parseOne(response.body, (Map<String, dynamic> json) {
+    return Response.from(response.body, (Map<String, dynamic> json) {
       if (json.isEmpty) {
         return null;
       } else {
@@ -77,7 +77,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Account.fromJson);
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/favourited_by
@@ -93,7 +93,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    return Response.parseMany(response.body, Account.fromJson);
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// POST /api/v1/statuses
@@ -131,7 +131,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// DELETE /api/v1/statuses/:id
@@ -173,7 +173,7 @@ mixin Statuses on Authentication, Utilities {
       }
     }
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unreblog
@@ -187,7 +187,7 @@ mixin Statuses on Authentication, Utilities {
       authenticated: true,
     );
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/pin
@@ -201,7 +201,7 @@ mixin Statuses on Authentication, Utilities {
       authenticated: true,
     );
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unpin
@@ -215,6 +215,6 @@ mixin Statuses on Authentication, Utilities {
       authenticated: true,
     );
 
-    return Response.parseOne(response.body, Status.fromJson);
+    return Response.from(response.body, Status.fromJson);
   }
 }

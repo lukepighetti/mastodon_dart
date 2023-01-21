@@ -13,7 +13,7 @@ class Response<T> {
   T get result => _data;
   T get results => _data;
 
-  static Response<Result<M>> parseOne<M>(
+  static Response<Result<M>> from<M>(
     String body,
     BuildCallback<M> build,
   ) {
@@ -31,7 +31,7 @@ class Response<T> {
     return Response(result);
   }
 
-  static Response<List<Result<M>>> parseMany<M>(
+  static Response<List<Result<M>>> fromList<M>(
     String body,
     BuildCallback<M> build,
   ) {

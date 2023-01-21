@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
 import '../authentication.dart';
@@ -29,22 +27,7 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id",
     );
 
-    try {
-      return Response(
-        Result.success(
-          Status.fromJson(json.decode(response.body)),
-        ),
-      );
-    } on Exception catch (e) {
-      return Response(
-        Result.failure(
-          ResultException(
-            exception: e,
-            unparsed: response.body,
-          ),
-        ),
-      );
-    }
+    return Response.parseOne(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/context
@@ -59,22 +42,7 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id/context",
     );
 
-    try {
-      return Response(
-        Result.success(
-          Context.fromJson(json.decode(response.body)),
-        ),
-      );
-    } on Exception catch (e) {
-      return Response(
-        Result.failure(
-          ResultException(
-            exception: e,
-            unparsed: response.body,
-          ),
-        ),
-      );
-    }
+    return Response.parseOne(response.body, Context.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/card
@@ -87,28 +55,13 @@ mixin Statuses on Authentication, Utilities {
       "/api/v1/statuses/$id/card",
     );
 
-    final map = Map<String, dynamic>.from(json.decode(response.body));
-
-    if (map.isEmpty) {
-      return Response(Result.success(null));
-    } else {
-      try {
-        return Response(
-          Result.success(
-            Card.fromJson(map),
-          ),
-        );
-      } on Exception catch (e) {
-        return Response(
-          Result.failure(
-            ResultException(
-              exception: e,
-              unparsed: response.body,
-            ),
-          ),
-        );
+    return Response.parseOne(response.body, (Map<String, dynamic> json) {
+      if (json.isEmpty) {
+        return null;
+      } else {
+        return Card.fromJson(json);
       }
-    }
+    });
   }
 
   /// GET /api/v1/statuses/:id/reblogged_by
@@ -124,24 +77,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(jsonDecode(response.body));
-
-    final models = List<Result<Account>>.from(
-      body.map((json) {
-        try {
-          return Result<Account>.success(Account.fromJson(json));
-        } catch (e) {
-          return Result<Account>.failure(
-            ResultException(
-              exception: e as Exception,
-              unparsed: response.body,
-            ),
-          );
-        }
-      }),
-    );
-
-    return Response(models);
+    return Response.parseMany(response.body, Account.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/favourited_by
@@ -157,24 +93,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(jsonDecode(response.body));
-
-    final models = List<Result<Account>>.from(
-      body.map((json) {
-        try {
-          return Result<Account>.success(Account.fromJson(json));
-        } catch (e) {
-          return Result<Account>.failure(
-            ResultException(
-              exception: e as Exception,
-              unparsed: response.body,
-            ),
-          );
-        }
-      }),
-    );
-
-    return Response(models);
+    return Response.parseMany(response.body, Account.fromJson);
   }
 
   /// POST /api/v1/statuses
@@ -184,7 +103,7 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> publishStatus({
+  Future<StatusResponse> publishStatus({
     String? status,
     String? inReplyToId,
     List<String> mediaIds = const [],
@@ -212,7 +131,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.parseOne(response.body, Status.fromJson);
   }
 
   /// DELETE /api/v1/statuses/:id
@@ -238,7 +157,7 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> reblog(String id) async {
+  Future<StatusResponse> reblog(String id) async {
     late final http.Response response;
 
     try {
@@ -254,48 +173,48 @@ mixin Statuses on Authentication, Utilities {
       }
     }
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.parseOne(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unreblog
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> unreblog(String id) async {
+  Future<StatusResponse> unreblog(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/unreblog",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.parseOne(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/pin
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> pinStatus(String id) async {
+  Future<StatusResponse> pinStatus(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/pin",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.parseOne(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unpin
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> unpinStatus(String id) async {
+  Future<StatusResponse> unpinStatus(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/unpin",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.parseOne(response.body, Status.fromJson);
   }
 }

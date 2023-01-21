@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import '../authentication.dart';
-import '../exception.dart';
 import '../models/conversation.dart';
 import '../models/status.dart';
 import '../response.dart';
@@ -33,23 +32,7 @@ mixin Timelines on Authentication, Utilities {
       },
     );
 
-    final json = jsonDecode(response.body);
-    final models = List<Result<Status>>.from(
-      json.map((json) {
-        try {
-          return Result<Status>.success(Status.fromJson(json));
-        } catch (e) {
-          return Result<Status>.failure(
-            ResultException(
-              exception: e as Exception,
-              unparsed: json,
-            ),
-          );
-        }
-      }),
-    );
-
-    return Response(models);
+    return Response.parseMany(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/conversations

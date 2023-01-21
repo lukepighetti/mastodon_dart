@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import '../authentication.dart';
-import '../exception.dart';
 import '../models/results.dart';
 import '../response.dart';
 import '../result.dart';
@@ -28,21 +25,6 @@ mixin Search on Authentication, Utilities {
       },
     );
 
-    try {
-      return Response(
-        Result.success(
-          Results.fromJson(json.decode(response.body)),
-        ),
-      );
-    } on Exception catch (e) {
-      return Response(
-        Result.failure(
-          ResultException(
-            exception: e,
-            unparsed: response.body,
-          ),
-        ),
-      );
-    }
+    return Response.parseOne(response.body, Results.fromJson);
   }
 }

@@ -11,7 +11,7 @@ class MastodonException implements Exception {
 
 class ResultException implements Exception {
   final Exception exception;
-  final String unparsed;
+  final Map<String, dynamic> unparsed;
 
   ResultException({
     required this.exception,

@@ -1,3 +1,7 @@
+## 1.0.12 (1/18/2023)
+
+Fix: export Meta and Option
+
 ## 1.0.11 (1/18/2023)
 
 - Feat: add example

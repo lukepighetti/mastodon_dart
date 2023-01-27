@@ -57,4 +57,5 @@ class _Rest = _Base
         Timelines;
 
 /// A Mastodon object that provides access to Mastodon endpoints
+// ignore: library_private_types_in_public_api
 class Mastodon = _Rest with Websockets;

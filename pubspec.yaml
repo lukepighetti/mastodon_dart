@@ -1,7 +1,7 @@
-name: mastodon_dart
+name: mastodon
 description: The unofficial Dart library for accessing the Mastodon API through REST or WebSockets
 version: 1.0.12
-homepage: https://github.com/lukepighetti/mastodon_dart
+homepage: https://github.com/lukepighetti/mastodon
 
 environment:
   sdk: ">=2.18.4 <3.0.0"

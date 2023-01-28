@@ -1,4 +1,4 @@
-# mastodon_dart
+# mastodon
 
 The unofficial Dart library for accessing the Mastodon API through REST or WebSockets.
 

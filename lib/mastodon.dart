@@ -1,4 +1,4 @@
-library mastodon_dart;
+library mastodon;
 
 export 'src/mastodon.dart';
 export 'src/models/account.dart';

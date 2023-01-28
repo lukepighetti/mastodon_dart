@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:mastodon_dart/src/authentication.dart';
-import 'package:mastodon_dart/src/models/notification.dart';
-import 'package:mastodon_dart/src/models/status.dart';
+import 'package:mastodon/src/authentication.dart';
+import 'package:mastodon/src/models/notification.dart';
+import 'package:mastodon/src/models/status.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 mixin Websockets on Authentication {

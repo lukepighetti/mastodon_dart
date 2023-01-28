@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:mastodon_dart/mastodon_dart.dart';
-import 'package:mastodon_dart/src/exception.dart';
+import 'package:mastodon/mastodon.dart';
+import 'package:mastodon/src/exception.dart';
 
 /// This example shows how to use the Mastodon Dart library.
 ///

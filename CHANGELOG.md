@@ -41,7 +41,7 @@ Fix: export Meta and Option
 
 ## 1.0.3 (12/11/2022)
 
-- Feat: `Mastodon.websocketFactory` is now optional 
+- Feat: `Mastodon.websocketFactory` is now optional
 - Fix: move `Application.vapidKey` to `AuthenticatedApplication`
 
 ## 1.0.2 (12/9/2022)
@@ -57,7 +57,7 @@ Fix: export Meta and Option
 - remove business logic classes
 
 ## 0.3.2 (4/9/2020)
-- Fix [issue #30](https://github.com/lukepighetti/mastodon_dart/issues/30)
+- Fix [issue #30](https://github.com/lukepighetti/mastodon/issues/30)
 
 ## 0.3.0 (4/9/2020)
 - Add most missing data entities

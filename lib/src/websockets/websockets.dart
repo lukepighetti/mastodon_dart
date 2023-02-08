@@ -8,7 +8,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 mixin Websockets on Authentication {
   WebSocketChannel _channel(String stream, {String? list, String? tag}) {
     final uri = baseUrl.replace(
-      scheme: "ws",
+      scheme: baseUrl.scheme == "https" ? "wss" : "ws",
       path: "/api/v1/streaming",
       queryParameters: {
         "access_token": token,

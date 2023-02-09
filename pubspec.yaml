@@ -1,6 +1,6 @@
 name: mastodon_dart
 description: The unofficial Dart library for accessing the Mastodon API through REST or WebSockets
-version: 1.0.12
+version: 1.0.13
 homepage: https://github.com/lukepighetti/mastodon_dart
 
 environment:

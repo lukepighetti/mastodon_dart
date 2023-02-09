@@ -1,3 +1,7 @@
+## 1.0.13 (2/9/2023)
+
+Fix: use WSS on HTTPS instances
+
 ## 1.0.12 (1/18/2023)
 
 Fix: export Meta and Option

@@ -1,15 +1,20 @@
-import 'dart:convert';
-
 import '../authentication.dart';
 import '../models/results.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
+
+typedef SearchResponse = Response<Result<Results>>;
 
 mixin Search on Authentication, Utilities {
   /// GET /api/v2/search
   ///
   /// - authenticated
   /// - read read:search
-  Future<Results> search(String q, {bool resolve = false}) async {
+  Future<SearchResponse> search(
+    String q, {
+    bool resolve = false,
+  }) async {
     final response = await request(
       Method.get,
       "/api/v2/search",
@@ -20,6 +25,6 @@ mixin Search on Authentication, Utilities {
       },
     );
 
-    return Results.fromJson(json.decode(response.body));
+    return Response.from(response.body, Results.fromJson);
   }
 }

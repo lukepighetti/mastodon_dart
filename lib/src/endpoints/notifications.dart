@@ -1,15 +1,18 @@
-import 'dart:convert';
-
 import '../authentication.dart';
 import '../models/notification.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
+
+typedef NotificationsResponse = Response<List<Result<Notification>>>;
+typedef NotificationResponse = Response<Result<Notification>>;
 
 mixin Notifications on Authentication, Utilities {
   /// GET /api/v1/notifications
   ///
   /// - authentication (requires user)
   /// - read read:notifications
-  Future<List<Notification>> notifications({
+  Future<NotificationsResponse> notifications({
     String? maxId,
     String? sinceId,
     String? minId,
@@ -31,31 +34,28 @@ mixin Notifications on Authentication, Utilities {
       }..removeWhere((_, value) => value == null),
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    /// TODO: implement link headers for pagination
-    return body.map((m) => Notification.fromJson(m)).toList();
+    return Response.fromList(response.body, Notification.fromJson);
   }
 
   /// GET /api/v1/notifications/:id
   ///
   /// - authentication (requires user)
   /// - read read:notifications
-  Future<Notification> notification(String id) async {
+  Future<NotificationResponse> notification(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/notifications/$id",
       authenticated: true,
     );
 
-    return Notification.fromJson(json.decode(response.body));
+    return Response.from(response.body, Notification.fromJson);
   }
 
   /// POST /api/v1/notifications/clear
   ///
   /// - authentication (requires user)
   /// - write write:notifications
-  Future<dynamic> clearNotifications() async {
+  Future<void> clearNotifications() async {
     await request(
       Method.post,
       "/api/v1/notifications/clear",
@@ -67,7 +67,7 @@ mixin Notifications on Authentication, Utilities {
   ///
   /// - authentication (requires user)
   /// - write write:notifications
-  Future<dynamic> dismissNotification(String id) async {
+  Future<void> dismissNotification(String id) async {
     await request(
       Method.post,
       "/api/v1/notifications/dismiss",

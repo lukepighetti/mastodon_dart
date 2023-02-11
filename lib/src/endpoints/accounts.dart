@@ -1,10 +1,17 @@
-import 'dart:convert';
-
 import '../authentication.dart';
 import '../models/account.dart';
 import '../models/relationship.dart';
 import '../models/status.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
+import 'timelines.dart';
+
+typedef AccountResponse = Response<Result<Account>>;
+typedef AccountsResponse = Response<List<Result<Account>>>;
+typedef RelationshipResponse = Response<Result<Relationship>>;
+typedef RelationshipsResponse = Response<List<Result<Relationship>>>;
+typedef TokenResponse = Response<Result<Token>>;
 
 /// Methods concerning user accounts and related information.
 /// https://docs.joinmastodon.org/methods/accounts/
@@ -16,20 +23,20 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - public
   /// - read read:accounts
-  Future<Account> account(String id) async {
+  Future<AccountResponse> account(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/$id",
     );
 
-    return Account.fromJson(json.decode(response.body));
+    return Response.from(response.body, Account.fromJson);
   }
 
   /// POST /api/v1/accounts
   ///
   /// - authenticated (no user required)
   /// - write write:accounts
-  Future<Token> requestToken(
+  Future<TokenResponse> requestToken(
     String username,
     String email,
     String password,
@@ -49,7 +56,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    return Token.fromJson(json.decode(response.body));
+    return Response.from(response.body, Token.fromJson);
   }
 
   /// Test to make sure that the user token works.
@@ -58,14 +65,14 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated (requires user)
   /// - read read:accounts
-  Future<Account> verifyCredentials() async {
+  Future<AccountResponse> verifyCredentials() async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/verify_credentials",
       authenticated: true,
     );
 
-    return Account.fromJson(json.decode(response.body));
+    return Response.from(response.body, Account.fromJson);
   }
 
   /// Update the user's display and preferences.
@@ -74,7 +81,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated (requires user)
   /// - write write:accounts
-  Future<Account> updateCredentials({
+  Future<AccountResponse> updateCredentials({
     String? displayName,
     String? note,
     // Object? avatar,
@@ -108,7 +115,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    return Account.fromJson(json.decode(response.body));
+    return Response.from(response.body, Account.fromJson);
   }
 
   /// Accounts which follow the given account, if network is not hidden by the account owner.
@@ -117,7 +124,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:accounts
-  Future<List<Account>> followers(String id, {int limit = 40}) async {
+  Future<AccountsResponse> followers(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/$id/followers",
@@ -127,11 +134,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    /// TODO: implement link headers for pagination
-
-    return body.map((m) => Account.fromJson(m)).toList();
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// Accounts which the given account is following, if network is not hidden by the account owner.
@@ -140,7 +143,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:accounts
-  Future<List<Account>> following(String id, {int limit = 40}) async {
+  Future<AccountsResponse> following(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/$id/following",
@@ -150,11 +153,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    /// TODO: implement link headers for pagination
-
-    return body.map((m) => Account.fromJson(m)).toList();
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// Statuses posted to the given account.
@@ -163,7 +162,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:statuses
-  Future<List<Status>> statuses(
+  Future<TimelineResponse> statuses(
     String id, {
     bool onlyMedia = false,
     bool pinned = false,
@@ -189,11 +188,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    /// TODO: implement link headers for pagination
-
-    return body.map((m) => Status.fromJson(m)).toList();
+    return Response.fromList(response.body, Status.fromJson);
   }
 
   /// Follow the given account.
@@ -202,7 +197,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write:follows
-  Future<Relationship> follow(String id, {bool reblogs = true}) async {
+  Future<RelationshipResponse> follow(String id, {bool reblogs = true}) async {
     final response = await request(
       Method.post,
       "/api/v1/accounts/$id/follow",
@@ -212,7 +207,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    return Relationship.fromJson(json.decode(response.body));
+    return Response.from(response.body, Relationship.fromJson);
   }
 
   /// Unfollow the given account.
@@ -221,14 +216,14 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write:follows
-  Future<Relationship> unfollow(String id) async {
+  Future<RelationshipResponse> unfollow(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/accounts/$id/unfollow",
       authenticated: true,
     );
 
-    return Relationship.fromJson(json.decode(response.body));
+    return Response.from(response.body, Relationship.fromJson);
   }
 
   /// Find out whether a given account is followed, blocked, muted, etc.
@@ -237,7 +232,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:follows
-  Future<List<Relationship>> relationships(List<String> ids) async {
+  Future<RelationshipsResponse> relationships(List<String> ids) async {
     final response = await request(
       Method.get,
       "/api/v1/accounts/relationships",
@@ -247,9 +242,7 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    return body.map((m) => Relationship.fromJson(m)).toList();
+    return Response.fromList(response.body, Relationship.fromJson);
   }
 
   /// Search for matching accounts by username or display name.
@@ -258,7 +251,7 @@ mixin Accounts on Authentication, Utilities {
   ///
   /// - authenticated
   /// - read read:accounts
-  Future<List<Account>> searchAccounts(
+  Future<AccountsResponse> searchAccounts(
     String q, {
     int limit = 40,
     bool resolve = false,
@@ -276,8 +269,6 @@ mixin Accounts on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    return body.map((m) => Account.fromJson(m)).toList();
+    return Response.fromList(response.body, Account.fromJson);
   }
 }

@@ -1,28 +1,33 @@
-import 'dart:convert';
-
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 
 import '../authentication.dart';
+import '../exception.dart';
 import '../models/account.dart';
 import '../models/card.dart';
 import '../models/context.dart';
-import '../models/visibility.dart';
 import '../models/status.dart';
-import '../exception.dart';
+import '../models/visibility.dart';
+import '../response.dart';
+import '../result.dart';
 import '../utilities.dart';
+
+typedef StatusResponse = Response<Result<Status>>;
+typedef ContextResponse = Response<Result<Context>>;
+typedef CardResponse = Response<Result<Card?>>;
+typedef AccountsResponse = Response<List<Result<Account>>>;
 
 mixin Statuses on Authentication, Utilities {
   /// GET /api/v1/statuses/:id
   ///
   /// - public
   /// - read read:statuses
-  Future<Status> status(String id) async {
+  Future<StatusResponse> status(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id",
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/context
@@ -31,39 +36,39 @@ mixin Statuses on Authentication, Utilities {
   /// - read read:statuses
   ///
   /// NOTE: Public if the status is public
-  Future<Context> context(String id) async {
+  Future<ContextResponse> context(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/context",
     );
 
-    return Context.fromJson(json.decode(response.body));
+    return Response.from(response.body, Context.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/card
   ///
   /// - public
   /// - read read:statuses
-  Future<Card?> card(String id) async {
+  Future<CardResponse> card(String id) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/card",
     );
 
-    final map = Map<String, dynamic>.from(json.decode(response.body));
-
-    if (map.isEmpty) {
-      return null;
-    } else {
-      return Card.fromJson(map);
-    }
+    return Response.from(response.body, (Map<String, dynamic> json) {
+      if (json.isEmpty) {
+        return null;
+      } else {
+        return Card.fromJson(json);
+      }
+    });
   }
 
   /// GET /api/v1/statuses/:id/reblogged_by
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Account>> rebloggedBy(String id, {int limit = 40}) async {
+  Future<AccountsResponse> rebloggedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/reblogged_by",
@@ -72,16 +77,14 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    return body.map((m) => Account.fromJson(m)).toList();
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// GET /api/v1/statuses/:id/favourited_by
   ///
   /// - public
   /// - read read:statuses
-  Future<List<Account>> favouritedBy(String id, {int limit = 40}) async {
+  Future<AccountsResponse> favouritedBy(String id, {int limit = 40}) async {
     final response = await request(
       Method.get,
       "/api/v1/statuses/$id/favourited_by",
@@ -90,9 +93,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    final body = List<Map<String, dynamic>>.from(json.decode(response.body));
-
-    return body.map((m) => Account.fromJson(m)).toList();
+    return Response.fromList(response.body, Account.fromJson);
   }
 
   /// POST /api/v1/statuses
@@ -102,7 +103,7 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> publishStatus({
+  Future<StatusResponse> publishStatus({
     String? status,
     String? inReplyToId,
     List<String> mediaIds = const [],
@@ -130,7 +131,7 @@ mixin Statuses on Authentication, Utilities {
       },
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// DELETE /api/v1/statuses/:id
@@ -156,8 +157,8 @@ mixin Statuses on Authentication, Utilities {
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> reblog(String id) async {
-    late final Response response;
+  Future<StatusResponse> reblog(String id) async {
+    late final http.Response response;
 
     try {
       response = await request(
@@ -172,48 +173,48 @@ mixin Statuses on Authentication, Utilities {
       }
     }
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unreblog
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> unreblog(String id) async {
+  Future<StatusResponse> unreblog(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/unreblog",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/pin
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> pinStatus(String id) async {
+  Future<StatusResponse> pinStatus(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/pin",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 
   /// POST /api/v1/statuses/:id/unpin
   ///
   /// - authenticated
   /// - write write:statuses
-  Future<Status> unpinStatus(String id) async {
+  Future<StatusResponse> unpinStatus(String id) async {
     final response = await request(
       Method.post,
       "/api/v1/statuses/$id/unpin",
       authenticated: true,
     );
 
-    return Status.fromJson(json.decode(response.body));
+    return Response.from(response.body, Status.fromJson);
   }
 }

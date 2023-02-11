@@ -26,7 +26,12 @@ main() async {
   client.token = bearerToken;
 
   try {
-    var currentAccount = await client.verifyCredentials();
+    final response = await client.verifyCredentials();
+    final currentAccount = response.result.model;
+    if (currentAccount == null) {
+      print('Error parsing account: ${response.result.error}');
+      exit(1);
+    }
     print('Hello ${currentAccount.username}!');
     print('\n');
   } on MastodonException catch (e) {
@@ -34,8 +39,13 @@ main() async {
     exit(1);
   }
 
-  var timeline = await client.timeline(limit: 5);
-  for (var status in timeline) {
+  final response = await client.timeline(limit: 5);
+  for (final result in response.results) {
+    final status = result.model;
+    if (status == null) {
+      print('Error parsing status: ${result.error!.exception}');
+      continue;
+    }
     print('@${status.account.acct}: ${_stripHtml(status.content)}');
   }
 }
